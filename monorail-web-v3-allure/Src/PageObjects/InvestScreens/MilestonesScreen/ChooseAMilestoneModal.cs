@@ -25,8 +25,6 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
         private static string MilestoneTypeToString(MilestoneType milestoneType)
         {
             var milestoneTypeString = Enum.GetName(typeof(MilestoneType), milestoneType);
-            //Console.WriteLine(milestoneTypeString);
-
             return milestoneTypeString.Replace("_", " ");
         }
     }
