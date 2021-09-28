@@ -10,10 +10,10 @@ namespace monorail_web_v3.PageObjects.Menus
     {
         [FindsBy(How = How.XPath,
             Using = "//button[@class='vim-header__sidenav-toggle']/svg-icon[contains(@src, 'menu')]")]
-        private IWebElement HamburgerMenu;
+        private IWebElement _hamburgerMenu;
 
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Log Out')]")]
-        private IWebElement LogOutButton;
+        private IWebElement _logOutButton;
 
         public SideMenu(IWebDriver driver)
         {
@@ -23,16 +23,16 @@ namespace monorail_web_v3.PageObjects.Menus
         [AllureStep("Expand side menu")]
         public SideMenu ExpandSideMenu()
         {
-            Wait.Until(ElementToBeClickable(HamburgerMenu));
-            HamburgerMenu.Click();
+            Wait.Until(ElementToBeClickable(_hamburgerMenu));
+            _hamburgerMenu.Click();
             return this;
         }
 
         [AllureStep("Click 'Log Out' option")]
         public SideMenu Logout()
         {
-            Wait.Until(ElementToBeClickable(LogOutButton));
-            LogOutButton.Click();
+            Wait.Until(ElementToBeClickable(_logOutButton));
+            _logOutButton.Click();
             return this;
         }
     }

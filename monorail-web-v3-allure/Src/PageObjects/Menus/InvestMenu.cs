@@ -9,7 +9,7 @@ namespace monorail_web_v3.PageObjects.Menus
     public class InvestMenu
     {
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Milestones')]")]
-        private IWebElement MilestonesNavItem;
+        private IWebElement _milestonesNavItem;
 
         public InvestMenu(IWebDriver driver)
         {
@@ -19,8 +19,8 @@ namespace monorail_web_v3.PageObjects.Menus
         [AllureStep("Click 'Milestones'")]
         public InvestMenu ClickMilestones()
         {
-            Wait.Until(ElementToBeClickable(MilestonesNavItem));
-            MilestonesNavItem.Click();
+            Wait.Until(ElementToBeClickable(_milestonesNavItem));
+            _milestonesNavItem.Click();
             return this;
         }
     }

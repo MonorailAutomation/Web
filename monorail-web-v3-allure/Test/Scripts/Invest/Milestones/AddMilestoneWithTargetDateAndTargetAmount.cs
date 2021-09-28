@@ -4,25 +4,25 @@ using monorail_web_v3.PageObjects.Menus;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
+using static monorail_web_v3.Commons.RandomGenerator;
 
-namespace monorail_web_v3.Test.Scripts.Milestones
+namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 {
     [TestFixture]
     [AllureNUnit]
-    internal class AddMilestone : FunctionalTesting
+    internal class AddMilestoneWithTargetDateAndTargetAmount : FunctionalTesting
     {
         private const string Username = "mp.1.042021@vimvest.com";
         private const string Password = "Test123!!";
-        private const string MilestoneName = "Test Milestone ABC1";
         private const string MilestoneDescription = "Test Milestone Description";
         private const string MilestoneTargetDate = "24/10/2022";
-        private const string MilestoneTargetAmount = "2500";
+        private const string MilestoneTargetAmount = "4,500";
 
         [Test(Description = "Add a Milestone")]
         [AllureEpic("Invest")]
         [AllureFeature("Milestones")]
-        [AllureStory("Add a Milestone")]
-        public void AddAMilestoneTest()
+        [AllureStory("Add a Milestone with Target Date and Target Amount")]
+        public void AddMilestoneWithTargetDateAndTargetAmountTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainHeader = new MainHeader(Driver);
@@ -33,6 +33,8 @@ namespace monorail_web_v3.Test.Scripts.Milestones
             var portfolioModal = new PortfolioModal(Driver);
             var depositScheduleModal = new DepositScheduleModal(Driver);
             var successModal = new SuccessModal(Driver);
+
+            var milestoneName = "Test Milestone " + GenerateRandomString();
 
             loginPage
                 .PassCredentials(Username, Password)
@@ -45,9 +47,9 @@ namespace monorail_web_v3.Test.Scripts.Milestones
 
             milestonesMainScreen.ClickAddAMilestoneButton();
 
-            chooseAMilestoneModal.ClickMilestoneType(MilestoneType.College_Fund);
+            chooseAMilestoneModal.ClickMilestoneType(MilestoneType.CollegeFund);
 
-            milestoneDetailsModal.SetMilestoneName(MilestoneName)
+            milestoneDetailsModal.SetMilestoneName(milestoneName)
                 .SetMilestoneDescription(MilestoneDescription)
                 .SetMilestoneTargetAmount(MilestoneTargetAmount)
                 .SetMilestoneTargetDate(MilestoneTargetDate)
@@ -61,7 +63,7 @@ namespace monorail_web_v3.Test.Scripts.Milestones
 
             Driver.Navigate().Refresh();
 
-            milestonesMainScreen.VerifyIfMilestoneExists(MilestoneName);
+            milestonesMainScreen.VerifyIfMilestoneExists(milestoneName, MilestoneTargetAmount);
         }
     }
 }

@@ -9,19 +9,19 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
     public class MilestoneDetailsModal
     {
         [FindsBy(How = How.XPath, Using = "//vim-milestone-details-modal//button[contains(text(),'Continue')]")]
-        private IWebElement ContinueButton;
+        private IWebElement _continueButton;
 
         [FindsBy(How = How.Id, Using = "itemDescription")]
-        private IWebElement MilestoneDescriptionInput;
+        private IWebElement _milestoneDescriptionInput;
 
         [FindsBy(How = How.Id, Using = "name")]
-        private IWebElement MilestoneNameInput;
+        private IWebElement _milestoneNameInput;
 
         [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='targetBalance']")]
-        private IWebElement MilestoneTargetAmountInput;
+        private IWebElement _milestoneTargetAmountInput;
 
         [FindsBy(How = How.XPath, Using = "//input[@type='date']")]
-        private IWebElement MilestoneTargetDateInput;
+        private IWebElement _milestoneTargetDateInput;
 
         public MilestoneDetailsModal(IWebDriver driver)
         {
@@ -31,44 +31,44 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
         [AllureStep("Set Milestone name to '{0}'")]
         public MilestoneDetailsModal SetMilestoneName(string milestoneName)
         {
-            Wait.Until(ElementToBeVisible(MilestoneNameInput));
-            MilestoneNameInput.Clear();
-            MilestoneNameInput.SendKeys(milestoneName);
+            Wait.Until(ElementToBeVisible(_milestoneNameInput));
+            _milestoneNameInput.Clear();
+            _milestoneNameInput.SendKeys(milestoneName);
             return this;
         }
 
         [AllureStep("Set Milestone description to '{0}'")]
         public MilestoneDetailsModal SetMilestoneDescription(string milestoneDescription)
         {
-            Wait.Until(ElementToBeVisible(MilestoneDescriptionInput));
-            MilestoneDescriptionInput.Clear();
-            MilestoneDescriptionInput.SendKeys(milestoneDescription);
+            Wait.Until(ElementToBeVisible(_milestoneDescriptionInput));
+            _milestoneDescriptionInput.Clear();
+            _milestoneDescriptionInput.SendKeys(milestoneDescription);
             return this;
         }
 
         [AllureStep("Set Milestone Target Amount to '${0}'")]
         public MilestoneDetailsModal SetMilestoneTargetAmount(string milestoneTargetAmount)
         {
-            Wait.Until(ElementToBeVisible(MilestoneTargetAmountInput));
-            MilestoneTargetAmountInput.Clear();
-            MilestoneTargetAmountInput.SendKeys(milestoneTargetAmount);
+            Wait.Until(ElementToBeVisible(_milestoneTargetAmountInput));
+            _milestoneTargetAmountInput.Clear();
+            _milestoneTargetAmountInput.SendKeys(milestoneTargetAmount);
             return this;
         }
 
         [AllureStep("Set Milestone Target Date to '{0}'")]
         public MilestoneDetailsModal SetMilestoneTargetDate(string milestoneTargetDate)
         {
-            Wait.Until(ElementToBeVisible(MilestoneTargetDateInput));
-            MilestoneTargetDateInput.Clear();
-            MilestoneTargetDateInput.SendKeys(milestoneTargetDate);
+            Wait.Until(ElementToBeVisible(_milestoneTargetDateInput));
+            _milestoneTargetDateInput.Clear();
+            _milestoneTargetDateInput.SendKeys(milestoneTargetDate);
             return this;
         }
 
         [AllureStep("Click 'Continue' button")]
         public MilestoneDetailsModal ClickContinueButton()
         {
-            Wait.Until(ElementToBeVisible(ContinueButton));
-            ContinueButton.Click();
+            Wait.Until(ElementToBeVisible(_continueButton));
+            _continueButton.Click();
             return this;
         }
     }

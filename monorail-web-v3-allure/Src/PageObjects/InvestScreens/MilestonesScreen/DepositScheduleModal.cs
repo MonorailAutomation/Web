@@ -9,7 +9,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
     public class DepositScheduleModal
     {
         [FindsBy(How = How.XPath, Using = "//vim-deposit-schedule-modal//button[contains(text(),'Continue')]")]
-        private IWebElement ContinueButton;
+        private IWebElement _continueButton;
 
         public DepositScheduleModal(IWebDriver driver)
         {
@@ -19,8 +19,8 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
         [AllureStep("Click 'Continue' button")]
         public DepositScheduleModal ClickContinueButton()
         {
-            Wait.Until(ElementToBeClickable(ContinueButton));
-            ContinueButton.Click();
+            Wait.Until(ElementToBeClickable(_continueButton));
+            _continueButton.Click();
             return this;
         }
     }

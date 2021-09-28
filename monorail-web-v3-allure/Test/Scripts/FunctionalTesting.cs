@@ -11,7 +11,7 @@ namespace monorail_web_v3.Test.Scripts
     public class FunctionalTesting
     {
         private const string BaseUrl = "https://monarchweb-app-feature.azurewebsites.net/login";
-        protected static IWebDriver Driver;
+        public static IWebDriver Driver;
         public static WebDriverWait Wait;
 
         [OneTimeSetUp]
@@ -19,10 +19,6 @@ namespace monorail_web_v3.Test.Scripts
         {
             var projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             const string configFolder = "Config";
-
-            Console.WriteLine(Path.Combine(projectPath, configFolder, AllureConstants.CONFIG_FILENAME));
-
-
             Environment.SetEnvironmentVariable(
                 AllureConstants.ALLURE_CONFIG_ENV_VARIABLE,
                 Path.Combine(projectPath, configFolder, AllureConstants.CONFIG_FILENAME));

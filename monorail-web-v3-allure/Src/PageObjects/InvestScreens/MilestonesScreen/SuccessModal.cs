@@ -9,7 +9,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
     public class SuccessModal
     {
         [FindsBy(How = How.XPath, Using = "//vim-added-successfully-goal-modal//button[contains(text(),'Finish')]")]
-        private IWebElement FinishButton;
+        private IWebElement _finishButton;
 
         public SuccessModal(IWebDriver driver)
         {
@@ -19,8 +19,8 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
         [AllureStep("Click 'Finish' button")]
         public SuccessModal ClickFinishButton()
         {
-            Wait.Until(ElementToBeClickable(FinishButton));
-            FinishButton.Click();
+            Wait.Until(ElementToBeClickable(_finishButton));
+            _finishButton.Click();
             return this;
         }
     }

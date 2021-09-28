@@ -10,7 +10,7 @@ namespace monorail_web_v3.PageObjects.Menus
     {
         [FindsBy(How = How.XPath,
             Using = "//div[@class='vim-header__main-content']//child::span[contains(text(),'Invest')]")]
-        private IWebElement InvestNavItem;
+        private IWebElement _investNavItem;
 
         public MainHeader(IWebDriver driver)
         {
@@ -20,8 +20,8 @@ namespace monorail_web_v3.PageObjects.Menus
         [AllureStep("Click 'Invest'")]
         public MainHeader ClickInvest()
         {
-            Wait.Until(ElementToBeClickable(InvestNavItem));
-            InvestNavItem.Click();
+            Wait.Until(ElementToBeClickable(_investNavItem));
+            _investNavItem.Click();
             return this;
         }
     }
