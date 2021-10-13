@@ -1,4 +1,6 @@
-﻿using NUnit.Allure.Steps;
+﻿using System;
+using FluentAssertions;
+using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using static monorail_web_v3.Commons.Waits;
@@ -14,14 +16,20 @@ namespace monorail_web_v3.PageObjects
         [FindsBy(How = How.Id, Using = "inputPassword")]
         private IWebElement _passwordField;
 
-        [FindsBy(How = How.XPath, Using = "//input[@id='inputEmail']//following::div[1]")]
-        private IWebElement _requiredUnderEmail;
-
-        [FindsBy(How = How.XPath, Using = "//input[@id='inputPassword']//following::div[1]")]
-        private IWebElement _requiredUnderPassword;
-
         [FindsBy(How = How.XPath, Using = "//button[@type='submit']")]
         private IWebElement _signInButton;
+        
+        [FindsBy(How = How.ClassName, Using = "vim-flash-message__title")]
+        private IWebElement _flashMessageTitle;
+        
+        [FindsBy(How = How.ClassName, Using = "vim-flash-message__text")]
+        private IWebElement _flashMessageText;
+        
+        [FindsBy(How = How.ClassName, Using = "vim-flash-message__dismiss")]
+        private IWebElement _flashMessageDismissButton;
+
+        private const string ExpectedInvalidLoginHeader = "Whoops! Incorrect email or password.";
+        private const string ExpectedInvalidLoginMessage = "If you don't have an account, create one in the Vimvest App.";
 
         public LoginPage(IWebDriver driver)
         {
@@ -42,18 +50,20 @@ namespace monorail_web_v3.PageObjects
             _signInButton.Click();
             return this;
         }
-
-        [AllureStep("Verify if 'Required' text is visible under E-mail field")]
-        public LoginPage VerifyIfEmailIsRequired()
+        
+        [AllureStep("Verify that 'Whoops! Incorrect email or password.' message is displayed")]
+        public LoginPage VerifyIfWhoopsIncorrectEmailOrPasswordMessageIsDisplayed()
         {
-            Wait.Until(ElementToBeVisible(_requiredUnderEmail));
-            return this;
-        }
+            Wait.Until(ElementToBeVisible(_flashMessageTitle));
+            Wait.Until(ElementToBeVisible(_flashMessageText));
+            Wait.Until(ElementToBeClickable(_flashMessageDismissButton));
 
-        [AllureStep("Verify if 'Required' text is visible under Password field")]
-        public LoginPage VerifyIfPasswordIsRequired()
-        {
-            Wait.Until(ElementToBeVisible(_requiredUnderPassword));
+            var actualHeader = _flashMessageTitle.Text;
+            var actualMessage = _flashMessageText.Text;
+            
+            actualHeader.Should().Be(ExpectedInvalidLoginHeader);
+            actualMessage.Should().Be(ExpectedInvalidLoginMessage);
+            
             return this;
         }
     }

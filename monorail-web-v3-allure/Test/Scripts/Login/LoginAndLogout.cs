@@ -10,13 +10,13 @@ namespace monorail_web_v3.Test.Scripts.Login
     [AllureNUnit]
     internal class LoginAndLogout : FunctionalTesting
     {
-        private const string Username = "mp.1.042021@vimvest.com";
+        private const string Username = "autotests.mono+40.131021@gmail.com";
         private const string Password = "Test123!!";
 
-        [Test(Description = "Valid Login and Logout Test")]
+        [Test(Description = "Successful login with correct username and password")]
         [AllureEpic("Login")]
-        [AllureFeature("Valid Login")]
-        [AllureStory("Login with correct username and password")]
+        [AllureFeature("Successful Login")]
+        [AllureStory("Valid Login and Logout Test")]
         public void LoginAndLogoutTest()
         {
             var loginPage = new LoginPage(Driver);

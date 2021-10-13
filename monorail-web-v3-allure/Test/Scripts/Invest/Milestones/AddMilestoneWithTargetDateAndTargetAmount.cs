@@ -12,16 +12,16 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
     [AllureNUnit]
     internal class AddMilestoneWithTargetDateAndTargetAmount : FunctionalTesting
     {
-        private const string Username = "mp.1.042021@vimvest.com";
+        private const string Username = "autotests.mono+1.1.131021@gmail.com";
         private const string Password = "Test123!!";
         private const string MilestoneDescription = "Test Milestone Description";
-        private const string MilestoneTargetDate = "24/10/2022";
+        private const string MilestoneTargetDate = "24/10/2023";
         private const string MilestoneTargetAmount = "4,500";
 
-        [Test(Description = "Add a Milestone")]
+        [Test(Description = "Add a Milestone with Target Date and Target Amount")]
         [AllureEpic("Invest")]
         [AllureFeature("Milestones")]
-        [AllureStory("Add a Milestone with Target Date and Target Amount")]
+        [AllureStory("Add a Milestone")]
         public void AddMilestoneWithTargetDateAndTargetAmountTest()
         {
             var loginPage = new LoginPage(Driver);

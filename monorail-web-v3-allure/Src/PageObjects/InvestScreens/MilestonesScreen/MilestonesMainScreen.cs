@@ -85,7 +85,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
                 Wait.Until(ExpectedConditions.ElementIsVisible(milestoneTargetAmountSelector));
                 var actualMilestoneAmount = Driver.FindElement(milestoneTargetAmountSelector).Text;
                 actualMilestoneAmount.Should().Be(expectedMilestoneAmount);
-                Console.WriteLine("$" + milestoneTargetAmount + "was found for " + milestoneName + "Milestone.");
+                Console.WriteLine("$" + milestoneTargetAmount + " Target Amount was found for '" + milestoneName + "' Milestone.");
             }
             catch (Exception e)
             {
