@@ -25,7 +25,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
         private const string ChangedMilestoneDescription = "Changed Milestone Description";
         private const string ChangedMilestoneTargetAmount = "5,292";
         private const string ChangedMilestoneTargetDate = "06/12/2026";
-
+        
         [Test(Description = "Edit a Milestone - change name, description, target amount, target date but without scheduled deposit")]
         [AllureEpic("Invest")]
         [AllureFeature("Milestones")]
@@ -51,7 +51,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             milestonesMainScreen.ClickMilestone(OriginalMilestoneName);
 
             milestoneDetailsScreen.ClickEditDetailsButton();
-
+            
             milestoneDetailsModal.SetMilestoneName(ChangedMilestoneName)
                 .SetMilestoneDescription(ChangedMilestoneDescription)
                 .SetMilestoneTargetAmount(ChangedMilestoneTargetAmount)

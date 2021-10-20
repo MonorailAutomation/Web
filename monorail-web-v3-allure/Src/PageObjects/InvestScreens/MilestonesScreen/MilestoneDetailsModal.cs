@@ -74,7 +74,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
             _continueButton.Click();
             return this;
         }
-        
+
         [AllureStep("Verify if 'Target Date' is '{0}'")]
         public MilestoneDetailsModal VerifyTargetDate(string expectedTargetDate)
         {

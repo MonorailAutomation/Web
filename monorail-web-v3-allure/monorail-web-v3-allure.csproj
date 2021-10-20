@@ -25,22 +25,25 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Selenium.WebDriver" />
-        <None Remove="Selenium.WebDriver.ChromeDriver" />
-        <None Remove="Selenium.WebDriver.GeckoDriver" />
-        <None Remove="Test\" />
-        <None Remove="DotNetSeleniumExtras.PageObjects" />
-        <None Remove="DotNetSeleniumExtras.PageObjects.Core" />
-        <None Remove="DotNetSeleniumExtras.WaitHelpers" />
-        <None Remove="Selenium.Support" />
-        <None Remove="Src\PageObject\" />
-        <None Remove="Src\Waits\" />
-        <None Remove="Test\Scripts\" />
-        <None Remove="Src\Commons\" />
-        <None Remove="Test\Scripts\Login\" />
+        <None Remove="Selenium.WebDriver"/>
+        <None Remove="Selenium.WebDriver.ChromeDriver"/>
+        <None Remove="Selenium.WebDriver.GeckoDriver"/>
+        <None Remove="Test\"/>
+        <None Remove="DotNetSeleniumExtras.PageObjects"/>
+        <None Remove="DotNetSeleniumExtras.PageObjects.Core"/>
+        <None Remove="DotNetSeleniumExtras.WaitHelpers"/>
+        <None Remove="Selenium.Support"/>
+        <None Remove="Src\PageObject\"/>
+        <None Remove="Src\Waits\"/>
+        <None Remove="Test\Scripts\"/>
+        <None Remove="Src\Commons\"/>
+        <None Remove="Test\Scripts\Login\"/>
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="Src\Commons\" />
-        <Folder Include="Test\Scripts\Login\" />
+        <Folder Include="Test\"/>
+        <Folder Include="Src\PageObjects\"/>
+        <Folder Include="Test\Scripts\"/>
+        <Folder Include="Src\Commons\"/>
+        <Folder Include="Test\Scripts\Login\"/>
     </ItemGroup>
 </Project>
