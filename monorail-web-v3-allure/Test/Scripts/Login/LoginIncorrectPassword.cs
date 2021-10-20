@@ -2,6 +2,7 @@ using monorail_web_v3.PageObjects;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
+using static monorail_web_v3.Commons.Passwords;
 
 namespace monorail_web_v3.Test.Scripts.Login
 {
@@ -10,7 +11,7 @@ namespace monorail_web_v3.Test.Scripts.Login
     internal class LoginIncorrectPassword : FunctionalTesting
     {
         private const string ValidUsername = "autotests.mono+40.131021@gmail.com";
-        private const string InvalidPassword = "123456789";
+        //private const string InvalidPassword = "123456789";
 
         [Test(Description = "Unsuccessful login with correct username and incorrect password")]
         [AllureEpic("Login")]

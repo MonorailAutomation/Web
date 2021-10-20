@@ -9,8 +9,16 @@ namespace monorail_web_v3.PageObjects.Menus
     public class MainHeader
     {
         [FindsBy(How = How.XPath,
-            Using = "//div[@class='vim-header__main-content']//child::span[contains(text(),'Invest')]")]
+            Using = "//div[@class='vim-header__nav_item']//child::span[contains(text(),'Invest')]")]
         private IWebElement _investNavItem;
+
+        [FindsBy(How = How.XPath,
+            Using = "//div[@class='vim-header__nav_item']//child::span[contains(text(),'Money')]")]
+        private IWebElement _moneyNavItem;
+
+        [FindsBy(How = How.XPath,
+            Using = "//div[@class='vim-header__nav_item']//child::span[contains(text(),'Wishlist')]")]
+        private IWebElement _wishlistNavItem;
 
         public MainHeader(IWebDriver driver)
         {
@@ -24,5 +32,22 @@ namespace monorail_web_v3.PageObjects.Menus
             _investNavItem.Click();
             return this;
         }
+
+        [AllureStep("Click 'Money'")]
+        public MainHeader ClickMoney()
+        {
+            Wait.Until(ElementToBeClickable(_moneyNavItem));
+            _moneyNavItem.Click();
+            return this;
+        }
+
+        [AllureStep("Click 'Wishlist'")]
+        public MainHeader ClickWishlist()
+        {
+            Wait.Until(ElementToBeClickable(_wishlistNavItem));
+            _wishlistNavItem.Click();
+            return this;
+        }
+
     }
 }

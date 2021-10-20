@@ -1,5 +1,6 @@
 ﻿using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Menus;
+using static monorail_web_v3.Commons.Passwords;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -11,7 +12,7 @@ namespace monorail_web_v3.Test.Scripts.Login
     internal class LoginAndLogout : FunctionalTesting
     {
         private const string Username = "autotests.mono+40.131021@gmail.com";
-        private const string Password = "Test123!!";
+        //private const string Password = "Test123!!";
 
         [Test(Description = "Successful login with correct username and password")]
         [AllureEpic("Login")]
@@ -23,7 +24,7 @@ namespace monorail_web_v3.Test.Scripts.Login
             var sideMenu = new SideMenu(Driver);
 
             loginPage
-                .PassCredentials(Username, Password)
+                .PassCredentials(Username, ValidPassword)
                 .ClickSignInButton();
 
             sideMenu
