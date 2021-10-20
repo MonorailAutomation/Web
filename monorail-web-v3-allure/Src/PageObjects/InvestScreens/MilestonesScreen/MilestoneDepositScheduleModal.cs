@@ -6,18 +6,18 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
 {
-    public class DepositScheduleModal
+    public class MilestoneDepositScheduleModal
     {
         [FindsBy(How = How.XPath, Using = "//vim-deposit-schedule-modal//button[contains(text(),'Continue')]")]
         private IWebElement _continueButton;
 
-        public DepositScheduleModal(IWebDriver driver)
+        public MilestoneDepositScheduleModal(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
         }
 
         [AllureStep("Click 'Continue' button")]
-        public DepositScheduleModal ClickContinueButton()
+        public MilestoneDepositScheduleModal ClickContinueButton()
         {
             Wait.Until(ElementToBeClickable(_continueButton));
             _continueButton.Click();

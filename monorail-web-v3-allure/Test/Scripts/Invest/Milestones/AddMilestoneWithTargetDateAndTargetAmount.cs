@@ -32,8 +32,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var chooseAMilestoneModal = new ChooseAMilestoneModal(Driver);
             var milestoneDetailsModal = new MilestoneDetailsModal(Driver);
             var portfolioModal = new PortfolioModal(Driver);
-            var depositScheduleModal = new DepositScheduleModal(Driver);
-            var successModal = new SuccessModal(Driver);
+            var milestoneDepositScheduleModal = new MilestoneDepositScheduleModal(Driver);
+            var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
             var milestoneName = "Test Milestone " + GenerateRandomString();
 
@@ -58,9 +58,9 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             portfolioModal.ClickContinueButton();
 
-            depositScheduleModal.ClickContinueButton();
+            milestoneDepositScheduleModal.ClickContinueButton();
 
-            successModal.ClickFinishButton();
+            addMilestoneSuccessModal.ClickFinishButton();
 
             Driver.Navigate().Refresh();
 

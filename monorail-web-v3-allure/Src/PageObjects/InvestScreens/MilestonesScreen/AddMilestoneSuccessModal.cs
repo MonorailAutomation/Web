@@ -6,18 +6,18 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
 {
-    public class SuccessModal
+    public class AddMilestoneSuccessModal
     {
         [FindsBy(How = How.XPath, Using = "//vim-added-successfully-goal-modal//button[contains(text(),'Finish')]")]
         private IWebElement _finishButton;
 
-        public SuccessModal(IWebDriver driver)
+        public AddMilestoneSuccessModal(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
         }
 
         [AllureStep("Click 'Finish' button")]
-        public SuccessModal ClickFinishButton()
+        public AddMilestoneSuccessModal ClickFinishButton()
         {
             Wait.Until(ElementToBeClickable(_finishButton));
             _finishButton.Click();
