@@ -1,4 +1,5 @@
-﻿using monorail_web_v3.PageObjects;
+﻿using System;
+using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Menus;
 using static monorail_web_v3.Commons.Passwords;
 using NUnit.Allure.Attributes;
@@ -22,11 +23,11 @@ namespace monorail_web_v3.Test.Scripts.Login
         {
             var loginPage = new LoginPage(Driver);
             var sideMenu = new SideMenu(Driver);
-
+            
             loginPage
                 .PassCredentials(Username, ValidPassword)
                 .ClickSignInButton();
-
+            
             sideMenu
                 .ExpandSideMenu()
                 .Logout();

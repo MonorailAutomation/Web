@@ -1,5 +1,4 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -10,26 +9,28 @@ namespace monorail_web_v3.PageObjects
 {
     public class LoginPage
     {
+        private const string ExpectedInvalidLoginHeader = "Whoops! Incorrect email or password.";
+
+        private const string ExpectedInvalidLoginMessage =
+            "If you don't have an account, create one in the Vimvest App.";
+
         [FindsBy(How = How.Id, Using = "inputEmail")]
         private IWebElement _emailField;
+
+        [FindsBy(How = How.ClassName, Using = "vim-flash-message__dismiss")]
+        private IWebElement _flashMessageDismissButton;
+
+        [FindsBy(How = How.ClassName, Using = "vim-flash-message__text")]
+        private IWebElement _flashMessageText;
+
+        [FindsBy(How = How.ClassName, Using = "vim-flash-message__title")]
+        private IWebElement _flashMessageTitle;
 
         [FindsBy(How = How.Id, Using = "inputPassword")]
         private IWebElement _passwordField;
 
         [FindsBy(How = How.XPath, Using = "//button[@type='submit']")]
         private IWebElement _signInButton;
-        
-        [FindsBy(How = How.ClassName, Using = "vim-flash-message__title")]
-        private IWebElement _flashMessageTitle;
-        
-        [FindsBy(How = How.ClassName, Using = "vim-flash-message__text")]
-        private IWebElement _flashMessageText;
-        
-        [FindsBy(How = How.ClassName, Using = "vim-flash-message__dismiss")]
-        private IWebElement _flashMessageDismissButton;
-
-        private const string ExpectedInvalidLoginHeader = "Whoops! Incorrect email or password.";
-        private const string ExpectedInvalidLoginMessage = "If you don't have an account, create one in the Vimvest App.";
 
         public LoginPage(IWebDriver driver)
         {
@@ -50,7 +51,7 @@ namespace monorail_web_v3.PageObjects
             _signInButton.Click();
             return this;
         }
-        
+
         [AllureStep("Verify that 'Whoops! Incorrect email or password.' message is displayed")]
         public LoginPage VerifyIfWhoopsIncorrectEmailOrPasswordMessageIsDisplayed()
         {
@@ -60,10 +61,10 @@ namespace monorail_web_v3.PageObjects
 
             var actualHeader = _flashMessageTitle.Text;
             var actualMessage = _flashMessageText.Text;
-            
+
             actualHeader.Should().Be(ExpectedInvalidLoginHeader);
             actualMessage.Should().Be(ExpectedInvalidLoginMessage);
-            
+
             return this;
         }
     }

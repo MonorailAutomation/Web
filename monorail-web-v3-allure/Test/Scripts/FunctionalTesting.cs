@@ -10,7 +10,7 @@ namespace monorail_web_v3.Test.Scripts
 {
     public class FunctionalTesting
     {
-        private const string BaseUrl = "https://monarchweb-app-feature.azurewebsites.net/login";
+        public static readonly string MonorailUrl = "https://monarchweb-app-feature.azurewebsites.net";
         public static IWebDriver Driver;
         public static WebDriverWait Wait;
 
@@ -28,7 +28,7 @@ namespace monorail_web_v3.Test.Scripts
         public void StartBrowser()
         {
             Driver = new ChromeDriver();
-            Driver.Url = BaseUrl;
+            Driver.Url = MonorailUrl + "/login";
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             Driver.Manage().Window.Maximize();
             Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));

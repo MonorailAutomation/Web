@@ -1,3 +1,6 @@
+using System;
+using System.Globalization;
+using FluentAssertions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -69,6 +72,18 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
         {
             Wait.Until(ElementToBeVisible(_continueButton));
             _continueButton.Click();
+            return this;
+        }
+        
+        [AllureStep("Verify if 'Target Date' is '{0}'")]
+        public MilestoneDetailsModal VerifyTargetDate(string expectedTargetDate)
+        {
+            Wait.Until(ElementToBeVisible(_milestoneTargetDateInput));
+            var actualMilestoneTargetDate = _milestoneTargetDateInput.GetAttribute("value");
+            var parsedDate = DateTime.ParseExact(actualMilestoneTargetDate, "yyyy-MM-dd",
+                CultureInfo.InvariantCulture).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+            parsedDate.Should().Be(expectedTargetDate);
             return this;
         }
     }

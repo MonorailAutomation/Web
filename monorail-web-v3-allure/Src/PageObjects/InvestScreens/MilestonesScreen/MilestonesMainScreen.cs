@@ -43,6 +43,15 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
             return this;
         }
 
+        [AllureStep("Click '{0}' Milestone")]
+        public MilestonesMainScreen ClickMilestone(string milestoneName)
+        {
+            var milestoneItemSelector = By.XPath("//h3[contains(text(),'" + milestoneName + "')]");
+            VerifyIfMilestoneIsVisible(milestoneName);
+            Driver.FindElement(milestoneItemSelector).Click();
+            return this;
+        }
+
         private static void VerifyIfProgressBarIsNotVisible(string milestoneName)
         {
             var progressBarSelector =
@@ -85,7 +94,8 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen
                 Wait.Until(ExpectedConditions.ElementIsVisible(milestoneTargetAmountSelector));
                 var actualMilestoneAmount = Driver.FindElement(milestoneTargetAmountSelector).Text;
                 actualMilestoneAmount.Should().Be(expectedMilestoneAmount);
-                Console.WriteLine("$" + milestoneTargetAmount + " Target Amount was found for '" + milestoneName + "' Milestone.");
+                Console.WriteLine("$" + milestoneTargetAmount + " Target Amount was found for '" + milestoneName +
+                                  "' Milestone.");
             }
             catch (Exception e)
             {
