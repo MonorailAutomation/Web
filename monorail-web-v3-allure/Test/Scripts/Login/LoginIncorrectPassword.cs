@@ -10,9 +10,6 @@ namespace monorail_web_v3.Test.Scripts.Login
     [AllureNUnit]
     internal class LoginIncorrectPassword : FunctionalTesting
     {
-        private const string ValidUsername = "autotests.mono+40.131021@gmail.com";
-        //private const string InvalidPassword = "123456789";
-
         [Test(Description = "Unsuccessful login with correct username and incorrect password")]
         [AllureEpic("Login")]
         [AllureFeature("Unsuccessful Login")]
@@ -21,8 +18,10 @@ namespace monorail_web_v3.Test.Scripts.Login
         {
             var loginPage = new LoginPage(Driver);
 
+            const string validUsername = "autotests.mono+40.131021@gmail.com";
+
             loginPage
-                .PassCredentials(ValidUsername, InvalidPassword)
+                .PassCredentials(validUsername, InvalidPassword)
                 .ClickSignInButton()
                 .VerifyIfWhoopsIncorrectEmailOrPasswordMessageIsDisplayed();
         }

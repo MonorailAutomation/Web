@@ -1,10 +1,13 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Menus;
-using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen;
+using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Enums;
+using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals;
+using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.RandomGenerator;
+using static monorail_web_v3.Commons.Passwords;
 
 namespace monorail_web_v3.Test.Scripts.Money.Save
 {
@@ -12,8 +15,6 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
     [AllureNUnit]
     internal class AddAnotherSavingTrack : FunctionalTesting
     {
-        private const string Password = "Test123!!";
-
         [Test(Description = "Add another Saving Track")]
         [AllureEpic("Money")]
         [AllureFeature("Save")]
@@ -37,7 +38,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
             var trackName = "Test Track " + GenerateRandomString();
 
             loginPage
-                .PassCredentials(username, Password)
+                .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
             mainHeader

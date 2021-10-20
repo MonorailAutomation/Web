@@ -2,7 +2,7 @@ using System;
 
 namespace monorail_web_v3.Commons
 {
-    public class RandomGenerator
+    public static class RandomGenerator
     {
         public static string GenerateRandomString()
         {

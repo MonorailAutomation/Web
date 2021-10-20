@@ -1,9 +1,11 @@
 using monorail_web_v3.PageObjects;
-using monorail_web_v3.PageObjects.WishlistScreen;
+using monorail_web_v3.PageObjects.WishlistScreens.Modals;
+using monorail_web_v3.PageObjects.WishlistScreens.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
+using static monorail_web_v3.Commons.Passwords;
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
@@ -11,8 +13,6 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
     [AllureNUnit]
     internal class AddWishlistItem : FunctionalTesting
     {
-        private const string Password = "Test123!!";
-
         [Test(Description = "Add Wishlist item by clicking placeholder")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Add Wishlist Item")]
@@ -21,35 +21,39 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         {
             var loginPage = new LoginPage(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
-            var addNewItemModal = new AddNewItemModal(Driver);
-            var itemDetailsModal = new ItemDetailsModal(Driver);
-            var finishModal = new FinishModal(Driver);
+            var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
+            var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
+            var addWishlistItemFinishModal = new AddWishlistItemFinishModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
             const string username = "autotests.mono+3.1.161021@gmail.com";
-            const string wishlistItemName = "Buy iPhone 13 Pro and iPhone 13 Pro Max";
-            const string wishlistItemUrl = "https://www.apple.com/shop/buy-iphone/iphone-13-pro";
+            const string wishlistItemName = "Canon EOS Rebel T7 EF-S 18-55mm IS II Kit";
+            const string wishlistItemUrl =
+                "https://www.target.com/p/canon-eos-rebel-t7-ef-s-18-55mm-is-ii-kit/-/A-54360840";
             const string wishlistItemDescription =
-                "Get credit toward iPhone 13 Pro and iPhone 13 Pro Max when you trade in a smartphone. Make low monthly payments at 0% APR. Buy now with free shipping.";
+                "Read reviews and buy Canon EOS Rebel T7 EF-S 18-55mm IS II Kit at Target. Choose from contactless Same Day Delivery, Drive Up and more.";
             const string wishlistItemPrice = "55";
 
             loginPage
-                .PassCredentials(username, Password)
+                .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
             wishlistMainScreen
                 .ClickAddWishlistItemPlaceholder();
 
-            addNewItemModal
+            addNewWishlistItemModal
+                .CheckAddNewItemModal()
                 .PasteLink(wishlistItemUrl)
                 .ClickContinueButton();
 
-            itemDetailsModal
+            wishlistItemDetailsModal
+                .CheckItemDetailsModal()
                 .VerifyDataOnItemDetailsModal(wishlistItemName, wishlistItemDescription, wishlistItemUrl)
                 .SetWishlistItemPrice(wishlistItemPrice)
                 .ClickConfirmButton();
 
-            finishModal
+            addWishlistItemFinishModal
+                .CheckAddWishlistItemFinishModal()
                 .VerifyWishlistItemName(wishlistItemName)
                 .ClickFinishButton();
 
@@ -61,7 +65,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             var wishlistItemId = Driver.Url[^36..];
 
-            DeleteWishlistItem(username, Password, wishlistItemId);
+            DeleteWishlistItem(username, ValidPassword, wishlistItemId);
         }
     }
 }

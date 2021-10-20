@@ -1,11 +1,13 @@
-using System.Threading;
 using monorail_web_v3.PageObjects;
-using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen;
+using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Enums;
+using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals;
+using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens;
 using monorail_web_v3.PageObjects.Menus;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.RandomGenerator;
+using static monorail_web_v3.Commons.Passwords;
 
 namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 {
@@ -13,12 +15,6 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
     [AllureNUnit]
     internal class AddMilestoneWithTargetDateAndTargetAmount : FunctionalTesting
     {
-        private const string Username = "autotests.mono+1.1.131021@gmail.com";
-        private const string Password = "Test123!!";
-        private const string MilestoneDescription = "Test Milestone Description";
-        private const string MilestoneTargetDate = "24/10/2023";
-        private const string MilestoneTargetAmount = "4,500";
-
         [Test(Description = "Add a Milestone with Target Date and Target Amount")]
         [AllureEpic("Invest")]
         [AllureFeature("Milestones")]
@@ -35,10 +31,15 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var milestoneDepositScheduleModal = new MilestoneDepositScheduleModal(Driver);
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
+            const string username = "autotests.mono+1.1.131021@gmail.com";
+            const string milestoneDescription = "Test Milestone Description";
+            const string milestoneTargetDate = "24/10/2023";
+            const string milestoneTargetAmount = "4,500";
+
             var milestoneName = "Test Milestone " + GenerateRandomString();
 
             loginPage
-                .PassCredentials(Username, Password)
+                .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
             mainHeader
@@ -48,15 +49,21 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             milestonesMainScreen.ClickAddAMilestoneButton();
 
-            chooseAMilestoneModal.ClickMilestoneType(MilestoneType.CollegeFund);
+            chooseAMilestoneModal
+                .CheckChooseAMilestoneModal()
+                .ClickMilestoneType(MilestoneType.CollegeFund);
 
-            milestoneDetailsModal.SetMilestoneName(milestoneName)
-                .SetMilestoneDescription(MilestoneDescription)
-                .SetMilestoneTargetAmount(MilestoneTargetAmount)
-                .SetMilestoneTargetDate(MilestoneTargetDate)
+            milestoneDetailsModal
+                .CheckMilestoneDetailsModal()
+                .SetMilestoneName(milestoneName)
+                .SetMilestoneDescription(milestoneDescription)
+                .SetMilestoneTargetAmount(milestoneTargetAmount)
+                .SetMilestoneTargetDate(milestoneTargetDate)
                 .ClickContinueButton();
 
-            portfolioModal.ClickContinueButton();
+            portfolioModal
+                .CheckPortfolioModal()
+                .ClickContinueButton();
 
             milestoneDepositScheduleModal.ClickContinueButton();
 
@@ -64,7 +71,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             Driver.Navigate().Refresh();
 
-            milestonesMainScreen.VerifyIfMilestoneExists(milestoneName, MilestoneTargetAmount);
+            milestonesMainScreen.VerifyIfMilestoneExists(milestoneName, milestoneTargetAmount);
         }
     }
 }

@@ -9,15 +9,15 @@ namespace monorail_web_v3.PageObjects.Menus
     public class MainHeader
     {
         [FindsBy(How = How.XPath,
-            Using = "//div[@class='vim-header__nav_item']//child::span[contains(text(),'Invest')]")]
+            Using = "//div[@class='vim-header']//span[contains(text(), 'Invest')]")]
         private IWebElement _investNavItem;
 
         [FindsBy(How = How.XPath,
-            Using = "//div[@class='vim-header__nav_item']//child::span[contains(text(),'Money')]")]
+            Using = "//div[@class='vim-header']//span[contains(text(), 'Money')]")]
         private IWebElement _moneyNavItem;
 
         [FindsBy(How = How.XPath,
-            Using = "//div[@class='vim-header__nav_item']//child::span[contains(text(),'Wishlist')]")]
+            Using = "//div[@class='vim-header']//span[contains(text(), 'Wishlist')]")]
         private IWebElement _wishlistNavItem;
 
         public MainHeader(IWebDriver driver)
@@ -48,6 +48,5 @@ namespace monorail_web_v3.PageObjects.Menus
             _wishlistNavItem.Click();
             return this;
         }
-
     }
 }

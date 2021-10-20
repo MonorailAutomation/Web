@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace monorail_web_v3.Commons
 {
-    public class Waits
+    public static class Waits
     {
         public static Func<IWebDriver, IWebElement> ElementToBeClickable(IWebElement element)
         {
