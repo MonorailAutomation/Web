@@ -20,7 +20,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//div[2]//p[1]")]
         private IWebElement _availableToWithdrawLabel;
 
-        [FindsBy(How = How.XPath, Using = "//button//span[contains(text(),'Confirm')]")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//button[contains(text(),'Confirm')]")]
         private IWebElement _confirmButton;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//div[3]//p[2]")]

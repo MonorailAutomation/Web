@@ -5,7 +5,6 @@ using SeleniumExtras.PageObjects;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
-
 namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
 {
     public class WishlistAddCashSuccessModal
@@ -26,7 +25,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [FindsBy(How = How.XPath,
             Using = "//div[@class='vim-modal__body__content']/div/p[2]")]
         private IWebElement _wishlistAddCashSuccessAdvice;
-
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h2")]
         private IWebElement _wishlistAddCashSuccessHeader;

@@ -8,42 +8,43 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentAssertions" Version="6.1.0"/>
-        <PackageReference Include="NUnit" Version="3.13.2"/>
-        <PackageReference Include="NUnit.Allure" Version="1.2.0-ref2"/>
-        <PackageReference Include="NUnit.Allure.Steps" Version="1.0.9"/>
-        <PackageReference Include="NUnit3TestAdapter" Version="4.0.0"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0"/>
-        <PackageReference Include="RestSharp" Version="106.12.0"/>
-        <PackageReference Include="Selenium.WebDriver" Version="3.141.0"/>
-        <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="95.0.4638.1700"/>
-        <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.29.1"/>
-        <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0"/>
-        <PackageReference Include="DotNetSeleniumExtras.PageObjects.Core" Version="3.12.0"/>
-        <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0"/>
-        <PackageReference Include="Selenium.Support" Version="3.141.0"/>
+        <PackageReference Include="FluentAssertions" Version="6.1.0" />
+        <PackageReference Include="NUnit" Version="3.13.2" />
+        <PackageReference Include="NUnit.Allure" Version="1.2.0-ref2" />
+        <PackageReference Include="NUnit.Allure.Steps" Version="1.0.9" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+        <PackageReference Include="RestSharp" Version="106.12.0" />
+        <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+        <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="95.0.4638.1700" />
+        <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.29.1" />
+        <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0" />
+        <PackageReference Include="DotNetSeleniumExtras.PageObjects.Core" Version="3.12.0" />
+        <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
+        <PackageReference Include="Selenium.Support" Version="3.141.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Selenium.WebDriver"/>
-        <None Remove="Selenium.WebDriver.ChromeDriver"/>
-        <None Remove="Selenium.WebDriver.GeckoDriver"/>
-        <None Remove="Test\"/>
-        <None Remove="DotNetSeleniumExtras.PageObjects"/>
-        <None Remove="DotNetSeleniumExtras.PageObjects.Core"/>
-        <None Remove="DotNetSeleniumExtras.WaitHelpers"/>
-        <None Remove="Selenium.Support"/>
-        <None Remove="Src\PageObject\"/>
-        <None Remove="Src\Waits\"/>
-        <None Remove="Test\Scripts\"/>
-        <None Remove="Src\Commons\"/>
-        <None Remove="Test\Scripts\Login\"/>
+        <None Remove="Selenium.WebDriver" />
+        <None Remove="Selenium.WebDriver.ChromeDriver" />
+        <None Remove="Selenium.WebDriver.GeckoDriver" />
+        <None Remove="Test\" />
+        <None Remove="DotNetSeleniumExtras.PageObjects" />
+        <None Remove="DotNetSeleniumExtras.PageObjects.Core" />
+        <None Remove="DotNetSeleniumExtras.WaitHelpers" />
+        <None Remove="Selenium.Support" />
+        <None Remove="Src\PageObject\" />
+        <None Remove="Src\Waits\" />
+        <None Remove="Test\Scripts\" />
+        <None Remove="Src\Commons\" />
+        <None Remove="Test\Scripts\Login\" />
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="Test\"/>
-        <Folder Include="Src\PageObjects\"/>
-        <Folder Include="Test\Scripts\"/>
-        <Folder Include="Src\Commons\"/>
-        <Folder Include="Test\Scripts\Login\"/>
+        <Folder Include="Src\PageObjects\InvestScreens\TradingScreen\Enums" />
+        <Folder Include="Test\" />
+        <Folder Include="Src\PageObjects\" />
+        <Folder Include="Test\Scripts\" />
+        <Folder Include="Src\Commons\" />
+        <Folder Include="Test\Scripts\Login\" />
     </ItemGroup>
 </Project>
