@@ -24,6 +24,10 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
             Using = "//div[@class='vim-modal__header__title']")]
         private IWebElement _portfolioHeader;
 
+        [FindsBy(How = How.XPath,
+            Using = "//button[@class='vim-modal__header__button']")]
+        private IWebElement _xButton;
+
         public PortfolioModal(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
@@ -33,6 +37,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
         public PortfolioModal CheckPortfolioModal()
         {
             Wait.Until(ElementToBeVisible(_portfolioHeader));
+            Wait.Until(ElementToBeVisible(_xButton));
             Wait.Until(ElementToBeVisible(_changePortfolioButton));
             Wait.Until(ElementToBeVisible(_backButton));
             Wait.Until(ElementToBeVisible(_continueButton));

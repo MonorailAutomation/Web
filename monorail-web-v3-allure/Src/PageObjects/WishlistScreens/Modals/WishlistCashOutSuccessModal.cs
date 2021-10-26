@@ -9,17 +9,31 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
 {
     public class WishlistCashOutSuccessModal
     {
-        private const string WishlistAddCashSuccessHeader = "Success!";
+        private const string WishlistCashOutSuccessHeader = "Success!";
+        private const string WishlistCashOutSuccessMessage = "Funds are on their way to your connected account";
+
+        private const string WishlistCashOutSuccessAdvicePartOne =
+            "Transfers can take between 3-7 business days to transfer.";
+
+        private const string WishlistCashOutSuccessAdvicePartTwo =
+            "Deposited funds will be available to withdraw 5 business days after they finish depositing.";
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//span[contains(text(),'Finish')]")]
         private IWebElement _finishButton;
 
         [FindsBy(How = How.XPath,
-            Using = "//div[contains(@class, 'vim-add-funds__split-amount')]//p")]
+            Using = "//div[@class='vim-modal__body__content']//div//div//p")]
         private IWebElement _moneyAmount;
 
+        [FindsBy(How = How.XPath,
+            Using = "//div[@class='vim-modal__body__content']/div/p[2]")]
+        private IWebElement _wishlistCashOutSuccessAdvice;
+
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h2")]
-        private IWebElement _wishlistAddCashSuccessHeader;
+        private IWebElement _wishlistCashOutSuccessHeader;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']/div/p[1]")]
+        private IWebElement _wishlistCashOutSuccessMessage;
 
         public WishlistCashOutSuccessModal(IWebDriver driver)
         {
@@ -29,11 +43,18 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [AllureStep("Check 'Cash Out' success modal")]
         public WishlistCashOutSuccessModal CheckWishlistCashOutSuccessModal()
         {
-            Wait.Until(ElementToBeVisible(_wishlistAddCashSuccessHeader));
+            Wait.Until(ElementToBeVisible(_wishlistCashOutSuccessHeader));
+            Wait.Until(ElementToBeVisible(_wishlistCashOutSuccessMessage));
             Wait.Until(ElementToBeVisible(_moneyAmount));
+            Wait.Until(ElementToBeVisible(_wishlistCashOutSuccessAdvice));
             Wait.Until(ElementToBeClickable(_finishButton));
 
-            _wishlistAddCashSuccessHeader.Text.Should().Be(WishlistAddCashSuccessHeader);
+            _wishlistCashOutSuccessHeader.Text.Should().Be(WishlistCashOutSuccessHeader);
+            _wishlistCashOutSuccessMessage.Text.Should().Be(WishlistCashOutSuccessMessage);
+            _moneyAmount.Text.Should().NotBeNullOrEmpty();
+            _wishlistCashOutSuccessAdvice.Text.Should().Contain(WishlistCashOutSuccessAdvicePartOne);
+            _wishlistCashOutSuccessAdvice.Text.Should().Contain(WishlistCashOutSuccessAdvicePartTwo);
+
             return this;
         }
 

@@ -27,7 +27,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
             var tracksMainScreen = new TracksMainScreen(Driver);
             var chooseATrackModal = new ChooseATrackModal(Driver);
             var trackDetailsModal = new TrackDetailsModal(Driver);
-            var trackDepositScheduleModal = new TrackDepositScheduleModal(Driver);
+            var trackEditScheduleModal = new TrackEditScheduleModal(Driver);
             var addTrackSuccessModal = new AddTrackSuccessModal(Driver);
 
             const string username = "autotests.mono+2.2.181021@gmail.com";
@@ -51,9 +51,11 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ClickAddSavingTrackButton();
 
             chooseATrackModal
+                .CheckChooseATrackModal()
                 .ClickMilestoneType(TrackType.Debt);
 
             trackDetailsModal
+                .CheckTrackDetailsModal()
                 .SetTrackIcon(TrackIcon.Paw)
                 .SetTrackMainColor(TrackColor.Turquoise)
                 .SetTrackName(trackName)
@@ -62,10 +64,12 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .SetTrackTargetDate(trackTargetDate)
                 .ClickContinueButton();
 
-            trackDepositScheduleModal
+            trackEditScheduleModal
+                .CheckEditScheduleModal()
                 .ClickContinueButton();
 
             addTrackSuccessModal
+                .CheckSuccessModal()
                 .VerifyNameOfCreatedTrack(trackName)
                 .ClickFinishButton();
 

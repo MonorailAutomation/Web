@@ -1,3 +1,4 @@
+using FluentAssertions;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Enums;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
@@ -10,11 +11,23 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals
 {
     public class TrackDetailsModal
     {
+        private const string TrackDetailsHeader = "Track Details";
+
+        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Back')]")]
+        private IWebElement _backButton;
+
+        [FindsBy(How = How.Id, Using = "choosePictureDropdown")]
+        private IWebElement _changeImageButton;
+
         [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(),'Continue')]")]
         private IWebElement _continueButton;
 
         [FindsBy(How = How.Id, Using = "itemDescription")]
         private IWebElement _trackDescriptionInput;
+
+        [FindsBy(How = How.XPath,
+            Using = "//div[@class='vim-modal__header__title']")]
+        private IWebElement _trackDetailsHeader;
 
         [FindsBy(How = How.Id, Using = "name")]
         private IWebElement _trackNameInput;
@@ -25,9 +38,27 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals
         [FindsBy(How = How.XPath, Using = "//input[@type='date']")]
         private IWebElement _trackTargetDateInput;
 
+        [FindsBy(How = How.XPath,
+            Using = "//button[@class='vim-modal__header__button']")]
+        private IWebElement _xButton;
+
         public TrackDetailsModal(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
+        }
+
+        [AllureStep("Check 'Track Details' modal")]
+        public TrackDetailsModal CheckTrackDetailsModal()
+        {
+            Wait.Until(ElementToBeVisible(_trackDetailsHeader));
+            Wait.Until(ElementToBeVisible(_xButton));
+            Wait.Until(ElementToBeVisible(_changeImageButton));
+            Wait.Until(ElementToBeVisible(_backButton));
+            Wait.Until(ElementToBeVisible(_continueButton));
+
+            _trackDetailsHeader.Text.Should().Contain(TrackDetailsHeader);
+
+            return this;
         }
 
         [AllureStep("Set Track icon to {0}'")]

@@ -12,6 +12,10 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
     {
         private const string WishlistManageAccountHeader = "Wishlist Account";
 
+        [FindsBy(How = How.XPath,
+            Using = "//div[@class='vim-modal__header__title']")]
+        private IWebElement _wishlistManageAccountHeader;
+        
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Cash')]")]
         private IWebElement _addCashButton;
 
@@ -22,10 +26,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [FindsBy(How = How.XPath,
             Using = "//vim-modal-footer//button[contains(text(), 'Dismiss')]")]
         private IWebElement _dismissButton;
-
-        [FindsBy(How = How.XPath,
-            Using = "//div[@class='vim-modal__header__title']")]
-        private IWebElement _wishlistManageAccountHeader;
 
         public WishlistManageAccountModal(IWebDriver driver)
         {

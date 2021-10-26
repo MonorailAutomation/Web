@@ -12,6 +12,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions
     [AllureNUnit]
     internal class DepositToWishlistAccount : FunctionalTesting
     {
+        private const string WishlistAddCashAmount = "2";
+
         [Test(Description = "Deposit Money to Wishlist Account from Main Wishlist Screen")]
         [AllureEpic("Transactions")]
         [AllureFeature("Wishlist")]
@@ -24,7 +26,6 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var wishlistAddCashModal = new WishlistAddCashModal(Driver);
 
             const string username = "autotests.mono+3.1.161021@gmail.com";
-            const string wishlistAddCashAmount = "10";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -36,12 +37,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             wishlistAddCashModal
                 .CheckWishlistAddCashModal()
-                .SetWishlistAddCashAmount(wishlistAddCashAmount)
+                .SetWishlistAddCashAmount(WishlistAddCashAmount)
                 .ClickConfirmButton();
 
             wishlistAddCashSuccessModal
                 .CheckWishlistAddCashSuccessModal()
-                .CheckForDepositAmount(wishlistAddCashAmount)
+                .CheckForDepositAmount(WishlistAddCashAmount)
                 .ClickFinishButton();
         }
 
@@ -58,7 +59,6 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var wishlistAddCashModal = new WishlistAddCashModal(Driver);
 
             const string username = "autotests.mono+3.1.161021@gmail.com";
-            const string wishlistAddCashAmount = "10";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -74,12 +74,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             wishlistAddCashModal
                 .CheckWishlistAddCashModal()
-                .SetWishlistAddCashAmount(wishlistAddCashAmount)
+                .SetWishlistAddCashAmount(WishlistAddCashAmount)
                 .ClickConfirmButton();
 
             wishlistAddCashSuccessModal
                 .CheckWishlistAddCashSuccessModal()
-                .CheckForDepositAmount(wishlistAddCashAmount)
+                .CheckForDepositAmount(WishlistAddCashAmount)
                 .ClickFinishButton();
         }
     }

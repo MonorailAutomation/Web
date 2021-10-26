@@ -64,10 +64,11 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .ClickContinueButton();
 
             milestoneDetailsScreen
-                .VerifyMilestoneDetails(changedMilestoneName, changedMilestoneDescription, changedMilestoneTargetAmount);
+                .VerifyMilestoneDetails(changedMilestoneName, changedMilestoneDescription,
+                    changedMilestoneTargetAmount);
 
-            //milestoneDetailsScreen.ClickEditDetailsButton();
-            //milestoneDetailsModal.VerifyTargetDate(ChangedMilestoneTargetDate);
+            // milestoneDetailsScreen.ClickEditDetailsButton();
+            // milestoneDetailsModal.VerifyTargetDate(changedMilestoneTargetDate);
 
             RevertMilestone(username, ValidPassword, milestoneId, originalMilestoneName,
                 originalMilestoneDescription, originalMilestoneTargetAmount, originalMilestoneTargetDate);

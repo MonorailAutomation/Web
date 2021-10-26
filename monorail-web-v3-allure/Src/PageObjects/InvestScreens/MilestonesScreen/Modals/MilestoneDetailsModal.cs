@@ -19,7 +19,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
         [FindsBy(How = How.Id, Using = "choosePictureDropdown")]
         private IWebElement _changeImageButton;
 
-        [FindsBy(How = How.XPath, Using = "//vim-milestone-details-modal//button[contains(text(),'Continue')]")]
+        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(),'Continue')]")]
         private IWebElement _continueButton;
 
         [FindsBy(How = How.Id, Using = "itemDescription")]
@@ -38,6 +38,10 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
         [FindsBy(How = How.XPath, Using = "//input[@type='date']")]
         private IWebElement _milestoneTargetDateInput;
 
+        [FindsBy(How = How.XPath,
+            Using = "//button[@class='vim-modal__header__button']")]
+        private IWebElement _xButton;
+
         public MilestoneDetailsModal(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
@@ -47,6 +51,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
         public MilestoneDetailsModal CheckMilestoneDetailsModal()
         {
             Wait.Until(ElementToBeVisible(_milestoneDetailsHeader));
+            Wait.Until(ElementToBeVisible(_xButton));
             Wait.Until(ElementToBeVisible(_changeImageButton));
             Wait.Until(ElementToBeVisible(_backButton));
             Wait.Until(ElementToBeVisible(_continueButton));

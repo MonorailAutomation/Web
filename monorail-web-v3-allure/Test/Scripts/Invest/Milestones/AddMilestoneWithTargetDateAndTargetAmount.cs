@@ -1,3 +1,4 @@
+using System.Threading;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Enums;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals;
@@ -28,7 +29,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var chooseAMilestoneModal = new ChooseAMilestoneModal(Driver);
             var milestoneDetailsModal = new MilestoneDetailsModal(Driver);
             var portfolioModal = new PortfolioModal(Driver);
-            var milestoneDepositScheduleModal = new MilestoneDepositScheduleModal(Driver);
+            var milestoneEditScheduleModal = new MilestoneEditScheduleModal(Driver);
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
             const string username = "autotests.mono+1.1.131021@gmail.com";
@@ -46,6 +47,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .ClickInvest();
 
             investMenu.ClickMilestones();
+
+            Thread.Sleep(10000); //temporary workaround until 31578 solved
 
             milestonesMainScreen.ClickAddAMilestoneButton();
 
@@ -65,9 +68,13 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .CheckPortfolioModal()
                 .ClickContinueButton();
 
-            milestoneDepositScheduleModal.ClickContinueButton();
+            milestoneEditScheduleModal
+                .CheckEditScheduleModal()
+                .ClickContinueButton();
 
-            addMilestoneSuccessModal.ClickFinishButton();
+            addMilestoneSuccessModal
+                .CheckSuccessModal()
+                .ClickFinishButton();
 
             Driver.Navigate().Refresh();
 

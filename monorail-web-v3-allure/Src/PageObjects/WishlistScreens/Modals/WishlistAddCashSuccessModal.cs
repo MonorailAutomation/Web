@@ -11,16 +11,28 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
     public class WishlistAddCashSuccessModal
     {
         private const string WishlistAddCashSuccessHeader = "Success!";
+        private const string WishlistAddCashSuccessMessage = "Funds are on their way to Monorail";
+
+        private const string WishlistAddCashSuccessAdvice =
+            "Once completed, this amount will be added to your Wishlist Account total and will be able to be used to power your purchases.";
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//span[contains(text(),'Finish')]")]
         private IWebElement _finishButton;
 
         [FindsBy(How = How.XPath,
-            Using = "//div[contains(@class, 'vim-add-funds__split-amount')]//p")]
+            Using = "//div[@class='vim-modal__body__content']//div//div//p")]
         private IWebElement _moneyAmount;
+
+        [FindsBy(How = How.XPath,
+            Using = "//div[@class='vim-modal__body__content']/div/p[2]")]
+        private IWebElement _wishlistAddCashSuccessAdvice;
+
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h2")]
         private IWebElement _wishlistAddCashSuccessHeader;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']/div/p[1]")]
+        private IWebElement _wishlistAddCashSuccessMessage;
 
         public WishlistAddCashSuccessModal(IWebDriver driver)
         {
@@ -31,10 +43,15 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         public WishlistAddCashSuccessModal CheckWishlistAddCashSuccessModal()
         {
             Wait.Until(ElementToBeVisible(_wishlistAddCashSuccessHeader));
+            Wait.Until(ElementToBeVisible(_wishlistAddCashSuccessMessage));
             Wait.Until(ElementToBeVisible(_moneyAmount));
+            Wait.Until(ElementToBeVisible(_wishlistAddCashSuccessAdvice));
             Wait.Until(ElementToBeClickable(_finishButton));
 
             _wishlistAddCashSuccessHeader.Text.Should().Be(WishlistAddCashSuccessHeader);
+            _wishlistAddCashSuccessMessage.Text.Should().Be(WishlistAddCashSuccessMessage);
+            _moneyAmount.Text.Should().NotBeNullOrEmpty();
+            _wishlistAddCashSuccessAdvice.Text.Should().Be(WishlistAddCashSuccessAdvice);
             return this;
         }
 

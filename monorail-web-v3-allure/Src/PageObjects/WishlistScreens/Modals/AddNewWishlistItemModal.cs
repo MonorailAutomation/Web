@@ -11,6 +11,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
     {
         private const string AddNewWishlistItemHeader = "Add new Item";
         private const string AddNewWishlistItemMessage = "Paste a link from anywhere on the web:";
+        private const string AddNewWishlistItemLinkPlaceholder = "http://";
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__header__title']")]
         private IWebElement _addNewWishlistItemHeader;
@@ -18,7 +19,10 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h2")]
         private IWebElement _addNewWishlistItemMessage;
 
-        [FindsBy(How = How.XPath, Using = "//vim-add-item-link-modal//button[contains(text(),'Continue')]")]
+        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Cancel')]")]
+        private IWebElement _cancelButton;
+
+        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(),'Continue')]")]
         private IWebElement _continueButton;
 
         [FindsBy(How = How.Id, Using = "itemURL_wishlist")]
@@ -34,9 +38,13 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         {
             Wait.Until(ElementToBeVisible(_addNewWishlistItemHeader));
             Wait.Until(ElementToBeVisible(_addNewWishlistItemMessage));
+            Wait.Until(ElementToBeVisible(_linkField));
+            Wait.Until(ElementToBeVisible(_cancelButton));
+            Wait.Until(ElementToBeVisible(_continueButton));
 
             _addNewWishlistItemHeader.Text.Should().Contain(AddNewWishlistItemHeader);
             _addNewWishlistItemMessage.Text.Should().Be(AddNewWishlistItemMessage);
+            _linkField.GetAttribute("placeholder").Should().Be(AddNewWishlistItemLinkPlaceholder);
 
             return this;
         }
@@ -52,7 +60,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [AllureStep("Click 'Continue' button")]
         public AddNewWishlistItemModal ClickContinueButton()
         {
-            Wait.Until(ElementToBeClickable(_linkField));
+            Wait.Until(ElementToBeClickable(_continueButton));
             _continueButton.Click();
             return this;
         }

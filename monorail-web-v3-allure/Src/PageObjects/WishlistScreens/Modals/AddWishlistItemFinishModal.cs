@@ -29,11 +29,12 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Check Finish modal")]
+        [AllureStep("Check 'Finish' modal")]
         public AddWishlistItemFinishModal CheckAddWishlistItemFinishModal()
         {
             Wait.Until(ElementToBeVisible(_successHeader));
             Wait.Until(ElementToBeVisible(_successMessage));
+            Wait.Until(ElementToBeVisible(_finishButton));
 
             _successHeader.Text.Should().Be(SuccessHeader);
             _successMessage.Text.Should().Be(SuccessMessage);

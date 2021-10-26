@@ -1,9 +1,10 @@
-﻿using NUnit.Allure.Steps;
+﻿using monorail_web_v3.Commons;
+using NUnit.Allure.Steps;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
+using static OpenQA.Selenium.Support.UI.ExpectedConditions;
 
 namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 {
@@ -42,7 +43,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         [AllureStep("Click 'Add Funds' button")]
         public WishlistMainScreen ClickAddFundsButton()
         {
-            Wait.Until(ElementToBeClickable(_addFundsButton));
+            Wait.Until(Waits.ElementToBeClickable(_addFundsButton));
             _addFundsButton.Click();
             return this;
         }
@@ -50,7 +51,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         [AllureStep("Click 'Manage your Account' button")]
         public WishlistMainScreen ClickManageYourAccountButton()
         {
-            Wait.Until(ElementToBeClickable(_manageYourAccountButton));
+            Wait.Until(Waits.ElementToBeClickable(_manageYourAccountButton));
             _manageYourAccountButton.Click();
             return this;
         }
@@ -58,7 +59,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         [AllureStep("Click add Wishlist item placeholder")]
         public WishlistMainScreen ClickAddWishlistItemPlaceholder()
         {
-            Wait.Until(ElementToBeClickable(_addWishlistItemPlaceholder));
+            Wait.Until(Waits.ElementToBeClickable(_addWishlistItemPlaceholder));
             _addWishlistItemPlaceholder.Click();
             return this;
         }
@@ -67,7 +68,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         public WishlistMainScreen ClickWishlistItem(string wishlistItemName)
         {
             var wishlistItemSelector = "//p[contains(text(), '" + wishlistItemName + "')]";
-            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemSelector))).Click();
+            Wait.Until(ElementIsVisible(By.XPath(wishlistItemSelector))).Click();
             return this;
         }
     }

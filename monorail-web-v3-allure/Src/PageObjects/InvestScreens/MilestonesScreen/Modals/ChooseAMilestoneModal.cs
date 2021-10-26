@@ -23,6 +23,10 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
             Using = "//div[@class='vim-modal__header__title']")]
         private IWebElement _chooseAMilestoneHeader;
 
+        [FindsBy(How = How.XPath,
+            Using = "//button[@class='vim-modal__header__button']")]
+        private IWebElement _xButton;
+
         public ChooseAMilestoneModal(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);

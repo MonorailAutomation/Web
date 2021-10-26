@@ -15,7 +15,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
         [Test(Description = "Withdraw money from Wishlist Account")]
         [AllureEpic("Transactions")]
         [AllureFeature("Wishlist")]
-        [AllureStory("Withdraw money from Wishlist")]
+        [AllureStory("Withdraw money from Wishlist Account")]
         public void WithdrawMoneyFromWishlistAccountTest()
         {
             var loginPage = new LoginPage(Driver);
@@ -24,7 +24,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var wishlistManageAccountModal = new WishlistManageAccountModal(Driver);
             var wishlistCashOutModal = new WishlistCashOutModal(Driver);
 
-            const string username = "autotests.mono+3.1.161021@gmail.com";
+            const string username = "haku.vimvest+2110219@gmail.com";
             const string wishlistCashOutAmount = "1";
 
             loginPage
