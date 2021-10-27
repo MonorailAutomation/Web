@@ -25,7 +25,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var mainHeader = new MainHeader(Driver);
             var investMenu = new InvestMenu(Driver);
             var milestonesMainScreen = new MilestonesMainScreen(Driver);
-            var milestoneDetailsModal = new MilestoneDetailsModal(Driver);
+            var milestoneDetailsModal = new MilestoneItemDetailsModal(Driver);
             var milestoneDetailsScreen = new MilestoneDetailsScreen(Driver);
 
             const string username = "autotests.mono+4.1.131021@gmail.com";
@@ -57,10 +57,10 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             milestoneDetailsModal
                 .CheckMilestoneDetailsModal()
-                .SetMilestoneName(changedMilestoneName)
-                .SetMilestoneDescription(changedMilestoneDescription)
                 .SetMilestoneTargetAmount(changedMilestoneTargetAmount)
                 .SetMilestoneTargetDate(changedMilestoneTargetDate)
+                .SetItemName(changedMilestoneName)
+                .SetItemDescription(changedMilestoneDescription)
                 .ClickContinueButton();
 
             milestoneDetailsScreen
@@ -68,7 +68,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                     changedMilestoneTargetAmount);
 
             // milestoneDetailsScreen.ClickEditDetailsButton();
-            // milestoneDetailsModal.VerifyTargetDate(changedMilestoneTargetDate);
+            // milestoneDetailsModal.VerifyTargetDate(changedMilestoneTargetDate); 
 
             RevertMilestone(username, ValidPassword, milestoneId, originalMilestoneName,
                 originalMilestoneDescription, originalMilestoneTargetAmount, originalMilestoneTargetDate);

@@ -8,17 +8,17 @@ namespace monorail_web_v3.PageObjects.Menus
 {
     public class InvestMenu
     {
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Trading')]")]
-        private IWebElement _tradingNavItem;
-        
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Milestones')]")]
         private IWebElement _milestonesNavItem;
+
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Trading')]")]
+        private IWebElement _tradingNavItem;
 
         public InvestMenu(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
         }
-        
+
         [AllureStep("Click 'Trading'")]
         public InvestMenu ClickTrading()
         {

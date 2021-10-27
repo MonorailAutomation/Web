@@ -1,4 +1,5 @@
 using FluentAssertions;
+using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -7,57 +8,53 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals
 {
-    public class BuyingPowerAddCashSuccessModal
+    public class BuyingPowerAddCashSuccessModal : AddCashSuccessModal
     {
-        private const string BuyingPowerAddCashSuccessHeader = "Success!";
-        private const string BuyingPowerAddCashSuccessMessage = "Funds are on their way to Monorail";
-        private const string BuyingPowerAddCashSuccessAdvice = "Once complete, this amount will be added to your buying power total and will be able to be used for buying orders.";
-        
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h2")]
-        private IWebElement _buyingPowerAddCashSuccessHeader;
-        
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h3")]
-        private IWebElement _buyingPowerAddCashSuccessMessage;
-        
+        private const string BuyingPowerAddCashSuccessAdviceText =
+            "Once complete, this amount will be added to your buying power total and will be able to be used for buying orders.";
+
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h1")]
-        private IWebElement _amountAdded;
-        
+        private IWebElement _amountDeposited;
+
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//p")]
         private IWebElement _buyingPowerAddCashSuccessAdvice;
-        
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h3")]
+        private IWebElement _buyingPowerAddCashSuccessMessage;
+
         [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Return')]")]
         private IWebElement _returnButton;
 
-        public BuyingPowerAddCashSuccessModal(IWebDriver driver)
+        public BuyingPowerAddCashSuccessModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
-        
+
         [AllureStep("Check 'Add Cash' success modal")]
         public BuyingPowerAddCashSuccessModal CheckBuyingPowerAddCashSuccessModal()
         {
-            Wait.Until(ElementToBeVisible(_buyingPowerAddCashSuccessHeader));
+            Wait.Until(ElementToBeVisible(SuccessHeader));
             Wait.Until(ElementToBeVisible(_buyingPowerAddCashSuccessMessage));
-            Wait.Until(ElementToBeVisible(_amountAdded));
+            Wait.Until(ElementToBeVisible(_amountDeposited));
             Wait.Until(ElementToBeVisible(_buyingPowerAddCashSuccessAdvice));
             Wait.Until(ElementToBeVisible(_returnButton));
-            
-            _buyingPowerAddCashSuccessHeader.Text.Should().Be(BuyingPowerAddCashSuccessHeader);
-            _buyingPowerAddCashSuccessMessage.Text.Should().Be(BuyingPowerAddCashSuccessMessage);
-            _amountAdded.Text.Should().NotBeNullOrEmpty();
-            _buyingPowerAddCashSuccessAdvice.Text.Should().Be(BuyingPowerAddCashSuccessAdvice);
-            
+
+            SuccessHeader.Text.Should().Be(AddCashSuccessHeaderText);
+            _buyingPowerAddCashSuccessMessage.Text.Should().Be(AddCashSuccessMessageText);
+            _amountDeposited.Text.Should().NotBeNullOrEmpty();
+            _buyingPowerAddCashSuccessAdvice.Text.Should().Be(BuyingPowerAddCashSuccessAdviceText);
+
             return this;
         }
-        
+
         [AllureStep("Verify if ${0} amount is shown in Success Modal")]
-        public BuyingPowerAddCashSuccessModal VerifyAddedAmount(string amountToAdd)
+        public BuyingPowerAddCashSuccessModal VerifyDepositedAmount(string amountToAdd)
         {
-            Wait.Until(ElementToBeVisible(_amountAdded));
-            _amountAdded.Text.Should().Contain(amountToAdd);
+            Wait.Until(ElementToBeVisible(_amountDeposited));
+            _amountDeposited.Text.Should().Contain(amountToAdd);
             return this;
         }
-        
+
         [AllureStep("Click 'Return' button")]
         public BuyingPowerAddCashSuccessModal ClickReturnButton()
         {

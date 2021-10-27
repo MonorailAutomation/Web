@@ -1,33 +1,20 @@
 using System;
 using System.Linq;
-using FluentAssertions;
+using monorail_web_v3.PageObjects.Commons.Modals;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Enums;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
-using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
 {
-    public class ChooseAMilestoneModal
+    public class ChooseAMilestoneModal : ChooseATypeModal
     {
-        private const string ChooseAMilestoneHeader = "Choose a Milestone";
+        private const string ChooseAMilestoneHeaderText = "Choose a Milestone";
 
-        [FindsBy(How = How.XPath,
-            Using = "//div[@class='vim-modal__footer']//span[contains(text(),'Cancel')]")]
-        private IWebElement _cancelButton;
-
-        [FindsBy(How = How.XPath,
-            Using = "//div[@class='vim-modal__header__title']")]
-        private IWebElement _chooseAMilestoneHeader;
-
-        [FindsBy(How = How.XPath,
-            Using = "//button[@class='vim-modal__header__button']")]
-        private IWebElement _xButton;
-
-        public ChooseAMilestoneModal(IWebDriver driver)
+        public ChooseAMilestoneModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
@@ -35,11 +22,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
         [AllureStep("Check 'Choose a Milestone' modal")]
         public ChooseAMilestoneModal CheckChooseAMilestoneModal()
         {
-            Wait.Until(ElementToBeVisible(_chooseAMilestoneHeader));
-            Wait.Until(ElementToBeClickable(_cancelButton));
-
-            _chooseAMilestoneHeader.Text.Should().Contain(ChooseAMilestoneHeader);
-
+            CheckChooseATypeModal(ChooseAMilestoneHeaderText);
             return this;
         }
 

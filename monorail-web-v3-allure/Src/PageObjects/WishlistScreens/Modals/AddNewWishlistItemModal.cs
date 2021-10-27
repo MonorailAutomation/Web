@@ -1,4 +1,5 @@
 using FluentAssertions;
+using monorail_web_v3.PageObjects.Commons;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -7,28 +8,19 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
 {
-    public class AddNewWishlistItemModal
+    public class AddNewWishlistItemModal : Modal
     {
-        private const string AddNewWishlistItemHeader = "Add new Item";
-        private const string AddNewWishlistItemMessage = "Paste a link from anywhere on the web:";
+        private const string AddNewWishlistItemHeaderText = "Add new Item";
+        private const string AddNewWishlistItemMessageText = "Paste a link from anywhere on the web:";
         private const string AddNewWishlistItemLinkPlaceholder = "http://";
-
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__header__title']")]
-        private IWebElement _addNewWishlistItemHeader;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h2")]
         private IWebElement _addNewWishlistItemMessage;
 
-        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Cancel')]")]
-        private IWebElement _cancelButton;
-
-        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(),'Continue')]")]
-        private IWebElement _continueButton;
-
         [FindsBy(How = How.Id, Using = "itemURL_wishlist")]
         private IWebElement _linkField;
 
-        public AddNewWishlistItemModal(IWebDriver driver)
+        public AddNewWishlistItemModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
@@ -36,14 +28,14 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [AllureStep("Check 'Add new Item' modal")]
         public AddNewWishlistItemModal CheckAddNewItemModal()
         {
-            Wait.Until(ElementToBeVisible(_addNewWishlistItemHeader));
+            Wait.Until(ElementToBeVisible(ModalHeader));
             Wait.Until(ElementToBeVisible(_addNewWishlistItemMessage));
             Wait.Until(ElementToBeVisible(_linkField));
-            Wait.Until(ElementToBeVisible(_cancelButton));
-            Wait.Until(ElementToBeVisible(_continueButton));
+            Wait.Until(ElementToBeVisible(CancelButton));
+            Wait.Until(ElementToBeVisible(ContinueButton));
 
-            _addNewWishlistItemHeader.Text.Should().Contain(AddNewWishlistItemHeader);
-            _addNewWishlistItemMessage.Text.Should().Be(AddNewWishlistItemMessage);
+            ModalHeader.Text.Should().Contain(AddNewWishlistItemHeaderText);
+            _addNewWishlistItemMessage.Text.Should().Be(AddNewWishlistItemMessageText);
             _linkField.GetAttribute("placeholder").Should().Be(AddNewWishlistItemLinkPlaceholder);
 
             return this;
@@ -54,14 +46,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         {
             Wait.Until(ElementToBeVisible(_linkField));
             _linkField.SendKeys(wishlistItemUrl);
-            return this;
-        }
-
-        [AllureStep("Click 'Continue' button")]
-        public AddNewWishlistItemModal ClickContinueButton()
-        {
-            Wait.Until(ElementToBeClickable(_continueButton));
-            _continueButton.Click();
             return this;
         }
     }

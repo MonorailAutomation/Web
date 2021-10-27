@@ -20,12 +20,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions
         {
             var loginPage = new LoginPage(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
-            var wishlistCashOutSuccessModal = new WishlistCashOutSuccessModal(Driver);
             var wishlistManageAccountModal = new WishlistManageAccountModal(Driver);
-            var wishlistCashOutModal = new WishlistCashOutModal(Driver);
+            var wishlistWithdrawCashModal = new WishlistWithdrawCashModal(Driver);
+            var wishlistWithdrawCashSuccessModal = new WishlistWithdrawCashSuccessModal(Driver);
 
             const string username = "haku.vimvest+2110219@gmail.com";
-            const string wishlistCashOutAmount = "1";
+            const string amountToWithdraw = "1";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -38,14 +38,16 @@ namespace monorail_web_v3.Test.Scripts.Transactions
                 .CheckWishlistManageAccountModal()
                 .ClickCashOutButton();
 
-            wishlistCashOutModal
-                .CheckWishlistCashOutModal()
-                .SetWishlistCashOutAmount(wishlistCashOutAmount)
+            wishlistWithdrawCashModal
+                .CheckWishlistWithdrawCashModal()
+                .SetWithdrawCashAmount(amountToWithdraw);
+
+            wishlistWithdrawCashModal
                 .ClickConfirmButton();
 
-            wishlistCashOutSuccessModal
+            wishlistWithdrawCashSuccessModal
                 .CheckWishlistCashOutSuccessModal()
-                .CheckForWithdrawnAmount(wishlistCashOutAmount)
+                .VerifyWithdrawnAmount(amountToWithdraw)
                 .ClickFinishButton();
         }
     }

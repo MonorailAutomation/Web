@@ -12,7 +12,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
     [AllureNUnit]
     internal class DepositToWishlistAccount : FunctionalTesting
     {
-        private const string WishlistAddCashAmount = "2";
+        private const string AmountToAdd = "2";
 
         [Test(Description = "Deposit Money to Wishlist Account from Main Wishlist Screen")]
         [AllureEpic("Transactions")]
@@ -37,19 +37,19 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             wishlistAddCashModal
                 .CheckWishlistAddCashModal()
-                .SetWishlistAddCashAmount(WishlistAddCashAmount)
+                .SetAddCashAmount(AmountToAdd)
                 .ClickConfirmButton();
 
             wishlistAddCashSuccessModal
                 .CheckWishlistAddCashSuccessModal()
-                .CheckForDepositAmount(WishlistAddCashAmount)
+                .VerifyDepositedAmount(AmountToAdd)
                 .ClickFinishButton();
         }
 
-        [Test(Description = "Deposit Money to Wishlist Account using Manage Account")]
+        [Test(Description = "Deposit money to Wishlist Account using Manage Account")]
         [AllureEpic("Transactions")]
         [AllureFeature("Wishlist")]
-        [AllureStory("Deposit to Wishlist Account using Manage Account")]
+        [AllureStory("Deposit money to Wishlist Account using Manage Account")]
         public void DepositToWishlistAccountFromManageAccountTest()
         {
             var loginPage = new LoginPage(Driver);
@@ -74,12 +74,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             wishlistAddCashModal
                 .CheckWishlistAddCashModal()
-                .SetWishlistAddCashAmount(WishlistAddCashAmount)
+                .SetAddCashAmount(AmountToAdd)
                 .ClickConfirmButton();
 
             wishlistAddCashSuccessModal
                 .CheckWishlistAddCashSuccessModal()
-                .CheckForDepositAmount(WishlistAddCashAmount)
+                .VerifyDepositedAmount(AmountToAdd)
                 .ClickFinishButton();
         }
     }

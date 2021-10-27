@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using FluentAssertions;
+using monorail_web_v3.PageObjects.Commons;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -8,14 +9,10 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
 {
-    public class WishlistManageAccountModal
+    public class WishlistManageAccountModal : Modal
     {
-        private const string WishlistManageAccountHeader = "Wishlist Account";
+        private const string WishlistManageAccountHeaderText = "Wishlist Account";
 
-        [FindsBy(How = How.XPath,
-            Using = "//div[@class='vim-modal__header__title']")]
-        private IWebElement _wishlistManageAccountHeader;
-        
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Cash')]")]
         private IWebElement _addCashButton;
 
@@ -27,7 +24,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
             Using = "//vim-modal-footer//button[contains(text(), 'Dismiss')]")]
         private IWebElement _dismissButton;
 
-        public WishlistManageAccountModal(IWebDriver driver)
+        public WishlistManageAccountModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
@@ -35,12 +32,12 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [AllureStep("Check 'Wishlist Account' modal")]
         public WishlistManageAccountModal CheckWishlistManageAccountModal()
         {
-            Wait.Until(ElementToBeVisible(_wishlistManageAccountHeader));
+            Wait.Until(ElementToBeVisible(ModalHeader));
             Wait.Until(ElementToBeVisible(_addCashButton));
             Wait.Until(ElementToBeVisible(_cashOutButton));
             Wait.Until(ElementToBeVisible(_dismissButton));
 
-            _wishlistManageAccountHeader.Text.Should().Contain(WishlistManageAccountHeader);
+            ModalHeader.Text.Should().Contain(WishlistManageAccountHeaderText);
             return this;
         }
 

@@ -13,21 +13,23 @@ namespace monorail_web_v3.Test.Scripts.Transactions
     [AllureNUnit]
     public class WithdrawFromBuyingPower : FunctionalTesting
     {
-        [Test(Description = "Withdraw from Buying Power")]
+        [Test(Description = "Withdraw money from Buying Power")]
         [AllureEpic("Transactions")]
         [AllureFeature("Buying Power")]
-        [AllureStory("Withdraw from Buying Power")]
-        public void DepositAndWithdrawBuyingPowerTest()
+        [AllureStory("Withdraw money from Buying Power")]
+        public void WithdrawMoneyFromBuyingPowerTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainHeader = new MainHeader(Driver);
             var investHeader = new InvestMenu(Driver);
             var tradingMainScreen = new TradingMainScreen(Driver);
-            var buyingPowerCashOutModal = new BuyingPowerCashOutModal(Driver);
-            var buyingPowerCashOutSuccessModal = new BuyingPowerCashOutSuccessModal(Driver);
+            var buyingPowerWithdrawCashModal = new BuyingPowerWithdrawCashModal(Driver);
+            var buyingPowerWithdrawCashSuccessModal = new BuyingPowerWithdrawCashSuccessModal(Driver);
 
-            const string username = "mp.1.042021@vimvest.com";
-            const string amountToAdd = "1";
+            const string
+                username =
+                    "mp.1.042021@vimvest.com"; // replace with autotests.mono+8.2.271021@gmail.com after transfer will be finished
+            const string amountToWithdraw = "1";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -39,14 +41,14 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             tradingMainScreen.ClickCashOutButton();
 
-            buyingPowerCashOutModal
-                .CheckBuyingPowerCashOutModal()
-                .SetBuyingPowerCashOutAmount(amountToAdd)
+            buyingPowerWithdrawCashModal
+                .CheckBuyingPowerWithdrawCashModal()
+                .SetWithdrawCashAmount(amountToWithdraw)
                 .ClickConfirmButton();
 
-            buyingPowerCashOutSuccessModal
+            buyingPowerWithdrawCashSuccessModal
                 .CheckBuyingPowerCashOutSuccessModal()
-                .VerifyWithdrawnAmount(amountToAdd)
+                .VerifyWithdrawnAmount(amountToWithdraw)
                 .ClickReturnButton();
         }
     }

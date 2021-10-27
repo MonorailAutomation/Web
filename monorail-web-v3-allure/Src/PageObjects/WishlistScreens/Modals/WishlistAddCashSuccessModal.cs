@@ -1,4 +1,5 @@
 using FluentAssertions;
+using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -7,32 +8,26 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
 {
-    public class WishlistAddCashSuccessModal
+    public class WishlistAddCashSuccessModal : AddCashSuccessModal
     {
-        private const string WishlistAddCashSuccessHeader = "Success!";
-        private const string WishlistAddCashSuccessMessage = "Funds are on their way to Monorail";
-
-        private const string WishlistAddCashSuccessAdvice =
+        private const string WishlistAddCashSuccessAdviceText =
             "Once completed, this amount will be added to your Wishlist Account total and will be able to be used to power your purchases.";
+
+        [FindsBy(How = How.XPath,
+            Using = "//div[@class='vim-modal__body__content']//div//div//p")]
+        private IWebElement _amountDeposited;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//span[contains(text(),'Finish')]")]
         private IWebElement _finishButton;
 
         [FindsBy(How = How.XPath,
-            Using = "//div[@class='vim-modal__body__content']//div//div//p")]
-        private IWebElement _moneyAmount;
-
-        [FindsBy(How = How.XPath,
             Using = "//div[@class='vim-modal__body__content']/div/p[2]")]
         private IWebElement _wishlistAddCashSuccessAdvice;
-
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h2")]
-        private IWebElement _wishlistAddCashSuccessHeader;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']/div/p[1]")]
         private IWebElement _wishlistAddCashSuccessMessage;
 
-        public WishlistAddCashSuccessModal(IWebDriver driver)
+        public WishlistAddCashSuccessModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
@@ -40,24 +35,24 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [AllureStep("Check 'Add Cash' success modal")]
         public WishlistAddCashSuccessModal CheckWishlistAddCashSuccessModal()
         {
-            Wait.Until(ElementToBeVisible(_wishlistAddCashSuccessHeader));
+            Wait.Until(ElementToBeVisible(SuccessHeader));
             Wait.Until(ElementToBeVisible(_wishlistAddCashSuccessMessage));
-            Wait.Until(ElementToBeVisible(_moneyAmount));
+            Wait.Until(ElementToBeVisible(_amountDeposited));
             Wait.Until(ElementToBeVisible(_wishlistAddCashSuccessAdvice));
             Wait.Until(ElementToBeClickable(_finishButton));
 
-            _wishlistAddCashSuccessHeader.Text.Should().Be(WishlistAddCashSuccessHeader);
-            _wishlistAddCashSuccessMessage.Text.Should().Be(WishlistAddCashSuccessMessage);
-            _moneyAmount.Text.Should().NotBeNullOrEmpty();
-            _wishlistAddCashSuccessAdvice.Text.Should().Be(WishlistAddCashSuccessAdvice);
+            SuccessHeader.Text.Should().Be(AddCashSuccessHeaderText);
+            _wishlistAddCashSuccessMessage.Text.Should().Be(AddCashSuccessMessageText);
+            _amountDeposited.Text.Should().NotBeNullOrEmpty();
+            _wishlistAddCashSuccessAdvice.Text.Should().Be(WishlistAddCashSuccessAdviceText);
             return this;
         }
 
         [AllureStep("Check if ${0} amount was deposited")]
-        public WishlistAddCashSuccessModal CheckForDepositAmount(string wishlistAddCashAmount)
+        public WishlistAddCashSuccessModal VerifyDepositedAmount(string wishlistAddCashAmount)
         {
-            Wait.Until(ElementToBeVisible(_moneyAmount));
-            _moneyAmount.Text.Should().Be('$' + wishlistAddCashAmount);
+            Wait.Until(ElementToBeVisible(_amountDeposited));
+            _amountDeposited.Text.Should().Be('$' + wishlistAddCashAmount);
             return this;
         }
 

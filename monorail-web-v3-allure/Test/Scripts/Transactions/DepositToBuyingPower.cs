@@ -13,11 +13,11 @@ namespace monorail_web_v3.Test.Scripts.Transactions
     [AllureNUnit]
     internal class DepositToBuyingPower : FunctionalTesting
     {
-        [Test(Description = "Deposit to Buying Power")]
+        [Test(Description = "Deposit money to Buying Power")]
         [AllureEpic("Transactions")]
         [AllureFeature("Buying Power")]
-        [AllureStory("Deposit to Buying Power")]
-        public void DepositAndWithdrawBuyingPowerTest()
+        [AllureStory("Deposit money to Buying Power")]
+        public void DepositMoneyToBuyingPowerTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainHeader = new MainHeader(Driver);
@@ -26,7 +26,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var buyingPowerAddCashModal = new BuyingPowerAddCashModal(Driver);
             var buyingPowerAddCashSuccessModal = new BuyingPowerAddCashSuccessModal(Driver);
 
-            const string username = "mp.1.042021@vimvest.com";
+            const string username = "autotests.mono+7.2.271021@gmail.com";
             const string amountToAdd = "1";
 
             loginPage
@@ -41,12 +41,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             buyingPowerAddCashModal
                 .CheckBuyingPowerAddCashModal()
-                .SetBuyingPowerAddCashAmount(amountToAdd)
+                .SetAddCashAmount(amountToAdd)
                 .ClickConfirmButton();
 
             buyingPowerAddCashSuccessModal
                 .CheckBuyingPowerAddCashSuccessModal()
-                .VerifyAddedAmount(amountToAdd)
+                .VerifyDepositedAmount(amountToAdd)
                 .ClickReturnButton();
         }
     }

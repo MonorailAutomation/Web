@@ -1,5 +1,6 @@
 using System.Threading;
 using monorail_web_v3.PageObjects;
+using monorail_web_v3.PageObjects.Commons.Modals;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Enums;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens;
@@ -27,9 +28,9 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var investMenu = new InvestMenu(Driver);
             var milestonesMainScreen = new MilestonesMainScreen(Driver);
             var chooseAMilestoneModal = new ChooseAMilestoneModal(Driver);
-            var milestoneDetailsModal = new MilestoneDetailsModal(Driver);
+            var milestoneItemDetailsModal = new MilestoneItemDetailsModal(Driver);
             var portfolioModal = new PortfolioModal(Driver);
-            var milestoneEditScheduleModal = new MilestoneEditScheduleModal(Driver);
+            var milestoneEditScheduleModal = new EditScheduleModal(Driver);
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
             const string username = "autotests.mono+1.1.131021@gmail.com";
@@ -56,12 +57,12 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .CheckChooseAMilestoneModal()
                 .ClickMilestoneType(MilestoneType.CollegeFund);
 
-            milestoneDetailsModal
+            milestoneItemDetailsModal
                 .CheckMilestoneDetailsModal()
-                .SetMilestoneName(milestoneName)
-                .SetMilestoneDescription(milestoneDescription)
                 .SetMilestoneTargetAmount(milestoneTargetAmount)
                 .SetMilestoneTargetDate(milestoneTargetDate)
+                .SetItemName(milestoneName)
+                .SetItemDescription(milestoneDescription)
                 .ClickContinueButton();
 
             portfolioModal

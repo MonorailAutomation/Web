@@ -1,4 +1,5 @@
 using FluentAssertions;
+using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -7,20 +8,18 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
 {
-    public class AddMilestoneSuccessModal
+    public class AddMilestoneSuccessModal : AddItemSuccessModal
     {
-        private const string SuccessHeader = "Success!";
-        private const string SuccessMessage = "Your milestone is being added now.";
-        private const string SuccessQuote = "“Stay focused, go after your dreams and keep moving toward your goals.”";
+        private const string SuccessHeaderText = "Success!";
+        private const string SuccessMessageText = "Your milestone is being added now.";
 
-        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Finish')]")]
-        private IWebElement _finishButton;
+        private const string SuccessQuoteText =
+            "“Stay focused, go after your dreams and keep moving toward your goals.”";
+
+        private const string SipcLogoUrl = "assets/img/sipc-logo.svg";
 
         [FindsBy(How = How.XPath, Using = "//div[@class='success-goal__footer__content']//svg-icon")]
         private IWebElement _sipcLogo;
-
-        [FindsBy(How = How.XPath, Using = "//div[@class='success-goal__content']//h2")]
-        private IWebElement _successHeader;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='success-goal__content']//p")]
         private IWebElement _successMessage;
@@ -28,10 +27,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
         [FindsBy(How = How.XPath, Using = "//div[@class='success-goal__footer__content']//p")]
         private IWebElement _successQuote;
 
-        [FindsBy(How = How.XPath, Using = "//button[@class='vim-modal__header__button']")]
-        private IWebElement _xButton;
-
-        public AddMilestoneSuccessModal(IWebDriver driver)
+        public AddMilestoneSuccessModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
@@ -39,25 +35,15 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
         [AllureStep("Check 'Success' modal")]
         public AddMilestoneSuccessModal CheckSuccessModal()
         {
-            Wait.Until(ElementToBeVisible(_xButton));
-            Wait.Until(ElementToBeVisible(_successHeader));
+            CheckAddItemSuccessModal(SuccessHeaderText);
             Wait.Until(ElementToBeVisible(_successMessage));
             Wait.Until(ElementToBeVisible(_successQuote));
             Wait.Until(ElementToBeVisible(_sipcLogo));
-            Wait.Until(ElementToBeVisible(_finishButton));
 
-            _successHeader.Text.Should().Contain(SuccessHeader);
-            _successMessage.Text.Should().Contain(SuccessMessage);
-            _successQuote.Text.Should().Contain(SuccessQuote);
+            _successMessage.Text.Should().Contain(SuccessMessageText);
+            _successQuote.Text.Should().Contain(SuccessQuoteText);
+            _sipcLogo.GetAttribute("src").Should().Be(SipcLogoUrl);
 
-            return this;
-        }
-
-        [AllureStep("Click 'Finish' button")]
-        public AddMilestoneSuccessModal ClickFinishButton()
-        {
-            Wait.Until(ElementToBeClickable(_finishButton));
-            _finishButton.Click();
             return this;
         }
     }

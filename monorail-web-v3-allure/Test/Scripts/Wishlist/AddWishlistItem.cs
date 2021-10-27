@@ -23,7 +23,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
             var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
-            var addWishlistItemFinishModal = new AddWishlistItemFinishModal(Driver);
+            var addWishlistItemFinishModal = new AddWishlistItemSuccessModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
             const string username = "autotests.mono+3.1.161021@gmail.com";
@@ -48,12 +48,12 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             wishlistItemDetailsModal
                 .CheckItemDetailsModal()
-                .VerifyDataOnItemDetailsModal(wishlistItemName, wishlistItemDescription, wishlistItemUrl)
+                .CheckLoadedDataOnItemDetailsModal(wishlistItemName, wishlistItemDescription, wishlistItemUrl)
                 .SetWishlistItemPrice(wishlistItemPrice)
                 .ClickConfirmButton();
 
             addWishlistItemFinishModal
-                .CheckAddWishlistItemFinishModal()
+                .CheckAddWishlistItemSuccessModal()
                 .VerifyWishlistItemName(wishlistItemName)
                 .ClickFinishButton();
 

@@ -1,4 +1,5 @@
 using monorail_web_v3.PageObjects;
+using monorail_web_v3.PageObjects.Commons.Modals;
 using monorail_web_v3.PageObjects.Menus;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Enums;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals;
@@ -26,8 +27,8 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
             var moneyMenu = new MoneyMenu(Driver);
             var tracksMainScreen = new TracksMainScreen(Driver);
             var chooseATrackModal = new ChooseATrackModal(Driver);
-            var trackDetailsModal = new TrackDetailsModal(Driver);
-            var trackEditScheduleModal = new TrackEditScheduleModal(Driver);
+            var trackDetailsModal = new TrackItemDetailsModal(Driver);
+            var trackEditScheduleModal = new EditScheduleModal(Driver);
             var addTrackSuccessModal = new AddTrackSuccessModal(Driver);
 
             const string username = "autotests.mono+2.2.181021@gmail.com";
@@ -58,10 +59,10 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .CheckTrackDetailsModal()
                 .SetTrackIcon(TrackIcon.Paw)
                 .SetTrackMainColor(TrackColor.Turquoise)
-                .SetTrackName(trackName)
-                .SetTrackDescription(trackDescription)
                 .SetTrackTargetAmount(trackTargetAmount)
                 .SetTrackTargetDate(trackTargetDate)
+                .SetItemName(trackName)
+                .SetItemDescription(trackDescription)
                 .ClickContinueButton();
 
             trackEditScheduleModal

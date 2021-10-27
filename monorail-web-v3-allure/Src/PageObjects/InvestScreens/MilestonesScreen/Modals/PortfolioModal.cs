@@ -1,4 +1,5 @@
 using FluentAssertions;
+using monorail_web_v3.PageObjects.Commons;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -7,28 +8,14 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
 {
-    public class PortfolioModal
+    public class PortfolioModal : Modal
     {
-        private const string PortfolioHeader = "Portfolio";
-
-        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Back')]")]
-        private IWebElement _backButton;
+        private const string PortfolioHeaderText = "Portfolio";
 
         [FindsBy(How = How.XPath, Using = "//vim-modal-body//button[contains(text(), 'Change Portfolio')]")]
         private IWebElement _changePortfolioButton;
 
-        [FindsBy(How = How.XPath, Using = "//vim-recommended-portfolio-modal//button[contains(text(),'Continue')]")]
-        private IWebElement _continueButton;
-
-        [FindsBy(How = How.XPath,
-            Using = "//div[@class='vim-modal__header__title']")]
-        private IWebElement _portfolioHeader;
-
-        [FindsBy(How = How.XPath,
-            Using = "//button[@class='vim-modal__header__button']")]
-        private IWebElement _xButton;
-
-        public PortfolioModal(IWebDriver driver)
+        public PortfolioModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
@@ -36,22 +23,14 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
         [AllureStep("Check 'Portfolio' modal")]
         public PortfolioModal CheckPortfolioModal()
         {
-            Wait.Until(ElementToBeVisible(_portfolioHeader));
-            Wait.Until(ElementToBeVisible(_xButton));
+            Wait.Until(ElementToBeVisible(ModalHeader));
+            Wait.Until(ElementToBeVisible(XButton));
             Wait.Until(ElementToBeVisible(_changePortfolioButton));
-            Wait.Until(ElementToBeVisible(_backButton));
-            Wait.Until(ElementToBeVisible(_continueButton));
+            Wait.Until(ElementToBeVisible(BackButton));
+            Wait.Until(ElementToBeVisible(ContinueButton));
 
-            _portfolioHeader.Text.Should().Contain(PortfolioHeader);
+            ModalHeader.Text.Should().Contain(PortfolioHeaderText);
 
-            return this;
-        }
-
-        [AllureStep("Click 'Continue' button")]
-        public PortfolioModal ClickContinueButton()
-        {
-            Wait.Until(ElementToBeClickable(_continueButton));
-            _continueButton.Click();
             return this;
         }
     }
