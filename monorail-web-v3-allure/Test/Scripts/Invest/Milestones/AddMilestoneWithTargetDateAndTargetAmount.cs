@@ -48,7 +48,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             investMenu.ClickMilestones();
 
-            Thread.Sleep(10000); //temporary workaround until 31578 solved
+            Thread.Sleep(10000); //temporary workaround until issue 31578 solved
 
             milestonesMainScreen.ClickAddAMilestoneButton();
 
