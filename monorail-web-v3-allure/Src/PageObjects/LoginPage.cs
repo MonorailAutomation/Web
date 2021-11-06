@@ -31,6 +31,12 @@ namespace monorail_web_v3.PageObjects
 
         [FindsBy(How = How.XPath, Using = "//button[@type='submit']")]
         private IWebElement _signInButton;
+        
+        [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Reset Password')]")]
+        private IWebElement _resetPasswordButton;
+        
+        [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Create an Account')]")]
+        private IWebElement _createAnAccountButton;
 
         public LoginPage(IWebDriver driver)
         {
@@ -49,6 +55,13 @@ namespace monorail_web_v3.PageObjects
         public LoginPage ClickSignInButton()
         {
             _signInButton.Click();
+            return this;
+        }
+        
+        [AllureStep("Click 'Create an Account' button")]
+        public LoginPage ClickCreateAnAccountButton()
+        {
+            _createAnAccountButton.Click();
             return this;
         }
 

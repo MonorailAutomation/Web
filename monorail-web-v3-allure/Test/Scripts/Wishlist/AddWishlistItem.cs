@@ -13,10 +13,10 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
     [AllureNUnit]
     internal class AddWishlistItem : FunctionalTesting
     {
-        private const string wishlistItemName = "Canon EOS Rebel T7 EF-S 18-55mm IS II Kit";
-        private const string wishlistItemUrl = "https://www.target.com/p/canon-eos-rebel-t7-ef-s-18-55mm-is-ii-kit/-/A-54360840";
-        private const string wishlistItemDescription = "Read reviews and buy Canon EOS Rebel T7 EF-S 18-55mm IS II Kit at Target. Choose from contactless Same Day Delivery, Drive Up and more.";
-        private const string wishlistItemPrice = "55";
+        private const string WishlistItemName = "Canon EOS Rebel T7 EF-S 18-55mm IS II Kit";
+        private const string WishlistItemUrl = "https://www.target.com/p/canon-eos-rebel-t7-ef-s-18-55mm-is-ii-kit/-/A-54360840";
+        private const string WishlistItemDescription = "Read reviews and buy Canon EOS Rebel T7 EF-S 18-55mm IS II Kit at Target. Choose from contactless Same Day Delivery, Drive Up and more.";
+        private const string WishlistItemPrice = "55";
 
         [Test(Description = "Add Wishlist item by clicking a button")]
         [AllureEpic("Wishlist")]
@@ -42,25 +42,25 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             addNewWishlistItemModal
                 .CheckAddNewItemModal()
-                .PasteLink(wishlistItemUrl)
+                .PasteLink(WishlistItemUrl)
                 .ClickContinueButton();
 
             wishlistItemDetailsModal
                 .CheckItemDetailsModal()
-                .CheckLoadedDataOnItemDetailsModal(wishlistItemName, wishlistItemDescription, wishlistItemUrl)
-                .SetWishlistItemPrice(wishlistItemPrice)
+                .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl)
+                .SetWishlistItemPrice(WishlistItemPrice)
                 .ClickConfirmButton();
 
             addWishlistItemFinishModal
                 .CheckAddWishlistItemSuccessModal()
-                .VerifyWishlistItemName(wishlistItemName)
+                .VerifyWishlistItemName(WishlistItemName)
                 .ClickFinishButton();
 
             wishlistMainScreen
-                .ClickWishlistItem(wishlistItemName);
+                .ClickWishlistItem(WishlistItemName);
 
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(wishlistItemName, wishlistItemDescription, wishlistItemPrice);
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice);
 
             var wishlistItemId = Driver.Url[^36..];
 
@@ -91,25 +91,25 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             addNewWishlistItemModal
                 .CheckAddNewItemModal()
-                .PasteLink(wishlistItemUrl)
+                .PasteLink(WishlistItemUrl)
                 .ClickContinueButton();
 
             wishlistItemDetailsModal
                 .CheckItemDetailsModal()
-                .CheckLoadedDataOnItemDetailsModal(wishlistItemName, wishlistItemDescription, wishlistItemUrl)
-                .SetWishlistItemPrice(wishlistItemPrice)
+                .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl)
+                .SetWishlistItemPrice(WishlistItemPrice)
                 .ClickConfirmButton();
 
             addWishlistItemFinishModal
                 .CheckAddWishlistItemSuccessModal()
-                .VerifyWishlistItemName(wishlistItemName)
+                .VerifyWishlistItemName(WishlistItemName)
                 .ClickFinishButton();
 
             wishlistMainScreen
-                .ClickWishlistItem(wishlistItemName);
+                .ClickWishlistItem(WishlistItemName);
 
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(wishlistItemName, wishlistItemDescription, wishlistItemPrice);
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice);
 
             var wishlistItemId = Driver.Url[^36..];
 
