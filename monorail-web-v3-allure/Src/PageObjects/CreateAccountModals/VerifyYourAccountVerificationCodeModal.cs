@@ -1,5 +1,4 @@
 using FluentAssertions;
-using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
@@ -16,7 +15,7 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
         private const string VerifyYourAccountHeaderText = "Verify your Account";
         private const string EnterVerificationCodeMessageText = "Please enter your verification code";
         private const string ResendOptionText = "Resend";
-        
+
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']/span[1]")]
         private IWebElement _enterVerificationCodeMessage;
 
@@ -51,13 +50,14 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             const string codeFieldFrontSelector = "//code-input//span[";
             const string codeFieldEndSelector = "]//input";
             var verificationCodeArray = verificationCode.ToCharArray();
-            
-            for (var i = 1; i < verificationCodeArray.Length+1; i++)
+
+            for (var i = 1; i < verificationCodeArray.Length + 1; i++)
             {
                 var codeFieldSelector = codeFieldFrontSelector + i + codeFieldEndSelector;
                 Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(codeFieldSelector)))
-                    .SendKeys(verificationCodeArray[i-1].ToString());
+                    .SendKeys(verificationCodeArray[i - 1].ToString());
             }
+
             Wait.Until(ElementToBeClickable(ContinueButton));
             return this;
         }

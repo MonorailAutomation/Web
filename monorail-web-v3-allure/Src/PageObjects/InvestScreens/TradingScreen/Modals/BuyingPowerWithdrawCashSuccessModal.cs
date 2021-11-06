@@ -8,7 +8,7 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals
 {
-    public class BuyingPowerWithdrawCashSuccessModal : WithdrawCashModalSuccess
+    public class BuyingPowerWithdrawCashSuccessModal : WithdrawCashSuccessModal
     {
         private const string BuyingPowerCashOutSuccessAdviceText =
             "Deposited funds will be available to withdraw 5 business days after they finish depositing.";

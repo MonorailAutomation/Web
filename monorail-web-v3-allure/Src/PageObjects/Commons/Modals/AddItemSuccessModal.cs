@@ -1,5 +1,5 @@
-using FluentAssertions;
 using System.Threading;
+using FluentAssertions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;

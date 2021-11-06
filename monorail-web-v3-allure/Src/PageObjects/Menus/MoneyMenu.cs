@@ -11,6 +11,9 @@ namespace monorail_web_v3.PageObjects.Menus
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Save')]")]
         private IWebElement _saveNavMenu;
 
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Spend')]")]
+        private IWebElement _spendNavMenu;
+
         public MoneyMenu(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
@@ -21,6 +24,14 @@ namespace monorail_web_v3.PageObjects.Menus
         {
             Wait.Until(ElementToBeClickable(_saveNavMenu));
             _saveNavMenu.Click();
+            return this;
+        }
+
+        [AllureStep("Click 'Spend'")]
+        public MoneyMenu ClickSpend()
+        {
+            Wait.Until(ElementToBeClickable(_spendNavMenu));
+            _spendNavMenu.Click();
             return this;
         }
     }

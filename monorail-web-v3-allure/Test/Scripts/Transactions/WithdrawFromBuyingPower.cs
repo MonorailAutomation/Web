@@ -28,7 +28,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             const string
                 username =
-                    "mp.1.042021@vimvest.com"; // replace with autotests.mono+8.2.271021@gmail.com after transfer will be finished
+                    "autotests.mono+8.2.271021@gmail.com";
             const string amountToWithdraw = "1";
 
             loginPage

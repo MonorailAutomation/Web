@@ -1,5 +1,4 @@
 using FluentAssertions;
-using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
@@ -17,15 +16,15 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
         private const string EmailOptionLabelText = "Email";
         private const string AdviceMessageText = "Text message is the fastest way to verify.";
 
-        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'radio-group__option')][1]//span")]
-        private IWebElement _textMessageMethod;
-        
-        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'radio-group__option')][2]//span")]
-        private IWebElement _emailMethod;
-        
         [FindsBy(How = How.XPath, Using = "//small")]
         private IWebElement _adviceMessage;
-        
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'radio-group__option')][2]//span")]
+        private IWebElement _emailMethod;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'radio-group__option')][1]//span")]
+        private IWebElement _textMessageMethod;
+
         public VerifyYourAccountChooseMethodModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
@@ -49,7 +48,7 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             ContinueButton.Enabled.Should().BeFalse();
             return this;
         }
-        
+
         [AllureStep("Click 'Text Message' option")]
         public VerifyYourAccountChooseMethodModal ClickTextMessageOption()
         {
@@ -58,7 +57,7 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             Wait.Until(ElementToBeClickable(ContinueButton));
             return this;
         }
-        
+
         [AllureStep("Click 'Email' option")]
         public VerifyYourAccountChooseMethodModal ClickEmailOption()
         {

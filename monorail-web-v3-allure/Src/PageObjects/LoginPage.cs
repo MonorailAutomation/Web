@@ -14,6 +14,9 @@ namespace monorail_web_v3.PageObjects
         private const string ExpectedInvalidLoginMessage =
             "If you don't have an account, create one in the Vimvest App.";
 
+        [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Create an Account')]")]
+        private IWebElement _createAnAccountButton;
+
         [FindsBy(How = How.Id, Using = "inputEmail")]
         private IWebElement _emailField;
 
@@ -29,14 +32,11 @@ namespace monorail_web_v3.PageObjects
         [FindsBy(How = How.Id, Using = "inputPassword")]
         private IWebElement _passwordField;
 
-        [FindsBy(How = How.XPath, Using = "//button[@type='submit']")]
-        private IWebElement _signInButton;
-        
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Reset Password')]")]
         private IWebElement _resetPasswordButton;
-        
-        [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Create an Account')]")]
-        private IWebElement _createAnAccountButton;
+
+        [FindsBy(How = How.XPath, Using = "//button[@type='submit']")]
+        private IWebElement _signInButton;
 
         public LoginPage(IWebDriver driver)
         {
@@ -57,7 +57,7 @@ namespace monorail_web_v3.PageObjects
             _signInButton.Click();
             return this;
         }
-        
+
         [AllureStep("Click 'Create an Account' button")]
         public LoginPage ClickCreateAnAccountButton()
         {
