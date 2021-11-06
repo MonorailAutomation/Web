@@ -1,4 +1,5 @@
 using FluentAssertions;
+using System.Threading;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -24,6 +25,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         public AddItemSuccessModal ClickFinishButton()
         {
             Wait.Until(ElementToBeVisible(_finishButton));
+            Thread.Sleep(2000); // necessary workaround
             _finishButton.Click();
             return this;
         }

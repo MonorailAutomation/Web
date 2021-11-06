@@ -56,11 +56,19 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             return this;
         }
 
-        [AllureStep("Click add Wishlist item placeholder")]
+        [AllureStep("Click add Wishlist item using placeholder")]
         public WishlistMainScreen ClickAddWishlistItemPlaceholder()
         {
             Wait.Until(Waits.ElementToBeClickable(_addWishlistItemPlaceholder));
             _addWishlistItemPlaceholder.Click();
+            return this;
+        }
+
+        [AllureStep("Click add Wishlist item using button")]
+        public WishlistMainScreen ClickAddWishlistItemButton()
+        {
+            Wait.Until(Waits.ElementToBeClickable(_addWishlistItemButton));
+            _addWishlistItemButton.Click();
             return this;
         }
 
