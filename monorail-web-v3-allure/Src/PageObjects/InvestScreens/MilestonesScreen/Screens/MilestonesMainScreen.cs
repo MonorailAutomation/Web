@@ -1,5 +1,5 @@
-using System;
 using FluentAssertions;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -9,12 +9,12 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens
 {
-    public class MilestonesMainScreen
+    public class MilestonesMainScreen : InvestScreen
     {
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Add a Milestone')]")]
         private IWebElement _addAMilestoneButton;
 
-        public MilestonesMainScreen(IWebDriver driver)
+        public MilestonesMainScreen(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
@@ -52,36 +52,12 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens
             return this;
         }
 
-        private static void VerifyIfProgressBarIsNotVisible(string milestoneName)
-        {
-            var progressBarSelector =
-                By.XPath("//h3[contains(text(),'" + milestoneName + "')]//following-sibling::div");
-            try
-            {
-                Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(progressBarSelector));
-                Console.WriteLine("Progress Bar was not found for \'" + milestoneName + "\'" + " Milestone.");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Progress Bar was found for \'" + milestoneName + "\'" + " Milestone.");
-                throw e;
-            }
-        }
-
         private static void VerifyIfProgressBarIsVisible(string milestoneName)
         {
             var progressBarSelector =
                 By.XPath("//h3[contains(text(),'" + milestoneName + "')]//following-sibling::div");
-            try
-            {
-                Wait.Until(ExpectedConditions.ElementIsVisible(progressBarSelector));
-                Console.WriteLine("Progress Bar was found for \'" + milestoneName + "\'" + " Milestone.");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Progress Bar was not found for \'" + milestoneName + "\'" + " Milestone.");
-                throw e;
-            }
+
+            Wait.Until(ExpectedConditions.ElementIsVisible(progressBarSelector));
         }
 
         private static void VerifyIfTargetAmountIsVisible(string milestoneName, string milestoneTargetAmount)
@@ -89,35 +65,16 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens
             var expectedMilestoneAmount = "$0 of $" + milestoneTargetAmount;
             var milestoneTargetAmountSelector =
                 By.XPath("//h3[contains(text(),'" + milestoneName + "')]//following-sibling::p");
-            try
-            {
-                Wait.Until(ExpectedConditions.ElementIsVisible(milestoneTargetAmountSelector));
-                var actualMilestoneAmount = Driver.FindElement(milestoneTargetAmountSelector).Text;
-                actualMilestoneAmount.Should().Be(expectedMilestoneAmount);
-                Console.WriteLine("$" + milestoneTargetAmount + " Target Amount was found for '" + milestoneName +
-                                  "' Milestone.");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("\'" + milestoneTargetAmount + "\'" + " Target Amount was not found for \'" +
-                                  milestoneName + "\'" + " Milestone.");
-                throw e;
-            }
+
+            Wait.Until(ExpectedConditions.ElementIsVisible(milestoneTargetAmountSelector));
+            var actualMilestoneAmount = Driver.FindElement(milestoneTargetAmountSelector).Text;
+            actualMilestoneAmount.Should().Be(expectedMilestoneAmount);
         }
 
         private static void VerifyIfMilestoneIsVisible(string milestoneName)
         {
             var milestoneItemSelector = By.XPath("//h3[contains(text(),'" + milestoneName + "')]");
-            try
-            {
-                Wait.Until(ExpectedConditions.ElementIsVisible(milestoneItemSelector));
-                Console.WriteLine("\'" + milestoneName + "\'" + " Milestone was found.");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("\'" + milestoneName + "\'" + " Milestone was not found.");
-                throw e;
-            }
+            Wait.Until(ExpectedConditions.ElementIsVisible(milestoneItemSelector));
         }
     }
 }

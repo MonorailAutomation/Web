@@ -1,11 +1,12 @@
 using monorail_web_v3.PageObjects;
-using monorail_web_v3.PageObjects.Menus;
+using monorail_web_v3.PageObjects.Commons;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens;
 using monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
-using static monorail_web_v3.Commons.Passwords;
+using static monorail_web_v3.Commons.Constants;
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
@@ -20,8 +21,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions
         public void DepositMoneyToCheckingAccountTest()
         {
             var loginPage = new LoginPage(Driver);
-            var mainHeader = new MainHeader(Driver);
-            var moneyMenu = new MoneyMenu(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var moneyScreen = new MoneyScreen(Driver);
             var spendMainScreen = new SpendMainScreen(Driver);
             var spendAddCashModal = new SpendAddCashModal(Driver);
             var spendAddCashSuccessModal = new SpendAddCashSuccessModal(Driver);
@@ -33,10 +34,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            mainHeader
+            mainScreen
+                .CheckMainScreen()
                 .ClickMoney();
 
-            moneyMenu
+            moneyScreen
+                .CheckMoneyScreen()
                 .ClickSpend();
 
             spendMainScreen

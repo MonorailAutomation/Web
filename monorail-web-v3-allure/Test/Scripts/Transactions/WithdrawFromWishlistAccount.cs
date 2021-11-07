@@ -1,10 +1,11 @@
 ﻿using monorail_web_v3.PageObjects;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
-using static monorail_web_v3.Commons.Passwords;
+using static monorail_web_v3.Commons.Constants;
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
@@ -19,6 +20,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
         public void WithdrawMoneyFromWishlistAccountTest()
         {
             var loginPage = new LoginPage(Driver);
+            var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistManageAccountModal = new WishlistManageAccountModal(Driver);
             var wishlistWithdrawCashModal = new WishlistWithdrawCashModal(Driver);
@@ -30,6 +32,10 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
+
+            wishlistScreen
+                .CheckWishlistScreen()
+                .CheckMainScreen();
 
             wishlistMainScreen
                 .ClickManageYourAccountButton();

@@ -1,12 +1,13 @@
 using monorail_web_v3.PageObjects;
+using monorail_web_v3.PageObjects.Commons;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens;
-using monorail_web_v3.PageObjects.Menus;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.RestRequests.Helpers.MilestoneHelperFunctions;
-using static monorail_web_v3.Commons.Passwords;
+using static monorail_web_v3.Commons.Constants;
 
 namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 {
@@ -22,8 +23,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
         public void EditMilestoneNameDescriptionAmountDateTest()
         {
             var loginPage = new LoginPage(Driver);
-            var mainHeader = new MainHeader(Driver);
-            var investMenu = new InvestMenu(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var investScreen = new InvestScreen(Driver);
             var milestonesMainScreen = new MilestonesMainScreen(Driver);
             var milestoneDetailsModal = new MilestoneItemDetailsModal(Driver);
             var milestoneDetailsScreen = new MilestoneDetailsScreen(Driver);
@@ -45,10 +46,13 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            mainHeader
+            mainScreen
+                .CheckMainScreen()
                 .ClickInvest();
 
-            investMenu.ClickMilestones();
+            investScreen
+                .CheckInvestScreen()
+                .ClickMilestones();
 
             milestonesMainScreen.ClickMilestone(originalMilestoneName);
 

@@ -1,4 +1,5 @@
 using FluentAssertions;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -7,9 +8,9 @@ using static OpenQA.Selenium.Support.UI.ExpectedConditions;
 
 namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 {
-    public class WishlistDetailsScreen
+    public class WishlistDetailsScreen : WishlistScreen
     {
-        public WishlistDetailsScreen(IWebDriver driver)
+        public WishlistDetailsScreen(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }

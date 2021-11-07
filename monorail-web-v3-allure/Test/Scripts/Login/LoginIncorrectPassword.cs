@@ -2,7 +2,7 @@ using monorail_web_v3.PageObjects;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
-using static monorail_web_v3.Commons.Passwords;
+using static monorail_web_v3.Commons.Constants;
 
 namespace monorail_web_v3.Test.Scripts.Login
 {

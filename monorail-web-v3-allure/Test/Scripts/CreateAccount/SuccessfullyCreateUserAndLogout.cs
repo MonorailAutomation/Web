@@ -1,12 +1,13 @@
 using System.Threading;
 using monorail_web_v3.PageObjects;
+using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.CreateAccountModals;
 using monorail_web_v3.PageObjects.Menus;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.RandomGenerator;
-using static monorail_web_v3.Commons.Passwords;
+using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.Database.VerificationCode;
 
 namespace monorail_web_v3.Test.Scripts.CreateAccount
@@ -18,7 +19,6 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
         private const string UsernamePrefix = "autotests.mono+20.061121";
         private const string UsernameSuffix = "@gmail.com";
         private const string DateOfBirth = "01/01/1990";
-        private const string PhoneNumber = "9419252121";
 
         [Test(Description = "Create user with text message verification")]
         [AllureEpic("Create user")]
@@ -32,6 +32,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
             var termsOfUseModal = new TermsOfUseModal(Driver);
             var advisorsPrivacyPolicyModal = new AdvisorsPrivacyPolicyModal(Driver);
+            var mainScreen = new MainScreen(Driver);
             var sideMenu = new SideMenu(Driver);
 
             const string verificationCode = "111111";
@@ -46,7 +47,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
                 .SetEmail(username)
                 .SetPassword(ValidPassword)
                 .SetDateOfBirth(DateOfBirth)
-                .SetPhoneNumber(PhoneNumber)
+                .SetPhoneNumber(ValidPhoneNumber)
                 .ClickContinueButton();
 
             verifyYourAccountChooseMethodModal
@@ -74,9 +75,11 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
+            mainScreen
+                .ExpandSideMenu();
+
             sideMenu
-                .ExpandSideMenu()
-                .Logout();
+                .ClickLogOutLink();
         }
 
         [Test(Description = "Create user with email verification")]
@@ -91,6 +94,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
             var termsOfUseModal = new TermsOfUseModal(Driver);
             var advisorsPrivacyPolicyModal = new AdvisorsPrivacyPolicyModal(Driver);
+            var mainScreen = new MainScreen(Driver);
             var sideMenu = new SideMenu(Driver);
 
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
@@ -103,7 +107,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
                 .SetEmail(username)
                 .SetPassword(ValidPassword)
                 .SetDateOfBirth(DateOfBirth)
-                .SetPhoneNumber(PhoneNumber)
+                .SetPhoneNumber(ValidPhoneNumber)
                 .ClickContinueButton();
 
             verifyYourAccountChooseMethodModal
@@ -128,9 +132,11 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
+            mainScreen
+                .ExpandSideMenu();
+
             sideMenu
-                .ExpandSideMenu()
-                .Logout();
+                .ClickLogOutLink();
         }
     }
 }

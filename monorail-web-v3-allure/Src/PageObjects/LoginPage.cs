@@ -36,7 +36,7 @@ namespace monorail_web_v3.PageObjects
         private IWebElement _resetPasswordButton;
 
         [FindsBy(How = How.XPath, Using = "//button[@type='submit']")]
-        private IWebElement _signInButton;
+        public IWebElement _signInButton;
 
         public LoginPage(IWebDriver driver)
         {
@@ -46,6 +46,9 @@ namespace monorail_web_v3.PageObjects
         [AllureStep("Login with user '{0}' and password '{1}'")]
         public LoginPage PassCredentials(string email, string password)
         {
+            Wait.Until(ElementToBeVisible(_emailField));
+            Wait.Until(ElementToBeVisible(_passwordField));
+
             _emailField.SendKeys(email);
             _passwordField.SendKeys(password);
             return this;
@@ -54,6 +57,7 @@ namespace monorail_web_v3.PageObjects
         [AllureStep("Click 'Sign In' button")]
         public LoginPage ClickSignInButton()
         {
+            Wait.Until(ElementToBeClickable(_signInButton));
             _signInButton.Click();
             return this;
         }
@@ -61,6 +65,7 @@ namespace monorail_web_v3.PageObjects
         [AllureStep("Click 'Create an Account' button")]
         public LoginPage ClickCreateAnAccountButton()
         {
+            Wait.Until(ElementToBeClickable(_createAnAccountButton));
             _createAnAccountButton.Click();
             return this;
         }

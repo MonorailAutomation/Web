@@ -1,5 +1,5 @@
-using System;
 using FluentAssertions;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -9,7 +9,7 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens
 {
-    public class MilestoneDetailsScreen
+    public class MilestoneDetailsScreen : InvestScreen
     {
         [FindsBy(How = How.XPath, Using = "//p[contains(text(), 'Edit Details')]")]
         private IWebElement _editDetailsOption;
@@ -23,7 +23,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens
         [FindsBy(How = How.XPath, Using = "//span[@class='vim-goal-sidebar__amount__target']")]
         private IWebElement _milestoneTargetAmount;
 
-        public MilestoneDetailsScreen(IWebDriver driver)
+        public MilestoneDetailsScreen(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
@@ -49,16 +49,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens
 
         private void VerifyIfMilestoneNameHasChanged(string milestoneName)
         {
-            try
-            {
-                Wait.Until(ExpectedConditions.TextToBePresentInElement(_milestoneName, milestoneName));
-                Console.WriteLine("\'" + milestoneName + "\'" + " Milestone was found.");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("\'" + milestoneName + "\'" + " Milestone was not found.");
-                throw e;
-            }
+            Wait.Until(ExpectedConditions.TextToBePresentInElement(_milestoneName, milestoneName));
         }
     }
 }

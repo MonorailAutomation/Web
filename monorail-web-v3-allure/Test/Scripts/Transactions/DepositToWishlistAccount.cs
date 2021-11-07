@@ -1,10 +1,11 @@
 ﻿using monorail_web_v3.PageObjects;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
-using static monorail_web_v3.Commons.Passwords;
+using static monorail_web_v3.Commons.Constants;
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
@@ -13,6 +14,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
     internal class DepositToWishlistAccount : FunctionalTesting
     {
         private const string AmountToAdd = "2";
+        private const string Username = "autotests.mono+3.1.161021@gmail.com";
 
         [Test(Description = "Deposit Money to Wishlist Account from Main Wishlist Screen")]
         [AllureEpic("Transactions")]
@@ -21,15 +23,18 @@ namespace monorail_web_v3.Test.Scripts.Transactions
         public void DepositToWishlistAccountFromMainScreenTest()
         {
             var loginPage = new LoginPage(Driver);
+            var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistAddCashSuccessModal = new WishlistAddCashSuccessModal(Driver);
             var wishlistAddCashModal = new WishlistAddCashModal(Driver);
-
-            const string username = "autotests.mono+3.1.161021@gmail.com";
-
+            
             loginPage
-                .PassCredentials(username, ValidPassword)
+                .PassCredentials(Username, ValidPassword)
                 .ClickSignInButton();
+
+            wishlistScreen
+                .CheckWishlistScreen()
+                .CheckMainScreen();
 
             wishlistMainScreen
                 .CheckWishlistHeader()
@@ -53,16 +58,19 @@ namespace monorail_web_v3.Test.Scripts.Transactions
         public void DepositToWishlistAccountFromManageAccountTest()
         {
             var loginPage = new LoginPage(Driver);
+            var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistAddCashSuccessModal = new WishlistAddCashSuccessModal(Driver);
             var wishlistManageAccountModal = new WishlistManageAccountModal(Driver);
             var wishlistAddCashModal = new WishlistAddCashModal(Driver);
-
-            const string username = "autotests.mono+3.1.161021@gmail.com";
-
+            
             loginPage
-                .PassCredentials(username, ValidPassword)
+                .PassCredentials(Username, ValidPassword)
                 .ClickSignInButton();
+
+            wishlistScreen
+                .CheckWishlistScreen()
+                .CheckMainScreen();
 
             wishlistMainScreen
                 .CheckWishlistHeader()

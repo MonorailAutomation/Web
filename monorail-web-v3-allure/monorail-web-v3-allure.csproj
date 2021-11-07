@@ -41,9 +41,7 @@
         <None Remove="Test\Scripts\Login\"/>
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="Src\PageObjects\Commons\Screens"/>
         <Folder Include="Src\PageObjects\InvestScreens\TradingScreen\Enums"/>
-        <Folder Include="Src\PageObjects\MoneyScreens\SpendScreen\Screens"/>
         <Folder Include="Test\"/>
         <Folder Include="Src\PageObjects\"/>
         <Folder Include="Test\Scripts\"/>

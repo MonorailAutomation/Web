@@ -1,4 +1,5 @@
 ﻿using monorail_web_v3.Commons;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -8,14 +9,14 @@ using static OpenQA.Selenium.Support.UI.ExpectedConditions;
 
 namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 {
-    public class WishlistMainScreen
+    public class WishlistMainScreen : WishlistScreen
     {
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Funds')]")]
         private IWebElement _addFundsButton;
 
         [FindsBy(How = How.XPath,
             Using = "//main//p[contains(text(), 'Add an Item')]")]
-        private IWebElement _addWishlistItemButton;
+        public IWebElement _addWishlistItemButton;
 
         [FindsBy(How = How.XPath,
             Using = "//div[@class='wishlist-list__item'][1]//div[@class='empty-card__container']")]
@@ -28,7 +29,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             Using = "//div[@class='vim-page-header__title']//h1[contains(text(),'Wishlist')]")]
         private IWebElement _wishlistHeaderItem;
 
-        public WishlistMainScreen(IWebDriver driver)
+        public WishlistMainScreen(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }

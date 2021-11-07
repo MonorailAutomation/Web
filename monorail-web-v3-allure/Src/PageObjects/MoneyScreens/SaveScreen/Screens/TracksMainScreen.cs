@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -9,12 +10,12 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
 {
-    public class TracksMainScreen
+    public class TracksMainScreen : MoneyScreen
     {
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Add Saving Track')]")]
         private IWebElement _addSavingTrackButton;
 
-        public TracksMainScreen(IWebDriver driver)
+        public TracksMainScreen(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }

@@ -1,11 +1,12 @@
 using monorail_web_v3.PageObjects;
-using monorail_web_v3.PageObjects.Menus;
+using monorail_web_v3.PageObjects.Commons;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens;
 using monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
-using static monorail_web_v3.Commons.Passwords;
+using static monorail_web_v3.Commons.Constants;
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
@@ -13,15 +14,15 @@ namespace monorail_web_v3.Test.Scripts.Transactions
     [AllureNUnit]
     public class WithdrawFromCheckingAccount : FunctionalTesting
     {
-        [Test(Description = "Deposit money to Checking Account")]
+        [Test(Description = "Withdraw money to Checking Account")]
         [AllureEpic("Transactions")]
         [AllureFeature("Checking Account")]
-        [AllureStory("Deposit money to Checking Account")]
-        public void DepositMoneyToCheckingAccountTest()
+        [AllureStory("Withdraw money to Checking Account")]
+        public void WithdrawMoneyFromCheckingAccountTest()
         {
             var loginPage = new LoginPage(Driver);
-            var mainHeader = new MainHeader(Driver);
-            var moneyMenu = new MoneyMenu(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var moneyScreen = new MoneyScreen(Driver);
             var spendMainScreen = new SpendMainScreen(Driver);
             var spendWithdrawCashModal = new SpendWithdrawCashModal(Driver);
             var spendWithdrawCashSuccessModal = new SpendWithdrawCashSuccessModal(Driver);
@@ -34,10 +35,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            mainHeader
+            mainScreen
+                .CheckMainScreen()
                 .ClickMoney();
 
-            moneyMenu
+            moneyScreen
+                .CheckMoneyScreen()
                 .ClickSpend();
 
             spendMainScreen

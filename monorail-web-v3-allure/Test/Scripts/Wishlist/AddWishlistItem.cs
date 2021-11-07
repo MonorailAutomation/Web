@@ -1,11 +1,13 @@
 using monorail_web_v3.PageObjects;
+using monorail_web_v3.PageObjects.Commons;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
-using static monorail_web_v3.Commons.Passwords;
+using static monorail_web_v3.Commons.Constants;
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
@@ -30,6 +32,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         public void AddWishlistItemByButtonTest()
         {
             var loginPage = new LoginPage(Driver);
+            var mainScreen = new MainScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
             var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
@@ -41,6 +44,9 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
+
+            mainScreen
+                .CheckMainScreen();
 
             wishlistMainScreen
                 .ClickAddWishlistItemButton();
@@ -79,6 +85,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         public void AddWishlistItemByPlaceholderTest()
         {
             var loginPage = new LoginPage(Driver);
+            var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
             var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
@@ -90,6 +97,10 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
+
+            wishlistScreen
+                .CheckWishlistScreen()
+                .CheckMainScreen();
 
             wishlistMainScreen
                 .ClickAddWishlistItemPlaceholder();

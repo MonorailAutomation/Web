@@ -1,15 +1,16 @@
 using System.Threading;
 using monorail_web_v3.PageObjects;
+using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Enums;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens;
-using monorail_web_v3.PageObjects.Menus;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.RandomGenerator;
-using static monorail_web_v3.Commons.Passwords;
+using static monorail_web_v3.Commons.Constants;
 
 namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 {
@@ -24,8 +25,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
         public void AddMilestoneWithTargetDateAndTargetAmountTest()
         {
             var loginPage = new LoginPage(Driver);
-            var mainHeader = new MainHeader(Driver);
-            var investMenu = new InvestMenu(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var investScreen = new InvestScreen(Driver);
             var milestonesMainScreen = new MilestonesMainScreen(Driver);
             var chooseAMilestoneModal = new ChooseAMilestoneModal(Driver);
             var milestoneItemDetailsModal = new MilestoneItemDetailsModal(Driver);
@@ -44,10 +45,13 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            mainHeader
+            mainScreen
+                .CheckMainScreen()
                 .ClickInvest();
 
-            investMenu.ClickMilestones();
+            investScreen
+                .CheckInvestScreen()
+                .ClickMilestones();
 
             Thread.Sleep(10000); //temporary workaround until issue 31578 solved
 

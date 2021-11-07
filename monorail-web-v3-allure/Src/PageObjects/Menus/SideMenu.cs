@@ -8,31 +8,31 @@ namespace monorail_web_v3.PageObjects.Menus
 {
     public class SideMenu
     {
-        [FindsBy(How = How.XPath,
-            Using = "//button[@class='vim-header__sidenav-toggle']/svg-icon[contains(@src, 'menu')]")]
-        private IWebElement _hamburgerMenu;
-
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Log Out')]")]
-        private IWebElement _logOutButton;
+        private IWebElement _logOutLink;
+
+        [FindsBy(How = How.XPath, Using = "//a[contains(@routerlink, 'my-connected-account')]")]
+        public IWebElement _myConnectedAccountLink;
 
         public SideMenu(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Expand side menu")]
-        public SideMenu ExpandSideMenu()
+
+        [AllureStep("Click 'My Connected Account' link")]
+        public SideMenu ClickMyConnectedAccountLink()
         {
-            Wait.Until(ElementToBeClickable(_hamburgerMenu));
-            _hamburgerMenu.Click();
+            Wait.Until(ElementToBeClickable(_myConnectedAccountLink));
+            _myConnectedAccountLink.Click();
             return this;
         }
 
-        [AllureStep("Click 'Log Out' option")]
-        public SideMenu Logout()
+        [AllureStep("Click 'Log Out' link")]
+        public SideMenu ClickLogOutLink()
         {
-            Wait.Until(ElementToBeClickable(_logOutButton));
-            _logOutButton.Click();
+            Wait.Until(ElementToBeClickable(_logOutLink));
+            _logOutLink.Click();
             return this;
         }
     }

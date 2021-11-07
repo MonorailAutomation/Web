@@ -1,3 +1,4 @@
+using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -6,7 +7,7 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Screens
 {
-    public class TradingMainScreen
+    public class TradingMainScreen : InvestScreen
     {
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Add Cash')]")]
         private IWebElement _addCashButton;
@@ -14,7 +15,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Screens
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Cash Out')]")]
         private IWebElement _cashOutButton;
 
-        public TradingMainScreen(IWebDriver driver)
+        public TradingMainScreen(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }

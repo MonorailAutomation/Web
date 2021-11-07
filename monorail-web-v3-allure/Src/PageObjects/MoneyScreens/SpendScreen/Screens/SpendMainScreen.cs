@@ -1,4 +1,5 @@
 using monorail_web_v3.Commons;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.Test.Scripts;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
@@ -6,7 +7,7 @@ using SeleniumExtras.PageObjects;
 
 namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
 {
-    public class SpendMainScreen
+    public class SpendMainScreen : MoneyScreen
     {
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Cash')]")]
         private IWebElement _addCashButton;
@@ -14,7 +15,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Cash Out')]")]
         private IWebElement _cashOutButton;
 
-        public SpendMainScreen(IWebDriver driver)
+        public SpendMainScreen(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
