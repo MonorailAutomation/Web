@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
@@ -41,16 +42,24 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
 
         protected AddCashModal CheckAddCashModal()
         {
-            Wait.Until(ElementToBeVisible(ModalHeader));
-            Wait.Until(ElementToBeVisible(_addCashMessage));
-            Wait.Until(ElementToBeVisible(_addCashInput));
-            Wait.Until(ElementToBeVisible(_transferCompleteLabel));
-            Wait.Until(ElementToBeVisible(_transferCompleteDate));
+            try
+            {
+                Wait.Until(ElementToBeVisible(ModalHeader));
+                Wait.Until(ElementToBeVisible(_addCashMessage));
+                Wait.Until(ElementToBeVisible(_addCashInput));
+                Wait.Until(ElementToBeVisible(_transferCompleteLabel));
+                Wait.Until(ElementToBeVisible(_transferCompleteDate));
 
-            ModalHeader.Text.Should().Be(AddCashModalHeaderText);
-            _addCashMessage.Text.Should().Be(AddCashMessageText);
-            _transferCompleteLabel.Text.Should().Be(TransferCompleteDateLabelText);
-            _transferCompleteDate.Text.Should().NotBeNullOrEmpty();
+                ModalHeader.Text.Should().Be(AddCashModalHeaderText);
+                _addCashMessage.Text.Should().Be(AddCashMessageText);
+                _transferCompleteLabel.Text.Should().Be(TransferCompleteDateLabelText);
+                _transferCompleteDate.Text.Should().NotBeNullOrEmpty();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
             return this;
         }
     }

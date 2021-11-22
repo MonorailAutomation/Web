@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -35,18 +36,24 @@ namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals
         [AllureStep("Check 'Withdraw Cash' modal")]
         public BuyingPowerWithdrawCashModal CheckBuyingPowerWithdrawCashModal()
         {
-            CheckWithdrawCashModal();
-            Wait.Until(ElementToBeVisible(_availableToWithdrawLabel));
-            Wait.Until(ElementToBeVisible(_availableToWithdrawAmount));
-            Wait.Until(ElementToBeVisible(_onHoldLabel));
-            Wait.Until(ElementToBeVisible(_onHoldAmount));
-            Wait.Until(ElementToBeVisible(ConfirmButton));
+            try
+            {
+                CheckWithdrawCashModal();
+                Wait.Until(ElementToBeVisible(_availableToWithdrawLabel));
+                Wait.Until(ElementToBeVisible(_availableToWithdrawAmount));
+                Wait.Until(ElementToBeVisible(_onHoldLabel));
+                Wait.Until(ElementToBeVisible(_onHoldAmount));
+                Wait.Until(ElementToBeVisible(ConfirmButton));
 
-            _availableToWithdrawLabel.Text.Should().Contain(AvailableToWithdrawLabelText);
-            _availableToWithdrawLabel.Text.Should().NotBeNullOrEmpty();
-            _onHoldLabel.Text.Should().Contain(OnHoldLabelText);
-            _onHoldAmount.Text.Should().NotBeNullOrEmpty();
-
+                _availableToWithdrawLabel.Text.Should().Contain(AvailableToWithdrawLabelText);
+                _availableToWithdrawLabel.Text.Should().NotBeNullOrEmpty();
+                _onHoldLabel.Text.Should().Contain(OnHoldLabelText);
+                _onHoldAmount.Text.Should().NotBeNullOrEmpty();   
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

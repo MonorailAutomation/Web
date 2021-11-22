@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -38,18 +39,24 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [AllureStep("Check 'Cash Out' success modal")]
         public WishlistWithdrawCashSuccessModal CheckWishlistCashOutSuccessModal()
         {
-            Wait.Until(ElementToBeVisible(SuccessHeader));
-            Wait.Until(ElementToBeVisible(_wishlistWithdrawCashSuccessMessage));
-            Wait.Until(ElementToBeVisible(_moneyAmount));
-            Wait.Until(ElementToBeVisible(_wishlistWithdrawCashSuccessAdvice));
-            Wait.Until(ElementToBeClickable(_finishButton));
+            try
+            {
+                Wait.Until(ElementToBeVisible(SuccessHeader));
+                Wait.Until(ElementToBeVisible(_wishlistWithdrawCashSuccessMessage));
+                Wait.Until(ElementToBeVisible(_moneyAmount));
+                Wait.Until(ElementToBeVisible(_wishlistWithdrawCashSuccessAdvice));
+                Wait.Until(ElementToBeClickable(_finishButton));
 
-            SuccessHeader.Text.Should().Be(WithdrawCashSuccessHeaderText);
-            _wishlistWithdrawCashSuccessMessage.Text.Should().Be(WithdrawCashSuccessMessageText);
-            _moneyAmount.Text.Should().NotBeNullOrEmpty();
-            _wishlistWithdrawCashSuccessAdvice.Text.Should().Contain(WishlistWithdrawCashSuccessAdvicePartOneText);
-            _wishlistWithdrawCashSuccessAdvice.Text.Should().Contain(WishlistWithdrawCashSuccessAdvicePartTwoText);
-
+                SuccessHeader.Text.Should().Be(WithdrawCashSuccessHeaderText);
+                _wishlistWithdrawCashSuccessMessage.Text.Should().Be(WithdrawCashSuccessMessageText);
+                _moneyAmount.Text.Should().NotBeNullOrEmpty();
+                _wishlistWithdrawCashSuccessAdvice.Text.Should().Contain(WishlistWithdrawCashSuccessAdvicePartOneText);
+                _wishlistWithdrawCashSuccessAdvice.Text.Should().Contain(WishlistWithdrawCashSuccessAdvicePartTwoText);   
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
 

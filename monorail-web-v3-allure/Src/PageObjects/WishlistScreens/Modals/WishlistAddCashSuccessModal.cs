@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -35,16 +36,23 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [AllureStep("Check 'Add Cash' success modal")]
         public WishlistAddCashSuccessModal CheckWishlistAddCashSuccessModal()
         {
-            Wait.Until(ElementToBeVisible(SuccessHeader));
-            Wait.Until(ElementToBeVisible(_wishlistAddCashSuccessMessage));
-            Wait.Until(ElementToBeVisible(_amountDeposited));
-            Wait.Until(ElementToBeVisible(_wishlistAddCashSuccessAdvice));
-            Wait.Until(ElementToBeClickable(_finishButton));
-
-            SuccessHeader.Text.Should().Be(AddCashSuccessHeaderText);
-            _wishlistAddCashSuccessMessage.Text.Should().Be(AddCashSuccessMessageText);
-            _amountDeposited.Text.Should().NotBeNullOrEmpty();
-            _wishlistAddCashSuccessAdvice.Text.Should().Be(WishlistAddCashSuccessAdviceText);
+            try
+            {
+                Wait.Until(ElementToBeVisible(SuccessHeader));
+                Wait.Until(ElementToBeVisible(_wishlistAddCashSuccessMessage));
+                Wait.Until(ElementToBeVisible(_amountDeposited));
+                Wait.Until(ElementToBeVisible(_wishlistAddCashSuccessAdvice));
+                Wait.Until(ElementToBeClickable(_finishButton));
+                
+                SuccessHeader.Text.Should().Be(AddCashSuccessHeaderText);
+                _wishlistAddCashSuccessMessage.Text.Should().Be(AddCashSuccessMessageText);
+                _amountDeposited.Text.Should().NotBeNullOrEmpty();
+                _wishlistAddCashSuccessAdvice.Text.Should().Be(WishlistAddCashSuccessAdviceText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
 

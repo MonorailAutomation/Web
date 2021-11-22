@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
@@ -43,13 +44,20 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
 
         protected ItemDetailsModal CheckItemDetailsModal(string headerText)
         {
-            Wait.Until(ElementToBeVisible(ModalHeader));
-            Wait.Until(ElementToBeVisible(XButton));
-            Wait.Until(ElementToBeVisible(_changeImageButton));
-            Wait.Until(ElementToBeVisible(ItemNameInput));
-            Wait.Until(ElementToBeVisible(BackButton));
+            try
+            {
+                Wait.Until(ElementToBeVisible(ModalHeader));
+                Wait.Until(ElementToBeVisible(XButton));
+                Wait.Until(ElementToBeVisible(_changeImageButton));
+                Wait.Until(ElementToBeVisible(ItemNameInput));
+                Wait.Until(ElementToBeVisible(BackButton));
 
-            ModalHeader.Text.Should().Contain(headerText);
+                ModalHeader.Text.Should().Contain(headerText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

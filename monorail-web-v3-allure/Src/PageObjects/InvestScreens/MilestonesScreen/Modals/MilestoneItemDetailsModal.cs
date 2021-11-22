@@ -25,17 +25,6 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Check 'Milestone Details' modal")]
-        public MilestoneItemDetailsModal CheckMilestoneDetailsModal()
-        {
-            CheckItemDetailsModal(MilestoneDetailsHeaderText);
-            Wait.Until(ElementToBeVisible(ItemDescriptionInput));
-            Wait.Until(ElementToBeVisible(_milestoneTargetAmountInput));
-            Wait.Until(ElementToBeVisible(_milestoneTargetDateInput));
-            Wait.Until(ElementToBeVisible(ContinueButton));
-            return this;
-        }
-
         [AllureStep("Set Milestone Target Amount to '${0}'")]
         public MilestoneItemDetailsModal SetMilestoneTargetAmount(string milestoneTargetAmount)
         {
@@ -63,6 +52,24 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
                 CultureInfo.InvariantCulture).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             parsedDate.Should().Be(expectedTargetDate);
+            return this;
+        }
+
+        [AllureStep("Check 'Milestone Details' modal")]
+        public MilestoneItemDetailsModal CheckMilestoneDetailsModal()
+        {
+            try
+            {
+                CheckItemDetailsModal(MilestoneDetailsHeaderText);
+                Wait.Until(ElementToBeVisible(ItemDescriptionInput));
+                Wait.Until(ElementToBeVisible(_milestoneTargetAmountInput));
+                Wait.Until(ElementToBeVisible(_milestoneTargetDateInput));
+                Wait.Until(ElementToBeVisible(ContinueButton));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

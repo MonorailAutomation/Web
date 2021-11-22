@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -26,13 +27,19 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
         [AllureStep("Check 'Add Cash' modal")]
         public SpendAddCashModal CheckSpendAddCashModal()
         {
-            CheckAddCashModal();
-            Wait.Until(ElementToBeVisible(_availableToWithdrawLabel));
-            Wait.Until(ElementToBeVisible(_availableToWithdrawAmount));
+            try
+            {
+                CheckAddCashModal();
+                Wait.Until(ElementToBeVisible(_availableToWithdrawLabel));
+                Wait.Until(ElementToBeVisible(_availableToWithdrawAmount));
 
-            _availableToWithdrawLabel.Text.Should().Be(AvailableToWithdrawLabelText);
-            _availableToWithdrawAmount.Text.Should().NotBeNullOrEmpty();
-
+                _availableToWithdrawLabel.Text.Should().Be(AvailableToWithdrawLabelText);
+                _availableToWithdrawAmount.Text.Should().NotBeNullOrEmpty();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

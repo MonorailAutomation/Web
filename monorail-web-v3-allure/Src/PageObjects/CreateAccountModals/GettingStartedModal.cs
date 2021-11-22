@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
@@ -69,36 +70,6 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Check 'Getting Started' modal")]
-        public GettingStartedModal CheckGettingStartedModal()
-        {
-            CheckOnboardingModal();
-            Wait.Until(ElementToBeVisible(_provideAnEmailLabel));
-            Wait.Until(ElementToBeVisible(_confirmYourPasswordLabel));
-            Wait.Until(ElementToBeVisible(_numberValidation));
-            Wait.Until(ElementToBeVisible(_uppercaseCharacterValidation));
-            Wait.Until(ElementToBeVisible(_specialCharacterNumberValidation));
-            Wait.Until(ElementToBeVisible(_characterValidation));
-            Wait.Until(ElementToBeVisible(_yourDateOfBirthLabel));
-            Wait.Until(ElementToBeVisible(_yourPhoneNumberLabel));
-            Wait.Until(ElementToBeVisible(ContinueButton));
-
-            StepHeader.Text.Should().Be(GettingStartedHeaderText);
-            StepSubheader.Text.Should().Be(Step1SubheaderText);
-            _provideAnEmailLabel.Text.Should().Be(ProvideAnEmailLabelText);
-            _emailInput.GetAttribute("placeholder").Should().Be(EmailPlaceholderText);
-            _confirmYourPasswordLabel.Text.Should().Be(ConfirmYourPasswordLabelText);
-            _numberValidation.Text.Should().Be(NumberValidationText);
-            _uppercaseCharacterValidation.Text.Should().Be(UppercaseCharacterValidationText);
-            _specialCharacterNumberValidation.Text.Should().Be(SpecialCharacterNumberValidationText);
-            _characterValidation.Text.Should().Be(CharacterValidationText);
-            _yourDateOfBirthLabel.Text.Should().Be(YourDateOfBirthLabelText);
-            _yourPhoneNumberLabel.Text.Should().Be(YourPhoneNumberLabelText);
-            _phoneNumberInput.GetAttribute("placeholder").Should().Be(YourPhoneNumberPlaceholderText);
-
-            return this;
-        }
-
         [AllureStep("Set 'Email' to {0}")]
         public GettingStartedModal SetEmail(string email)
         {
@@ -129,6 +100,42 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             Wait.Until(ElementToBeVisible(_passwordInput));
             _phoneNumberInput.SendKeys(phoneNumber);
             Thread.Sleep(5000); // necessary workaround as Continue button is always active
+            return this;
+        }
+
+        [AllureStep("Check 'Getting Started' modal")]
+        public GettingStartedModal CheckGettingStartedModal()
+        {
+            try
+            {
+                CheckOnboardingModal();
+                Wait.Until(ElementToBeVisible(_provideAnEmailLabel));
+                Wait.Until(ElementToBeVisible(_confirmYourPasswordLabel));
+                Wait.Until(ElementToBeVisible(_numberValidation));
+                Wait.Until(ElementToBeVisible(_uppercaseCharacterValidation));
+                Wait.Until(ElementToBeVisible(_specialCharacterNumberValidation));
+                Wait.Until(ElementToBeVisible(_characterValidation));
+                Wait.Until(ElementToBeVisible(_yourDateOfBirthLabel));
+                Wait.Until(ElementToBeVisible(_yourPhoneNumberLabel));
+                Wait.Until(ElementToBeVisible(ContinueButton));
+
+                StepHeader.Text.Should().Be(GettingStartedHeaderText);
+                StepSubheader.Text.Should().Be(Step1SubheaderText);
+                _provideAnEmailLabel.Text.Should().Be(ProvideAnEmailLabelText);
+                _emailInput.GetAttribute("placeholder").Should().Be(EmailPlaceholderText);
+                _confirmYourPasswordLabel.Text.Should().Be(ConfirmYourPasswordLabelText);
+                _numberValidation.Text.Should().Be(NumberValidationText);
+                _uppercaseCharacterValidation.Text.Should().Be(UppercaseCharacterValidationText);
+                _specialCharacterNumberValidation.Text.Should().Be(SpecialCharacterNumberValidationText);
+                _characterValidation.Text.Should().Be(CharacterValidationText);
+                _yourDateOfBirthLabel.Text.Should().Be(YourDateOfBirthLabelText);
+                _yourPhoneNumberLabel.Text.Should().Be(YourPhoneNumberLabelText);
+                _phoneNumberInput.GetAttribute("placeholder").Should().Be(YourPhoneNumberPlaceholderText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

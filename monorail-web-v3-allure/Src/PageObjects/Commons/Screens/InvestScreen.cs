@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
@@ -51,14 +52,21 @@ namespace monorail_web_v3.PageObjects.Commons.Screens
         [AllureStep("Check 'Invest' Screen")]
         public InvestScreen CheckInvestScreen()
         {
-            Wait.Until(ElementToBeClickable(_tradingNavItem));
-            Wait.Until(ElementToBeClickable(_milestonesNavItem));
-            Wait.Until(ElementToBeClickable(_sipcLogo));
-            Wait.Until(ElementToBeClickable(_sipcDisclaimerPartOne));
-            Wait.Until(ElementToBeClickable(_sipcDisclaimerPartTwo));
+            try
+            {
+                Wait.Until(ElementToBeClickable(_tradingNavItem));
+                Wait.Until(ElementToBeClickable(_milestonesNavItem));
+                Wait.Until(ElementToBeClickable(_sipcLogo));
+                Wait.Until(ElementToBeClickable(_sipcDisclaimerPartOne));
+                Wait.Until(ElementToBeClickable(_sipcDisclaimerPartTwo));
 
-            _sipcDisclaimerPartOne.Text.Should().Be(SipcDisclaimerPartOne);
-            _sipcDisclaimerPartTwo.Text.Should().Be(SipcDisclaimerPartTwo);
+                _sipcDisclaimerPartOne.Text.Should().Be(SipcDisclaimerPartOne);
+                _sipcDisclaimerPartTwo.Text.Should().Be(SipcDisclaimerPartTwo);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

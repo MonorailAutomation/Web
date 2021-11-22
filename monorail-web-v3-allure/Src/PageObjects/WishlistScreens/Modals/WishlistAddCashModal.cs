@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
@@ -26,13 +27,19 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [AllureStep("Check 'Add Cash' modal")]
         public WishlistAddCashModal CheckWishlistAddCashModal()
         {
-            CheckAddCashModal();
-            Wait.Until(ElementToBeVisible(_availableToWithdrawLabel));
-            Wait.Until(ElementToBeVisible(_availableToWithdrawAmount));
+            try
+            {
+                CheckAddCashModal();
+                Wait.Until(ElementToBeVisible(_availableToWithdrawLabel));
+                Wait.Until(ElementToBeVisible(_availableToWithdrawAmount));
 
-            _availableToWithdrawLabel.Text.Should().Be(AvailableToWithdrawLabelText);
-            _availableToWithdrawAmount.Text.Should().NotBeNullOrEmpty();
-
+                _availableToWithdrawLabel.Text.Should().Be(AvailableToWithdrawLabelText);
+                _availableToWithdrawAmount.Text.Should().NotBeNullOrEmpty();   
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

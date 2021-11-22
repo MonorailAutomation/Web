@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -35,24 +36,6 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Check 'Cash Out' success modal")]
-        public SpendWithdrawCashSuccessModal CheckSpendCashOutSuccessModal()
-        {
-            Wait.Until(ElementToBeVisible(SuccessHeader));
-            Wait.Until(ElementToBeVisible(_spendWithdrawCashSuccessMessage));
-            Wait.Until(ElementToBeVisible(_moneyAmount));
-            Wait.Until(ElementToBeVisible(_spendWithdrawCashSuccessAdvice));
-            Wait.Until(ElementToBeClickable(_finishButton));
-
-            SuccessHeader.Text.Should().Be(WithdrawCashSuccessHeaderText);
-            _spendWithdrawCashSuccessMessage.Text.Should().Be(WithdrawCashSuccessMessageText);
-            _moneyAmount.Text.Should().NotBeNullOrEmpty();
-            _spendWithdrawCashSuccessAdvice.Text.Should().Contain(SpendWithdrawCashSuccessAdvicePartOneText);
-            _spendWithdrawCashSuccessAdvice.Text.Should().Contain(SpendWithdrawCashSuccessAdvicePartTwoText);
-
-            return this;
-        }
-
         [AllureStep("Check if ${0} amount was withdrawn")]
         public SpendWithdrawCashSuccessModal VerifyWithdrawnAmount(string wishlistCashOutAmount)
         {
@@ -66,6 +49,29 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
         {
             Wait.Until(ElementToBeClickable(_finishButton));
             _finishButton.Click();
+            return this;
+        }
+        
+        [AllureStep("Check 'Cash Out' success modal")]
+        public SpendWithdrawCashSuccessModal CheckSpendCashOutSuccessModal()
+        {
+            try{
+                Wait.Until(ElementToBeVisible(SuccessHeader));
+                Wait.Until(ElementToBeVisible(_spendWithdrawCashSuccessMessage));
+                Wait.Until(ElementToBeVisible(_moneyAmount));
+                Wait.Until(ElementToBeVisible(_spendWithdrawCashSuccessAdvice));
+                Wait.Until(ElementToBeClickable(_finishButton));
+
+                SuccessHeader.Text.Should().Be(WithdrawCashSuccessHeaderText);
+                _spendWithdrawCashSuccessMessage.Text.Should().Be(WithdrawCashSuccessMessageText);
+                _moneyAmount.Text.Should().NotBeNullOrEmpty();
+                _spendWithdrawCashSuccessAdvice.Text.Should().Contain(SpendWithdrawCashSuccessAdvicePartOneText);
+                _spendWithdrawCashSuccessAdvice.Text.Should().Contain(SpendWithdrawCashSuccessAdvicePartTwoText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

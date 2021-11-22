@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -24,20 +25,6 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Check 'Terms of use' modal")]
-        public TermsOfUseModal CheckTermsOfUseModal()
-        {
-            CheckOnboardingModal();
-            Wait.Until(ElementToBeVisible(_skipToBottomButton));
-            Wait.Until(ElementToBeVisible(_agreeAndContinueButton));
-
-            StepHeader.Text.Should().Be(TermsOfUseHeaderText);
-            StepSubheader.Text.Should().Be(Step3SubheaderText);
-
-            _agreeAndContinueButton.Enabled.Should().BeFalse();
-            return this;
-        }
-
         [AllureStep("Click 'Skip to bottom' button")]
         public TermsOfUseModal ClickSkipToBottomButton()
         {
@@ -52,6 +39,27 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             Wait.Until(ElementToBeNotVisible(_skipToBottomButton));
             Wait.Until(ElementToBeClickable(_agreeAndContinueButton));
             _agreeAndContinueButton.Click();
+            return this;
+        }
+
+        [AllureStep("Check 'Terms of use' modal")]
+        public TermsOfUseModal CheckTermsOfUseModal()
+        {
+            try
+            {
+                CheckOnboardingModal();
+                Wait.Until(ElementToBeVisible(_skipToBottomButton));
+                Wait.Until(ElementToBeVisible(_agreeAndContinueButton));
+
+                StepHeader.Text.Should().Be(TermsOfUseHeaderText);
+                StepSubheader.Text.Should().Be(Step3SubheaderText);
+
+                _agreeAndContinueButton.Enabled.Should().BeFalse();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

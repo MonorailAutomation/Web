@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -19,12 +20,18 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
 
         protected ChooseATypeModal CheckChooseATypeModal(string headerText)
         {
-            Wait.Until(ElementToBeVisible(ModalHeader));
-            Wait.Until(ElementToBeClickable(XButton));
-            Wait.Until(ElementToBeClickable(_cancelButton));
+            try
+            {
+                Wait.Until(ElementToBeVisible(ModalHeader));
+                Wait.Until(ElementToBeClickable(XButton));
+                Wait.Until(ElementToBeClickable(_cancelButton));
 
-            ModalHeader.Text.Should().Contain(headerText);
-
+                ModalHeader.Text.Should().Contain(headerText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

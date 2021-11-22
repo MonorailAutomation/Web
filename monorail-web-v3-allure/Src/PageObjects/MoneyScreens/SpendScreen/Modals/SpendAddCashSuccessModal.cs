@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -32,22 +33,6 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Check 'Add Cash' success modal")]
-        public SpendAddCashSuccessModal CheckSpendAddCashSuccessModal()
-        {
-            Wait.Until(ElementToBeVisible(SuccessHeader));
-            Wait.Until(ElementToBeVisible(_spendAddCashSuccessMessage));
-            Wait.Until(ElementToBeVisible(_amountDeposited));
-            Wait.Until(ElementToBeVisible(_spendAddCashSuccessAdvice));
-            Wait.Until(ElementToBeClickable(_finishButton));
-
-            SuccessHeader.Text.Should().Be(AddCashSuccessHeaderText);
-            _spendAddCashSuccessMessage.Text.Should().Be(AddCashSuccessMessageText);
-            _amountDeposited.Text.Should().NotBeNullOrEmpty();
-            _spendAddCashSuccessAdvice.Text.Should().Be(SpendAddCashSuccessAdviceText);
-            return this;
-        }
-
         [AllureStep("Check if ${0} amount was deposited")]
         public SpendAddCashSuccessModal VerifyDepositedAmount(string wishlistAddCashAmount)
         {
@@ -61,6 +46,29 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
         {
             Wait.Until(ElementToBeClickable(_finishButton));
             _finishButton.Click();
+            return this;
+        }
+        
+        [AllureStep("Check 'Add Cash' success modal")]
+        public SpendAddCashSuccessModal CheckSpendAddCashSuccessModal()
+        {
+            try
+            {
+                Wait.Until(ElementToBeVisible(SuccessHeader));
+                Wait.Until(ElementToBeVisible(_spendAddCashSuccessMessage));
+                Wait.Until(ElementToBeVisible(_amountDeposited));
+                Wait.Until(ElementToBeVisible(_spendAddCashSuccessAdvice));
+                Wait.Until(ElementToBeClickable(_finishButton));
+
+                SuccessHeader.Text.Should().Be(AddCashSuccessHeaderText);
+                _spendAddCashSuccessMessage.Text.Should().Be(AddCashSuccessMessageText);
+                _amountDeposited.Text.Should().NotBeNullOrEmpty();
+                _spendAddCashSuccessAdvice.Text.Should().Be(SpendAddCashSuccessAdviceText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

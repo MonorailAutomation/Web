@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
@@ -110,27 +111,34 @@ namespace monorail_web_v3.PageObjects.Commons
         [AllureStep("Check Main Screen")]
         public MainScreen CheckMainScreen()
         {
-            Wait.Until(ElementToBeVisible(_wishlistNavItem));
-            Wait.Until(ElementToBeVisible(_moneyNavItem));
-            Wait.Until(ElementToBeVisible(_investNavItem));
-            Wait.Until(ElementToBeVisible(_hamburgerMenu));
-            Wait.Until(ElementToBeVisible(_monorailLogo));
-            Wait.Until(ElementToBeVisible(_termsOfServiceLink));
-            Wait.Until(ElementToBeVisible(_privacyPolicyLink));
-            Wait.Until(ElementToBeVisible(_ratesLimitsFeesLink));
-            Wait.Until(ElementToBeVisible(_instagramLink));
-            Wait.Until(ElementToBeVisible(_facebookLink));
-            Wait.Until(ElementToBeVisible(_twitterLink));
-            Wait.Until(ElementToBeVisible(_pinterestLink));
+            try
+            {
+                Wait.Until(ElementToBeVisible(_wishlistNavItem));
+                Wait.Until(ElementToBeVisible(_moneyNavItem));
+                Wait.Until(ElementToBeVisible(_investNavItem));
+                Wait.Until(ElementToBeVisible(_hamburgerMenu));
+                Wait.Until(ElementToBeVisible(_monorailLogo));
+                Wait.Until(ElementToBeVisible(_termsOfServiceLink));
+                Wait.Until(ElementToBeVisible(_privacyPolicyLink));
+                Wait.Until(ElementToBeVisible(_ratesLimitsFeesLink));
+                Wait.Until(ElementToBeVisible(_instagramLink));
+                Wait.Until(ElementToBeVisible(_facebookLink));
+                Wait.Until(ElementToBeVisible(_twitterLink));
+                Wait.Until(ElementToBeVisible(_pinterestLink));
 
-            _termsOfServiceLink.GetAttribute("href").Should().Contain(TermsOfServiceLink);
-            _privacyPolicyLink.GetAttribute("href").Should().Contain(PrivacyPolicyLink);
-            _ratesLimitsFeesLink.GetAttribute("href").Should().Contain(RatesLimitsFeesLink);
+                _termsOfServiceLink.GetAttribute("href").Should().Contain(TermsOfServiceLink);
+                _privacyPolicyLink.GetAttribute("href").Should().Contain(PrivacyPolicyLink);
+                _ratesLimitsFeesLink.GetAttribute("href").Should().Contain(RatesLimitsFeesLink);
 
-            _instagramLink.GetAttribute("href").Should().Be(InstagramLink);
-            _facebookLink.GetAttribute("href").Should().Be(FacebookLink);
-            _twitterLink.GetAttribute("href").Should().Be(TwitterLink);
-            _pinterestLink.GetAttribute("href").Should().Be(PinterestLink);
+                _instagramLink.GetAttribute("href").Should().Be(InstagramLink);
+                _facebookLink.GetAttribute("href").Should().Be(FacebookLink);
+                _twitterLink.GetAttribute("href").Should().Be(TwitterLink);
+                _pinterestLink.GetAttribute("href").Should().Be(PinterestLink);    
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

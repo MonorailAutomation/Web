@@ -1,3 +1,4 @@
+using System;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using static monorail_web_v3.Commons.Waits;
@@ -20,9 +21,16 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
 
         protected void CheckOnboardingModal()
         {
-            Wait.Until(ElementToBeVisible(StepHeader));
-            Wait.Until(ElementToBeVisible(StepSubheader));
-            Wait.Until(ElementToBeVisible(BackButton));
+            try
+            {
+                Wait.Until(ElementToBeVisible(StepHeader));
+                Wait.Until(ElementToBeVisible(StepSubheader));
+                Wait.Until(ElementToBeVisible(BackButton));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }

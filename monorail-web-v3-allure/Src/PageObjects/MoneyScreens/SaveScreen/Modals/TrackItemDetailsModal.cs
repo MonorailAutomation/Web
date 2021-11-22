@@ -1,3 +1,4 @@
+using System;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Enums;
 using NUnit.Allure.Steps;
@@ -27,11 +28,18 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals
         [AllureStep("Check 'Track Details' modal")]
         public TrackItemDetailsModal CheckTrackDetailsModal()
         {
-            CheckItemDetailsModal(TrackDetailsHeaderText);
-            Wait.Until(ElementToBeVisible(ItemDescriptionInput));
-            Wait.Until(ElementToBeVisible(_trackTargetAmountInput));
-            Wait.Until(ElementToBeVisible(_trackTargetDateInput));
-            Wait.Until(ElementToBeVisible(ContinueButton));
+            try
+            {
+                CheckItemDetailsModal(TrackDetailsHeaderText);
+                Wait.Until(ElementToBeVisible(ItemDescriptionInput));
+                Wait.Until(ElementToBeVisible(_trackTargetAmountInput));
+                Wait.Until(ElementToBeVisible(_trackTargetDateInput));
+                Wait.Until(ElementToBeVisible(ContinueButton));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
 

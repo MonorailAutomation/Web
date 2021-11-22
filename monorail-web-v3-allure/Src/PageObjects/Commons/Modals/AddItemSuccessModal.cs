@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using FluentAssertions;
 using NUnit.Allure.Steps;
@@ -32,10 +33,17 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
 
         protected AddItemSuccessModal CheckAddItemSuccessModal(string headerText)
         {
-            Wait.Until(ElementToBeVisible(XButton));
-            Wait.Until(ElementToBeVisible(_successHeader));
-            Wait.Until(ElementToBeVisible(_finishButton));
-            _successHeader.Text.Should().Contain(headerText);
+            try
+            {
+                Wait.Until(ElementToBeVisible(XButton));
+                Wait.Until(ElementToBeVisible(_successHeader));
+                Wait.Until(ElementToBeVisible(_finishButton));
+                _successHeader.Text.Should().Contain(headerText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

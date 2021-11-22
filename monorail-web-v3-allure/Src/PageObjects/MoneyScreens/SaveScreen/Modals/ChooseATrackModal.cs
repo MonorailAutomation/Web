@@ -22,7 +22,14 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals
         [AllureStep("Check 'Choose a Track' modal")]
         public ChooseATrackModal CheckChooseATrackModal()
         {
-            CheckChooseATypeModal(ChooseATrackHeaderText);
+            try
+            {
+                CheckChooseATypeModal(ChooseATrackHeaderText);
+            }            
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
 

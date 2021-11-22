@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -27,23 +28,6 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Check 'Verify your Account' modal with displayed methods")]
-        public VerifyYourAccountVerificationCodeModal CheckYourAccountVerificationCodeModal()
-        {
-            CheckOnboardingModal();
-
-            Wait.Until(ElementToBeVisible(_resendOption));
-            Wait.Until(ElementToBeVisible(ContinueButton));
-
-            StepHeader.Text.Should().Be(VerifyYourAccountHeaderText);
-            StepSubheader.Text.Should().Be(Step2SubheaderText);
-            _resendOption.Text.Should().Be(ResendOptionText);
-            _enterVerificationCodeMessage.Text.Should().Be(EnterVerificationCodeMessageText);
-
-            ContinueButton.Enabled.Should().BeFalse();
-            return this;
-        }
-
         [AllureStep("Enter verification code: {0}")]
         public VerifyYourAccountVerificationCodeModal EnterVerificationCode(string verificationCode)
         {
@@ -59,6 +43,30 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             }
 
             Wait.Until(ElementToBeClickable(ContinueButton));
+            return this;
+        }
+
+        [AllureStep("Check 'Verify your Account' modal with displayed methods")]
+        public VerifyYourAccountVerificationCodeModal CheckYourAccountVerificationCodeModal()
+        {
+            try
+            {
+                CheckOnboardingModal();
+
+                Wait.Until(ElementToBeVisible(_resendOption));
+                Wait.Until(ElementToBeVisible(ContinueButton));
+
+                StepHeader.Text.Should().Be(VerifyYourAccountHeaderText);
+                StepSubheader.Text.Should().Be(Step2SubheaderText);
+                _resendOption.Text.Should().Be(ResendOptionText);
+                _enterVerificationCodeMessage.Text.Should().Be(EnterVerificationCodeMessageText);
+
+                ContinueButton.Enabled.Should().BeFalse();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

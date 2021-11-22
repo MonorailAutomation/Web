@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons;
 using NUnit.Allure.Steps;
@@ -32,12 +33,19 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [AllureStep("Check 'Wishlist Account' modal")]
         public WishlistManageAccountModal CheckWishlistManageAccountModal()
         {
-            Wait.Until(ElementToBeVisible(ModalHeader));
-            Wait.Until(ElementToBeVisible(_addCashButton));
-            Wait.Until(ElementToBeVisible(_cashOutButton));
-            Wait.Until(ElementToBeVisible(_dismissButton));
+            try
+            {
+                Wait.Until(ElementToBeVisible(ModalHeader));
+                Wait.Until(ElementToBeVisible(_addCashButton));
+                Wait.Until(ElementToBeVisible(_cashOutButton));
+                Wait.Until(ElementToBeVisible(_dismissButton));
 
-            ModalHeader.Text.Should().Contain(WishlistManageAccountHeaderText);
+                ModalHeader.Text.Should().Contain(WishlistManageAccountHeaderText);   
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
 

@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
@@ -35,12 +36,19 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
 
         protected WithdrawCashModal CheckWithdrawCashModal()
         {
-            Wait.Until(ElementToBeVisible(ModalHeader));
-            Wait.Until(ElementToBeVisible(_withdrawCashMessage));
-            Wait.Until(ElementToBeVisible(_withdrawCashInput));
+            try
+            {
+                Wait.Until(ElementToBeVisible(ModalHeader));
+                Wait.Until(ElementToBeVisible(_withdrawCashMessage));
+                Wait.Until(ElementToBeVisible(_withdrawCashInput));
 
-            ModalHeader.Text.Should().Contain(WithdrawCashHeaderText);
-            _withdrawCashMessage.Text.Should().Contain(WithdrawCashMessageText);
+                ModalHeader.Text.Should().Contain(WithdrawCashHeaderText);
+                _withdrawCashMessage.Text.Should().Contain(WithdrawCashMessageText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

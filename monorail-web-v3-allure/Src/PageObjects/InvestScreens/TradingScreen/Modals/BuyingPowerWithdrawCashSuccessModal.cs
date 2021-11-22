@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -35,16 +36,23 @@ namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals
         [AllureStep("Check 'Cash Out' success modal")]
         public BuyingPowerWithdrawCashSuccessModal CheckBuyingPowerCashOutSuccessModal()
         {
-            Wait.Until(ElementToBeVisible(SuccessHeader));
-            Wait.Until(ElementToBeVisible(_buyingPowerWithdrawCashSuccessMessage));
-            Wait.Until(ElementToBeVisible(_moneyAmount));
-            Wait.Until(ElementToBeVisible(_buyingPowerWithdrawCashSuccessAdvice));
-            Wait.Until(ElementToBeClickable(_returnButton));
+            try
+            {
+                Wait.Until(ElementToBeVisible(SuccessHeader));
+                Wait.Until(ElementToBeVisible(_buyingPowerWithdrawCashSuccessMessage));
+                Wait.Until(ElementToBeVisible(_moneyAmount));
+                Wait.Until(ElementToBeVisible(_buyingPowerWithdrawCashSuccessAdvice));
+                Wait.Until(ElementToBeClickable(_returnButton));
 
-            SuccessHeader.Text.Should().Be(WithdrawCashSuccessHeaderText);
-            _buyingPowerWithdrawCashSuccessMessage.Text.Should().Be(WithdrawCashSuccessMessageText);
-            _moneyAmount.Text.Should().NotBeNullOrEmpty();
-            _buyingPowerWithdrawCashSuccessAdvice.Text.Should().Contain(BuyingPowerCashOutSuccessAdviceText);
+                SuccessHeader.Text.Should().Be(WithdrawCashSuccessHeaderText);
+                _buyingPowerWithdrawCashSuccessMessage.Text.Should().Be(WithdrawCashSuccessMessageText);
+                _moneyAmount.Text.Should().NotBeNullOrEmpty();
+                _buyingPowerWithdrawCashSuccessAdvice.Text.Should().Contain(BuyingPowerCashOutSuccessAdviceText);   
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
             return this;
         }

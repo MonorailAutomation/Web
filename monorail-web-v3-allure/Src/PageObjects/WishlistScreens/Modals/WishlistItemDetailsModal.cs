@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -32,11 +33,18 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [AllureStep("Check 'Item details' modal")]
         public WishlistItemDetailsModal CheckItemDetailsModal()
         {
-            CheckItemDetailsModal(ItemDetailsHeaderText);
-            Wait.Until(ElementToBeVisible(_wishlistItemImage));
-            Wait.Until(ElementToBeVisible(_wishlistItemPriceInput));
-            Wait.Until(ElementToBeVisible(_wishlistDescriptionInput));
-            Wait.Until(ElementToBeVisible(ConfirmButton));
+            try
+            {
+                CheckItemDetailsModal(ItemDetailsHeaderText);
+                Wait.Until(ElementToBeVisible(_wishlistItemImage));
+                Wait.Until(ElementToBeVisible(_wishlistItemPriceInput));
+                Wait.Until(ElementToBeVisible(_wishlistDescriptionInput));
+                Wait.Until(ElementToBeVisible(ConfirmButton));   
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
 

@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons;
 using NUnit.Allure.Steps;
@@ -23,14 +24,20 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
         [AllureStep("Check 'Portfolio' modal")]
         public PortfolioModal CheckPortfolioModal()
         {
-            Wait.Until(ElementToBeVisible(ModalHeader));
-            Wait.Until(ElementToBeVisible(XButton));
-            Wait.Until(ElementToBeVisible(_changePortfolioButton));
-            Wait.Until(ElementToBeVisible(BackButton));
-            Wait.Until(ElementToBeVisible(ContinueButton));
+            try
+            {
+                Wait.Until(ElementToBeVisible(ModalHeader));
+                Wait.Until(ElementToBeVisible(XButton));
+                Wait.Until(ElementToBeVisible(_changePortfolioButton));
+                Wait.Until(ElementToBeVisible(BackButton));
+                Wait.Until(ElementToBeVisible(ContinueButton));
 
-            ModalHeader.Text.Should().Contain(PortfolioHeaderText);
-
+                ModalHeader.Text.Should().Contain(PortfolioHeaderText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

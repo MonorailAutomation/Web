@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -30,25 +31,6 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Check 'Verify your Account' modal with displayed methods")]
-        public VerifyYourAccountChooseMethodModal CheckVerifyYourAccountChooseMethodModal()
-        {
-            CheckOnboardingModal();
-            Wait.Until(ElementToBeVisible(_textMessageMethod));
-            Wait.Until(ElementToBeVisible(_emailMethod));
-            Wait.Until(ElementToBeVisible(_adviceMessage));
-            Wait.Until(ElementToBeVisible(ContinueButton));
-
-            StepHeader.Text.Should().Be(VerifyYourAccountHeaderText);
-            StepSubheader.Text.Should().Be(Step2SubheaderText);
-            _textMessageMethod.Text.Should().Be(TextMessageOptionLabelText);
-            _emailMethod.Text.Should().Be(EmailOptionLabelText);
-            _adviceMessage.Text.Should().Be(AdviceMessageText);
-
-            ContinueButton.Enabled.Should().BeFalse();
-            return this;
-        }
-
         [AllureStep("Click 'Text Message' option")]
         public VerifyYourAccountChooseMethodModal ClickTextMessageOption()
         {
@@ -64,6 +46,32 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             Wait.Until(ElementToBeVisible(_emailMethod));
             _emailMethod.Click();
             Wait.Until(ElementToBeClickable(ContinueButton));
+            return this;
+        }
+
+        [AllureStep("Check 'Verify your Account' modal with displayed methods")]
+        public VerifyYourAccountChooseMethodModal CheckVerifyYourAccountChooseMethodModal()
+        {
+            try
+            {
+                CheckOnboardingModal();
+                Wait.Until(ElementToBeVisible(_textMessageMethod));
+                Wait.Until(ElementToBeVisible(_emailMethod));
+                Wait.Until(ElementToBeVisible(_adviceMessage));
+                Wait.Until(ElementToBeVisible(ContinueButton));
+
+                StepHeader.Text.Should().Be(VerifyYourAccountHeaderText);
+                StepSubheader.Text.Should().Be(Step2SubheaderText);
+                _textMessageMethod.Text.Should().Be(TextMessageOptionLabelText);
+                _emailMethod.Text.Should().Be(EmailOptionLabelText);
+                _adviceMessage.Text.Should().Be(AdviceMessageText);
+
+                ContinueButton.Enabled.Should().BeFalse();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

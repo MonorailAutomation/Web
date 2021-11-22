@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
@@ -37,19 +38,25 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         [AllureStep("Check 'Edit Schedule' modal")]
         public EditScheduleModal CheckEditScheduleModal()
         {
-            Wait.Until(ElementToBeVisible(ModalHeader));
-            Wait.Until(ElementToBeVisible(XButton));
-            //Wait.Until(ElementToBeVisible(_enableDepositScheduleToggle));
-            Wait.Until(ElementToBeVisible(_amountInput));
-            Wait.Until(ElementToBeVisible(_dailyButton));
-            Wait.Until(ElementToBeVisible(_weeklyButton));
-            Wait.Until(ElementToBeVisible(_monthlyButton));
-            Wait.Until(ElementToBeVisible(_daySelector));
-            Wait.Until(ElementToBeVisible(BackButton));
-            Wait.Until(ElementToBeVisible(ContinueButton));
+            try
+            {
+                Wait.Until(ElementToBeVisible(ModalHeader));
+                Wait.Until(ElementToBeVisible(XButton));
+                //Wait.Until(ElementToBeVisible(_enableDepositScheduleToggle));
+                Wait.Until(ElementToBeVisible(_amountInput));
+                Wait.Until(ElementToBeVisible(_dailyButton));
+                Wait.Until(ElementToBeVisible(_weeklyButton));
+                Wait.Until(ElementToBeVisible(_monthlyButton));
+                Wait.Until(ElementToBeVisible(_daySelector));
+                Wait.Until(ElementToBeVisible(BackButton));
+                Wait.Until(ElementToBeVisible(ContinueButton));
 
-            ModalHeader.Text.Should().Contain(EditScheduleHeader);
-
+                ModalHeader.Text.Should().Contain(EditScheduleHeader);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

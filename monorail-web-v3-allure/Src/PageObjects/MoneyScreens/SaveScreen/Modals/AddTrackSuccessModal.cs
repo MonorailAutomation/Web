@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -24,23 +25,29 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Check 'Success' modal")]
-        public AddTrackSuccessModal CheckSuccessModal()
-        {
-            CheckAddItemSuccessModal(SuccessHeaderText);
-            Wait.Until(ElementToBeVisible(_successMessage));
-            Wait.Until(ElementToBeVisible(_trackNameLabel));
-
-            _successMessage.Text.Should().Contain(SuccessMessageText);
-
-            return this;
-        }
-
         [AllureStep("Verify if Track's name is: {0}")]
         public AddTrackSuccessModal VerifyNameOfCreatedTrack(string trackName)
         {
             Wait.Until(ElementToBeVisible(_trackNameLabel));
             _trackNameLabel.Text.Should().Be(trackName);
+            return this;
+        }
+        
+        [AllureStep("Check 'Success' modal")]
+        public AddTrackSuccessModal CheckSuccessModal()
+        {
+            try
+            {
+                CheckAddItemSuccessModal(SuccessHeaderText);
+                Wait.Until(ElementToBeVisible(_successMessage));
+                Wait.Until(ElementToBeVisible(_trackNameLabel));
+
+                _successMessage.Text.Should().Contain(SuccessMessageText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

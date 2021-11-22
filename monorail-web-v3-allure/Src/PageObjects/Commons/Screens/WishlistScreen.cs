@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
@@ -29,12 +30,19 @@ namespace monorail_web_v3.PageObjects.Commons.Screens
         [AllureStep("Check 'Wishlist' Screen")]
         public WishlistScreen CheckWishlistScreen()
         {
-            Wait.Until(ElementToBeClickable(_fdicLogo));
-            Wait.Until(ElementToBeClickable(_fdicDisclaimerPartOne));
-            Wait.Until(ElementToBeClickable(_fdicDisclaimerPartTwo));
+            try
+            {
+                Wait.Until(ElementToBeClickable(_fdicLogo));
+                Wait.Until(ElementToBeClickable(_fdicDisclaimerPartOne));
+                Wait.Until(ElementToBeClickable(_fdicDisclaimerPartTwo));
 
-            _fdicDisclaimerPartOne.Text.Should().Be(FdicDisclaimerPartOne);
-            _fdicDisclaimerPartTwo.Text.Should().Be(FdicDisclaimerPartTwo);
+                _fdicDisclaimerPartOne.Text.Should().Be(FdicDisclaimerPartOne);
+                _fdicDisclaimerPartTwo.Text.Should().Be(FdicDisclaimerPartTwo);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

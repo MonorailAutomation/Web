@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -33,17 +34,23 @@ namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals
         [AllureStep("Check 'Add Cash' success modal")]
         public BuyingPowerAddCashSuccessModal CheckBuyingPowerAddCashSuccessModal()
         {
-            Wait.Until(ElementToBeVisible(SuccessHeader));
-            Wait.Until(ElementToBeVisible(_buyingPowerAddCashSuccessMessage));
-            Wait.Until(ElementToBeVisible(_amountDeposited));
-            Wait.Until(ElementToBeVisible(_buyingPowerAddCashSuccessAdvice));
-            Wait.Until(ElementToBeVisible(_returnButton));
+            try
+            {
+                Wait.Until(ElementToBeVisible(SuccessHeader));
+                Wait.Until(ElementToBeVisible(_buyingPowerAddCashSuccessMessage));
+                Wait.Until(ElementToBeVisible(_amountDeposited));
+                Wait.Until(ElementToBeVisible(_buyingPowerAddCashSuccessAdvice));
+                Wait.Until(ElementToBeVisible(_returnButton));
 
-            SuccessHeader.Text.Should().Be(AddCashSuccessHeaderText);
-            _buyingPowerAddCashSuccessMessage.Text.Should().Be(AddCashSuccessMessageText);
-            _amountDeposited.Text.Should().NotBeNullOrEmpty();
-            _buyingPowerAddCashSuccessAdvice.Text.Should().Be(BuyingPowerAddCashSuccessAdviceText);
-
+                SuccessHeader.Text.Should().Be(AddCashSuccessHeaderText);
+                _buyingPowerAddCashSuccessMessage.Text.Should().Be(AddCashSuccessMessageText);
+                _amountDeposited.Text.Should().NotBeNullOrEmpty();
+                _buyingPowerAddCashSuccessAdvice.Text.Should().Be(BuyingPowerAddCashSuccessAdviceText);   
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
 

@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using NUnit.Allure.Steps;
@@ -32,29 +33,35 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Check 'Withdraw Cash' modal")]
-        public SpendWithdrawCashModal CheckSpendWithdrawCashModal()
-        {
-            CheckWithdrawCashModal();
-            Wait.Until(ElementToBeVisible(_availableToWithdrawLabel));
-            Wait.Until(ElementToBeVisible(_availableToWithdrawAmount));
-            Wait.Until(ElementToBeVisible(_onHoldLabel));
-            Wait.Until(ElementToBeVisible(_onHoldAmount));
-            Wait.Until(ElementToBeVisible(_confirmButton));
-
-            _availableToWithdrawLabel.Text.Should().Contain(AvailableToWithdrawLabelText);
-            _availableToWithdrawLabel.Text.Should().NotBeNullOrEmpty();
-            _onHoldLabel.Text.Should().Contain(OnHoldLabelText);
-            _onHoldAmount.Text.Should().NotBeNullOrEmpty();
-
-            return this;
-        }
-
         [AllureStep("Click 'Confirm' button")]
         public SpendWithdrawCashModal ClickConfirmButton()
         {
             Wait.Until(ElementToBeVisible(_confirmButton));
             _confirmButton.Click();
+            return this;
+        }
+        
+        [AllureStep("Check 'Withdraw Cash' modal")]
+        public SpendWithdrawCashModal CheckSpendWithdrawCashModal()
+        {
+            try
+            {
+                CheckWithdrawCashModal();
+                Wait.Until(ElementToBeVisible(_availableToWithdrawLabel));
+                Wait.Until(ElementToBeVisible(_availableToWithdrawAmount));
+                Wait.Until(ElementToBeVisible(_onHoldLabel));
+                Wait.Until(ElementToBeVisible(_onHoldAmount));
+                Wait.Until(ElementToBeVisible(_confirmButton));
+
+                _availableToWithdrawLabel.Text.Should().Contain(AvailableToWithdrawLabelText);
+                _availableToWithdrawLabel.Text.Should().NotBeNullOrEmpty();
+                _onHoldLabel.Text.Should().Contain(OnHoldLabelText);
+                _onHoldAmount.Text.Should().NotBeNullOrEmpty();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
     }

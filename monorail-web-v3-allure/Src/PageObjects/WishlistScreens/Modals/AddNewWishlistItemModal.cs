@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons;
 using NUnit.Allure.Steps;
@@ -28,16 +29,22 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [AllureStep("Check 'Add new Item' modal")]
         public AddNewWishlistItemModal CheckAddNewItemModal()
         {
-            Wait.Until(ElementToBeVisible(ModalHeader));
-            Wait.Until(ElementToBeVisible(_addNewWishlistItemMessage));
-            Wait.Until(ElementToBeVisible(_linkField));
-            Wait.Until(ElementToBeVisible(CancelButton));
-            Wait.Until(ElementToBeVisible(ContinueButton));
+            try
+            {
+                Wait.Until(ElementToBeVisible(ModalHeader));
+                Wait.Until(ElementToBeVisible(_addNewWishlistItemMessage));
+                Wait.Until(ElementToBeVisible(_linkField));
+                Wait.Until(ElementToBeVisible(CancelButton));
+                Wait.Until(ElementToBeVisible(ContinueButton));
 
-            ModalHeader.Text.Should().Contain(AddNewWishlistItemHeaderText);
-            _addNewWishlistItemMessage.Text.Should().Be(AddNewWishlistItemMessageText);
-            _linkField.GetAttribute("placeholder").Should().Be(AddNewWishlistItemLinkPlaceholder);
-
+                ModalHeader.Text.Should().Contain(AddNewWishlistItemHeaderText);
+                _addNewWishlistItemMessage.Text.Should().Be(AddNewWishlistItemMessageText);
+                _linkField.GetAttribute("placeholder").Should().Be(AddNewWishlistItemLinkPlaceholder);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
 

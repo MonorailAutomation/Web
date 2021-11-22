@@ -19,18 +19,25 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Check 'Choose a Milestone' modal")]
-        public ChooseAMilestoneModal CheckChooseAMilestoneModal()
-        {
-            CheckChooseATypeModal(ChooseAMilestoneHeaderText);
-            return this;
-        }
-
         [AllureStep("Click '{0}' Milestone Type")]
         public ChooseAMilestoneModal ClickMilestoneType(MilestoneType milestoneType)
         {
             var milestoneTypeSelector = "//p[contains(text(), '" + MilestoneTypeToString(milestoneType) + "')]";
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(milestoneTypeSelector))).Click();
+            return this;
+        }
+
+        [AllureStep("Check 'Choose a Milestone' modal")]
+        public ChooseAMilestoneModal CheckChooseAMilestoneModal()
+        {
+            try
+            {
+                CheckChooseATypeModal(ChooseAMilestoneHeaderText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return this;
         }
 
