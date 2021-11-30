@@ -3,8 +3,8 @@ using monorail_web_v3.PageObjects.Commons.Modals;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Enums;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
+using SeleniumExtras.WaitHelpers;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 

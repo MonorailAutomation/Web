@@ -10,5 +10,10 @@ namespace monorail_web_v3.RestRequests.Helpers
             var token = GenerateToken(username, password);
             DeleteWishlists(token, wishlistItemId);
         }
+        public static void AddWishlistItem(string username, string password, string amountAdd, string descriptionAdd, string faviconURLAdd, string imageURLAdd, string itemURLAdd, string nameAdd)
+        {
+            var token = GenerateToken(username, password);
+            AddWishlists(token, amountAdd, descriptionAdd, faviconURLAdd, imageURLAdd, itemURLAdd, nameAdd);
+        }
     }
 }
