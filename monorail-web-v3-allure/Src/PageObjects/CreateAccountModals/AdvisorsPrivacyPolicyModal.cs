@@ -58,6 +58,7 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             {
                 Console.WriteLine(e);
             }
+
             //AgreeAndFinishButton.Enabled.Should().BeFalse(); this one should be fixed
             return this;
         }

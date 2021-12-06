@@ -39,12 +39,13 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
                 Wait.Until(ElementToBeVisible(_wishlistItemImage));
                 Wait.Until(ElementToBeVisible(_wishlistItemPriceInput));
                 Wait.Until(ElementToBeVisible(_wishlistDescriptionInput));
-                Wait.Until(ElementToBeVisible(ConfirmButton));   
+                Wait.Until(ElementToBeVisible(ConfirmButton));
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
 

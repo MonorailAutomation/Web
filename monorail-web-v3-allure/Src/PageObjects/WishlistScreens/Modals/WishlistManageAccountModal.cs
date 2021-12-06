@@ -40,12 +40,13 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
                 Wait.Until(ElementToBeVisible(_cashOutButton));
                 Wait.Until(ElementToBeVisible(_dismissButton));
 
-                ModalHeader.Text.Should().Contain(WishlistManageAccountHeaderText);   
+                ModalHeader.Text.Should().Contain(WishlistManageAccountHeaderText);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
 

@@ -11,23 +11,24 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 {
     [TestFixture]
     [AllureNUnit]
-    internal class DepositToWishlistAccount : FunctionalTesting
+    internal class DepositToWishlistAccountThroughViewAllScreen : FunctionalTesting
     {
         private const string AmountToAdd = "2";
-        private const string Username = "autotests.mono+3.1.161021@gmail.com";
+        private const string Username = "autotests.mono+7.5.061221@gmail.com";
 
-        [Test(Description = "Deposit Money to Wishlist Account from Main Wishlist Screen")]
+        [Test(Description = "Deposit Money to Wishlist Account through 'View All' screen using 'Add Funds' button")]
         [AllureEpic("Transactions")]
         [AllureFeature("Wishlist")]
-        [AllureStory("Deposit to Wishlist Account from Main Screen")]
-        public void DepositToWishlistAccountFromMainScreenTest()
+        [AllureStory("Deposit to Wishlist Account | View All -> Add Funds")]
+        public void DepositToWishlistAccountThroughViewAllScreenUsingAddFundsButtonTest()
         {
             var loginPage = new LoginPage(Driver);
             var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
+            var wishlistViewAllScreen = new WishlistViewAllScreen(Driver);
             var wishlistAddCashSuccessModal = new WishlistAddCashSuccessModal(Driver);
             var wishlistAddCashModal = new WishlistAddCashModal(Driver);
-            
+
             loginPage
                 .PassCredentials(Username, ValidPassword)
                 .ClickSignInButton();
@@ -38,6 +39,9 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             wishlistMainScreen
                 .CheckWishlistHeader()
+                .ClickViewAllButton();
+
+            wishlistViewAllScreen
                 .ClickAddFundsButton();
 
             wishlistAddCashModal
@@ -51,19 +55,21 @@ namespace monorail_web_v3.Test.Scripts.Transactions
                 .ClickFinishButton();
         }
 
-        [Test(Description = "Deposit money to Wishlist Account using Manage Account")]
+        [Test(Description =
+            "Deposit Money to Wishlist Account through 'View All' screen using 'Add Cash' on 'Manage your Account' modal")]
         [AllureEpic("Transactions")]
         [AllureFeature("Wishlist")]
-        [AllureStory("Deposit money to Wishlist Account using Manage Account")]
-        public void DepositToWishlistAccountFromManageAccountTest()
+        [AllureStory("Deposit to Wishlist Account | View All -> Manage your Account -> Add Cash")]
+        public void DepositToWishlistAccountThroughViewAllScreenUsingAddCashOnManageYourAccountModalTest()
         {
             var loginPage = new LoginPage(Driver);
             var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
-            var wishlistAddCashSuccessModal = new WishlistAddCashSuccessModal(Driver);
+            var wishlistViewAllScreen = new WishlistViewAllScreen(Driver);
             var wishlistManageAccountModal = new WishlistManageAccountModal(Driver);
+            var wishlistAddCashSuccessModal = new WishlistAddCashSuccessModal(Driver);
             var wishlistAddCashModal = new WishlistAddCashModal(Driver);
-            
+
             loginPage
                 .PassCredentials(Username, ValidPassword)
                 .ClickSignInButton();
@@ -74,6 +80,9 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             wishlistMainScreen
                 .CheckWishlistHeader()
+                .ClickViewAllButton();
+
+            wishlistViewAllScreen
                 .ClickManageYourAccountButton();
 
             wishlistManageAccountModal

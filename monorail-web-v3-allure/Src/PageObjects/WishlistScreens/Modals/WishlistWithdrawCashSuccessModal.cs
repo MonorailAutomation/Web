@@ -51,12 +51,13 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
                 _wishlistWithdrawCashSuccessMessage.Text.Should().Be(WithdrawCashSuccessMessageText);
                 _moneyAmount.Text.Should().NotBeNullOrEmpty();
                 _wishlistWithdrawCashSuccessAdvice.Text.Should().Contain(WishlistWithdrawCashSuccessAdvicePartOneText);
-                _wishlistWithdrawCashSuccessAdvice.Text.Should().Contain(WishlistWithdrawCashSuccessAdvicePartTwoText);   
+                _wishlistWithdrawCashSuccessAdvice.Text.Should().Contain(WishlistWithdrawCashSuccessAdvicePartTwoText);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
 

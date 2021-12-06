@@ -1,13 +1,9 @@
-using System.Threading;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
-using monorail_web_v3.PageObjects.Commons.Screens;
-using monorail_web_v3.PageObjects.WishlistScreens.Modals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
-using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_web_v3.Commons.Constants;
 
 namespace monorail_web_v3.Test.Scripts.Wishlist

@@ -47,7 +47,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals
                 SuccessHeader.Text.Should().Be(WithdrawCashSuccessHeaderText);
                 _buyingPowerWithdrawCashSuccessMessage.Text.Should().Be(WithdrawCashSuccessMessageText);
                 _moneyAmount.Text.Should().NotBeNullOrEmpty();
-                _buyingPowerWithdrawCashSuccessAdvice.Text.Should().Contain(BuyingPowerCashOutSuccessAdviceText);   
+                _buyingPowerWithdrawCashSuccessAdvice.Text.Should().Contain(BuyingPowerCashOutSuccessAdviceText);
             }
             catch (Exception e)
             {

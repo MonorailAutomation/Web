@@ -40,7 +40,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
             _confirmButton.Click();
             return this;
         }
-        
+
         [AllureStep("Check 'Withdraw Cash' modal")]
         public SpendWithdrawCashModal CheckSpendWithdrawCashModal()
         {
@@ -62,6 +62,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
     }

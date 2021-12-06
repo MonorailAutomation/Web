@@ -43,7 +43,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
                 Wait.Until(ElementToBeVisible(_amountDeposited));
                 Wait.Until(ElementToBeVisible(_wishlistAddCashSuccessAdvice));
                 Wait.Until(ElementToBeClickable(_finishButton));
-                
+
                 SuccessHeader.Text.Should().Be(AddCashSuccessHeaderText);
                 _wishlistAddCashSuccessMessage.Text.Should().Be(AddCashSuccessMessageText);
                 _amountDeposited.Text.Should().NotBeNullOrEmpty();
@@ -53,6 +53,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
 

@@ -34,12 +34,13 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
                 Wait.Until(ElementToBeVisible(_availableToWithdrawAmount));
 
                 _availableToWithdrawLabel.Text.Should().Be(AvailableToWithdrawLabelText);
-                _availableToWithdrawAmount.Text.Should().NotBeNullOrEmpty();   
+                _availableToWithdrawAmount.Text.Should().NotBeNullOrEmpty();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
     }

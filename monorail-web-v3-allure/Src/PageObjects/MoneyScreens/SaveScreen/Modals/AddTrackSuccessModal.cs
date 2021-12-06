@@ -32,7 +32,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals
             _trackNameLabel.Text.Should().Be(trackName);
             return this;
         }
-        
+
         [AllureStep("Check 'Success' modal")]
         public AddTrackSuccessModal CheckSuccessModal()
         {
@@ -48,6 +48,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
     }

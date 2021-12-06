@@ -133,12 +133,13 @@ namespace monorail_web_v3.PageObjects.Commons
                 _instagramLink.GetAttribute("href").Should().Be(InstagramLink);
                 _facebookLink.GetAttribute("href").Should().Be(FacebookLink);
                 _twitterLink.GetAttribute("href").Should().Be(TwitterLink);
-                _pinterestLink.GetAttribute("href").Should().Be(PinterestLink);    
+                _pinterestLink.GetAttribute("href").Should().Be(PinterestLink);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
     }

@@ -34,12 +34,13 @@ namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals
                 Wait.Until(ElementToBeVisible(_currentBuyingPowerAmount));
 
                 _currentBuyingPowerLabel.Text.Should().Be(CurrentBuyingPowerLabelText);
-                _currentBuyingPowerAmount.Text.Should().NotBeNullOrEmpty();   
+                _currentBuyingPowerAmount.Text.Should().NotBeNullOrEmpty();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
     }

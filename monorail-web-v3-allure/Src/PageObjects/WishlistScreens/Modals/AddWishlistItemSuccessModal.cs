@@ -34,12 +34,13 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
                 Wait.Until(ElementToBeVisible(_successMessage));
                 Wait.Until(ElementToBeVisible(_wishlistItemName));
 
-                _successMessage.Text.Should().Be(SuccessMessageText);   
+                _successMessage.Text.Should().Be(SuccessMessageText);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
 

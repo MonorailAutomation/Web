@@ -48,12 +48,13 @@ namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals
                 _availableToWithdrawLabel.Text.Should().Contain(AvailableToWithdrawLabelText);
                 _availableToWithdrawLabel.Text.Should().NotBeNullOrEmpty();
                 _onHoldLabel.Text.Should().Contain(OnHoldLabelText);
-                _onHoldAmount.Text.Should().NotBeNullOrEmpty();   
+                _onHoldAmount.Text.Should().NotBeNullOrEmpty();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
     }

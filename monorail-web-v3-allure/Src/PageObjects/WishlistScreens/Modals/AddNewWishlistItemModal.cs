@@ -45,6 +45,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
 

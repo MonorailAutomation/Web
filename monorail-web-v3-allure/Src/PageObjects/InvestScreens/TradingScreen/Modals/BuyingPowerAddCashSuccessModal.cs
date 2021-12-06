@@ -45,12 +45,13 @@ namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals
                 SuccessHeader.Text.Should().Be(AddCashSuccessHeaderText);
                 _buyingPowerAddCashSuccessMessage.Text.Should().Be(AddCashSuccessMessageText);
                 _amountDeposited.Text.Should().NotBeNullOrEmpty();
-                _buyingPowerAddCashSuccessAdvice.Text.Should().Be(BuyingPowerAddCashSuccessAdviceText);   
+                _buyingPowerAddCashSuccessAdvice.Text.Should().Be(BuyingPowerAddCashSuccessAdviceText);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
 

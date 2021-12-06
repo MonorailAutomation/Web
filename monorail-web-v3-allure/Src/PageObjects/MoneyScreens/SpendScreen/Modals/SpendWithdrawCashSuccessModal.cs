@@ -51,11 +51,12 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
             _finishButton.Click();
             return this;
         }
-        
+
         [AllureStep("Check 'Cash Out' success modal")]
         public SpendWithdrawCashSuccessModal CheckSpendCashOutSuccessModal()
         {
-            try{
+            try
+            {
                 Wait.Until(ElementToBeVisible(SuccessHeader));
                 Wait.Until(ElementToBeVisible(_spendWithdrawCashSuccessMessage));
                 Wait.Until(ElementToBeVisible(_moneyAmount));
@@ -72,6 +73,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
     }

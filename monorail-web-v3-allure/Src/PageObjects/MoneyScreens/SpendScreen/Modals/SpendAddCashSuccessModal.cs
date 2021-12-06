@@ -48,7 +48,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
             _finishButton.Click();
             return this;
         }
-        
+
         [AllureStep("Check 'Add Cash' success modal")]
         public SpendAddCashSuccessModal CheckSpendAddCashSuccessModal()
         {
@@ -69,6 +69,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
     }

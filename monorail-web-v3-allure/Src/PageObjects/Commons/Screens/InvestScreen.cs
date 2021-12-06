@@ -67,6 +67,7 @@ namespace monorail_web_v3.PageObjects.Commons.Screens
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
     }

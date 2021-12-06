@@ -67,6 +67,7 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
     }

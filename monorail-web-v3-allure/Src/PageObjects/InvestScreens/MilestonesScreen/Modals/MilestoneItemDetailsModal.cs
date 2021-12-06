@@ -70,6 +70,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
     }

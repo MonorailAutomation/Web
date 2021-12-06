@@ -32,6 +32,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
     }

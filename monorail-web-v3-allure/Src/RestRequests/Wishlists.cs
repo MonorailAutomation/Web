@@ -27,7 +27,9 @@ namespace monorail_web_v3.RestRequests
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
-        public static void AddWishlists(string token, string amountAdd, string descriptionAdd, string faviconUrlAdd, string imageUrlAdd, string itemUrlAdd, string nameAdd)
+
+        public static void AddWishlists(string token, string amountAdd, string descriptionAdd, string faviconUrlAdd,
+            string imageUrlAdd, string itemUrlAdd, string nameAdd)
         {
             var resource = WishlistsEndpoint;
             var client = new RestClient

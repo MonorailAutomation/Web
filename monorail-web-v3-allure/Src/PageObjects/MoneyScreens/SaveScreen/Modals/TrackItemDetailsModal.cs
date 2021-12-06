@@ -40,6 +40,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals
             {
                 Console.WriteLine(e);
             }
+
             return this;
         }
 
