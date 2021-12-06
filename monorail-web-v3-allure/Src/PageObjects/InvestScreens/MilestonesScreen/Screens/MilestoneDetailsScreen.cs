@@ -40,16 +40,10 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens
         public MilestoneDetailsScreen VerifyMilestoneDetails(string milestoneName, string milestoneDescription,
             string milestoneTargetAmount)
         {
-            VerifyIfMilestoneNameHasChanged(milestoneName);
             _milestoneName.Text.Should().Be(milestoneName);
             _milestoneDescription.Text.Should().Be(milestoneDescription);
             //_milestoneTargetAmount.Text.Should().Contain(milestoneTargetAmount); //issue 
             return this;
-        }
-
-        private void VerifyIfMilestoneNameHasChanged(string milestoneName)
-        {
-            Wait.Until(ExpectedConditions.TextToBePresentInElement(_milestoneName, milestoneName));
         }
     }
 }

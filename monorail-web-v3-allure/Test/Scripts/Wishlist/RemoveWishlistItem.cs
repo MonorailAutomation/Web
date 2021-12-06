@@ -19,9 +19,11 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         private const string WishlistItemUrl =
             "https://www.target.com/p/canon-eos-rebel-t7-ef-s-18-55mm-is-ii-kit/-/A-54360840";
 
-        private const string WishlistItemImage = "http://res.cloudinary.com/vimvest/image/upload/v1637933870/f0nhrup1mm6dkoorejhn.jpg";
+        private const string WishlistItemImage =
+            "http://res.cloudinary.com/vimvest/image/upload/v1637933870/f0nhrup1mm6dkoorejhn.jpg";
 
-        private const string WishlistItemFavicon = "http://res.cloudinary.com/vimvest/image/upload/v1637933870/fm6sqbztwbqql1gpmmot.jpg";
+        private const string WishlistItemFavicon =
+            "http://res.cloudinary.com/vimvest/image/upload/v1637933870/fm6sqbztwbqql1gpmmot.jpg";
 
         private const string WishlistItemDescription =
             "Read reviews and buy Canon EOS Rebel T7 EF-S 18-55mm IS II Kit at Target. Choose from contactless Same Day Delivery, Drive Up and more.";
@@ -62,7 +64,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             wishlistMainScreen.CheckNoWishlistItem(WishlistItemName);
 
-            AddWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon, WishlistItemImage, WishlistItemUrl, WishlistItemName);
-        }      
+            AddWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
+                WishlistItemImage, WishlistItemUrl, WishlistItemName);
+        }
     }
 }

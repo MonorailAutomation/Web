@@ -10,7 +10,7 @@ namespace monorail_web_v3.PageObjects.Commons
 {
     public class MainScreen
     {
-        private const string TermsOfServiceLink = "/disclosures/terms-of-use/Web";
+        private const string TermsAndConditionsLink = "/disclosures/terms-and-conditions/Web";
         private const string PrivacyPolicyLink = "/disclosures/privacy-policy";
         private const string RatesLimitsFeesLink = "/rates-limits-fees";
 
@@ -53,8 +53,8 @@ namespace monorail_web_v3.PageObjects.Commons
         private IWebElement _ratesLimitsFeesLink;
 
         [FindsBy(How = How.XPath,
-            Using = "//div[@class='vim-footer']//a[contains(text(), 'Terms of Service')]")]
-        private IWebElement _termsOfServiceLink;
+            Using = "//div[@class='vim-footer']//a[contains(text(), 'Terms and Conditions')]")]
+        private IWebElement _termsAndConditionsLink;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-footer__socialMedia']//a[3]")]
         private IWebElement _twitterLink;
@@ -118,7 +118,7 @@ namespace monorail_web_v3.PageObjects.Commons
                 Wait.Until(ElementToBeVisible(_investNavItem));
                 Wait.Until(ElementToBeVisible(_hamburgerMenu));
                 Wait.Until(ElementToBeVisible(_monorailLogo));
-                Wait.Until(ElementToBeVisible(_termsOfServiceLink));
+                Wait.Until(ElementToBeVisible(_termsAndConditionsLink));
                 Wait.Until(ElementToBeVisible(_privacyPolicyLink));
                 Wait.Until(ElementToBeVisible(_ratesLimitsFeesLink));
                 Wait.Until(ElementToBeVisible(_instagramLink));
@@ -126,7 +126,7 @@ namespace monorail_web_v3.PageObjects.Commons
                 Wait.Until(ElementToBeVisible(_twitterLink));
                 Wait.Until(ElementToBeVisible(_pinterestLink));
 
-                _termsOfServiceLink.GetAttribute("href").Should().Contain(TermsOfServiceLink);
+                _termsAndConditionsLink.GetAttribute("href").Should().Contain(TermsAndConditionsLink);
                 _privacyPolicyLink.GetAttribute("href").Should().Contain(PrivacyPolicyLink);
                 _ratesLimitsFeesLink.GetAttribute("href").Should().Contain(RatesLimitsFeesLink);
 

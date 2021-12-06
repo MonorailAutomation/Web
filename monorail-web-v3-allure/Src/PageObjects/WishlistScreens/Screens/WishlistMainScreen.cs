@@ -27,6 +27,10 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         [FindsBy(How = How.XPath,
             Using = "//div[@class='vim-page-header__title']//h1[contains(text(),'Wishlist')]")]
         private IWebElement _wishlistHeaderItem;
+        
+        [FindsBy(How = How.XPath,
+            Using = "//button[contains(text(),'View All')]")]
+        private IWebElement _viewAllButton;
 
         public WishlistMainScreen(IWebDriver driver) : base(driver)
         {
@@ -69,6 +73,14 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         {
             Wait.Until(ElementToBeClickable(_addWishlistItemButton));
             _addWishlistItemButton.Click();
+            return this;
+        }
+        
+        [AllureStep("Click 'View All' button")]
+        public WishlistMainScreen ClickViewAllButton()
+        {
+            Wait.Until(ElementToBeClickable(_viewAllButton));
+            _viewAllButton.Click();
             return this;
         }
 
