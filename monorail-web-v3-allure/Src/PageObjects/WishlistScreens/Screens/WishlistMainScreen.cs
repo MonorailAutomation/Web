@@ -15,11 +15,15 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 
         [FindsBy(How = How.XPath,
             Using = "//main//p[contains(text(), 'Add an Item')]")]
-        public IWebElement _addWishlistItemButton;
+        private IWebElement _addWishlistItemButton;
 
         [FindsBy(How = How.XPath,
             Using = "//div[@class='wishlist-list__item'][1]//div[@class='empty-card__container']")]
         private IWebElement _addWishlistItemPlaceholder;
+
+        [FindsBy(How = How.XPath,
+            Using = "//button[contains(text(),'Create a Wishlist Account')]")]
+        private IWebElement _createAWishlistAccountButton;
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Manage your Account')]")]
         private IWebElement _manageYourAccountButton;
@@ -41,6 +45,14 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         public WishlistMainScreen CheckWishlistHeader()
         {
             Wait.Until(ElementToBeVisible(_wishlistHeaderItem));
+            return this;
+        }
+
+        [AllureStep("Click 'Create A Wishlist Account' button")]
+        public WishlistMainScreen ClickCreateAWishlistAccountButton()
+        {
+            Wait.Until(ElementToBeClickable(_createAWishlistAccountButton));
+            _createAWishlistAccountButton.Click();
             return this;
         }
 

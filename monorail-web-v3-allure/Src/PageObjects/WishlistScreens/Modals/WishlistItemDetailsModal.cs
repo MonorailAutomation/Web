@@ -16,21 +16,20 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [FindsBy(How = How.XPath, Using = "//textarea[@formcontrolname='description']")]
         private IWebElement _wishlistDescriptionInput;
 
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Use Custom Image')]")]
+        private IWebElement _wishlistItemCustomImageButton;
+
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//img")]
         private IWebElement _wishlistItemImage;
+
+        [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='name']")]
+        private IWebElement _wishlistItemNameInput;
 
         [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='amount']")]
         private IWebElement _wishlistItemPriceInput;
 
         [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='itemURL']")]
         private IWebElement _wishlistItemUrlInput;
-
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Use Custom Image')]")]
-        private IWebElement _wishlistItemCustomImageButton;
-
-        [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='name']")]
-        private IWebElement _wishlistItemNameInput;
-
 
         public WishlistItemDetailsModal(IWebDriver driver) : base(driver)
         {
@@ -48,7 +47,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
                 Wait.Until(ElementToBeVisible(_wishlistDescriptionInput));
                 Wait.Until(ElementToBeVisible(_wishlistItemNameInput));
                 Wait.Until(ElementToBeVisible(_wishlistItemCustomImageButton));
-                Wait.Until(ElementToBeVisible(ConfirmButton));   
+                Wait.Until(ElementToBeVisible(ConfirmButton));
             }
             catch (Exception e)
             {
@@ -77,7 +76,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
             return this;
         }
 
-        [AllureStep("Set Price to '${0}'")]
+        [AllureStep("Set Price to: '${0}'")]
         public WishlistItemDetailsModal SetWishlistItemPrice(string wishlistItemPrice)
         {
             Wait.Until(ElementToBeVisible(_wishlistItemPriceInput));
@@ -85,41 +84,42 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
             return this;
         }
 
-        [AllureStep("Edit Price to '${0}'")]
-        public WishlistItemDetailsModal EditItemPrice(string ChangedItemPrice)
+        [AllureStep("Edit Price to: '${0}'")]
+        public WishlistItemDetailsModal EditItemPrice(string changedItemPrice)
         {
             Wait.Until(ElementToBeVisible(_wishlistItemPriceInput));
             _wishlistItemPriceInput.Clear();
-            _wishlistItemPriceInput.SendKeys(ChangedItemPrice);
+            _wishlistItemPriceInput.SendKeys(changedItemPrice);
             return this;
         }
 
-        [AllureStep("Edit Name to '${0}'")]
-        public WishlistItemDetailsModal EditItemName(string ChangedItemName)
+        [AllureStep("Edit Name to: '${0}'")]
+        public WishlistItemDetailsModal EditItemName(string changedItemName)
         {
-            Wait.Until(ElementToBeVisible(_wishlistItemPriceInput));
+            Wait.Until(ElementToBeVisible(_wishlistItemNameInput));
             _wishlistItemNameInput.Clear();
-            _wishlistItemNameInput.SendKeys(ChangedItemName);
+            _wishlistItemNameInput.SendKeys(changedItemName);
             return this;
         }
 
-        [AllureStep("Edit Url to '${0}'")]
-        public WishlistItemDetailsModal EditItemUrl(string ChangedItemUrl)
+        [AllureStep("Edit Url to: '${0}'")]
+        public WishlistItemDetailsModal EditItemUrl(string changedItemUrl)
         {
             Wait.Until(ElementToBeVisible(_wishlistItemUrlInput));
             _wishlistItemUrlInput.Clear();
-            _wishlistItemUrlInput.SendKeys(ChangedItemUrl);
+            _wishlistItemUrlInput.SendKeys(changedItemUrl);
             return this;
         }
 
         [AllureStep("Edit Description to '${0}'")]
-        public WishlistItemDetailsModal EditItemDescription(string ChangedItemDescription)
+        public WishlistItemDetailsModal EditItemDescription(string changedItemDescription)
         {
             Wait.Until(ElementToBeVisible(_wishlistDescriptionInput));
             _wishlistDescriptionInput.Clear();
-            _wishlistDescriptionInput.SendKeys(ChangedItemDescription);
+            _wishlistDescriptionInput.SendKeys(changedItemDescription);
             return this;
         }
+
         private void CheckItemNameDescriptionItemUrl(string wishlistItemName,
             string wishlistItemDescription,
             string wishlistItemUrl)

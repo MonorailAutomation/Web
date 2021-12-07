@@ -1,4 +1,3 @@
-using System.Threading;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Menus;
@@ -31,11 +30,6 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var mainScreen = new MainScreen(Driver);
             var sideMenu = new SideMenu(Driver);
             var myConnectedAccountScreen = new MyConnectedAccountScreen(Driver);
-            var plaidWelcomeModal = new PlaidWelcomeModal(Driver);
-            var plaidSelectYourBankModal = new PlaidSelectYourBankModal(Driver);
-            var plaidEnterYourCredentialsModal = new PlaidEnterYourCredentialsModal(Driver);
-            var plaidYourAccountsModal = new PlaidYourAccountsModal(Driver);
-            var plaidSuccessModal = new PlaidSuccessModal(Driver);
 
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
 
@@ -51,11 +45,23 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             sideMenu
                 .ClickMyConnectedAccountLink();
 
-            Thread.Sleep(10000); // issue 32348
-
             myConnectedAccountScreen
                 .CheckMyConnectedAccountScreenWithoutPlaidAccount()
                 .ClickLinkYourBankAccount();
+
+            ConnectPlaid();
+
+            myConnectedAccountScreen
+                .CheckMyConnectedAccountScreenWithConnectedPlaidAccount();
+        }
+
+        public static void ConnectPlaid()
+        {
+            var plaidWelcomeModal = new PlaidWelcomeModal(Driver);
+            var plaidSelectYourBankModal = new PlaidSelectYourBankModal(Driver);
+            var plaidEnterYourCredentialsModal = new PlaidEnterYourCredentialsModal(Driver);
+            var plaidYourAccountsModal = new PlaidYourAccountsModal(Driver);
+            var plaidSuccessModal = new PlaidSuccessModal(Driver);
 
             var plaidIframe = Driver.FindElement(By.Id("plaid-link-iframe-1"));
             Driver.SwitchTo().Frame(plaidIframe);
@@ -78,9 +84,6 @@ namespace monorail_web_v3.Test.Scripts.Transactions
                 .ClickContinueButton();
 
             Driver.SwitchTo().DefaultContent();
-
-            myConnectedAccountScreen
-                .CheckMyConnectedAccountScreenWithConnectedPlaidAccount();
         }
     }
 }

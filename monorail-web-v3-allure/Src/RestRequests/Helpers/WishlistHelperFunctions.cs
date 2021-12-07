@@ -1,4 +1,3 @@
-using System;
 using static monorail_web_v3.RestRequests.Token;
 using static monorail_web_v3.RestRequests.Wishlists;
 
@@ -19,10 +18,12 @@ namespace monorail_web_v3.RestRequests.Helpers
             AddWishlists(token, amountAdd, descriptionAdd, faviconUrlAdd, imageUrlAdd, itemUrlAdd, nameAdd);
         }
 
-        public static void RevertWishlistItem(string username, string password, string amountAdd, string descriptionAdd, string faviconURLAdd, string imageURLAdd, string itemURLAdd, string nameAdd, string wishlistItemId)
+        public static void RevertWishlistItem(string username, string password, string amountAdd, string descriptionAdd,
+            string faviconUrlAdd, string imageUrlAdd, string itemUrlAdd, string nameAdd, string wishlistItemId)
         {
             var token = GenerateToken(username, password);
-            RevertWishlists(token, amountAdd, descriptionAdd, faviconURLAdd, imageURLAdd, itemURLAdd, nameAdd, wishlistItemId);
+            RevertWishlists(token, amountAdd, descriptionAdd, faviconUrlAdd, imageUrlAdd, itemUrlAdd, nameAdd,
+                wishlistItemId);
         }
     }
 }

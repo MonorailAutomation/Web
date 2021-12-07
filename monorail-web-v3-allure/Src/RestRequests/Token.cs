@@ -9,7 +9,7 @@ namespace monorail_web_v3.RestRequests
 
         public static string GenerateToken(string user, string pass)
         {
-            var client = new RestClient("https://monarchweb-app-feature.azurewebsites.net");
+            var client = new RestClient("https://monarch-app-uat.azurewebsites.net");
             var request = new RestRequest
             {
                 Resource = TokenEndpoint,

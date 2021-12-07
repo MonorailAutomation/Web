@@ -31,7 +31,6 @@ namespace monorail_web_v3.RestRequests
         public static void AddWishlists(string token, string amountAdd, string descriptionAdd, string faviconUrlAdd,
             string imageUrlAdd, string itemUrlAdd, string nameAdd)
         {
-            var resource = WishlistsEndpoint;
             var client = new RestClient
             {
                 BaseUrl = MonorailUri,
@@ -39,7 +38,7 @@ namespace monorail_web_v3.RestRequests
             };
             var request = new RestRequest
             {
-                Resource = resource,
+                Resource = WishlistsEndpoint,
                 Method = Method.POST,
                 RequestFormat = DataFormat.Json
             };
@@ -59,9 +58,9 @@ namespace monorail_web_v3.RestRequests
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
-        public static void RevertWishlists(string token, string amountAdd, string descriptionAdd, string faviconURLAdd, string imageURLAdd, string itemURLAdd, string nameAdd, string wishlistItemId)
+        public static void RevertWishlists(string token, string amountAdd, string descriptionAdd, string faviconUrlAdd,
+            string imageUrlAdd, string itemUrlAdd, string nameAdd, string wishlistItemId)
         {
-            var resource = WishlistsEndpoint;
             var client = new RestClient
             {
                 BaseUrl = MonorailUri,
@@ -69,7 +68,7 @@ namespace monorail_web_v3.RestRequests
             };
             var request = new RestRequest
             {
-                Resource = resource,
+                Resource = WishlistsEndpoint,
                 Method = Method.PUT,
                 RequestFormat = DataFormat.Json
             };
@@ -78,9 +77,9 @@ namespace monorail_web_v3.RestRequests
             {
                 amount = amountAdd,
                 description = descriptionAdd,
-                faviconURL = faviconURLAdd,
-                imageURL = imageURLAdd,
-                itemURL = itemURLAdd,
+                faviconURL = faviconUrlAdd,
+                imageURL = imageUrlAdd,
+                itemURL = itemUrlAdd,
                 name = nameAdd,
                 id = wishlistItemId
             });

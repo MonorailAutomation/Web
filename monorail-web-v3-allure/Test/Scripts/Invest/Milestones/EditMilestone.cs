@@ -16,11 +16,11 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
     internal class EditMilestoneWithoutScheduledDeposits : FunctionalTesting
     {
         [Test(Description =
-            "Edit a Milestone - change name, description, target amount, target date but without scheduled deposit")]
+            "Edit a Milestone - change name, description")]
         [AllureEpic("Invest")]
         [AllureFeature("Milestones")]
-        [AllureStory("Edit a Milestone - change name, description, amount, date")]
-        public void EditMilestoneNameDescriptionAmountDateTest()
+        [AllureStory("Edit a Milestone - change name, description")]
+        public void EditMilestoneNameDescriptionTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
@@ -34,13 +34,9 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             const string originalMilestoneName = "Original Milestone Name";
             const string originalMilestoneDescription = "Original Milestone Description";
-            const string originalMilestoneTargetAmount = "967";
-            const string originalMilestoneTargetDate = "08/10/2025";
 
             const string changedMilestoneName = "Changed Milestone Name";
             const string changedMilestoneDescription = "Changed Milestone Description";
-            const string changedMilestoneTargetAmount = "5,292";
-            const string changedMilestoneTargetDate = "06/12/2026";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -61,21 +57,18 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             milestoneDetailsModal
                 .CheckMilestoneDetailsModal()
-                .SetMilestoneTargetAmount(changedMilestoneTargetAmount)
-                .SetMilestoneTargetDate(changedMilestoneTargetDate)
                 .SetItemName(changedMilestoneName)
                 .SetItemDescription(changedMilestoneDescription)
                 .ClickContinueButton();
 
             milestoneDetailsScreen
-                .VerifyMilestoneDetails(changedMilestoneName, changedMilestoneDescription,
-                    changedMilestoneTargetAmount);
+                .VerifyMilestoneDetails(changedMilestoneName, changedMilestoneDescription);
 
             // milestoneDetailsScreen.ClickEditDetailsButton();
             // milestoneDetailsModal.VerifyTargetDate(changedMilestoneTargetDate); 
 
             RevertMilestone(username, ValidPassword, milestoneId, originalMilestoneName,
-                originalMilestoneDescription, originalMilestoneTargetAmount, originalMilestoneTargetDate);
+                originalMilestoneDescription);
         }
     }
 }

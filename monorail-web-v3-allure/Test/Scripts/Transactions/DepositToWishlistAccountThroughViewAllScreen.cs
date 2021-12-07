@@ -56,7 +56,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
         }
 
         [Test(Description =
-            "Deposit Money to Wishlist Account through 'View All' screen using 'Add Cash' on 'Manage your Account' modal")]
+            "Deposit Money to Wishlist Account through 'View All' screen using 'Add Cash' button on 'Manage your Account' modal")]
         [AllureEpic("Transactions")]
         [AllureFeature("Wishlist")]
         [AllureStory("Deposit to Wishlist Account | View All -> Manage your Account -> Add Cash")]

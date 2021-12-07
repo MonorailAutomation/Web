@@ -1,4 +1,3 @@
-using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
@@ -41,16 +40,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
         {
             var progressBarSelector =
                 By.XPath("//h3[contains(text(),'" + trackName + "')]//following-sibling::div");
-            try
-            {
-                Wait.Until(ExpectedConditions.ElementIsVisible(progressBarSelector));
-                Console.WriteLine("Progress Bar was found for \'" + trackName + "\'" + " Track.");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Progress Bar was not found for \'" + trackName + "\'" + " Track.");
-                throw e;
-            }
+            Wait.Until(ExpectedConditions.ElementIsVisible(progressBarSelector));
         }
 
         private static void VerifyIfTargetAmountIsVisible(string trackName, string trackTargetAmount)
@@ -58,35 +48,16 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
             var expectedTrackAmount = "$0 of $" + trackTargetAmount;
             var trackTargetAmountSelector =
                 By.XPath("//h3[contains(text(),'" + trackName + "')]//following-sibling::p");
-            try
-            {
-                Wait.Until(ExpectedConditions.ElementIsVisible(trackTargetAmountSelector));
-                var actualTrackAmount = Driver.FindElement(trackTargetAmountSelector).Text;
-                actualTrackAmount.Should().Be(expectedTrackAmount);
-                Console.WriteLine("$" + trackTargetAmount + " Target Amount was found for '" + trackName +
-                                  "' Track.");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("\'" + trackTargetAmount + "\'" + " Target Amount was not found for \'" +
-                                  trackName + "\'" + " Track.");
-                throw e;
-            }
+
+            Wait.Until(ExpectedConditions.ElementIsVisible(trackTargetAmountSelector));
+            var actualTrackAmount = Driver.FindElement(trackTargetAmountSelector).Text;
+            actualTrackAmount.Should().Be(expectedTrackAmount);
         }
 
         private static void VerifyIfTrackIsVisible(string trackName)
         {
             var trackItemSelector = By.XPath("//h3[contains(text(),'" + trackName + "')]");
-            try
-            {
-                Wait.Until(ExpectedConditions.ElementIsVisible(trackItemSelector));
-                Console.WriteLine("\'" + trackName + "\'" + " Track was found.");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("\'" + trackName + "\'" + " Track was not found.");
-                throw e;
-            }
+            Wait.Until(ExpectedConditions.ElementIsVisible(trackItemSelector));
         }
     }
 }

@@ -11,12 +11,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 {
     [TestFixture]
     [AllureNUnit]
-    internal class WithdrawFromWishlistAccount : FunctionalTesting
+    internal class WithdrawFromWishlistAccountThroughMainScreen : FunctionalTesting
     {
-        [Test(Description = "Withdraw money from Wishlist Account")]
+        [Test(Description = "Withdraw money from Wishlist Account through Manage Account using 'Cash Out' button")]
         [AllureEpic("Transactions")]
         [AllureFeature("Wishlist")]
-        [AllureStory("Withdraw money from Wishlist Account")]
+        [AllureStory("Withdraw money from Wishlist Account | Main Screen -> Manage your Account -> Cash Out")]
         public void WithdrawMoneyFromWishlistAccountTest()
         {
             var loginPage = new LoginPage(Driver);

@@ -11,11 +11,11 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 {
     public class WishlistDetailsScreen : WishlistScreen
     {
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Remove')]")]
-        private IWebElement removeButton;
-
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Edit')]")]
         private IWebElement editButton;
+
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Remove')]")]
+        private IWebElement removeButton;
 
         public WishlistDetailsScreen(IWebDriver driver) : base(driver)
         {
@@ -45,7 +45,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             var wishlistItemNameSelector = "//div//h2[contains(text(), '" + wishlistItemName + "')]";
             var wishlistItemDescriptionSelector = "//div//p[contains(text(), '" + wishlistItemDescription + "')]";
             var wishlistItemPriceSelector = "//div//h2[contains(text(), '" + wishlistItemPrice + "')]";
-            var wishlistItemUrlSelector = "//a[@class='wishlist-details__sidebar__logo-wrapper']";
+            const string wishlistItemUrlSelector = "//a[@class='wishlist-details__sidebar__logo-wrapper']";
 
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemNameSelector))).Text.Should()
                 .Contain(wishlistItemName);
@@ -53,8 +53,8 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
                 .Contain(wishlistItemDescription);
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemPriceSelector))).Text.Should()
                 .Contain(wishlistItemPrice);
-            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemUrlSelector))).GetAttribute("href").Should()
-               .Contain(wishlistItemUrl);
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemUrlSelector))).GetAttribute("href")
+                .Should().Contain(wishlistItemUrl);
 
             return this;
         }

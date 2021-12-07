@@ -5,7 +5,7 @@ using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
-namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
+namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
 {
     public class SpendMainScreen : MoneyScreen
     {

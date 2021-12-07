@@ -3,6 +3,7 @@ using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using SeleniumExtras.WaitHelpers;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
@@ -35,14 +36,18 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens
             return this;
         }
 
-        [AllureStep("Verify if Milestone Name is '{0}', Description is '{1}', Target Amount is {2}")]
-        public MilestoneDetailsScreen VerifyMilestoneDetails(string milestoneName, string milestoneDescription,
-            string milestoneTargetAmount)
+        [AllureStep("Verify if Milestone Name is '{0}', Description is '{1}'")]
+        public MilestoneDetailsScreen VerifyMilestoneDetails(string milestoneName, string milestoneDescription)
         {
+            VerifyIfMilestoneNameHasChanged(milestoneName);
             _milestoneName.Text.Should().Be(milestoneName);
             _milestoneDescription.Text.Should().Be(milestoneDescription);
-            //_milestoneTargetAmount.Text.Should().Contain(milestoneTargetAmount); //issue 
             return this;
+        }
+
+        private void VerifyIfMilestoneNameHasChanged(string milestoneName)
+        {
+            Wait.Until(ExpectedConditions.TextToBePresentInElement(_milestoneName, milestoneName));
         }
     }
 }

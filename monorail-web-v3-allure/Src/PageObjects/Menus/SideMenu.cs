@@ -12,7 +12,7 @@ namespace monorail_web_v3.PageObjects.Menus
         private IWebElement _logOutLink;
 
         [FindsBy(How = How.XPath, Using = "//a[contains(@routerlink, 'my-connected-account')]")]
-        public IWebElement _myConnectedAccountLink;
+        private IWebElement _myConnectedAccountLink;
 
         public SideMenu(IWebDriver driver)
         {

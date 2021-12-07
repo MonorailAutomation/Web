@@ -20,7 +20,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         private IWebElement _removeWishlistItemMessage;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//span[contains(text(),'Remove')]")]
-        protected IWebElement RemoveButton;
+        private IWebElement _removeButton;
 
         public RemoveWishlistItemModal(IWebDriver driver) : base(driver)
         {
@@ -33,7 +33,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
             Wait.Until(ElementToBeVisible(ModalHeader));
             Wait.Until(ElementToBeVisible(_removeWishlistItemMessage));
             Wait.Until(ElementToBeVisible(_cancelButton));
-            Wait.Until(ElementToBeVisible(RemoveButton));
+            Wait.Until(ElementToBeVisible(_removeButton));
 
             ModalHeader.Text.Should().Be(RemoveWishlistItemHeaderText);
             _removeWishlistItemMessage.Text.Should().Be(RemoveWishlistItemMessageText);
@@ -43,8 +43,8 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [AllureStep("Click 'Remove' button")]
         public Modal ClickRemoveButton()
         {
-            Wait.Until(ElementToBeVisible(RemoveButton));
-            RemoveButton.Click();
+            Wait.Until(ElementToBeVisible(_removeButton));
+            _removeButton.Click();
             return this;
         }
     }

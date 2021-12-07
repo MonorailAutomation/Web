@@ -15,9 +15,23 @@ namespace monorail_web_v3.Commons
             return driver => element is {Displayed: true} ? element : null;
         }
 
-        public static Func<IWebDriver, IWebElement> ElementToBeNotVisible(IWebElement element)
+        public static Func<IWebDriver, bool> ElementToBeNotVisible(IWebElement element)
         {
-            return driver => element is {Displayed: false} ? element : null;
+            return driver =>
+            {
+                try
+                {
+                    return !element.Displayed;
+                }
+                catch (NoSuchElementException ex)
+                {
+                    return true;
+                }
+                catch (StaleElementReferenceException ex)
+                {
+                    return true;
+                }
+            };
         }
     }
 }

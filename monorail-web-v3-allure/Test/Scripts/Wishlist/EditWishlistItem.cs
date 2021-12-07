@@ -1,6 +1,5 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
-using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
 using NUnit.Allure.Attributes;
@@ -20,9 +19,11 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         private const string WishlistItemUrl =
             "https://www.target.com/p/canon-eos-rebel-t7-ef-s-18-55mm-is-ii-kit/-/A-54360840";
 
-        private const string WishlistItemImage = "http://res.cloudinary.com/vimvest/image/upload/v1638872284/bwoewueguczgkumwg6kl.jpg";
+        private const string WishlistItemImage =
+            "http://res.cloudinary.com/vimvest/image/upload/v1638872284/bwoewueguczgkumwg6kl.jpg";
 
-        private const string WishlistItemFavicon = "http://res.cloudinary.com/vimvest/image/upload/v1638879350/frwhkhmtv3oszhm0hfrs.jpg";
+        private const string WishlistItemFavicon =
+            "http://res.cloudinary.com/vimvest/image/upload/v1638879350/frwhkhmtv3oszhm0hfrs.jpg";
 
         private const string WishlistItemDescription =
             "Read reviews and buy Canon EOS Rebel T7 EF-S 18-55mm IS II Kit at Target. Choose from contactless Same Day Delivery, Drive Up and more.";
@@ -43,10 +44,11 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             const string username = "autotests.mono+1.071221@gmail.com";
 
-            const string ChangedItemName = "Changed Name";
-            const string ChangedItemUrl = "https://www.target.com/p/canon-eos-rebel-t7-ef-s-18-55mm-is-ii-kit/-/A-changed";
-            const string ChangedItemPrice = "200";
-            const string ChangedItemDescription = "Changed Description";
+            const string changedItemName = "Changed Name";
+            const string changedItemUrl =
+                "https://www.target.com/p/canon-eos-rebel-t7-ef-s-18-55mm-is-ii-kit/-/A-changed";
+            const string changedItemPrice = "200";
+            const string changedItemDescription = "Changed Description";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -59,23 +61,26 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickWishlistItem(WishlistItemName);
 
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice, WishlistItemUrl)
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice,
+                    WishlistItemUrl)
                 .ClickEditButton();
 
             wishlistItemDetailsModal
                 .CheckItemDetailsModal()
-                .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl, WishlistItemPrice)
-                .EditItemName(ChangedItemName)
-                .EditItemUrl(ChangedItemUrl)
-                .EditItemPrice(ChangedItemPrice)
-                .EditItemDescription(ChangedItemDescription)
+                .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl,
+                    WishlistItemPrice)
+                .EditItemName(changedItemName)
+                .EditItemUrl(changedItemUrl)
+                .EditItemPrice(changedItemPrice)
+                .EditItemDescription(changedItemDescription)
                 .ClickConfirmButton();
 
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(ChangedItemName, ChangedItemDescription, ChangedItemPrice, ChangedItemUrl);
+                .VerifyWishlistItemDetails(changedItemName, changedItemDescription, changedItemPrice, changedItemUrl);
 
             var wishlistItemId = Driver.Url[^36..];
-            RevertWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon, WishlistItemImage, WishlistItemUrl, WishlistItemName, wishlistItemId);
-        }      
+            RevertWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
+                WishlistItemImage, WishlistItemUrl, WishlistItemName, wishlistItemId);
+        }
     }
 }

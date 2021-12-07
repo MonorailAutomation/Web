@@ -1,6 +1,5 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
-using monorail_web_v3.PageObjects.Commons.Modals;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Enums;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals;
@@ -29,13 +28,13 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
             var tracksMainScreen = new TracksMainScreen(Driver);
             var chooseATrackModal = new ChooseATrackModal(Driver);
             var trackDetailsModal = new TrackItemDetailsModal(Driver);
-            var trackEditScheduleModal = new EditScheduleModal(Driver);
+            var trackDepositScheduleModal = new TrackDepositScheduleModal(Driver);
             var addTrackSuccessModal = new AddTrackSuccessModal(Driver);
 
             const string username = "autotests.mono+2.2.181021@gmail.com";
             const string trackDescription = "Test Track Description";
             const string trackTargetDate = "19/04/2029";
-            const string trackTargetAmount = "6900";
+            const string trackTargetAmount = "6,900";
 
             var trackName = "Test Track " + GenerateRandomString();
 
@@ -68,8 +67,8 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .SetItemDescription(trackDescription)
                 .ClickContinueButton();
 
-            trackEditScheduleModal
-                .CheckEditScheduleModal()
+            trackDepositScheduleModal
+                .CheckDepositScheduleModal()
                 .ClickContinueButton();
 
             addTrackSuccessModal

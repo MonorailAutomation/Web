@@ -36,7 +36,7 @@ namespace monorail_web_v3.PageObjects
         private IWebElement _resetPasswordButton;
 
         [FindsBy(How = How.XPath, Using = "//button[@type='submit']")]
-        public IWebElement _signInButton;
+        private IWebElement _signInButton;
 
         public LoginPage(IWebDriver driver)
         {
