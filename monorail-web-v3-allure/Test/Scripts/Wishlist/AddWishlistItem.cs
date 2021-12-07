@@ -71,7 +71,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickWishlistItem(WishlistItemName);
 
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice);
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice, WishlistItemUrl);
 
             var wishlistItemId = Driver.Url[^36..];
 
@@ -125,7 +125,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickWishlistItem(WishlistItemName);
 
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice);
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice, WishlistItemUrl);
 
             var wishlistItemId = Driver.Url[^36..];
 

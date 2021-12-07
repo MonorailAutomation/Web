@@ -14,6 +14,9 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Remove')]")]
         private IWebElement removeButton;
 
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Edit')]")]
+        private IWebElement editButton;
+
         public WishlistDetailsScreen(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
@@ -27,13 +30,22 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             return this;
         }
 
-        [AllureStep("Verify if Wishlist item name is: '{0}', description is: '{1}', price is: '{2}'")]
+        [AllureStep("Click 'Edit' button")]
+        public WishlistDetailsScreen ClickEditButton()
+        {
+            Wait.Until(ElementToBeClickable(editButton));
+            editButton.Click();
+            return this;
+        }
+
+        [AllureStep("Verify if Wishlist item name is: '{0}', description is: '{1}', price is: '{2}', url is: '{3}'")]
         public WishlistDetailsScreen VerifyWishlistItemDetails(string wishlistItemName, string wishlistItemDescription,
-            string wishlistItemPrice)
+            string wishlistItemPrice, string wishlistItemUrl)
         {
             var wishlistItemNameSelector = "//div//h2[contains(text(), '" + wishlistItemName + "')]";
             var wishlistItemDescriptionSelector = "//div//p[contains(text(), '" + wishlistItemDescription + "')]";
             var wishlistItemPriceSelector = "//div//h2[contains(text(), '" + wishlistItemPrice + "')]";
+            var wishlistItemUrlSelector = "//a[@class='wishlist-details__sidebar__logo-wrapper']";
 
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemNameSelector))).Text.Should()
                 .Contain(wishlistItemName);
@@ -41,6 +53,9 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
                 .Contain(wishlistItemDescription);
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemPriceSelector))).Text.Should()
                 .Contain(wishlistItemPrice);
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemUrlSelector))).GetAttribute("href").Should()
+               .Contain(wishlistItemUrl);
+
             return this;
         }
     }

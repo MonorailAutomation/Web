@@ -58,5 +58,36 @@ namespace monorail_web_v3.RestRequests
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
+
+        public static void RevertWishlists(string token, string amountAdd, string descriptionAdd, string faviconURLAdd, string imageURLAdd, string itemURLAdd, string nameAdd, string wishlistItemId)
+        {
+            var resource = WishlistsEndpoint;
+            var client = new RestClient
+            {
+                BaseUrl = MonorailUri,
+                Authenticator = new JwtAuthenticator(token)
+            };
+            var request = new RestRequest
+            {
+                Resource = resource,
+                Method = Method.PUT,
+                RequestFormat = DataFormat.Json
+            };
+
+            request.AddJsonBody(new
+            {
+                amount = amountAdd,
+                description = descriptionAdd,
+                faviconURL = faviconURLAdd,
+                imageURL = imageURLAdd,
+                itemURL = itemURLAdd,
+                name = nameAdd,
+                id = wishlistItemId
+            });
+
+            var response = client.Execute(request);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
     }
 }
