@@ -15,16 +15,6 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
     [AllureNUnit]
     internal class AddWishlistItem : FunctionalTesting
     {
-        private const string WishlistItemName = "Canon EOS Rebel T7 EF-S 18-55mm IS II Kit";
-
-        private const string WishlistItemUrl =
-            "https://www.target.com/p/canon-eos-rebel-t7-ef-s-18-55mm-is-ii-kit/-/A-54360840";
-
-        private const string WishlistItemDescription =
-            "Read reviews and buy Canon EOS Rebel T7 EF-S 18-55mm IS II Kit at Target.";
-
-        private const string WishlistItemPrice = "55";
-
         [Test(Description = "Add Wishlist item by clicking a button when user has a wishlist account")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Add Wishlist Item")]
@@ -69,7 +59,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickConfirmButton();
 
             addWishlistItemFinishModal
-                .CheckAddWishlistItemSuccessModal()
+                .CheckAddWishlistItemSuccessModalAfterOnboarding()
                 .VerifyWishlistItemName(WishlistItemName)
                 .ClickFinishButton();
 
@@ -129,7 +119,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickConfirmButton();
 
             addWishlistItemFinishModal
-                .CheckAddWishlistItemSuccessModal()
+                .CheckAddWishlistItemSuccessModalAfterOnboarding()
                 .VerifyWishlistItemName(WishlistItemName)
                 .ClickFinishButton();
 
@@ -188,7 +178,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickConfirmButton();
 
             addWishlistItemFinishModal
-                .CheckAddWishlistItemSuccessModal()
+                .CheckAddWishlistItemSuccessModalBeforeOnboarding()
                 .VerifyWishlistItemName(WishlistItemName)
                 .ClickFinishButton();
 
@@ -247,7 +237,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickConfirmButton();
 
             addWishlistItemFinishModal
-                .CheckAddWishlistItemSuccessModal()
+                .CheckAddWishlistItemSuccessModalAfterOnboarding()
                 .VerifyWishlistItemName(WishlistItemName)
                 .ClickFinishButton();
 

@@ -15,22 +15,6 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
     [AllureNUnit]
     internal class EditWishlistItem : FunctionalTesting
     {
-        private const string WishlistItemName = "Canon EOS Rebel T7 EF-S 18-55mm IS II Kit";
-
-        private const string WishlistItemUrl =
-            "https://www.target.com/p/canon-eos-rebel-t7-ef-s-18-55mm-is-ii-kit/-/A-54360840";
-
-        private const string WishlistItemImage =
-            "http://res.cloudinary.com/vimvest/image/upload/v1638872284/bwoewueguczgkumwg6kl.jpg";
-
-        private const string WishlistItemFavicon =
-            "http://res.cloudinary.com/vimvest/image/upload/v1638879350/frwhkhmtv3oszhm0hfrs.jpg";
-
-        private const string WishlistItemDescription =
-            "Read reviews and buy Canon EOS Rebel T7 EF-S 18-55mm IS II Kit at Target. Choose from contactless Same Day Delivery, Drive Up and more.";
-
-        private const string WishlistItemPrice = "100";
-
         [Test(Description = "Edit Wishlist item by clicking a button when user has a wishlist account")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Edit Wishlist Item")]
