@@ -34,7 +34,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         [AllureEpic("Wishlist")]
         [AllureFeature("Remove Wishlist Item")]
         [AllureStory("Remove Wishlist Item by clicking 'Remove' button")]
-        public void RemoveWishlistItemByButton()
+        public void RemoveWishlistItemTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);

@@ -34,7 +34,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         [AllureEpic("Wishlist")]
         [AllureFeature("Edit Wishlist Item")]
         [AllureStory("Edit Wishlist Item by clicking 'Edit' button")]
-        public void EditWishlistItemByButton()
+        public void EditWishlistItemTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);

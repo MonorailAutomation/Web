@@ -16,11 +16,11 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//span[contains(text(),'Cancel')]")]
         private IWebElement _cancelButton;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//p")]
-        private IWebElement _removeWishlistItemMessage;
-
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//span[contains(text(),'Remove')]")]
         private IWebElement _removeButton;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//p")]
+        private IWebElement _removeWishlistItemMessage;
 
         public RemoveWishlistItemModal(IWebDriver driver) : base(driver)
         {

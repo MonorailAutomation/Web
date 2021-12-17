@@ -1,38 +1,44 @@
 using System.Threading;
 using monorail_web_v3.PageObjects;
+using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Modals;
-using monorail_web_v3.PageObjects.WishlistScreens.Screens;
+using monorail_web_v3.PageObjects.Commons.Screens;
+using monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals;
+using monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.Commons.RandomGenerator;
-using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
+using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 
-namespace monorail_web_v3.Test.Scripts.Wishlist
+namespace monorail_web_v3.Test.Scripts.Money.Spend
 {
     [TestFixture]
     [AllureNUnit]
-    internal class WishlistOnboarding : FunctionalTesting
+    internal class Q2Onboarding : FunctionalTesting
     {
-        private const string UsernamePrefix = "autotests.mono+22.071221";
+        private const string UsernamePrefix = "autotests.mono+23.091221";
         private const string UsernameSuffix = "@gmail.com";
-
-        [Test(Description = "Wishlist Onboarding - first account onboarding")]
-        [AllureEpic("Wishlist")]
-        [AllureFeature("Onboarding")]
-        [AllureStory("Wishlist Onboarding - first account onboarding")]
-        public void WishlistOnboardingTest()
+        
+        [Test(Description = "Q2 Spending Onboarding")]
+        [AllureEpic("Money")]
+        [AllureFeature("Spend")]
+        [AllureStory("Q2 Checking Onboarding")]
+        public void Q2SpendOnboardingTest()
         {
             var loginPage = new LoginPage(Driver);
-            var wishlistMainScreen = new WishlistMainScreen(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var moneyScreen = new MoneyScreen(Driver);
+            var spendMainScreen = new SpendMainScreen(Driver);
             var completeYourAccountModal = new CompleteYourAccountModal(Driver);
             var completeYourProfileModal = new CompleteYourProfileModal(Driver);
             var regulatoryInformationModal = new RegulatoryInformationModal(Driver);
             var linkYourAccountModal = new LinkYourAccountModal(Driver);
             var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
+            var spendOnboardingSuccessModal = new SpendOnboardingSuccessModal(Driver);
 
             const string firstName = "Auto";
             const string lastName = "Test";
@@ -42,17 +48,29 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             const string zip = "34239";
             const string ssn = "666-00-3785";
 
+            
+            //const string username = "autotests.mono+23.091221665@gmail.com";
+
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
 
             RegisterUser(username);
-
+            
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            wishlistMainScreen // to do: add verify screen before onboarding
-                .ClickCreateAWishlistAccountButton();
+            mainScreen
+                .CheckMainScreen()
+                .ClickMoney();
 
+            moneyScreen
+                .CheckMoneyScreen()
+                .ClickSpend();
+
+            spendMainScreen
+                .CheckSpendScreenBeforeOnboarding()
+                .ClickOpenYourCheckingAccountButton();
+            
             completeYourAccountModal
                 .CheckCompleteYourAccountModal()
                 .ClickGetStartedButton();
@@ -86,7 +104,9 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ScrollToTheBottomOfTheDocument()
                 .ClickAgreeAndFinishButton();
 
-            Thread.Sleep(5000); // TO DO: change to verify 'wishlist screen' after onboarding
+            spendOnboardingSuccessModal
+                .CheckSpendOnboardingSuccessModal()
+                .ClickFinish();
         }
     }
 }

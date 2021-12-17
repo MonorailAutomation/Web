@@ -1,7 +1,6 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Screens;
-using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens;
 using monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals;
 using monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens;
 using NUnit.Allure.Attributes;

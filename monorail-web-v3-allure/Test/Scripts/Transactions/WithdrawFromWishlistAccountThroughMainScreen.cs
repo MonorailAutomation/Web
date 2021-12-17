@@ -17,7 +17,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
         [AllureEpic("Transactions")]
         [AllureFeature("Wishlist")]
         [AllureStory("Withdraw money from Wishlist Account | Main Screen -> Manage your Account -> Cash Out")]
-        public void WithdrawMoneyFromWishlistAccountTest()
+        public void WithdrawFromWishlistAccountThroughMainScreenTest()
         {
             var loginPage = new LoginPage(Driver);
             var wishlistScreen = new WishlistScreen(Driver);

@@ -12,10 +12,13 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
     public class WishlistDetailsScreen : WishlistScreen
     {
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Edit')]")]
-        private IWebElement editButton;
+        private IWebElement _editButton;
+
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Fund your Wishlist')]")]
+        private IWebElement _fundYourWishlistButton;
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Remove')]")]
-        private IWebElement removeButton;
+        private IWebElement _removeButton;
 
         public WishlistDetailsScreen(IWebDriver driver) : base(driver)
         {
@@ -25,16 +28,24 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         [AllureStep("Click 'Remove' button")]
         public WishlistDetailsScreen ClickRemoveButton()
         {
-            Wait.Until(ElementToBeClickable(removeButton));
-            removeButton.Click();
+            Wait.Until(ElementToBeClickable(_removeButton));
+            _removeButton.Click();
+            return this;
+        }
+
+        [AllureStep("Click 'Fund your Wishlist' button")]
+        public WishlistDetailsScreen ClickFundYourWishlistButton()
+        {
+            Wait.Until(ElementToBeClickable(_fundYourWishlistButton));
+            _fundYourWishlistButton.Click();
             return this;
         }
 
         [AllureStep("Click 'Edit' button")]
         public WishlistDetailsScreen ClickEditButton()
         {
-            Wait.Until(ElementToBeClickable(editButton));
-            editButton.Click();
+            Wait.Until(ElementToBeClickable(_editButton));
+            _editButton.Click();
             return this;
         }
 
