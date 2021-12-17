@@ -25,21 +25,22 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
         private const string WishlistItemPrice = "55";
 
-        [Test(Description = "Add Wishlist item by clicking a button")]
+        [Test(Description = "Add Wishlist item by clicking a button when user has a wishlist account")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Add Wishlist Item")]
-        [AllureStory("Add Wishlist Item by clicking 'Add an item' button")]
-        public void AddWishlistItemByButtonTest()
+        [AllureStory("Add Wishlist Item by clicking 'Add an item' button when user has a wishlist account")]
+        public void AddWishlistItemByButtonWithAccountTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
+            var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
             var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
             var addWishlistItemFinishModal = new AddWishlistItemSuccessModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
-            const string username = "haku.vimvest+2408211@gmail.com"; // should be replaced with autotest.mono user
+            const string username = "autotests.mono+2.071221@gmail.com";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -48,7 +49,12 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             mainScreen
                 .CheckMainScreen();
 
+            wishlistScreen
+                .CheckWishlistScreen();
+
             wishlistMainScreen
+                .CheckWishlistAddFundsButton()
+                .CheckWishlistManageAccountButton()
                 .ClickAddWishlistItemButton();
 
             addNewWishlistItemModal
@@ -79,13 +85,14 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             DeleteWishlistItem(username, ValidPassword, wishlistItemId);
         }
 
-        [Test(Description = "Add Wishlist item by clicking placeholder")]
+        [Test(Description = "Add Wishlist item by clicking placeholder when user has a wishlist account")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Add Wishlist Item")]
-        [AllureStory("Add Wishlist Item by clicking placeholder")]
-        public void AddWishlistItemByPlaceholderTest()
+        [AllureStory("Add Wishlist Item by clicking placeholder when user has a wishlist account")]
+        public void AddWishlistItemByPlaceholderWithAccountTest()
         {
             var loginPage = new LoginPage(Driver);
+            var mainScreen = new MainScreen(Driver);
             var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
@@ -99,11 +106,133 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            wishlistScreen
-                .CheckWishlistScreen()
+            mainScreen
                 .CheckMainScreen();
 
+            wishlistScreen
+                .CheckWishlistScreen();
+
             wishlistMainScreen
+                .CheckWishlistAddFundsButton()
+                .CheckWishlistManageAccountButton()
+                .ClickAddWishlistItemPlaceholder();
+
+            addNewWishlistItemModal
+                .CheckAddNewItemModal()
+                .PasteLink(WishlistItemUrl)
+                .ClickContinueButton();
+
+            wishlistItemDetailsModal
+                .CheckItemDetailsModal()
+                .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl)
+                .SetWishlistItemPrice(WishlistItemPrice)
+                .ClickConfirmButton();
+
+            addWishlistItemFinishModal
+                .CheckAddWishlistItemSuccessModal()
+                .VerifyWishlistItemName(WishlistItemName)
+                .ClickFinishButton();
+
+            wishlistMainScreen
+                .ClickWishlistItem(WishlistItemName);
+
+            wishlistDetailsScreen
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice,
+                    WishlistItemUrl);
+
+            var wishlistItemId = Driver.Url[^36..];
+
+            DeleteWishlistItem(username, ValidPassword, wishlistItemId);
+        }
+
+        [Test(Description = "Add Wishlist item by clicking a button when user doesn't have a wishlist account")]
+        [AllureEpic("Wishlist")]
+        [AllureFeature("Add Wishlist Item")]
+        [AllureStory("Add Wishlist Item by clicking 'Add an item' button when user doesn't have a wishlist account")]
+        public void AddWishlistItemByButtonWithoutAccountTest()
+        {
+            var loginPage = new LoginPage(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var wishlistScreen = new WishlistScreen(Driver);
+            var wishlistMainScreen = new WishlistMainScreen(Driver);
+            var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
+            var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
+            var addWishlistItemFinishModal = new AddWishlistItemSuccessModal(Driver);
+            var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
+
+            const string username = "autotests.mono+2.141221@gmail.com";
+
+            loginPage
+                .PassCredentials(username, ValidPassword)
+                .ClickSignInButton();
+
+            mainScreen
+                .CheckMainScreen();
+
+            wishlistScreen
+                .CheckWishlistScreen();
+
+            wishlistMainScreen
+                .CheckWishlistCreateAccountButton()
+                .ClickAddWishlistItemButton();
+
+            addNewWishlistItemModal
+                .CheckAddNewItemModal()
+                .PasteLink(WishlistItemUrl)
+                .ClickContinueButton();
+
+            wishlistItemDetailsModal
+                .CheckItemDetailsModal()
+                .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl)
+                .SetWishlistItemPrice(WishlistItemPrice)
+                .ClickConfirmButton();
+
+            addWishlistItemFinishModal
+                .CheckAddWishlistItemSuccessModal()
+                .VerifyWishlistItemName(WishlistItemName)
+                .ClickFinishButton();
+
+            wishlistMainScreen
+                .ClickWishlistItem(WishlistItemName);
+
+            wishlistDetailsScreen
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice,
+                    WishlistItemUrl);
+
+            var wishlistItemId = Driver.Url[^36..];
+
+            DeleteWishlistItem(username, ValidPassword, wishlistItemId);
+        }
+
+        [Test(Description = "Add Wishlist item by clicking placeholder when user doesn't have a wishlist account")]
+        [AllureEpic("Wishlist")]
+        [AllureFeature("Add Wishlist Item")]
+        [AllureStory("Add Wishlist Item by clicking placeholder when user doesn't have a wishlist account")]
+        public void AddWishlistItemByPlaceholderWithoutAccountTest()
+        {
+            var loginPage = new LoginPage(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var wishlistScreen = new WishlistScreen(Driver);
+            var wishlistMainScreen = new WishlistMainScreen(Driver);
+            var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
+            var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
+            var addWishlistItemFinishModal = new AddWishlistItemSuccessModal(Driver);
+            var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
+
+            const string username = "autotests.mono+3.141221@gmail.com";
+
+            loginPage
+                .PassCredentials(username, ValidPassword)
+                .ClickSignInButton();
+
+            mainScreen
+                .CheckMainScreen();
+
+            wishlistScreen
+                .CheckWishlistScreen();
+
+            wishlistMainScreen
+                .CheckWishlistCreateAccountButton()
                 .ClickAddWishlistItemPlaceholder();
 
             addNewWishlistItemModal

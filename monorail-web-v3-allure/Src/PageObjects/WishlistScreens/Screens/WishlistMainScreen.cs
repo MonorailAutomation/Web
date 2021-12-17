@@ -48,6 +48,27 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             return this;
         }
 
+        [AllureStep("Check if 'Create A Wishlist Account' button is displayed on page")]
+        public WishlistMainScreen CheckWishlistCreateAccountButton()
+        {
+            Wait.Until(ElementToBeVisible(_createAWishlistAccountButton));
+            return this;
+        }
+
+        [AllureStep("Check if 'Add Funds' button is displayed on page")]
+        public WishlistMainScreen CheckWishlistAddFundsButton()
+        {
+            Wait.Until(ElementToBeVisible(_addFundsButton));
+            return this;
+        }
+
+        [AllureStep("Check if 'Manage your Account' button is displayed on page")]
+        public WishlistMainScreen CheckWishlistManageAccountButton()
+        {
+            Wait.Until(ElementToBeVisible(_manageYourAccountButton));
+            return this;
+        }
+
         [AllureStep("Click 'Create A Wishlist Account' button")]
         public WishlistMainScreen ClickCreateAWishlistAccountButton()
         {

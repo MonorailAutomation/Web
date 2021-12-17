@@ -1,5 +1,6 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
 using NUnit.Allure.Attributes;
@@ -30,14 +31,15 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
         private const string WishlistItemPrice = "100";
 
-        [Test(Description = "Remove Wishlist item by clicking a button")]
+        [Test(Description = "Remove Wishlist item by clicking a button when user has a wishlist account")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Remove Wishlist Item")]
-        [AllureStory("Remove Wishlist Item by clicking 'Remove' button")]
-        public void RemoveWishlistItemTest()
+        [AllureStory("Remove Wishlist Item when user has a Wishlist account")]
+        public void RemoveWishlistItemWithWishlistAccountTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
+            var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var removeWishlistItemModal = new RemoveWishlistItemModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
@@ -51,7 +53,56 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             mainScreen
                 .CheckMainScreen();
 
+            wishlistScreen
+                .CheckWishlistScreen();
+
             wishlistMainScreen
+                .CheckWishlistAddFundsButton()
+                .CheckWishlistManageAccountButton()
+                .ClickWishlistItem(WishlistItemName);
+
+            wishlistDetailsScreen
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice,
+                    WishlistItemUrl)
+                .ClickRemoveButton();
+
+            removeWishlistItemModal
+                .CheckRemoveItemModal()
+                .ClickRemoveButton();
+
+            wishlistMainScreen.CheckNoWishlistItem(WishlistItemName);
+
+            AddWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
+                WishlistItemImage, WishlistItemUrl, WishlistItemName);
+        }
+
+        [Test(Description = "Remove Wishlist item by clicking a button when user doesn't have a wishlist account")]
+        [AllureEpic("Wishlist")]
+        [AllureFeature("Remove Wishlist Item")]
+        [AllureStory("Remove Wishlist Item when user doesn't have a wishlist account")]
+        public void RemoveWishlistItemWithoutWishlistAccountTest()
+        {
+            var loginPage = new LoginPage(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var wishlistScreen = new WishlistScreen(Driver);
+            var wishlistMainScreen = new WishlistMainScreen(Driver);
+            var removeWishlistItemModal = new RemoveWishlistItemModal(Driver);
+            var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
+
+            const string username = "autotests.mono+1.171221@gmail.com";
+
+            loginPage
+                .PassCredentials(username, ValidPassword)
+                .ClickSignInButton();
+
+            mainScreen
+                .CheckMainScreen();
+
+            wishlistScreen
+                .CheckWishlistScreen();
+
+            wishlistMainScreen
+                .CheckWishlistCreateAccountButton()
                 .ClickWishlistItem(WishlistItemName);
 
             wishlistDetailsScreen
