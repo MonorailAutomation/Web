@@ -1,4 +1,3 @@
-using System.Threading;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Screens;
@@ -52,8 +51,6 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .CheckInvestScreen()
                 .ClickMilestones();
 
-            Thread.Sleep(10000); //temporary workaround until issue 31578 solved
-
             milestonesMainScreen.ClickAddAMilestoneButton();
 
             chooseAMilestoneModal
@@ -73,7 +70,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .ClickContinueButton();
 
             milestoneDepositScheduleModal
-                .CheckDepositScheduleModal()
+                .CheckDepositScheduleModal("Weekly")
                 .ClickContinueButton();
 
             addMilestoneSuccessModal

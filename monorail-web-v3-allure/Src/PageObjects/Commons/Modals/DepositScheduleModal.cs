@@ -11,7 +11,8 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
 {
     public class DepositScheduleModal : Modal
     {
-        private const string TargetAndScheduleHeader = "Target & Schedule";
+        private const string TargetAndScheduleHeaderText = "Target & Schedule";
+        private const string DepositScheduleHeaderText = "Deposit Schedule";
 
         private const string DepositAmountLabelText = "Deposit Amount";
         private const string FrequencyLabelText = "Frequency";
@@ -89,27 +90,16 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
             return this;
         }
 
-        [AllureStep("Check 'Deposit Schedule' modal")]
-        public DepositScheduleModal CheckDepositScheduleModal()
-        {
-            try
-            {
-                CheckStandardDepositScheduleModal();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-
-            return this;
-        }
-
-        [AllureStep("Check 'Edit Schedule' modal for: ${0} frequency")]
+        [AllureStep("Check 'Deposit Schedule' modal for: ${0} frequency")]
         public DepositScheduleModal CheckDepositScheduleModal(string depositFrequency)
         {
             try
             {
-                CheckStandardDepositScheduleModal();
+                Wait.Until(ElementToBeVisible(XButton));
+                Wait.Until(ElementToBeVisible(_depositAmountInput));
+                Wait.Until(ElementToBeVisible(_dailyButton));
+                Wait.Until(ElementToBeVisible(_weeklyButton));
+                Wait.Until(ElementToBeVisible(_monthlyButton));
 
                 switch (depositFrequency)
                 {
@@ -129,6 +119,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
                         break;
                 }
 
+                ModalHeader.Text.Should().ContainAny(TargetAndScheduleHeaderText, DepositScheduleHeaderText);
                 _depositAmountLabel.Text.Should().Be(DepositAmountLabelText);
                 _frequencyLabel.Text.Should().Be(FrequencyLabelText);
             }
@@ -138,17 +129,6 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
             }
 
             return this;
-        }
-
-        private void CheckStandardDepositScheduleModal()
-        {
-            Wait.Until(ElementToBeVisible(XButton));
-            Wait.Until(ElementToBeVisible(_depositAmountInput));
-            Wait.Until(ElementToBeVisible(_dailyButton));
-            Wait.Until(ElementToBeVisible(_weeklyButton));
-            Wait.Until(ElementToBeVisible(_monthlyButton));
-
-            ModalHeader.Text.Should().Contain(TargetAndScheduleHeader);
         }
     }
 }

@@ -34,6 +34,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .CheckMainScreen();
 
             wishlistMainScreen
+                .CheckWishlistMainScreenAfterOnboarding()
                 .ClickViewAllButton();
 
             wishlistViewAllScreen

@@ -13,6 +13,12 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens
     {
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Add a Milestone')]")]
         private IWebElement _addAMilestoneButton;
+        
+        [FindsBy(How = How.XPath, Using = "//div[@class='empty-card__container'][1]")]
+        private IWebElement _firstPlaceholderCard;
+        
+        [FindsBy(How = How.XPath, Using = "//div[@class='empty-card__container'][2]")]
+        private IWebElement _secondPlaceholderCard;
 
         public MilestonesMainScreen(IWebDriver driver) : base(driver)
         {
@@ -24,6 +30,14 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens
         {
             Wait.Until(ElementToBeClickable(_addAMilestoneButton));
             _addAMilestoneButton.Click();
+            return this;
+        }
+        
+        [AllureStep("Click '+' placeholder card")]
+        public MilestonesMainScreen ClickPlaceholderCard()
+        {
+            Wait.Until(ElementToBeClickable(_firstPlaceholderCard));
+            _firstPlaceholderCard.Click();
             return this;
         }
 

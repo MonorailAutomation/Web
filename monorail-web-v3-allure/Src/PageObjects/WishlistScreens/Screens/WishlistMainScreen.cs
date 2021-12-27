@@ -1,4 +1,6 @@
-﻿using monorail_web_v3.PageObjects.Commons.Screens;
+﻿using System;
+using FluentAssertions;
+using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -10,6 +12,9 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 {
     public class WishlistMainScreen : WishlistScreen
     {
+        private const string AvailableForYourNextItemMessageText = "Available for your next item";
+        private const string ReadyToPowerYourWishlistMessageText = "Ready to power your wishlist?";
+
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Funds')]")]
         private IWebElement _addFundsButton;
 
@@ -22,11 +27,26 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         private IWebElement _addWishlistItemPlaceholder;
 
         [FindsBy(How = How.XPath,
+            Using = "//vim-wishlist-account//p")]
+        private IWebElement _availableForYourNextItemMessage;
+
+        [FindsBy(How = How.XPath,
             Using = "//button[contains(text(),'Create a Wishlist Account')]")]
         private IWebElement _createAWishlistAccountButton;
 
+        [FindsBy(How = How.XPath,
+            Using = "//button[contains(text(),'How it Works')]")]
+        private IWebElement _howItWorksButton;
+
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Manage your Account')]")]
         private IWebElement _manageYourAccountButton;
+
+        [FindsBy(How = How.XPath,
+            Using = "//vim-wishlist-account//h1")]
+        private IWebElement _moneyAmount;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='container']//h3")]
+        private IWebElement _readyToPowerYourWishlistMessage;
 
         [FindsBy(How = How.XPath,
             Using = "//button[contains(text(),'View All')]")]
@@ -34,39 +54,11 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 
         [FindsBy(How = How.XPath,
             Using = "//div[@class='vim-page-header__title']//h1[contains(text(),'Wishlist')]")]
-        private IWebElement _wishlistHeaderItem;
+        private IWebElement _wishlistHeader;
 
         public WishlistMainScreen(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
-        }
-
-        [AllureStep("Check if 'Wishlist' header is displayed on page")]
-        public WishlistMainScreen CheckWishlistHeader()
-        {
-            Wait.Until(ElementToBeVisible(_wishlistHeaderItem));
-            return this;
-        }
-
-        [AllureStep("Check if 'Create A Wishlist Account' button is displayed on page")]
-        public WishlistMainScreen CheckWishlistCreateAccountButton()
-        {
-            Wait.Until(ElementToBeVisible(_createAWishlistAccountButton));
-            return this;
-        }
-
-        [AllureStep("Check if 'Add Funds' button is displayed on page")]
-        public WishlistMainScreen CheckWishlistAddFundsButton()
-        {
-            Wait.Until(ElementToBeVisible(_addFundsButton));
-            return this;
-        }
-
-        [AllureStep("Check if 'Manage your Account' button is displayed on page")]
-        public WishlistMainScreen CheckWishlistManageAccountButton()
-        {
-            Wait.Until(ElementToBeVisible(_manageYourAccountButton));
-            return this;
         }
 
         [AllureStep("Click 'Create A Wishlist Account' button")]
@@ -130,6 +122,59 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         {
             var wishlistItemSelector = "//p[contains(text(), '" + wishlistItemName + "')]";
             Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath(wishlistItemSelector)));
+            return this;
+        }
+
+        [AllureStep("Check Wishlist Main screen after onboarding")]
+        public WishlistMainScreen CheckWishlistMainScreenAfterOnboarding()
+        {
+            try
+            {
+                Wait.Until(ElementToBeVisible(_wishlistHeader));
+                Wait.Until(ElementToBeVisible(_howItWorksButton));
+                Wait.Until(ElementToBeVisible(_moneyAmount));
+                Wait.Until(ElementToBeVisible(_availableForYourNextItemMessage));
+                Wait.Until(ElementToBeVisible(_addWishlistItemButton));
+                Wait.Until(ElementToBeVisible(_manageYourAccountButton));
+                Wait.Until(ElementToBeVisible(_addFundsButton));
+
+                Wait.Until(ElementToBeNotVisible(_readyToPowerYourWishlistMessage));
+                Wait.Until(ElementToBeNotVisible(_createAWishlistAccountButton));
+
+                _availableForYourNextItemMessage.Text.Should().Be(AvailableForYourNextItemMessageText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return this;
+        }
+
+        [AllureStep("Check Wishlist Main screen before onboarding")]
+        public WishlistMainScreen CheckWishlistMainScreenBeforeOnboarding()
+        {
+            try
+            {
+                Wait.Until(ElementToBeVisible(_wishlistHeader));
+                Wait.Until(ElementToBeVisible(_howItWorksButton));
+                Wait.Until(ElementToBeVisible(_addWishlistItemButton));
+                Wait.Until(ElementToBeVisible(_addWishlistItemPlaceholder));
+                Wait.Until(ElementToBeVisible(_readyToPowerYourWishlistMessage));
+                Wait.Until(ElementToBeVisible(_createAWishlistAccountButton));
+
+                Wait.Until(ElementToBeNotVisible(_moneyAmount));
+                Wait.Until(ElementToBeNotVisible(_availableForYourNextItemMessage));
+                Wait.Until(ElementToBeNotVisible(_manageYourAccountButton));
+                Wait.Until(ElementToBeNotVisible(_addFundsButton));
+
+                _readyToPowerYourWishlistMessage.Text.Should().Be(ReadyToPowerYourWishlistMessageText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
             return this;
         }
     }

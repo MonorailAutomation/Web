@@ -11,7 +11,7 @@ namespace monorail_web_v3.RestRequests
         private static readonly Uri RegisterEndpoint =
             new Uri("https://monarch-app-uat.azurewebsites.net/api/v3/user/Register");
 
-        public static void PostRegister(string userEmail)
+        public static void PostRegister(string userEmail, string phoneNo, string dateOfBirth)
         {
             const string verificationMode = "phone";
             var client = new RestClient
@@ -28,8 +28,8 @@ namespace monorail_web_v3.RestRequests
                 password = ValidPassword,
                 verificationMode,
                 email = userEmail,
-                phoneNumber = ValidPhoneNumber,
-                userDateOfBirth = ValidDateOfBirth
+                phoneNumber = phoneNo,
+                userDateOfBirth = dateOfBirth
             });
 
             var response = client.Execute(request);

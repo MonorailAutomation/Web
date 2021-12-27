@@ -16,10 +16,10 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         private const string InformationalMessageText =
             "In order to finish setting up your account, we need more information about you.";
 
-        private const string TimeMessageText = "This will take about 1 minute.";
+        private const string Time1MinuteMessageText = "This will take about 1 minute.";
+        private const string Time3MinutesMessageText = "This will take about 3 minutes.";
 
-
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Get Started')]")]
+        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Get Started')]")]
         private IWebElement _getStartedButton;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//p[1]")]
@@ -49,9 +49,9 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
                 Wait.Until(ElementToBeVisible(_getStartedButton));
 
                 ModalHeader.Text.Should().Contain(CompleteYourAccountModalHeaderText);
-                _personalInformationMessage.Should().Be(PersonalInformationMessageText);
-                _informationalMessage.Should().Be(InformationalMessageText);
-                _timeMessage.Should().Be(TimeMessageText);
+                _personalInformationMessage.Text.Should().Be(PersonalInformationMessageText);
+                _informationalMessage.Text.Should().Be(InformationalMessageText);
+                _timeMessage.Text.Should().ContainAny(Time1MinuteMessageText, Time3MinutesMessageText);
             }
             catch (Exception e)
             {

@@ -103,6 +103,13 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
             {
                 Wait.Until(ElementToBeVisible(XButton));
                 Wait.Until(ElementToBeVisible(BackButton));
+                Wait.Until(ElementToBeVisible(BackButton));
+                Wait.Until(ElementToBeVisible(BackButton));
+                Wait.Until(ElementToBeVisible(BackButton));
+                Wait.Until(ElementToBeVisible(BackButton));
+                Wait.Until(ElementToBeVisible(BackButton));
+                Wait.Until(ElementToBeVisible(BackButton));
+                Wait.Until(ElementToBeVisible(BackButton));
                 Wait.Until(ElementToBeVisible(ConfirmButton));
 
                 ModalHeader.Text.Should().Contain(CompleteYourProfileModalHeaderText);

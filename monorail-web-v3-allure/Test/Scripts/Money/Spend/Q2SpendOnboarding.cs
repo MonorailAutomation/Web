@@ -1,4 +1,3 @@
-using System.Threading;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Modals;
@@ -17,11 +16,11 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
 {
     [TestFixture]
     [AllureNUnit]
-    internal class Q2Onboarding : FunctionalTesting
+    internal class Q2SpendOnboarding : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+23.091221";
         private const string UsernameSuffix = "@gmail.com";
-        
+
         [Test(Description = "Q2 Spending Onboarding")]
         [AllureEpic("Money")]
         [AllureFeature("Spend")]
@@ -34,27 +33,17 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
             var spendMainScreen = new SpendMainScreen(Driver);
             var completeYourAccountModal = new CompleteYourAccountModal(Driver);
             var completeYourProfileModal = new CompleteYourProfileModal(Driver);
-            var regulatoryInformationModal = new RegulatoryInformationModal(Driver);
+            var regulatoryInformationPoliticallyExposedQuestionModal =
+                new RegulatoryInformationPoliticallyExposedQuestionModal(Driver);
             var linkYourAccountModal = new LinkYourAccountModal(Driver);
             var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
             var spendOnboardingSuccessModal = new SpendOnboardingSuccessModal(Driver);
 
-            const string firstName = "Auto";
-            const string lastName = "Test";
-            const string addressLine1 = "3322 Bee Ridge Rd";
-            const string city = "Sarasota";
-            const string state = "FL";
-            const string zip = "34239";
-            const string ssn = "666-00-3785";
-
-            
-            //const string username = "autotests.mono+23.091221665@gmail.com";
-
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
 
             RegisterUser(username);
-            
+
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
@@ -70,28 +59,29 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
             spendMainScreen
                 .CheckSpendScreenBeforeOnboarding()
                 .ClickOpenYourCheckingAccountButton();
-            
+
             completeYourAccountModal
                 .CheckCompleteYourAccountModal()
                 .ClickGetStartedButton();
 
             completeYourProfileModal
-                .SetFirstName(firstName)
-                .SetLastName(lastName)
-                .SetAddressLine1(addressLine1)
-                .SetCity(city)
-                .SetState(state)
-                .SetZip(zip)
-                .SetSsn(ssn)
+                .CheckCompleteYourProfileModal()
+                .SetFirstName(ValidFirstName)
+                .SetLastName(ValidLastName)
+                .SetAddressLine1(ValidAddressLine1)
+                .SetCity(ValidCity)
+                .SetState(ValidState)
+                .SetZip(ValidZip)
+                .SetSsn(ValidSsn)
                 .ClickConfirmButton();
 
-            regulatoryInformationModal
+            regulatoryInformationPoliticallyExposedQuestionModal
+                .CheckRegulatoryInformationPoliticallyExposedQuestionModal()
                 .ClickNopeAnswer()
                 .ClickContinueButton();
 
-            Thread.Sleep(7500); // TO DO: Change to verify Link your account modal
-
             linkYourAccountModal
+                .CheckLinkYourAccountModal()
                 .ClickLinkYourAccountButton();
 
             ConnectPlaid();

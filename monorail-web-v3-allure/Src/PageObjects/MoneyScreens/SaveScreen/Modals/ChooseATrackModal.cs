@@ -35,7 +35,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals
         }
 
         [AllureStep("Click '{0}' Track Type")]
-        public ChooseATrackModal ClickMilestoneType(TrackType trackType)
+        public ChooseATrackModal ClickTrackType(TrackType trackType)
         {
             var trackTypeSelector = "//p[contains(text(), '" + TrackTypeToString(trackType) + "')]";
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(trackTypeSelector))).Click();

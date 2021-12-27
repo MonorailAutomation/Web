@@ -1,4 +1,3 @@
-using System.Threading;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals;
@@ -30,7 +29,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var completeYourAccountModal = new CompleteYourAccountModal(Driver);
             var completeYourProfileModal = new CompleteYourProfileModal(Driver);
-            var regulatoryInformationModal = new RegulatoryInformationModal(Driver);
+            var regulatoryInformationPoliticallyExposedQuestionModal =
+                new RegulatoryInformationPoliticallyExposedQuestionModal(Driver);
             var linkYourAccountModal = new LinkYourAccountModal(Driver);
             var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
@@ -43,7 +43,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            wishlistMainScreen // to do: add verify screen before onboarding
+            wishlistMainScreen
+                .CheckWishlistMainScreenBeforeOnboarding()
                 .ClickCreateAWishlistAccountButton();
 
             completeYourAccountModal
@@ -51,22 +52,23 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickGetStartedButton();
 
             completeYourProfileModal
+                .CheckCompleteYourProfileModal()
                 .SetFirstName(ValidFirstName)
                 .SetLastName(ValidLastName)
                 .SetAddressLine1(ValidAddressLine1)
                 .SetCity(ValidCity)
-                .SetState(ValidCity)
+                .SetState(ValidState)
                 .SetZip(ValidZip)
                 .SetSsn(ValidSsn)
                 .ClickConfirmButton();
 
-            regulatoryInformationModal
+            regulatoryInformationPoliticallyExposedQuestionModal
+                .CheckRegulatoryInformationPoliticallyExposedQuestionModal()
                 .ClickNopeAnswer()
                 .ClickContinueButton();
 
-            Thread.Sleep(7500); // TO DO: Change to verify Link your account modal
-
             linkYourAccountModal
+                .CheckLinkYourAccountModal()
                 .ClickLinkYourAccountButton();
 
             ConnectPlaid();
@@ -79,10 +81,12 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ScrollToTheBottomOfTheDocument()
                 .ClickAgreeAndFinishButton();
 
-            Thread.Sleep(5000); // TO DO: change to verify 'wishlist screen' after onboarding
+            wishlistMainScreen
+                .CheckWishlistMainScreenAfterOnboarding();
         }
-        
-        [Test(Description = "Wishlist Onboarding - add Wishlist Item and click 'Open Wishlist Account' on 'Finish' modal")]
+
+        [Test(Description =
+            "Wishlist Onboarding - add Wishlist Item and click 'Open Wishlist Account' on 'Finish' modal")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Onboarding")]
         [AllureStory("Wishlist Onboarding - add Wishlist Item and click 'Open Wishlist Account' on 'Finish' modal")]
@@ -95,7 +99,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var addWishlistItemFinishModal = new AddWishlistItemSuccessModal(Driver);
             var completeYourAccountModal = new CompleteYourAccountModal(Driver);
             var completeYourProfileModal = new CompleteYourProfileModal(Driver);
-            var regulatoryInformationModal = new RegulatoryInformationModal(Driver);
+            var regulatoryInformationPoliticallyExposedQuestionModal =
+                new RegulatoryInformationPoliticallyExposedQuestionModal(Driver);
             var linkYourAccountModal = new LinkYourAccountModal(Driver);
             var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
@@ -108,11 +113,10 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            Thread.Sleep(5000);
-            
-            wishlistMainScreen // to do: add verify screen before onboarding
+            wishlistMainScreen
+                .CheckWishlistMainScreenBeforeOnboarding()
                 .ClickAddWishlistItemButton();
-            
+
             addNewWishlistItemModal
                 .CheckAddNewItemModal()
                 .PasteLink(WishlistItemUrl)
@@ -134,6 +138,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickGetStartedButton();
 
             completeYourProfileModal
+                .CheckCompleteYourProfileModal()
                 .SetFirstName(ValidFirstName)
                 .SetLastName(ValidLastName)
                 .SetAddressLine1(ValidAddressLine1)
@@ -143,13 +148,13 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .SetSsn(ValidSsn)
                 .ClickConfirmButton();
 
-            regulatoryInformationModal
+            regulatoryInformationPoliticallyExposedQuestionModal
+                .CheckRegulatoryInformationPoliticallyExposedQuestionModal()
                 .ClickNopeAnswer()
                 .ClickContinueButton();
 
-            Thread.Sleep(7500); // TO DO: Change to verify Link your account modal
-
             linkYourAccountModal
+                .CheckLinkYourAccountModal()
                 .ClickLinkYourAccountButton();
 
             ConnectPlaid();
@@ -162,9 +167,10 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ScrollToTheBottomOfTheDocument()
                 .ClickAgreeAndFinishButton();
 
-            Thread.Sleep(5000); // TO DO: change to verify 'wishlist screen' after onboarding
+            wishlistMainScreen
+                .CheckWishlistMainScreenAfterOnboarding();
         }
-        
+
         [Test(Description = "Wishlist Onboarding - add Wishlist Item, leave and then click 'Create a Wishlist'")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Onboarding")]
@@ -178,7 +184,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var addWishlistItemFinishModal = new AddWishlistItemSuccessModal(Driver);
             var completeYourAccountModal = new CompleteYourAccountModal(Driver);
             var completeYourProfileModal = new CompleteYourProfileModal(Driver);
-            var regulatoryInformationModal = new RegulatoryInformationModal(Driver);
+            var regulatoryInformationPoliticallyExposedQuestionModal =
+                new RegulatoryInformationPoliticallyExposedQuestionModal(Driver);
             var linkYourAccountModal = new LinkYourAccountModal(Driver);
             var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
@@ -191,11 +198,10 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
-            Thread.Sleep(5000);
-            
-            wishlistMainScreen // to do: add verify screen before onboarding
+            wishlistMainScreen
+                .CheckWishlistMainScreenBeforeOnboarding()
                 .ClickAddWishlistItemButton();
-            
+
             addNewWishlistItemModal
                 .CheckAddNewItemModal()
                 .PasteLink(WishlistItemUrl)
@@ -211,8 +217,9 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .CheckAddWishlistItemSuccessModalBeforeOnboarding()
                 .VerifyWishlistItemName(WishlistItemName)
                 .ClickFinishButton();
-            
-            wishlistMainScreen // to do: add verify screen before onboarding
+
+            wishlistMainScreen
+                .CheckWishlistMainScreenBeforeOnboarding()
                 .ClickCreateAWishlistAccountButton();
 
             completeYourAccountModal
@@ -220,6 +227,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickGetStartedButton();
 
             completeYourProfileModal
+                .CheckCompleteYourProfileModal()
                 .SetFirstName(ValidFirstName)
                 .SetLastName(ValidLastName)
                 .SetAddressLine1(ValidAddressLine1)
@@ -229,13 +237,13 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .SetSsn(ValidSsn)
                 .ClickConfirmButton();
 
-            regulatoryInformationModal
+            regulatoryInformationPoliticallyExposedQuestionModal
+                .CheckRegulatoryInformationPoliticallyExposedQuestionModal()
                 .ClickNopeAnswer()
                 .ClickContinueButton();
 
-            Thread.Sleep(7500); // TO DO: Change to verify Link your account modal
-
             linkYourAccountModal
+                .CheckLinkYourAccountModal()
                 .ClickLinkYourAccountButton();
 
             ConnectPlaid();
@@ -248,7 +256,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ScrollToTheBottomOfTheDocument()
                 .ClickAgreeAndFinishButton();
 
-            Thread.Sleep(5000); // TO DO: change to verify 'wishlist screen' after onboarding
+            wishlistMainScreen
+                .CheckWishlistMainScreenAfterOnboarding();
         }
     }
 }

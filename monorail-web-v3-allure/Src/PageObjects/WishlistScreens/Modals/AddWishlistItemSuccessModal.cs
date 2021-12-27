@@ -15,23 +15,23 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         private const string SuccessMessageText = "You are one step closer to getting your";
         private const string OpenWishlistAccountMessageText = "Ready to power your wishlist?";
 
+        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Open Wishlist Account')]")]
+        private IWebElement _openWishlistAccountButton;
+
+        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//p")]
+        private IWebElement _openWishlistAccountMessage;
+
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//p")]
         private IWebElement _successMessage;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h2[2]")]
         private IWebElement _wishlistItemName;
-        
-        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//p")]
-        private IWebElement _openWishlistAccountMessage;
-        
-        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Open Wishlist Account')]")]
-        private IWebElement _openWishlistAccountButton;
 
         public AddWishlistItemSuccessModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
-        
+
         [AllureStep("Click 'Open Wishlist Account' button")]
         public AddWishlistItemSuccessModal ClickOpenWishlistAccountButton()
         {
@@ -58,7 +58,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
 
             return this;
         }
-        
+
         [AllureStep("Check 'Success' modal before onboarding")]
         public AddWishlistItemSuccessModal CheckAddWishlistItemSuccessModalBeforeOnboarding()
         {

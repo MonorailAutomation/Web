@@ -18,7 +18,6 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
     {
         private const string UsernamePrefix = "autotests.mono+20.061121";
         private const string UsernameSuffix = "@gmail.com";
-        private const string DateOfBirth = "01/01/1990";
 
         [Test(Description = "Create user with text message verification")]
         [AllureEpic("Create user")]
@@ -30,8 +29,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var gettingStartedModal = new GettingStartedModal(Driver);
             var verifyYourAccountChooseMethodModal = new VerifyYourAccountChooseMethodModal(Driver);
             var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
-            var termsOfUseModal = new TermsOfUseModal(Driver);
-            var advisorsPrivacyPolicyModal = new AdvisorsPrivacyPolicyModal(Driver);
+            var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var mainScreen = new MainScreen(Driver);
             var sideMenu = new SideMenu(Driver);
 
@@ -46,7 +44,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
                 .CheckGettingStartedModal()
                 .SetEmail(username)
                 .SetPassword(ValidPassword)
-                .SetDateOfBirth(DateOfBirth)
+                .SetDateOfBirth(ValidDateOfBirthDmy)
                 .SetPhoneNumber(ValidPhoneNumber)
                 .ClickContinueButton();
 
@@ -58,24 +56,20 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             verifyYourAccountVerificationCodeModal
                 .CheckYourAccountVerificationCodeModal();
 
-            //Thread.Sleep(2000); // comment below
+            //Thread.Sleep(4500); // comment below
 
             verifyYourAccountVerificationCodeModal
                 //.EnterVerificationCode(GetVerificationCode(username)) // needs to be fixed by Dev. VC doesn't arrive, you need to hit 'Resend' to receive it
                 .EnterVerificationCode(verificationCode)
                 .ClickContinueButton();
 
-            termsOfUseModal
-                .CheckTermsOfUseModal()
-                .ClickSkipToBottomButton()
-                .ClickAgreeAndContinueButton();
-
-            advisorsPrivacyPolicyModal
-                .CheckAdvisorsPrivacyPolicyModal()
+            termsAndConditionsModal
+                .CheckTermsAndConditionsModal()
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
             mainScreen
+                .CheckMainScreen()
                 .ExpandSideMenu();
 
             sideMenu
@@ -86,14 +80,13 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
         [AllureEpic("Create user")]
         [AllureFeature("Successfully create user")]
         [AllureStory("Create user with email verification")]
-        public void CreateUserWithEmailVerificationTest()
+        public static void CreateUserWithEmailVerificationTest()
         {
             var loginPage = new LoginPage(Driver);
             var gettingStartedModal = new GettingStartedModal(Driver);
             var verifyYourAccountChooseMethodModal = new VerifyYourAccountChooseMethodModal(Driver);
             var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
-            var termsOfUseModal = new TermsOfUseModal(Driver);
-            var advisorsPrivacyPolicyModal = new AdvisorsPrivacyPolicyModal(Driver);
+            var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var mainScreen = new MainScreen(Driver);
             var sideMenu = new SideMenu(Driver);
 
@@ -106,7 +99,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
                 .CheckGettingStartedModal()
                 .SetEmail(username)
                 .SetPassword(ValidPassword)
-                .SetDateOfBirth(DateOfBirth)
+                .SetDateOfBirth(ValidDateOfBirthDmy)
                 .SetPhoneNumber(ValidPhoneNumber)
                 .ClickContinueButton();
 
@@ -115,24 +108,20 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
                 .ClickEmailOption()
                 .ClickContinueButton();
 
-            Thread.Sleep(2000); //waiting for results in DB
+            Thread.Sleep(4500); //waiting for results in DB
 
             verifyYourAccountVerificationCodeModal
                 .CheckYourAccountVerificationCodeModal()
                 .EnterVerificationCode(GetVerificationCode(username))
                 .ClickContinueButton();
 
-            termsOfUseModal
-                .CheckTermsOfUseModal()
-                .ClickSkipToBottomButton()
-                .ClickAgreeAndContinueButton();
-
-            advisorsPrivacyPolicyModal
-                .CheckAdvisorsPrivacyPolicyModal()
+            termsAndConditionsModal
+                .CheckTermsAndConditionsModal()
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
             mainScreen
+                .CheckMainScreen()
                 .ExpandSideMenu();
 
             sideMenu

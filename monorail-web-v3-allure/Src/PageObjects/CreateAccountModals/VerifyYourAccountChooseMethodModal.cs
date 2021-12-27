@@ -20,10 +20,10 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
         [FindsBy(How = How.XPath, Using = "//small")]
         private IWebElement _adviceMessage;
 
-        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'radio-group__option')][2]//span")]
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'radio-group__option')][2]")]
         private IWebElement _emailMethod;
 
-        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'radio-group__option')][1]//span")]
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'radio-group__option')][1]")]
         private IWebElement _textMessageMethod;
 
         public VerifyYourAccountChooseMethodModal(IWebDriver driver) : base(driver)

@@ -25,7 +25,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
             var moneyScreen = new MoneyScreen(Driver);
-            var tracksMainScreen = new TracksMainScreen(Driver);
+            var tracksMainScreen = new SaveMainScreen(Driver);
             var chooseATrackModal = new ChooseATrackModal(Driver);
             var trackDetailsModal = new TrackItemDetailsModal(Driver);
             var trackDepositScheduleModal = new TrackDepositScheduleModal(Driver);
@@ -55,7 +55,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
 
             chooseATrackModal
                 .CheckChooseATrackModal()
-                .ClickMilestoneType(TrackType.Debt);
+                .ClickTrackType(TrackType.Debt);
 
             trackDetailsModal
                 .CheckTrackDetailsModal()
@@ -68,7 +68,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ClickContinueButton();
 
             trackDepositScheduleModal
-                .CheckDepositScheduleModal()
+                .CheckDepositScheduleModal("Weekly")
                 .ClickContinueButton();
 
             addTrackSuccessModal

@@ -1,8 +1,6 @@
 using System;
 using FluentAssertions;
-using monorail_web_v3.Commons;
 using monorail_web_v3.PageObjects.Commons;
-using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -16,28 +14,31 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
         private const string ModalHeaderText = "Account Setup";
         private const string SuccessMessageText = "Success!";
         private const string AccountMessageText = "Your checking account is being opened.";
-        private const string InfoMessageText = "Once opened, your personalized Vimvest Debit Card will be send and arrive within 5-10 business days.";
+
+        private const string InfoMessageText =
+            "Once opened, your personalized Vimvest Debit Card will be send and arrive within 5-10 business days.";
+
         private const string CardImageUrl = "assets/img/banner-debit-card.svg";
         private const string SipcLogoUrl = "assets/img/fdic-logo.svg";
-        
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h2")]
-        private IWebElement _successMessage;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h3")]
         private IWebElement _accountMessage;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//p")]
-        private IWebElement _infoMessage;
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//img")]
+        private IWebElement _cardImage;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//svg-icon")]
+        private IWebElement _fdicLogo;
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Finish')]")]
         private IWebElement _finishButton;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//img")]
-        private IWebElement _cardImage;
-        
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//svg-icon")]
-        private IWebElement _fdicLogo;
-        
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//p")]
+        private IWebElement _infoMessage;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h2")]
+        private IWebElement _successMessage;
+
         public SpendOnboardingSuccessModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);

@@ -17,7 +17,7 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
         private const string EnterVerificationCodeMessageText = "Please enter your verification code";
         private const string ResendOptionText = "Resend";
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']/span[1]")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//span[contains(@class,'header')]")]
         private IWebElement _enterVerificationCodeMessage;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//a")]

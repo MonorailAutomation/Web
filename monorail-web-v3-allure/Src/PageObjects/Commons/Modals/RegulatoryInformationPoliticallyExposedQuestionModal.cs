@@ -8,7 +8,7 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.Commons.Modals
 {
-    public class RegulatoryInformationModal : Modal
+    public class RegulatoryInformationPoliticallyExposedQuestionModal : Modal
     {
         private const string RegulatoryInformationModalHeaderText = "Regulatory Information";
         private const string QuestionText = "Are you, or family, politically exposed or a public official?";
@@ -31,13 +31,13 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         [FindsBy(How = How.XPath, Using = "//button[@class='vim-checkbox-selector__item'][1]")]
         private IWebElement _yesAnswer;
 
-        public RegulatoryInformationModal(IWebDriver driver) : base(driver)
+        public RegulatoryInformationPoliticallyExposedQuestionModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
 
         [AllureStep("Click 'Nope!' answer")]
-        public RegulatoryInformationModal ClickNopeAnswer()
+        public RegulatoryInformationPoliticallyExposedQuestionModal ClickNopeAnswer()
         {
             Wait.Until(ElementToBeVisible(_nopeAnswer));
             _nopeAnswer.Click();
@@ -45,7 +45,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         }
 
         [AllureStep("Click 'Continue' button")]
-        public RegulatoryInformationModal ClickContinueButton()
+        public RegulatoryInformationPoliticallyExposedQuestionModal ClickContinueButton()
         {
             Wait.Until(ElementToBeVisible(_continueButton));
             _continueButton.Click();
@@ -53,7 +53,8 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         }
 
         [AllureStep("Check 'Regulatory Information' modal")]
-        public RegulatoryInformationModal CheckRegulatoryInformationModal()
+        public RegulatoryInformationPoliticallyExposedQuestionModal
+            CheckRegulatoryInformationPoliticallyExposedQuestionModal()
         {
             try
             {
@@ -61,12 +62,12 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
                 Wait.Until(ElementToBeVisible(_question));
                 Wait.Until(ElementToBeVisible(_yesAnswer));
                 Wait.Until(ElementToBeVisible(_nopeAnswer));
-                Wait.Until(ElementToBeVisible(CancelButton));
-                Wait.Until(ElementToBeVisible(ContinueButton));
+                Wait.Until(ElementToBeVisible(BackButtonInSpan));
+                Wait.Until(ElementToBeVisible(ContinueButtonInSpan));
 
                 ModalHeader.Text.Should().Contain(RegulatoryInformationModalHeaderText);
-                _question.Should().Be(QuestionText);
-                _helperText.Should().Be(HelperText);
+                _question.Text.Should().Be(QuestionText);
+                _helperText.Text.Should().Be(HelperText);
             }
             catch (Exception e)
             {

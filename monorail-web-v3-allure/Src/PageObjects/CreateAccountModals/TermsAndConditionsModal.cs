@@ -9,52 +9,52 @@ using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.CreateAccountModals
 {
-    public class TermsOfUseModal : OnboardingModal
+    public class TermsAndConditionsModal : OnboardingModal
     {
         private const string Step3SubheaderText = "STEP 3";
-        private const string TermsOfUseHeaderText = "Terms of use";
+        private const string TermsOfUseHeaderText = "Terms and Conditions";
 
-        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Agree and Continue')]")]
-        private IWebElement _agreeAndContinueButton;
+        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Agree and Finish')]")]
+        private IWebElement _agreeAndFinishButton;
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Skip to bottom')]")]
         private IWebElement _skipToBottomButton;
 
-        public TermsOfUseModal(IWebDriver driver) : base(driver)
+        public TermsAndConditionsModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
 
         [AllureStep("Click 'Skip to bottom' button")]
-        public TermsOfUseModal ClickSkipToBottomButton()
+        public TermsAndConditionsModal ClickSkipToBottomButton()
         {
             Wait.Until(ElementToBeVisible(_skipToBottomButton));
             _skipToBottomButton.Click();
             return this;
         }
 
-        [AllureStep("Click 'Agree and Continue' button")]
-        public TermsOfUseModal ClickAgreeAndContinueButton()
+        [AllureStep("Click 'Agree and Finish' button")]
+        public TermsAndConditionsModal ClickAgreeAndFinishButton()
         {
             Wait.Until(ElementToBeNotVisible(_skipToBottomButton));
-            Wait.Until(ElementToBeClickable(_agreeAndContinueButton));
-            _agreeAndContinueButton.Click();
+            Wait.Until(ElementToBeClickable(_agreeAndFinishButton));
+            _agreeAndFinishButton.Click();
             return this;
         }
 
         [AllureStep("Check 'Terms of use' modal")]
-        public TermsOfUseModal CheckTermsOfUseModal()
+        public TermsAndConditionsModal CheckTermsAndConditionsModal()
         {
             try
             {
                 CheckOnboardingModal();
                 Wait.Until(ElementToBeVisible(_skipToBottomButton));
-                Wait.Until(ElementToBeVisible(_agreeAndContinueButton));
+                Wait.Until(ElementToBeVisible(_agreeAndFinishButton));
 
                 StepHeader.Text.Should().Be(TermsOfUseHeaderText);
                 StepSubheader.Text.Should().Be(Step3SubheaderText);
 
-                _agreeAndContinueButton.Enabled.Should().BeFalse();
+                _agreeAndFinishButton.Enabled.Should().BeFalse();
             }
             catch (Exception e)
             {

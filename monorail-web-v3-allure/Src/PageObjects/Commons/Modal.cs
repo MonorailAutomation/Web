@@ -11,6 +11,9 @@ namespace monorail_web_v3.PageObjects.Commons
         [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Back')]")]
         protected IWebElement BackButton;
 
+        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//span[contains(text(), 'Back')]")]
+        protected IWebElement BackButtonInSpan;
+
         [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Cancel')]")]
         protected IWebElement CancelButton;
 
@@ -19,6 +22,9 @@ namespace monorail_web_v3.PageObjects.Commons
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//button[contains(text(),'Continue')]")]
         protected IWebElement ContinueButton;
+
+        [FindsBy(How = How.XPath, Using = "//button//span[contains(text(),'Continue')]")]
+        protected IWebElement ContinueButtonInSpan;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__header__title']")]
         protected IWebElement ModalHeader;
@@ -44,6 +50,14 @@ namespace monorail_web_v3.PageObjects.Commons
         {
             Wait.Until(ElementToBeVisible(ContinueButton));
             ContinueButton.Click();
+            return this;
+        }
+
+        [AllureStep("Click 'Continue' button")]
+        public Modal ClickContinueButtonInSpan()
+        {
+            Wait.Until(ElementToBeVisible(ContinueButtonInSpan));
+            ContinueButtonInSpan.Click();
             return this;
         }
     }

@@ -18,9 +18,9 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
         private const string ProvideAnEmailLabelText = "Provide an Email:";
         private const string EmailPlaceholderText = "email@domain.com";
 
-        private const string ConfirmYourPasswordLabelText = "Confirm your Password:";
+        private const string CreateAPasswordLabelText = "Create a Password:";
 
-        private const string NumberValidationText = "At leat 1 number";
+        private const string NumberValidationText = "At least 1 number";
         private const string UppercaseCharacterValidationText = "At least 1 uppercase character";
         private const string SpecialCharacterNumberValidationText = "At least 1 special character";
         private const string CharacterValidationText = "8 or more characters";
@@ -123,7 +123,7 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
                 StepSubheader.Text.Should().Be(Step1SubheaderText);
                 _provideAnEmailLabel.Text.Should().Be(ProvideAnEmailLabelText);
                 _emailInput.GetAttribute("placeholder").Should().Be(EmailPlaceholderText);
-                _confirmYourPasswordLabel.Text.Should().Be(ConfirmYourPasswordLabelText);
+                _confirmYourPasswordLabel.Text.Should().Be(CreateAPasswordLabelText);
                 _numberValidation.Text.Should().Be(NumberValidationText);
                 _uppercaseCharacterValidation.Text.Should().Be(UppercaseCharacterValidationText);
                 _specialCharacterNumberValidation.Text.Should().Be(SpecialCharacterNumberValidationText);

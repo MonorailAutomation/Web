@@ -19,7 +19,6 @@ namespace monorail_web_v3.PageObjects.Menus
             PageFactory.InitElements(driver, this);
         }
 
-
         [AllureStep("Click 'My Connected Account' link")]
         public SideMenu ClickMyConnectedAccountLink()
         {

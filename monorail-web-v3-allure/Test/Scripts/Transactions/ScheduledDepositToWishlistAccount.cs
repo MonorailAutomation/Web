@@ -39,7 +39,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
                 .CheckMainScreen();
 
             wishlistMainScreen
-                .CheckWishlistHeader()
+                .CheckWishlistMainScreenAfterOnboarding()
                 .ClickManageYourAccountButton();
 
             wishlistManageAccountModal
@@ -84,7 +84,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
                 .CheckMainScreen();
 
             wishlistMainScreen
-                .CheckWishlistHeader()
+                .CheckWishlistMainScreenAfterOnboarding()
                 .ClickManageYourAccountButton();
 
             wishlistManageAccountModal
@@ -130,7 +130,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
                 .CheckMainScreen();
 
             wishlistMainScreen
-                .CheckWishlistHeader()
+                .CheckWishlistMainScreenAfterOnboarding()
                 .ClickManageYourAccountButton();
 
             wishlistManageAccountModal
