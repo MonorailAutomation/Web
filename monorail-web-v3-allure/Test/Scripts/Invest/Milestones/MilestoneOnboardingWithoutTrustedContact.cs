@@ -26,11 +26,12 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
         private const string MilestoneTargetDate = "24/10/2023";
         private const string MilestoneTargetAmount = "4,500";
 
-        [Test(Description = "Milestone Onboarding (Apex) - by clicking 'Add a Milestone' button; without Trusted Contact")]
+        [Test(Description =
+            "Milestone Onboarding (Apex) - by clicking 'Add a Milestone' button; without Trusted Contact")]
         [AllureEpic("Invest")]
         [AllureFeature("Milestones")]
         [AllureStory("Milestone Onboarding (Apex) - by clicking 'Add a Milestone' button; without Trusted Contact")]
-        public void MilestoneOnboardingByClickingAddAMilestoneWithoutTrustedContactTest()
+        public void MilestoneOnboardingByClickingAddAMilestoneButtonWithoutTrustedContactTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
@@ -192,7 +193,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             milestonesMainScreen.VerifyIfMilestoneExists(milestoneName, MilestoneTargetAmount);
         }
-        
+
         [Test(Description = "Milestone Onboarding (Apex) - by clicking '+' placeholder; without Trusted Contact")]
         [AllureEpic("Invest")]
         [AllureFeature("Milestones")]

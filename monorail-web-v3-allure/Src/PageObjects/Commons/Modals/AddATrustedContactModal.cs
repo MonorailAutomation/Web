@@ -13,32 +13,32 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
     {
         private const string AddATrustedContactModalHeaderText = "Add a Trusted Contact";
 
-        [FindsBy(How = How.XPath, Using = "//form//button")]
-        private IWebElement _iDontWantToAddATrustedContactButton;
-
-        [FindsBy(How = How.XPath, Using = "//input[@id='firstName']")]
-        private IWebElement _firstNameInput;
-
-        [FindsBy(How = How.XPath, Using = "//input[@id='lastName']")]
-        private IWebElement _lastNameInput;
-        
-        [FindsBy(How = How.XPath, Using = "//input[@id='email']")]
-        private IWebElement _emailInput;
-        
         [FindsBy(How = How.XPath, Using = "//div[@formarrayname='street'][1]//input")]
         private IWebElement _addressLine1Input;
 
         [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='city']")]
         private IWebElement _cityInput;
-        
-        [FindsBy(How = How.XPath, Using = "//select[@formcontrolname='state']")]
-        private IWebElement _stateDropdown;
-        
-        [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='zip']")]
-        private IWebElement _zipInput;
+
+        [FindsBy(How = How.XPath, Using = "//input[@id='email']")]
+        private IWebElement _emailInput;
+
+        [FindsBy(How = How.XPath, Using = "//input[@id='firstName']")]
+        private IWebElement _firstNameInput;
+
+        [FindsBy(How = How.XPath, Using = "//form//button")]
+        private IWebElement _iDontWantToAddATrustedContactButton;
+
+        [FindsBy(How = How.XPath, Using = "//input[@id='lastName']")]
+        private IWebElement _lastNameInput;
 
         [FindsBy(How = How.XPath, Using = "//input[@id='phoneNumber']")]
         private IWebElement _phoneNumberInput;
+
+        [FindsBy(How = How.XPath, Using = "//select[@formcontrolname='state']")]
+        private IWebElement _stateDropdown;
+
+        [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='zip']")]
+        private IWebElement _zipInput;
 
         public AddATrustedContactModal(IWebDriver driver) : base(driver)
         {
@@ -52,7 +52,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
             _iDontWantToAddATrustedContactButton.Click();
             return this;
         }
-        
+
         [AllureStep("Set 'First Name' to '${0}'")]
         public AddATrustedContactModal SetFirstName(string firstName)
         {
@@ -68,7 +68,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
             _lastNameInput.SendKeys(lastName);
             return this;
         }
-        
+
         [AllureStep("Set 'Email' to '${0}'")]
         public AddATrustedContactModal SetEmail(string email)
         {
@@ -133,7 +133,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
 
             return this;
         }
-        
+
         [AllureStep("Check 'Add a Trusted Contact' modal for >55 yo user")]
         public AddATrustedContactModal CheckAddATrustedContactOver55YoModal()
         {
@@ -165,7 +165,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
                 Wait.Until(ElementToBeVisible(_phoneNumberInput));
                 Wait.Until(ElementToBeVisible(BackButton));
                 Wait.Until(ElementToBeVisible(ConfirmButton));
-                
+
                 ModalHeader.Text.Should().Contain(AddATrustedContactModalHeaderText);
             }
             catch (Exception e)

@@ -126,8 +126,6 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
 
             RegisterUser(username);
 
-            //var username = "autotests.mono+25.201221659@gmail.com";
-
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();

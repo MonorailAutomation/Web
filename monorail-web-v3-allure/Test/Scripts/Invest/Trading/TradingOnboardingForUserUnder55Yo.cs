@@ -14,7 +14,6 @@ using static monorail_web_v3.Commons.RandomGenerator;
 using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 using static monorail_web_v3.Database.VerificationCode;
 using static monorail_web_v3.RestRequests.PilotFeature;
-using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using TermsAndConditionsModal = monorail_web_v3.PageObjects.CreateAccountModals.TermsAndConditionsModal;
 
 namespace monorail_web_v3.Test.Scripts.Invest.Trading
@@ -64,10 +63,10 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
             var phoneNumber = "941" + GenerateRandomNumber() + GenerateRandom4Digits();
 
             Console.WriteLine(username);
-            
+
             loginPage
                 .ClickCreateAnAccountButton();
-            
+
             gettingStartedModal
                 .CheckGettingStartedModal()
                 .SetEmail(username)
@@ -75,24 +74,24 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
                 .SetDateOfBirth(ValidDateOfBirthDmy)
                 .SetPhoneNumber(phoneNumber)
                 .ClickContinueButton();
-            
+
             verifyYourAccountChooseMethodModal
                 .CheckVerifyYourAccountChooseMethodModal()
                 .ClickEmailOption()
                 .ClickContinueButton();
-            
+
             Thread.Sleep(4500); //waiting for results in DB
-            
+
             verifyYourAccountVerificationCodeModal
                 .CheckYourAccountVerificationCodeModal()
                 .EnterVerificationCode(GetVerificationCode(username))
                 .ClickContinueButton();
-            
+
             termsAndConditionsModal
                 .CheckTermsAndConditionsModal()
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
-            
+
             PostPilotFeatures(username, "useOrbis");
 
             mainScreen
@@ -179,9 +178,9 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
             linkYourAccountModal
                 .CheckLinkYourAccountModal()
                 .ClickLinkYourAccountButton();
-            
+
             ConnectPlaid();
-            
+
             Thread.Sleep(5000);
 
             disclosuresModal

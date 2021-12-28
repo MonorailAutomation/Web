@@ -33,7 +33,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
 
         public RiskProfileNetWorthQuestionModal(IWebDriver driver) : base(driver)
         {
-            PageFactory.InitElements(driver, this );
+            PageFactory.InitElements(driver, this);
         }
 
         [AllureStep("Click 'Over $100K' answer")]

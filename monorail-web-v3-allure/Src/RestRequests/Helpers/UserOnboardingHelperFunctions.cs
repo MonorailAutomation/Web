@@ -15,7 +15,7 @@ namespace monorail_web_v3.RestRequests.Helpers
             PostRegisterVerify(token);
             Console.WriteLine(username + " was created successfully");
         }
-        
+
         public static void RegisterUserWithDoB(string username, string dateOfBirth)
         {
             PostRegister(username, ValidPhoneNumber, dateOfBirth);
@@ -23,7 +23,7 @@ namespace monorail_web_v3.RestRequests.Helpers
             PostRegisterVerify(token);
             Console.WriteLine(username + " was created successfully");
         }
-        
+
         public static void RegisterUserWithPhoneNumber(string username, string phoneNumber)
         {
             PostRegister(username, phoneNumber, ValidDateOfBirthYmd);
@@ -31,8 +31,9 @@ namespace monorail_web_v3.RestRequests.Helpers
             PostRegisterVerify(token);
             Console.WriteLine(username + " was created successfully");
         }
-        
-        public static void RegisterUserWithPhoneNumberAndDateOfBirth(string username, string phoneNumber, string dateOfBirth)
+
+        public static void RegisterUserWithPhoneNumberAndDateOfBirth(string username, string phoneNumber,
+            string dateOfBirth)
         {
             PostRegister(username, phoneNumber, dateOfBirth);
             var token = GenerateToken(username, ValidPassword);

@@ -18,7 +18,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
     [AllureNUnit]
     internal class Q2SpendOnboarding : FunctionalTesting
     {
-        private const string UsernamePrefix = "autotests.mono+23.091221";
+        private const string UsernamePrefix = "autotests.mono+23.271221";
         private const string UsernameSuffix = "@gmail.com";
 
         [Test(Description = "Q2 Spending Onboarding")]

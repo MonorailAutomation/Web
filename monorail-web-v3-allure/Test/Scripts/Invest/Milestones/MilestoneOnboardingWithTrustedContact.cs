@@ -201,7 +201,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             milestonesMainScreen.VerifyIfMilestoneExists(milestoneName, MilestoneTargetAmount);
         }
-        
+
         [Test(Description = "Milestone Onboarding (Apex) - by clicking '+' placeholder; with Trusted Contact")]
         [AllureEpic("Invest")]
         [AllureFeature("Milestones")]
@@ -287,7 +287,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .SetZip(ValidZip)
                 .SetPhoneNumber(ValidPhoneNumber)
                 .ClickConfirmButton();
-            
+
             Thread.Sleep(5000);
 
             employmentInformationModal
