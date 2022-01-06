@@ -13,7 +13,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
     [AllureNUnit]
     internal class ScheduledDepositToWishlistAccount : FunctionalTesting
     {
-        private const string Username = "autotests.mono+3.1.161021@gmail.com"; // TO DO: replace with other user
+        private const string Username = "autotests.mono+9.0601222@gmail.com";
         private const string DepositAmount = "20";
 
         [Test(Description = "Enable and disable Scheduled Deposit to Wishlist Account - daily")]

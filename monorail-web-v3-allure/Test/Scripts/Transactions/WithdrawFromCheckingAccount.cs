@@ -14,10 +14,10 @@ namespace monorail_web_v3.Test.Scripts.Transactions
     [AllureNUnit]
     public class WithdrawFromCheckingAccount : FunctionalTesting
     {
-        [Test(Description = "Withdraw money to Checking Account")]
+        [Test(Description = "Withdraw money from Checking Account")]
         [AllureEpic("Transactions")]
         [AllureFeature("Checking Account")]
-        [AllureStory("Withdraw money to Checking Account")]
+        [AllureStory("Withdraw money from Checking Account")]
         public void WithdrawMoneyFromCheckingAccountTest()
         {
             var loginPage = new LoginPage(Driver);

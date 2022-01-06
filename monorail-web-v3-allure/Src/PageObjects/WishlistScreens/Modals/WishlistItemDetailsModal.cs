@@ -16,9 +16,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [FindsBy(How = How.XPath, Using = "//textarea[@formcontrolname='description']")]
         private IWebElement _wishlistDescriptionInput;
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Use Custom Image')]")]
-        private IWebElement _wishlistItemCustomImageButton;
-
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//img")]
         private IWebElement _wishlistItemImage;
 
@@ -46,7 +43,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
                 Wait.Until(ElementToBeVisible(_wishlistItemPriceInput));
                 Wait.Until(ElementToBeVisible(_wishlistDescriptionInput));
                 Wait.Until(ElementToBeVisible(_wishlistItemNameInput));
-                Wait.Until(ElementToBeVisible(_wishlistItemCustomImageButton));
                 Wait.Until(ElementToBeVisible(ConfirmButton));
             }
             catch (Exception e)

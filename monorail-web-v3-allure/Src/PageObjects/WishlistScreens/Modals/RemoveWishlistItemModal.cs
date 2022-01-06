@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons;
 using NUnit.Allure.Steps;
@@ -30,13 +31,21 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [AllureStep("Check 'Remove Item' modal")]
         public RemoveWishlistItemModal CheckRemoveItemModal()
         {
-            Wait.Until(ElementToBeVisible(ModalHeader));
-            Wait.Until(ElementToBeVisible(_removeWishlistItemMessage));
-            Wait.Until(ElementToBeVisible(_cancelButton));
-            Wait.Until(ElementToBeVisible(_removeButton));
+            try
+            {
+                Wait.Until(ElementToBeVisible(ModalHeader));
+                Wait.Until(ElementToBeVisible(_removeWishlistItemMessage));
+                Wait.Until(ElementToBeVisible(_cancelButton));
+                Wait.Until(ElementToBeVisible(_removeButton));
 
-            ModalHeader.Text.Should().Be(RemoveWishlistItemHeaderText);
-            _removeWishlistItemMessage.Text.Should().Be(RemoveWishlistItemMessageText);
+                ModalHeader.Text.Should().Be(RemoveWishlistItemHeaderText);
+                _removeWishlistItemMessage.Text.Should().Be(RemoveWishlistItemMessageText);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
             return this;
         }
 

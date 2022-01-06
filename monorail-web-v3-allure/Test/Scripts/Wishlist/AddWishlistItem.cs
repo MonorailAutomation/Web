@@ -90,7 +90,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
             const string username = "autotests.mono+3.1.161021@gmail.com";
-
+            const string wishlistItemPrice = "999";
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
@@ -113,7 +113,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             wishlistItemDetailsModal
                 .CheckItemDetailsModal()
                 .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl)
-                .SetWishlistItemPrice(WishlistItemPrice)
+                .SetWishlistItemPrice(wishlistItemPrice)
                 .ClickConfirmButton();
 
             addWishlistItemFinishModal
@@ -125,7 +125,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickWishlistItem(WishlistItemName);
 
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice,
+                .CheckWishlistItemDetailsScreenForNotReadyToBuyItemStatus()
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, wishlistItemPrice,
                     WishlistItemUrl);
 
             var wishlistItemId = Driver.Url[^36..];

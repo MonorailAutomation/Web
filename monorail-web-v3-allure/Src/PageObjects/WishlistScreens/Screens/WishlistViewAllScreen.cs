@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using SeleniumExtras.WaitHelpers;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
@@ -12,16 +14,13 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 {
     public class WishlistViewAllScreen : WishlistScreen
     {
-        [FindsBy(How = How.XPath,
-            Using = "//button[contains(text(),'Add Funds')]")]
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Funds')]")]
         private IWebElement _addFundsButton;
 
-        [FindsBy(How = How.XPath,
-            Using = "//button[contains(text(),'Manage your Account')]")]
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Manage your Account')]")]
         private IWebElement _manageYourAccountButton;
 
-        [FindsBy(How = How.XPath,
-            Using = "//div[contains(@class, 'rtb-only')]//vim-toggle")]
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'rtb-only')]//vim-toggle")]
         private IWebElement _showOnlyReadyToBuySwitch;
 
         [FindsBy(How = How.XPath,
@@ -54,6 +53,27 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         {
             Wait.Until(ElementToBeVisible(_showOnlyReadyToBuySwitch));
             _showOnlyReadyToBuySwitch.Click();
+            return this;
+        }
+
+        [AllureStep("Click '{0}' item")]
+        public WishlistViewAllScreen ClickWishlistItem(string wishlistItemName)
+        {
+            var wishlistItemSelector = "//p[contains(text(), '" + wishlistItemName + "')]";
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemSelector))).Click();
+            return this;
+        }
+
+        [AllureStep("Check if ${0} item is in ${1} status")]
+        public WishlistViewAllScreen CheckStatusForItem(string wishlistItemName, string status)
+        {
+            var wishlistItemSelector = "//p[contains(text(), '" + wishlistItemName + "')]";
+            var wishlistItemStatusSelector = wishlistItemSelector + "//following-sibling::span";
+
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemSelector)));
+            var wishlistItemStatus = Driver.FindElement(By.XPath(wishlistItemStatusSelector));
+            wishlistItemStatus.Text.Should().Be(status);
+
             return this;
         }
 
