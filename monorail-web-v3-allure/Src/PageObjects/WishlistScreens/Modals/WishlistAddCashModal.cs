@@ -13,10 +13,10 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
     {
         private const string AvailableToWithdrawLabelText = "Available to Withdraw (Est.)";
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//div[2]//p[2]")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='cash-transfer-modal__footer']//div[2]//p[2]")]
         private IWebElement _availableToWithdrawAmount;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//div[2]//p[1]")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='cash-transfer-modal__footer']//div[2]//p[1]")]
         private IWebElement _availableToWithdrawLabel;
 
         public WishlistAddCashModal(IWebDriver driver) : base(driver)

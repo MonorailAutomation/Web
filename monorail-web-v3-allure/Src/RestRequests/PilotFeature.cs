@@ -1,7 +1,7 @@
 using System;
-using System.Net;
 using FluentAssertions;
 using RestSharp;
+using static System.Net.HttpStatusCode;
 
 namespace monorail_web_v3.RestRequests
 {
@@ -10,7 +10,7 @@ namespace monorail_web_v3.RestRequests
         private const string ApiKey = "0oq1Oj2R6kJNrUX1inqyOjYJtoqbtmJx";
 
         private static readonly Uri PilotFeatureEndpoint =
-            new Uri("https://monarchmanagement-app-uat.azurewebsites.net/api/System/PilotFeatures");
+            new Uri("https://monarchmanagement-app-dev.azurewebsites.net/api/System/PilotFeatures");
 
         public static void PostPilotFeatures(string userEmail, string featureType)
         {
@@ -33,7 +33,7 @@ namespace monorail_web_v3.RestRequests
 
             var response = client.Execute(request);
 
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            response.StatusCode.Should().Be(OK);
         }
     }
 }

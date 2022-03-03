@@ -28,7 +28,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var wishlistWithdrawCashModal = new WishlistWithdrawCashModal(Driver);
             var wishlistWithdrawCashSuccessModal = new WishlistWithdrawCashSuccessModal(Driver);
 
-            const string username = "haku.vimvest+2110219@gmail.com";
+            const string username = "autotests.mono+8.5.240122@gmail.com";
             const string amountToWithdraw = "1";
 
             loginPage

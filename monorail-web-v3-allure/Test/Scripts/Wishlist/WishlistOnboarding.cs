@@ -32,8 +32,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var regulatoryInformationPoliticallyExposedQuestionModal =
                 new RegulatoryInformationPoliticallyExposedQuestionModal(Driver);
             var linkYourAccountModal = new LinkYourAccountModal(Driver);
-            var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
+            var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
 
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
 
@@ -68,127 +68,45 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickContinueButton();
 
             linkYourAccountModal
-                .CheckLinkYourAccountModal()
-                .ClickLinkYourAccountButton();
+                .CheckConnectYourBankAccountModal()
+                .ClickConnectYourBankAccountButton();
 
             ConnectPlaid();
 
-            termsAndConditionsModal
-                .ScrollToTheBottomOfTheDocument()
-                .ClickAgreeAndFinishButton();
-
             electronicDeliveryConsentModal
                 .ScrollToTheBottomOfTheDocument()
-                .ClickAgreeAndFinishButton();
+                .ClickAgreeButton();
+
+            termsAndConditionsModal
+                .ScrollToTheBottomOfTheDocument()
+                .ClickAgreeButton();
 
             wishlistMainScreen
                 .CheckWishlistMainScreenAfterOnboarding();
         }
 
-        [Test(Description =
-            "Wishlist Onboarding - add Wishlist Item and click 'Open Wishlist Account' on 'Finish' modal")]
+        [Test(Description = "Wishlist Onboarding - through Wishlist Item Details screen by clicking 'Fund your Wishlist' button")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Onboarding")]
-        [AllureStory("Wishlist Onboarding - add Wishlist Item and click 'Open Wishlist Account' on 'Finish' modal")]
-        public void WishlistOnboardingWithAddingWishlistItemTest()
-        {
-            var loginPage = new LoginPage(Driver);
-            var wishlistMainScreen = new WishlistMainScreen(Driver);
-            var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
-            var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
-            var addWishlistItemFinishModal = new AddWishlistItemSuccessModal(Driver);
-            var completeYourAccountModal = new CompleteYourAccountModal(Driver);
-            var completeYourProfileModal = new CompleteYourProfileModal(Driver);
-            var regulatoryInformationPoliticallyExposedQuestionModal =
-                new RegulatoryInformationPoliticallyExposedQuestionModal(Driver);
-            var linkYourAccountModal = new LinkYourAccountModal(Driver);
-            var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
-            var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
-
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
-
-            RegisterUser(username);
-
-            loginPage
-                .PassCredentials(username, ValidPassword)
-                .ClickSignInButton();
-
-            wishlistMainScreen
-                .CheckWishlistMainScreenBeforeOnboarding()
-                .ClickAddWishlistItemButton();
-
-            addNewWishlistItemModal
-                .CheckAddNewItemModal()
-                .PasteLink(WishlistItemUrl)
-                .ClickContinueButton();
-
-            wishlistItemDetailsModal
-                .CheckItemDetailsModal()
-                .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl)
-                .SetWishlistItemPrice(WishlistItemPrice)
-                .ClickConfirmButton();
-
-            addWishlistItemFinishModal
-                .CheckAddWishlistItemSuccessModalBeforeOnboarding()
-                .VerifyWishlistItemName(WishlistItemName)
-                .ClickOpenWishlistAccountButton();
-
-            completeYourAccountModal
-                .CheckCompleteYourAccountModal()
-                .ClickGetStartedButton();
-
-            completeYourProfileModal
-                .CheckCompleteYourProfileModal()
-                .SetFirstName(ValidFirstName)
-                .SetLastName(ValidLastName)
-                .SetAddressLine1(ValidAddressLine1)
-                .SetCity(ValidCity)
-                .SetState(ValidState)
-                .SetZip(ValidZip)
-                .SetSsn(ValidSsn)
-                .ClickConfirmButton();
-
-            regulatoryInformationPoliticallyExposedQuestionModal
-                .CheckRegulatoryInformationPoliticallyExposedQuestionModal()
-                .ClickNopeAnswer()
-                .ClickContinueButton();
-
-            linkYourAccountModal
-                .CheckLinkYourAccountModal()
-                .ClickLinkYourAccountButton();
-
-            ConnectPlaid();
-
-            termsAndConditionsModal
-                .ScrollToTheBottomOfTheDocument()
-                .ClickAgreeAndFinishButton();
-
-            electronicDeliveryConsentModal
-                .ScrollToTheBottomOfTheDocument()
-                .ClickAgreeAndFinishButton();
-
-            wishlistMainScreen
-                .CheckWishlistMainScreenAfterOnboarding();
-        }
-
-        [Test(Description = "Wishlist Onboarding - add Wishlist Item, leave and then click 'Create a Wishlist'")]
-        [AllureEpic("Wishlist")]
-        [AllureFeature("Onboarding")]
-        [AllureStory("Wishlist Onboarding - add Wishlist Item, leave and then click 'Create a Wishlist'")]
+        [AllureStory("Wishlist Onboarding - through Wishlist Item Details screen by clicking 'Fund your Wishlist' button")]
         public void WishlistOnboardingByClickingCreateAWishlistButtonAfterAddingWishlistItemTest()
         {
+            const string wishlistItemUrl = "https://www.amazon.com/Sceptre-E248W-19203R-Monitor-Speakers-Metallic/dp/B0773ZY26F/ref=lp_16225007011_1_4";
+            const string wishlistItemName = "Sceptre 24\" Professional";
+        
             var loginPage = new LoginPage(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
-            var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
-            var addWishlistItemFinishModal = new AddWishlistItemSuccessModal(Driver);
+            var wishlistItemIsBeingAddedModal = new WishlistItemIsBeingAddedModal(Driver);
+            var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
             var completeYourAccountModal = new CompleteYourAccountModal(Driver);
             var completeYourProfileModal = new CompleteYourProfileModal(Driver);
             var regulatoryInformationPoliticallyExposedQuestionModal =
                 new RegulatoryInformationPoliticallyExposedQuestionModal(Driver);
             var linkYourAccountModal = new LinkYourAccountModal(Driver);
-            var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
+            var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
+            var wishlistAddCashModal = new WishlistAddCashModal(Driver);
 
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
 
@@ -201,27 +119,22 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             wishlistMainScreen
                 .CheckWishlistMainScreenBeforeOnboarding()
                 .ClickAddWishlistItemButton();
-
+            
             addNewWishlistItemModal
                 .CheckAddNewItemModal()
-                .PasteLink(WishlistItemUrl)
+                .PasteLink(wishlistItemUrl)
                 .ClickContinueButton();
 
-            wishlistItemDetailsModal
-                .CheckItemDetailsModal()
-                .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl)
-                .SetWishlistItemPrice(WishlistItemPrice)
-                .ClickConfirmButton();
-
-            addWishlistItemFinishModal
-                .CheckAddWishlistItemSuccessModalBeforeOnboarding()
-                .VerifyWishlistItemName(WishlistItemName)
-                .ClickFinishButton();
+            wishlistItemIsBeingAddedModal
+                .CheckWishlistItemIsBeingAddedModal()
+                .ClickCloseButton();
 
             wishlistMainScreen
-                .CheckWishlistMainScreenBeforeOnboarding()
-                .ClickCreateAWishlistAccountButton();
+                .ClickWishlistItem(wishlistItemName);
 
+            wishlistDetailsScreen
+                .ClickFundYourWishlistButton();
+            
             completeYourAccountModal
                 .CheckCompleteYourAccountModal()
                 .ClickGetStartedButton();
@@ -243,21 +156,21 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickContinueButton();
 
             linkYourAccountModal
-                .CheckLinkYourAccountModal()
-                .ClickLinkYourAccountButton();
+                .CheckConnectYourBankAccountModal()
+                .ClickConnectYourBankAccountButton();
 
             ConnectPlaid();
 
-            termsAndConditionsModal
-                .ScrollToTheBottomOfTheDocument()
-                .ClickAgreeAndFinishButton();
-
             electronicDeliveryConsentModal
                 .ScrollToTheBottomOfTheDocument()
-                .ClickAgreeAndFinishButton();
+                .ClickAgreeButton();
 
-            wishlistMainScreen
-                .CheckWishlistMainScreenAfterOnboarding();
+            termsAndConditionsModal
+                .ScrollToTheBottomOfTheDocument()
+                .ClickAgreeButton();
+
+            wishlistAddCashModal
+                .CheckWishlistAddCashModal();
         }
     }
 }

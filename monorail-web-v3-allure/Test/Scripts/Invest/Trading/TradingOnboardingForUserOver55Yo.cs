@@ -71,8 +71,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
                 .CheckGettingStartedModal()
                 .SetEmail(username)
                 .SetPassword(ValidPassword)
-                .SetDateOfBirth("01-01-1966")
-                .SetPhoneNumber(phoneNumber)
+                .SetDateOfBirth("01011966")
+                .SetPhoneNumber("2024078924")
                 .ClickContinueButton();
 
             verifyYourAccountChooseMethodModal
@@ -184,8 +184,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
                 .ClickContinueButtonInSpan();
 
             linkYourAccountModal
-                .CheckLinkYourAccountModal()
-                .ClickLinkYourAccountButton();
+                .CheckConnectYourBankAccountModal()
+                .ClickConnectYourBankAccountButton();
 
             ConnectPlaid();
 
@@ -197,8 +197,11 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
                 .ClickAgreeAndContinueButton()
                 .CheckDisclosuresModal()
                 .ClickSkipToBottomButton()
-                .CheckDisclosuresModal()
                 .ClickAgreeAndContinueButton()
+                .CheckDisclosuresModal()
+                .ClickSkipToBottomButton()
+                .ClickAgreeAndContinueButton()
+                .CheckDisclosuresModal()
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 

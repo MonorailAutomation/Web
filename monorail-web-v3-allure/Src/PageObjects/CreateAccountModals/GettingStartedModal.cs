@@ -35,7 +35,7 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
         [FindsBy(How = How.XPath, Using = "//form//div[2]//label")]
         private IWebElement _confirmYourPasswordLabel;
 
-        [FindsBy(How = How.XPath, Using = "//input[@type='date']")]
+        [FindsBy(How = How.XPath, Using = "//input[@type='text']")]
         private IWebElement _dateOfBirthInput;
 
         [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='email']")]

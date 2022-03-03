@@ -12,7 +12,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals
     public class BuyingPowerWithdrawCashSuccessModal : WithdrawCashSuccessModal
     {
         private const string BuyingPowerCashOutSuccessAdviceText =
-            "Deposited funds will be available to withdraw 5 business days after they finish depositing.";
+            "This amount will be subtracted from your buying power total and will not be able to be used for buying orders.";
 
         [FindsBy(How = How.XPath,
             Using = "//div[@class='vim-modal__body__content']//p")]

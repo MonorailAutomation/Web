@@ -16,7 +16,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
         private const string AccountMessageText = "Your checking account is being opened.";
 
         private const string InfoMessageText =
-            "Once opened, your personalized Vimvest Debit Card will be send and arrive within 5-10 business days.";
+            "Once opened, your personalized Monorail Debit Card will be send and arrive within 5-10 business days.";
 
         private const string CardImageUrl = "assets/img/banner-debit-card.svg";
         private const string SipcLogoUrl = "assets/img/fdic-logo.svg";

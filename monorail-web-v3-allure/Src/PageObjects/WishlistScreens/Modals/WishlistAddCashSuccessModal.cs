@@ -61,7 +61,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         public WishlistAddCashSuccessModal VerifyDepositedAmount(string wishlistAddCashAmount)
         {
             Wait.Until(ElementToBeVisible(_amountDeposited));
-            _amountDeposited.Text.Should().Be('$' + wishlistAddCashAmount);
+            _amountDeposited.Text.Should().Contain('$' + wishlistAddCashAmount);
             return this;
         }
 

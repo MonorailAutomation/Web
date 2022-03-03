@@ -62,7 +62,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
 
             activateYourCardBirthdayModal
                 .CheckActivateYourCardBirthdayModal()
-                .EnterBirthday(ValidDateOfBirthDmy)
+                .EnterBirthday(ValidDateOfBirthMDY)
                 .ClickContinueButton();
 
             activateYourCardCreatePinModal

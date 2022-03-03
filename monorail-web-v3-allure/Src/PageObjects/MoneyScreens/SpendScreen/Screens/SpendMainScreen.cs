@@ -15,7 +15,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
         private const string SetGoalsMessageText = "Set Goals.";
         private const string ReachGoalsMessageText = "Reach Goals.";
         private const string PurchaseMessageText = "Purchase.";
-        private const string InfoMessageText = "Spend directly from Vimvest by using our new debit card.";
+        private const string InfoMessageText = "Spend directly from Monorail by using our new debit card.";
 
         private const string CardOnTheWayHeaderText = "Your new card is on the way!";
 

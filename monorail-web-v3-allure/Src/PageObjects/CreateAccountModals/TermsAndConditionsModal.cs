@@ -12,7 +12,7 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
     public class TermsAndConditionsModal : OnboardingModal
     {
         private const string Step3SubheaderText = "STEP 3";
-        private const string TermsOfUseHeaderText = "Terms and Conditions";
+        private const string TermsAndConditionsHeaderText = "Terms and Conditions";
 
         [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Agree and Finish')]")]
         private IWebElement _agreeAndFinishButton;
@@ -42,7 +42,7 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             return this;
         }
 
-        [AllureStep("Check 'Terms of use' modal")]
+        [AllureStep("Check 'Terms and Conditions' modal")]
         public TermsAndConditionsModal CheckTermsAndConditionsModal()
         {
             try
@@ -51,7 +51,7 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
                 Wait.Until(ElementToBeVisible(_skipToBottomButton));
                 Wait.Until(ElementToBeVisible(_agreeAndFinishButton));
 
-                StepHeader.Text.Should().Be(TermsOfUseHeaderText);
+                StepHeader.Text.Should().Be(TermsAndConditionsHeaderText);
                 StepSubheader.Text.Should().Be(Step3SubheaderText);
 
                 _agreeAndFinishButton.Enabled.Should().BeFalse();

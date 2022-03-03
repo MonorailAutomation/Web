@@ -27,7 +27,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var buyingPowerAddCashModal = new BuyingPowerAddCashModal(Driver);
             var buyingPowerAddCashSuccessModal = new BuyingPowerAddCashSuccessModal(Driver);
 
-            const string username = "autotests.mono+7.2.271021@gmail.com";
+            const string username = "autotests.mono+7.2.010222@gmail.com";
             const string amountToAdd = "1";
 
             loginPage

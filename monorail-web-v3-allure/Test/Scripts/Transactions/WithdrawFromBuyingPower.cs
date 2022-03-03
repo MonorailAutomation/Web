@@ -27,9 +27,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var buyingPowerWithdrawCashModal = new BuyingPowerWithdrawCashModal(Driver);
             var buyingPowerWithdrawCashSuccessModal = new BuyingPowerWithdrawCashSuccessModal(Driver);
 
-            const string
-                username =
-                    "autotests.mono+8.2.271021@gmail.com";
+            const string username = "autotests.mono+8.2.310122@gmail.com";
             const string amountToWithdraw = "1";
 
             loginPage

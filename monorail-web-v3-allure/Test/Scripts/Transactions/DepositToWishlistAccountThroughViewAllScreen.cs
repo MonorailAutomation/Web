@@ -16,10 +16,10 @@ namespace monorail_web_v3.Test.Scripts.Transactions
         private const string AmountToAdd = "2";
         private const string Username = "autotests.mono+7.5.061221@gmail.com";
 
-        [Test(Description = "Deposit Money to Wishlist Account through 'View All' screen using 'Add Funds' button")]
+        [Test(Description = "Deposit Money to Wishlist Account through 'View All' screen using 'Add Cash' button")]
         [AllureEpic("Transactions")]
         [AllureFeature("Wishlist")]
-        [AllureStory("Deposit to Wishlist Account | View All -> Add Funds")]
+        [AllureStory("Deposit to Wishlist Account | View All -> Add Cash")]
         public void DepositToWishlistAccountThroughViewAllScreenUsingAddFundsButtonTest()
         {
             var loginPage = new LoginPage(Driver);
@@ -42,7 +42,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
                 .ClickViewAllButton();
 
             wishlistViewAllScreen
-                .ClickAddFundsButton();
+                .ClickAddCashButton();
 
             wishlistAddCashModal
                 .CheckWishlistAddCashModal()

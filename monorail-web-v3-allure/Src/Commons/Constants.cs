@@ -13,8 +13,8 @@ namespace monorail_web_v3.Commons
         public const string ValidZip = "34239";
         public const string ValidSsn = "666-00-3785";
         public const string ValidEmail = "someone@vimvest.com";
-        public const string ValidDateOfBirthYmd = "1990-01-01";
-        public const string ValidDateOfBirthDmy = "01-01-1990";
+        public const string ValidDateOfBirthYmd = "1991-01-01";
+        public const string ValidDateOfBirthMDY = "01011991";
         public const string ValidPhoneNumber = "9419252121";
 
         public const string WishlistItemName = "Canon EOS Rebel T7 EF-S 18-55mm IS II Kit";

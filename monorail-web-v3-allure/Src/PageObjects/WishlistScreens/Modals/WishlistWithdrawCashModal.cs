@@ -22,10 +22,10 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//span[contains(text(),'Confirm')]")]
         private IWebElement _confirmButton;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//div[3]//p[2]")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='cash-transfer-modal__footer']//div[2]//p[2]")]
         private IWebElement _onHoldAmount;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//div[3]//p[1]")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='cash-transfer-modal__footer']//div[2]//p[1]")]
         private IWebElement _onHoldLabel;
 
         public WishlistWithdrawCashModal(IWebDriver driver) : base(driver)

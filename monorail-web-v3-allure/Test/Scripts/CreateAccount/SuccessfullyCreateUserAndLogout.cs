@@ -29,11 +29,9 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var gettingStartedModal = new GettingStartedModal(Driver);
             var verifyYourAccountChooseMethodModal = new VerifyYourAccountChooseMethodModal(Driver);
             var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
-            var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
+            var termsAndConditions = new TermsAndConditionsModal(Driver);
             var mainScreen = new MainScreen(Driver);
             var sideMenu = new SideMenu(Driver);
-
-            const string verificationCode = "111111";
 
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
 
@@ -44,8 +42,8 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
                 .CheckGettingStartedModal()
                 .SetEmail(username)
                 .SetPassword(ValidPassword)
-                .SetDateOfBirth(ValidDateOfBirthDmy)
-                .SetPhoneNumber(ValidPhoneNumber)
+                .SetDateOfBirth(ValidDateOfBirthMDY)
+                .SetPhoneNumber("9419252125")
                 .ClickContinueButton();
 
             verifyYourAccountChooseMethodModal
@@ -56,14 +54,14 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             verifyYourAccountVerificationCodeModal
                 .CheckYourAccountVerificationCodeModal();
 
-            //Thread.Sleep(4500); // comment below
+            Thread.Sleep(5500); // waiting for results in DB
 
             verifyYourAccountVerificationCodeModal
-                //.EnterVerificationCode(GetVerificationCode(username)) // needs to be fixed by Dev. VC doesn't arrive, you need to hit 'Resend' to receive it
-                .EnterVerificationCode(verificationCode)
+                .CheckYourAccountVerificationCodeModal()
+                .EnterVerificationCode(GetVerificationCode(username))
                 .ClickContinueButton();
 
-            termsAndConditionsModal
+            termsAndConditions
                 .CheckTermsAndConditionsModal()
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
@@ -72,6 +70,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
                 .CheckMainScreen()
                 .ExpandSideMenu();
 
+            Thread.Sleep(5000);
             sideMenu
                 .ClickLogOutLink();
         }
@@ -99,8 +98,8 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
                 .CheckGettingStartedModal()
                 .SetEmail(username)
                 .SetPassword(ValidPassword)
-                .SetDateOfBirth(ValidDateOfBirthDmy)
-                .SetPhoneNumber(ValidPhoneNumber)
+                .SetDateOfBirth(ValidDateOfBirthMDY)
+                .SetPhoneNumber("9419252125")
                 .ClickContinueButton();
 
             verifyYourAccountChooseMethodModal
@@ -123,6 +122,8 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             mainScreen
                 .CheckMainScreen()
                 .ExpandSideMenu();
+
+            Thread.Sleep(5000);
 
             sideMenu
                 .ClickLogOutLink();

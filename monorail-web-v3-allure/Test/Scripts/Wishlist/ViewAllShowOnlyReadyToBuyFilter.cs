@@ -23,8 +23,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistViewAllScreen = new WishlistViewAllScreen(Driver);
 
-            const string username = "haku.vimvest+28102116@gmail.com";
-            //TO DO: replace with as funds appear on account autotests.mono+21.051221@gmail.com
+            const string username = "autotests.mono+21.051221@gmail.com";
 
             loginPage
                 .PassCredentials(username, ValidPassword)

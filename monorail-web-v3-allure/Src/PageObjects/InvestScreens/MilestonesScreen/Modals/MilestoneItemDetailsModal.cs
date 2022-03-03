@@ -17,7 +17,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
         [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='targetBalance']")]
         private IWebElement _milestoneTargetAmountInput;
 
-        [FindsBy(How = How.XPath, Using = "//input[@type='date']")]
+        [FindsBy(How = How.XPath, Using = "//input[@type='text']")]
         private IWebElement _milestoneTargetDateInput;
 
         public MilestoneItemDetailsModal(IWebDriver driver) : base(driver)
@@ -62,8 +62,6 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
             {
                 CheckItemDetailsModal(MilestoneDetailsHeaderText);
                 Wait.Until(ElementToBeVisible(ItemDescriptionInput));
-                Wait.Until(ElementToBeVisible(_milestoneTargetAmountInput));
-                Wait.Until(ElementToBeVisible(_milestoneTargetDateInput));
                 Wait.Until(ElementToBeVisible(ContinueButton));
             }
             catch (Exception e)

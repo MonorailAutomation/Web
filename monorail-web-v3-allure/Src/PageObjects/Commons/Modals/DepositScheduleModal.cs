@@ -34,6 +34,9 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         [FindsBy(How = How.XPath, Using = "//form//div[1]//label")]
         private IWebElement _depositAmountLabel;
 
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//vim-toggle")]
+        private IWebElement _depositScheduleSwitch;
+
         [FindsBy(How = How.XPath, Using = "//form//div[2]//label")]
         private IWebElement _frequencyLabel;
 
@@ -43,9 +46,17 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Weekly')]")]
         private IWebElement _weeklyButton;
 
-        protected DepositScheduleModal(IWebDriver driver) : base(driver)
+        public DepositScheduleModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
+        }
+
+        [AllureStep("Disable Deposit Schedule")]
+        public DepositScheduleModal DisableDepositSchedule()
+        {
+            Wait.Until(ElementToBeVisible(_depositScheduleSwitch));
+            _depositScheduleSwitch.Click();
+            return this;
         }
 
         [AllureStep("Click 'Daily' button")]

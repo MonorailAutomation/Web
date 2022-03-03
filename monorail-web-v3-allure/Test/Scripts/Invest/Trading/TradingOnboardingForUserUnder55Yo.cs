@@ -35,7 +35,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
             var gettingStartedModal = new GettingStartedModal(Driver);
             var verifyYourAccountChooseMethodModal = new VerifyYourAccountChooseMethodModal(Driver);
             var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
-            var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
+            var termsOfUseModal = new TermsAndConditionsModal(Driver);
             var mainScreen = new MainScreen(Driver);
             var investScreen = new InvestScreen(Driver);
             var tradingMainScreen = new TradingMainScreen(Driver);
@@ -71,8 +71,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
                 .CheckGettingStartedModal()
                 .SetEmail(username)
                 .SetPassword(ValidPassword)
-                .SetDateOfBirth(ValidDateOfBirthDmy)
-                .SetPhoneNumber(phoneNumber)
+                .SetDateOfBirth(ValidDateOfBirthMDY)
+                .SetPhoneNumber("2024078925")
                 .ClickContinueButton();
 
             verifyYourAccountChooseMethodModal
@@ -87,7 +87,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
                 .EnterVerificationCode(GetVerificationCode(username))
                 .ClickContinueButton();
 
-            termsAndConditionsModal
+            termsOfUseModal
                 .CheckTermsAndConditionsModal()
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
@@ -176,12 +176,10 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
                 .ClickContinueButtonInSpan();
 
             linkYourAccountModal
-                .CheckLinkYourAccountModal()
-                .ClickLinkYourAccountButton();
+                .CheckConnectYourBankAccountModal()
+                .ClickConnectYourBankAccountButton();
 
             ConnectPlaid();
-
-            Thread.Sleep(5000);
 
             disclosuresModal
                 .CheckDisclosuresModal()
@@ -189,8 +187,11 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
                 .ClickAgreeAndContinueButton()
                 .CheckDisclosuresModal()
                 .ClickSkipToBottomButton()
-                .CheckDisclosuresModal()
                 .ClickAgreeAndContinueButton()
+                .CheckDisclosuresModal()
+                .ClickSkipToBottomButton()
+                .ClickAgreeAndContinueButton()
+                .CheckDisclosuresModal()
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 

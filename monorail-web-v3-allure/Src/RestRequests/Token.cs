@@ -1,5 +1,6 @@
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using static monorail_web_v3.RestRequests.RestConfig;
 
 namespace monorail_web_v3.RestRequests
 {
@@ -9,7 +10,7 @@ namespace monorail_web_v3.RestRequests
 
         public static string GenerateToken(string user, string pass)
         {
-            var client = new RestClient("https://monarch-app-uat.azurewebsites.net");
+            var client = new RestClient(MonorailUri);
             var request = new RestRequest
             {
                 Resource = TokenEndpoint,

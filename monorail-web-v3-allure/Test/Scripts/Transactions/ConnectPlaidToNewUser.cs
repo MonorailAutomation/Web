@@ -1,3 +1,4 @@
+using System.Linq;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Menus;
@@ -29,7 +30,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
             var sideMenu = new SideMenu(Driver);
-            var myConnectedAccountScreen = new MyConnectedAccountScreen(Driver);
+            var connectedAccountScreen = new ConnectedAccountScreen(Driver);
 
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
 
@@ -45,13 +46,13 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             sideMenu
                 .ClickMyConnectedAccountLink();
 
-            myConnectedAccountScreen
-                .CheckMyConnectedAccountScreenWithoutPlaidAccount()
-                .ClickLinkYourBankAccount();
+            connectedAccountScreen
+                .CheckConnectedAccountScreenWithoutPlaidAccount()
+                .ClickConnectYourBankAccountButton();
 
             ConnectPlaid();
 
-            myConnectedAccountScreen
+            connectedAccountScreen
                 .CheckMyConnectedAccountScreenWithConnectedPlaidAccount();
         }
 
@@ -62,6 +63,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var plaidEnterYourCredentialsModal = new PlaidEnterYourCredentialsModal(Driver);
             var plaidYourAccountsModal = new PlaidYourAccountsModal(Driver);
             var plaidSuccessModal = new PlaidSuccessModal(Driver);
+
+            Driver.SwitchTo().Window(Driver.WindowHandles.Last());
 
             var plaidIframe = Driver.FindElement(By.Id("plaid-link-iframe-1"));
             Driver.SwitchTo().Frame(plaidIframe);
@@ -83,7 +86,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             plaidSuccessModal
                 .ClickContinueButton();
 
-            Driver.SwitchTo().DefaultContent();
+            Driver.SwitchTo().Window(Driver.WindowHandles.First());
         }
     }
 }
