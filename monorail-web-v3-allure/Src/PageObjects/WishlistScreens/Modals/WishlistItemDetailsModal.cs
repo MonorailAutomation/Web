@@ -98,15 +98,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
             return this;
         }
 
-        [AllureStep("Edit Url to: '${0}'")]
-        public WishlistItemDetailsModal EditItemUrl(string changedItemUrl)
-        {
-            Wait.Until(ElementToBeVisible(_wishlistItemUrlInput));
-            _wishlistItemUrlInput.Clear();
-            _wishlistItemUrlInput.SendKeys(changedItemUrl);
-            return this;
-        }
-
         [AllureStep("Edit Description to '${0}'")]
         public WishlistItemDetailsModal EditItemDescription(string changedItemDescription)
         {
@@ -122,7 +113,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         {
             ItemNameInput.GetAttribute("value").Should().Be(wishlistItemName);
             _wishlistDescriptionInput.GetAttribute("value").Should().Contain(wishlistItemDescription);
-            _wishlistItemUrlInput.GetAttribute("value").Should().Be(wishlistItemUrl);
+            //_wishlistItemUrlInput.GetAttribute("value").Should().Be(wishlistItemUrl);
         }
     }
 }

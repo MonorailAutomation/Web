@@ -3,6 +3,7 @@ using static monorail_web_v3.RestRequests.Token;
 using static monorail_web_v3.RestRequests.Register;
 using static monorail_web_v3.RestRequests.RegisterVerify;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.RestRequests.TermsOfUse;
 
 namespace monorail_web_v3.RestRequests.Helpers
 {
@@ -13,6 +14,8 @@ namespace monorail_web_v3.RestRequests.Helpers
             PostRegister(username, ValidPhoneNumber, ValidDateOfBirthYmd);
             var token = GenerateToken(username, ValidPassword);
             PostRegisterVerify(token);
+            var termsOfUseId = GetTermsOfUseId(token);
+            PostTermsOfUse(token, termsOfUseId);
             Console.WriteLine(username + " was created successfully");
         }
 
@@ -21,23 +24,8 @@ namespace monorail_web_v3.RestRequests.Helpers
             PostRegister(username, ValidPhoneNumber, dateOfBirth);
             var token = GenerateToken(username, ValidPassword);
             PostRegisterVerify(token);
-            Console.WriteLine(username + " was created successfully");
-        }
-
-        public static void RegisterUserWithPhoneNumber(string username, string phoneNumber)
-        {
-            PostRegister(username, phoneNumber, ValidDateOfBirthYmd);
-            var token = GenerateToken(username, ValidPassword);
-            PostRegisterVerify(token);
-            Console.WriteLine(username + " was created successfully");
-        }
-
-        public static void RegisterUserWithPhoneNumberAndDateOfBirth(string username, string phoneNumber,
-            string dateOfBirth)
-        {
-            PostRegister(username, phoneNumber, dateOfBirth);
-            var token = GenerateToken(username, ValidPassword);
-            PostRegisterVerify(token);
+            var termsOfUseId = GetTermsOfUseId(token);
+            PostTermsOfUse(token, termsOfUseId);
             Console.WriteLine(username + " was created successfully");
         }
     }

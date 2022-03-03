@@ -1,16 +1,16 @@
 using System;
-using System.Net;
 using FluentAssertions;
 using RestSharp;
 using RestSharp.Authenticators;
+using static System.Net.HttpStatusCode;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.RestRequests.RestConfig;
 
 namespace monorail_web_v3.RestRequests
 {
     public static class RegisterVerify
     {
-        private static readonly Uri RegisterEndpoint =
-            new Uri("https://monarch-app-uat.azurewebsites.net/api/v2/user/Register/Verify");
+        private const string RegisterEndpoint = "/api/v2/user/Register/Verify";
 
         public static void PostRegisterVerify(string token)
         {
@@ -18,11 +18,12 @@ namespace monorail_web_v3.RestRequests
             const string verificationCode = "111111";
             var client = new RestClient
             {
-                BaseUrl = RegisterEndpoint,
+                BaseUrl = MonorailUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
             {
+                Resource = RegisterEndpoint,
                 Method = Method.POST,
                 RequestFormat = DataFormat.Json
             };
@@ -35,7 +36,7 @@ namespace monorail_web_v3.RestRequests
 
             var response = client.Execute(request);
 
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            response.StatusCode.Should().Be(OK);
         }
     }
 }

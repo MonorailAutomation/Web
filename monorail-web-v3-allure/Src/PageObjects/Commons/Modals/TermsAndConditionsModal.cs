@@ -11,8 +11,8 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
     {
         private const string TermsAndConditionsModalHeaderText = "Terms And Conditions";
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Agree and Finish')]")]
-        private IWebElement _agreeAndFinishButton;
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Agree')]")]
+        private IWebElement _agreeButton;
 
         [FindsBy(How = How.XPath, Using = "//div[@data-page-number='22']")]
         private IWebElement _lastPage;
@@ -22,11 +22,11 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Click 'Agree and Finish' button")]
-        public TermsAndConditionsModal ClickAgreeAndFinishButton()
+        [AllureStep("Click 'Agree' button")]
+        public TermsAndConditionsModal ClickAgreeButton()
         {
-            Wait.Until(ElementToBeVisible(_agreeAndFinishButton));
-            _agreeAndFinishButton.Click();
+            Wait.Until(ElementToBeVisible(_agreeButton));
+            _agreeButton.Click();
             return this;
         }
 
@@ -38,7 +38,5 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
             actions.Perform();
             return this;
         }
-
-        //TO DO: check terms and conditions modal
     }
 }

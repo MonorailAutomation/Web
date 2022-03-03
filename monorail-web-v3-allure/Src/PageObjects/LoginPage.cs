@@ -12,7 +12,7 @@ namespace monorail_web_v3.PageObjects
         private const string ExpectedInvalidLoginHeader = "Whoops! Incorrect email or password.";
 
         private const string ExpectedInvalidLoginMessage =
-            "If you don't have an account, create one in the Vimvest App.";
+            "If you don't have a Monorail account, click \"Create an Account\" below.";
 
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Create an Account')]")]
         private IWebElement _createAnAccountButton;

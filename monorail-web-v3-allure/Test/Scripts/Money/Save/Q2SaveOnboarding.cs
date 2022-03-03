@@ -3,6 +3,7 @@ using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using monorail_web_v3.PageObjects.Commons.Screens;
+using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
@@ -20,7 +21,106 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
     internal class Q2SaveOnboarding : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+25.201221";
-        private const string UsernameSuffix = "@gmail.com";
+        private const string UsernameSuffix = "@monorail.com";
+
+        [Test(Description = "Q2 Save Onboarding - no track selected")]
+        [AllureEpic("Money")]
+        [AllureFeature("Save")]
+        [AllureStory("Q2 Save Onboarding - no track selected")]
+        public void Q2SaveOnboardingNoTrackSelectedTest()
+        {
+            var loginPage = new LoginPage(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var moneyScreen = new MoneyScreen(Driver);
+            var saveMainScreen = new SaveMainScreen(Driver);
+            var completeYourAccountModal = new CompleteYourAccountModal(Driver);
+            var completeYourProfileModal = new CompleteYourProfileModal(Driver);
+            var regulatoryInformationPoliticallyExposedQuestionModal =
+                new RegulatoryInformationPoliticallyExposedQuestionModal(Driver);
+            var linkYourAccountModal = new LinkYourAccountModal(Driver);
+            var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
+            var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
+            var chooseATrackModal = new ChooseATrackModal(Driver);
+            var trackItemDetailsModal = new TrackItemDetailsModal(Driver);
+            var depositScheduleModal = new DepositScheduleModal(Driver);
+            var addTrackSuccessModal = new AddTrackSuccessModal(Driver);
+
+            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+
+            RegisterUser(username);
+
+            loginPage
+                .PassCredentials(username, ValidPassword)
+                .ClickSignInButton();
+
+            mainScreen
+                .CheckMainScreen()
+                .ClickMoney();
+
+            moneyScreen
+                .CheckMoneyScreen()
+                .ClickSave();
+
+            saveMainScreen
+                .CheckSaveMainScreenBeforeOnboarding()
+                .ClickGetStartedButton();
+
+            completeYourAccountModal
+                .CheckCompleteYourAccountModal()
+                .ClickGetStartedButton();
+
+            completeYourProfileModal
+                .CheckCompleteYourProfileModal()
+                .SetFirstName(ValidFirstName)
+                .SetLastName(ValidLastName)
+                .SetAddressLine1(ValidAddressLine1)
+                .SetCity(ValidCity)
+                .SetState(ValidState)
+                .SetZip(ValidZip)
+                .SetSsn(ValidSsn)
+                .ClickConfirmButton();
+
+            regulatoryInformationPoliticallyExposedQuestionModal
+                .CheckRegulatoryInformationPoliticallyExposedQuestionModal()
+                .ClickNopeAnswer()
+                .ClickContinueButton();
+
+            linkYourAccountModal
+                .CheckConnectYourBankAccountModal()
+                .ClickConnectYourBankAccountButton();
+
+            ConnectPlaid();
+
+            electronicDeliveryConsentModal
+                .ScrollToTheBottomOfTheDocument()
+                .ClickAgreeButton();
+
+            termsAndConditionsModal
+                .ScrollToTheBottomOfTheDocument()
+                .ClickAgreeButton();
+
+            chooseATrackModal
+                .CheckChooseATrackModal()
+                .ClickTrackType(Holidays);
+
+            trackItemDetailsModal
+                .ClickContinueButton();
+
+            depositScheduleModal
+                .CheckDepositScheduleModal("Weekly")
+                //.DisableDepositSchedule()
+                .ClickContinueButton();
+
+            addTrackSuccessModal
+                .CheckSuccessModal()
+                .ClickFinishButton();
+
+            Thread.Sleep(10000);
+            
+            saveMainScreen
+                .CheckSaveMainScreenAfterOnboarding()
+                .VerifyIfTrackExists(Holidays);
+        }
 
         [Test(Description = "Q2 Save Onboarding - single track")]
         [AllureEpic("Money")]
@@ -82,23 +182,21 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ClickContinueButton();
 
             linkYourAccountModal
-                .CheckLinkYourAccountModal()
-                .ClickLinkYourAccountButton();
+                .CheckConnectYourBankAccountModal()
+                .ClickConnectYourBankAccountButton();
 
             ConnectPlaid();
 
-            termsAndConditionsModal
-                .ScrollToTheBottomOfTheDocument()
-                .ClickAgreeAndFinishButton();
-
             electronicDeliveryConsentModal
                 .ScrollToTheBottomOfTheDocument()
-                .ClickAgreeAndFinishButton();
+                .ClickAgreeButton();
 
-            Thread.Sleep(45000);
+            termsAndConditionsModal
+                .ScrollToTheBottomOfTheDocument()
+                .ClickAgreeButton();
 
-            Driver.Navigate().Refresh();
-
+            Thread.Sleep(30000);
+            
             saveMainScreen
                 .CheckSaveMainScreenAfterOnboarding()
                 .VerifyIfTrackExists(Travel);
@@ -139,7 +237,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ClickSave();
 
             saveMainScreen
-                .CheckSaveMainScreenBeforeOnboarding()
+                //.CheckSaveMainScreenBeforeOnboarding()
                 .ClickTrack(Savings)
                 .ClickTrack(Emergency)
                 .ClickTrack(Travel)
@@ -172,23 +270,21 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ClickContinueButton();
 
             linkYourAccountModal
-                .CheckLinkYourAccountModal()
-                .ClickLinkYourAccountButton();
+                .CheckConnectYourBankAccountModal()
+                .ClickConnectYourBankAccountButton();
 
             ConnectPlaid();
 
-            termsAndConditionsModal
-                .ScrollToTheBottomOfTheDocument()
-                .ClickAgreeAndFinishButton();
-
             electronicDeliveryConsentModal
                 .ScrollToTheBottomOfTheDocument()
-                .ClickAgreeAndFinishButton();
+                .ClickAgreeButton();
 
-            Thread.Sleep(45000);
+            termsAndConditionsModal
+                .ScrollToTheBottomOfTheDocument()
+                .ClickAgreeButton();
 
-            Driver.Navigate().Refresh();
-
+            Thread.Sleep(30000);
+            
             saveMainScreen
                 .CheckSaveMainScreenAfterOnboarding()
                 .VerifyIfTrackExists(Savings)

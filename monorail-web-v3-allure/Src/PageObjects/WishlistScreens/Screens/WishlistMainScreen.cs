@@ -12,18 +12,18 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 {
     public class WishlistMainScreen : WishlistScreen
     {
-        private const string AvailableForYourNextItemMessageText = "Available for your next item";
+        private const string AvailableForYourNextItemMessageText = "Your Balance:";
         private const string ReadyToPowerYourWishlistMessageText = "Ready to power your wishlist?";
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Funds')]")]
-        private IWebElement _addFundsButton;
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Cash')]")]
+        private IWebElement _addCashButton;
 
         [FindsBy(How = How.XPath,
             Using = "//main//p[contains(text(), 'Add an Item')]")]
         private IWebElement _addWishlistItemButton;
 
         [FindsBy(How = How.XPath,
-            Using = "//div[@class='wishlist-list__item'][1]//div[@class='empty-card__container']")]
+            Using = "//div[@class='wishlist-list__item'][2]//div[@class='empty-card__container']")]
         private IWebElement _addWishlistItemPlaceholder;
 
         [FindsBy(How = How.XPath,
@@ -72,8 +72,8 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         [AllureStep("Click 'Add Funds' button")]
         public WishlistMainScreen ClickAddFundsButton()
         {
-            Wait.Until(ElementToBeClickable(_addFundsButton));
-            _addFundsButton.Click();
+            Wait.Until(ElementToBeClickable(_addCashButton));
+            _addCashButton.Click();
             return this;
         }
 
@@ -136,7 +136,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
                 Wait.Until(ElementToBeVisible(_availableForYourNextItemMessage));
                 Wait.Until(ElementToBeVisible(_addWishlistItemButton));
                 Wait.Until(ElementToBeVisible(_manageYourAccountButton));
-                Wait.Until(ElementToBeVisible(_addFundsButton));
+                Wait.Until(ElementToBeVisible(_addCashButton));
 
                 Wait.Until(ElementToBeNotVisible(_readyToPowerYourWishlistMessage));
                 Wait.Until(ElementToBeNotVisible(_createAWishlistAccountButton));
@@ -166,7 +166,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
                 Wait.Until(ElementToBeNotVisible(_moneyAmount));
                 Wait.Until(ElementToBeNotVisible(_availableForYourNextItemMessage));
                 Wait.Until(ElementToBeNotVisible(_manageYourAccountButton));
-                Wait.Until(ElementToBeNotVisible(_addFundsButton));
+                Wait.Until(ElementToBeNotVisible(_addCashButton));
 
                 _readyToPowerYourWishlistMessage.Text.Should().Be(ReadyToPowerYourWishlistMessageText);
             }

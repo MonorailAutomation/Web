@@ -9,7 +9,7 @@ namespace monorail_web_v3.Database
             DataSource = "vimvest-sqlserver-test.database.windows.net",
             UserID = "DbLoginTest",
             Password = "Heiwp&3&dji_8sIKd",
-            InitialCatalog = "Monarch-Db-Uat"
+            InitialCatalog = "Monarch-Db-Dev"
         };
     }
 }

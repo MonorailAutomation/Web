@@ -14,8 +14,8 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 {
     public class WishlistViewAllScreen : WishlistScreen
     {
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Funds')]")]
-        private IWebElement _addFundsButton;
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Cash')]")]
+        private IWebElement _addCashButton;
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Manage your Account')]")]
         private IWebElement _manageYourAccountButton;
@@ -40,11 +40,11 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             return this;
         }
 
-        [AllureStep("Click 'Add Funds' button")]
-        public WishlistViewAllScreen ClickAddFundsButton()
+        [AllureStep("Click 'Add Cash' button")]
+        public WishlistViewAllScreen ClickAddCashButton()
         {
-            Wait.Until(ElementToBeClickable(_addFundsButton));
-            _addFundsButton.Click();
+            Wait.Until(ElementToBeClickable(_addCashButton));
+            _addCashButton.Click();
             return this;
         }
 

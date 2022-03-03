@@ -15,8 +15,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
     [AllureNUnit]
     internal class EditMilestoneWithoutScheduledDeposits : FunctionalTesting
     {
-        [Test(Description =
-            "Edit a Milestone - change name, description")]
+        [Test(Description = "Edit a Milestone - change name, description")]
         [AllureEpic("Invest")]
         [AllureFeature("Milestones")]
         [AllureStory("Edit a Milestone - change name, description")]
@@ -30,7 +29,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var milestoneDetailsScreen = new MilestoneDetailsScreen(Driver);
 
             const string username = "autotests.mono+4.1.131021@gmail.com";
-            const string milestoneId = "bb9e454c-38f9-4b5e-860c-97f86a7d0c6c";
+            const string milestoneId = "35206f40-e104-444b-b4b2-ee61e97ded85";
 
             const string originalMilestoneName = "Original Milestone Name";
             const string originalMilestoneDescription = "Original Milestone Description";
@@ -63,9 +62,6 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             milestoneDetailsScreen
                 .VerifyMilestoneDetails(changedMilestoneName, changedMilestoneDescription);
-
-            // milestoneDetailsScreen.ClickEditDetailsButton();
-            // milestoneDetailsModal.VerifyTargetDate(changedMilestoneTargetDate); 
 
             RevertMilestone(username, ValidPassword, milestoneId, originalMilestoneName,
                 originalMilestoneDescription);

@@ -1,5 +1,6 @@
 using System.Net;
 using FluentAssertions;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using RestSharp.Authenticators;
 using static monorail_web_v3.RestRequests.RestConfig;
@@ -28,8 +29,7 @@ namespace monorail_web_v3.RestRequests
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
-        public static void AddWishlists(string token, string amountAdd, string descriptionAdd, string faviconUrlAdd,
-            string imageUrlAdd, string itemUrlAdd, string nameAdd)
+        public static string AddWishlists(string token, string itemUrlAdd)
         {
             var client = new RestClient
             {
@@ -45,20 +45,19 @@ namespace monorail_web_v3.RestRequests
 
             request.AddJsonBody(new
             {
-                amount = amountAdd,
-                description = descriptionAdd,
-                faviconURL = faviconUrlAdd,
-                imageURL = imageUrlAdd,
-                itemURL = itemUrlAdd,
-                name = nameAdd
+                itemURL = itemUrlAdd
             });
 
             var response = client.Execute(request);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            dynamic responseContent = JObject.Parse(response.Content);
+
+            return responseContent.id;
         }
 
-        public static void RevertWishlists(string token, string amountAdd, string descriptionAdd, string faviconUrlAdd,
+        public static void UpdateWishlists(string token, string amountAdd, string descriptionAdd, string faviconUrlAdd,
             string imageUrlAdd, string itemUrlAdd, string nameAdd, string wishlistItemId)
         {
             var client = new RestClient

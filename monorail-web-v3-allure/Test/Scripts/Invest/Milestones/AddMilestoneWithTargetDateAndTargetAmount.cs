@@ -32,9 +32,9 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var milestoneDepositScheduleModal = new MilestoneDepositScheduleModal(Driver);
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
-            const string username = "autotests.mono+1.1.131021@gmail.com";
+            const string username = "autotests.mono+1.1.260122@gmail.com";
             const string milestoneDescription = "Test Milestone Description";
-            const string milestoneTargetDate = "24/10/2023";
+            const string milestoneTargetDate = "10242023";
             const string milestoneTargetAmount = "4,500";
 
             var milestoneName = "Test Milestone " + GenerateRandomString();
@@ -76,8 +76,6 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             addMilestoneSuccessModal
                 .CheckSuccessModal()
                 .ClickFinishButton();
-
-            Driver.Navigate().Refresh();
 
             milestonesMainScreen.VerifyIfMilestoneExists(milestoneName, milestoneTargetAmount);
         }

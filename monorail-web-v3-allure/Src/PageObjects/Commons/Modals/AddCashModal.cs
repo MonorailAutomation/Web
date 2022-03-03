@@ -12,7 +12,6 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
     {
         private const string AddCashModalHeaderText = "Add Cash";
         private const string AddCashMessageText = "Choose an amount to add";
-        private const string TransferCompleteDateLabelText = "Transfer Complete Date (Est.)";
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//input")]
         private IWebElement _addCashInput;
@@ -20,10 +19,10 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']/p")]
         private IWebElement _addCashMessage;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//div[1]//p[2]")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='cash-transfer-modal__footer']/div/div[1]/p[2]")]
         private IWebElement _transferCompleteDate;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//div[1]//p[1]")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='cash-transfer-modal__footer']/div/div[1]/p[1]")]
         private IWebElement _transferCompleteLabel;
 
         protected AddCashModal(IWebDriver driver) : base(driver)
@@ -47,13 +46,10 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
                 Wait.Until(ElementToBeVisible(ModalHeader));
                 Wait.Until(ElementToBeVisible(_addCashMessage));
                 Wait.Until(ElementToBeVisible(_addCashInput));
-                Wait.Until(ElementToBeVisible(_transferCompleteLabel));
-                Wait.Until(ElementToBeVisible(_transferCompleteDate));
+
 
                 ModalHeader.Text.Should().Be(AddCashModalHeaderText);
                 _addCashMessage.Text.Should().Be(AddCashMessageText);
-                _transferCompleteLabel.Text.Should().Be(TransferCompleteDateLabelText);
-                _transferCompleteDate.Text.Should().NotBeNullOrEmpty();
             }
             catch (Exception e)
             {

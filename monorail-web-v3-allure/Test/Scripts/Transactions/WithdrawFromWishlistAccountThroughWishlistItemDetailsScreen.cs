@@ -31,12 +31,11 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var transferYourFunds = new TransferYourFunds(Driver);
             var transferringSuccessModal = new TransferringSuccessModal(Driver);
 
-            const string username = "haku.vimvest+2712211@gmail.com";
-            //TO DO: replace with as funds appear on account autotests.mono+7.5.040121@gmail.com
+            const string username = "autotests.mono+7.5.040121@gmail.com";
 
             var wishlistItemName = "Test Item " + GenerateRandomString();
 
-            AddWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
+            AddAndUpdateWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
                 WishlistItemImage, WishlistItemUrl, wishlistItemName);
 
             loginPage
@@ -93,12 +92,11 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var transferYourFunds = new TransferYourFunds(Driver);
             var transferringSuccessModal = new TransferringSuccessModal(Driver);
 
-            const string username = "haku.vimvest+2712211@gmail.com";
-            //TO DO: replace with as funds appear on account autotests.mono+8.5.040121@gmail.com
+            const string username = "autotests.mono+8.5.040121@gmail.com";
 
             var wishlistItemName = "Test Item " + GenerateRandomString();
 
-            AddWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
+            AddAndUpdateWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
                 WishlistItemImage, WishlistItemUrl, wishlistItemName);
 
             loginPage

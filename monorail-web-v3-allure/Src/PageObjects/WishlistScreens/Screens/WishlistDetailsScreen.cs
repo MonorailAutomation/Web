@@ -34,13 +34,13 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         private IWebElement _removeButton;
 
         [FindsBy(How = How.XPath,
-            Using = "//div[contains(@class, 'wishlit-transferring-status__details__description')]")]
+            Using = "//p[contains(@class, 'wishlit-transferring-status__details__description')]")]
         private IWebElement _wishlistTransferringStatusDescription;
 
-        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'wishlit-transferring-status__details__text')]")]
+        [FindsBy(How = How.XPath, Using = "//p[contains(@class, 'wishlit-transferring-status__details__text')]")]
         private IWebElement _wishlistTransferringStatusDetailText;
 
-        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'wishlit-transferring-status__title')]")]
+        [FindsBy(How = How.XPath, Using = "//p[contains(@class, 'wishlit-transferring-status__title')]")]
         private IWebElement _wishlistTransferringStatusTitle;
 
         public WishlistDetailsScreen(IWebDriver driver) : base(driver)
@@ -194,6 +194,18 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         public WishlistDetailsScreen VerifyWishlistItemDetails(string wishlistItemName, string wishlistItemDescription,
             string wishlistItemPrice, string wishlistItemUrl)
         {
+            const string wishlistItemUrlSelector = "//a[@class='wishlist-details__sidebar__logo-wrapper']";
+
+            VerifyWishlistItemDetails(wishlistItemName, wishlistItemDescription, wishlistItemPrice);
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemUrlSelector))).GetAttribute("href")
+                 .Should().Contain(wishlistItemUrl);
+
+            return this;
+        }
+        
+        [AllureStep("Verify if Wishlist item name is: '{0}', description is: '{1}', price is: '{2}''")]
+        public WishlistDetailsScreen VerifyWishlistItemDetails(string wishlistItemName, string wishlistItemDescription, string wishlistItemPrice)
+        {
             var wishlistItemNameSelector = "//div//h2[contains(text(), '" + wishlistItemName + "')]";
             var wishlistItemDescriptionSelector = "//div//p[contains(text(), '" + wishlistItemDescription + "')]";
             var wishlistItemPriceSelector = "//div//h2[contains(text(), '" + wishlistItemPrice + "')]";
@@ -205,8 +217,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
                 .Contain(wishlistItemDescription);
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemPriceSelector))).Text.Should()
                 .Contain(wishlistItemPrice);
-            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemUrlSelector))).GetAttribute("href")
-                .Should().Contain(wishlistItemUrl);
 
             return this;
         }

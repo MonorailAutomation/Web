@@ -81,18 +81,18 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
                 .ClickContinueButton();
 
             linkYourAccountModal
-                .CheckLinkYourAccountModal()
-                .ClickLinkYourAccountButton();
+                .CheckConnectYourBankAccountModal()
+                .ClickConnectYourBankAccountButton();
 
             ConnectPlaid();
 
-            termsAndConditionsModal
-                .ScrollToTheBottomOfTheDocument()
-                .ClickAgreeAndFinishButton();
-
             electronicDeliveryConsentModal
                 .ScrollToTheBottomOfTheDocument()
-                .ClickAgreeAndFinishButton();
+                .ClickAgreeButton();
+
+            termsAndConditionsModal
+                .ScrollToTheBottomOfTheDocument()
+                .ClickAgreeButton();
 
             spendOnboardingSuccessModal
                 .CheckSpendOnboardingSuccessModal()

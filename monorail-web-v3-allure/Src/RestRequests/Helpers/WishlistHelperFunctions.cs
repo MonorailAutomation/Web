@@ -1,3 +1,4 @@
+using System.Threading;
 using static monorail_web_v3.RestRequests.Token;
 using static monorail_web_v3.RestRequests.Wishlists;
 
@@ -15,14 +16,24 @@ namespace monorail_web_v3.RestRequests.Helpers
             string faviconUrlAdd, string imageUrlAdd, string itemUrlAdd, string nameAdd)
         {
             var token = GenerateToken(username, password);
-            AddWishlists(token, amountAdd, descriptionAdd, faviconUrlAdd, imageUrlAdd, itemUrlAdd, nameAdd);
+            AddWishlists(token, itemUrlAdd);
+        }
+        
+        public static void AddAndUpdateWishlistItem(string username, string password, string amountAdd, string descriptionAdd,
+            string faviconUrlAdd, string imageUrlAdd, string itemUrlAdd, string nameAdd)
+        {
+            var token = GenerateToken(username, password);
+            var wishlistItemId = AddWishlists(token, itemUrlAdd);
+            Thread.Sleep(60000);
+            UpdateWishlists(token, amountAdd, descriptionAdd, faviconUrlAdd, imageUrlAdd, itemUrlAdd, nameAdd,
+                wishlistItemId);
         }
 
-        public static void RevertWishlistItem(string username, string password, string amountAdd, string descriptionAdd,
+        public static void UpdateWishlistItem(string username, string password, string amountAdd, string descriptionAdd,
             string faviconUrlAdd, string imageUrlAdd, string itemUrlAdd, string nameAdd, string wishlistItemId)
         {
             var token = GenerateToken(username, password);
-            RevertWishlists(token, amountAdd, descriptionAdd, faviconUrlAdd, imageUrlAdd, itemUrlAdd, nameAdd,
+            UpdateWishlists(token, amountAdd, descriptionAdd, faviconUrlAdd, imageUrlAdd, itemUrlAdd, nameAdd,
                 wishlistItemId);
         }
     }

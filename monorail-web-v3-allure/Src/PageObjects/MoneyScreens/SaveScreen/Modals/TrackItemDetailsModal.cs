@@ -17,7 +17,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals
         [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='targetBalance']")]
         private IWebElement _trackTargetAmountInput;
 
-        [FindsBy(How = How.XPath, Using = "//input[@type='date']")]
+        [FindsBy(How = How.XPath, Using = "//input[@type='text']")]
         private IWebElement _trackTargetDateInput;
 
         public TrackItemDetailsModal(IWebDriver driver) : base(driver)

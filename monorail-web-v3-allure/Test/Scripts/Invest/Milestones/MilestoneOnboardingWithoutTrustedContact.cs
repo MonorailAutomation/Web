@@ -23,7 +23,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
         private const string UsernameSuffix = "@gmail.com";
 
         private const string MilestoneDescription = "Test Milestone Description";
-        private const string MilestoneTargetDate = "24/10/2023";
+        private const string MilestoneTargetDate = "10242023";
         private const string MilestoneTargetAmount = "4,500";
 
         [Test(Description =
@@ -155,8 +155,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .ClickContinueButtonInSpan();
 
             linkYourAccountModal
-                .CheckLinkYourAccountModal()
-                .ClickLinkYourAccountButton();
+                .CheckConnectYourBankAccountModal()
+                .ClickConnectYourBankAccountButton();
 
             ConnectPlaid();
 
@@ -322,8 +322,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .ClickContinueButtonInSpan();
 
             linkYourAccountModal
-                .CheckLinkYourAccountModal()
-                .ClickLinkYourAccountButton();
+                .CheckConnectYourBankAccountModal()
+                .ClickConnectYourBankAccountButton();
 
             ConnectPlaid();
 

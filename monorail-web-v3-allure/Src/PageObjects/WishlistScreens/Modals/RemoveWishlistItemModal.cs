@@ -14,10 +14,10 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         private const string RemoveWishlistItemHeaderText = "Remove from Wishlist";
         private const string RemoveWishlistItemMessageText = "Are you sure you want to remove this Wishlist item?";
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//span[contains(text(),'Cancel')]")]
+        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//span[contains(text(),'Cancel')]")]
         private IWebElement _cancelButton;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//span[contains(text(),'Remove')]")]
+        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//span[contains(text(),'Remove')]")]
         private IWebElement _removeButton;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//p")]

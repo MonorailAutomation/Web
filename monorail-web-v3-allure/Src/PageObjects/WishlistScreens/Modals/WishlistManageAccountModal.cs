@@ -17,14 +17,14 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         private const string DepositAmountLabelText = "Amount";
         private const string DepositFrequencyLabelText = "Deposit";
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Cash')]")]
+        [FindsBy(How = How.XPath,
+            Using = "//div[@class='vim-modal__body__content']//button[contains(text(),'Add Cash')]")]
         private IWebElement _addCashButton;
 
         [FindsBy(How = How.XPath,
             Using = "//div[@class='vim-modal__body__content']//button[contains(text(),'Cash Out')]")]
         private IWebElement _cashOutButton;
 
-        // Scheduled Deposits section
         [FindsBy(How = How.XPath,
             Using = "//div[contains(@class, 'vim-goal-schedule__info--details')]//div[1]//h2")]
         private IWebElement _depositAmount;
@@ -33,12 +33,10 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
             Using = "//div[contains(@class, 'vim-goal-schedule__info--details')]//div[1]//p")]
         private IWebElement _depositAmountLabel;
 
-        //method
         [FindsBy(How = How.XPath,
             Using = "//div[contains(@class, 'vim-goal-schedule__info--details')]//div[2]//h2")]
         private IWebElement _depositFrequency;
 
-        //deposit label
         [FindsBy(How = How.XPath,
             Using = "//div[contains(@class, 'vim-goal-schedule__info--details')]//div[2]//p")]
         private IWebElement _depositFrequencyLabel;

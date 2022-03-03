@@ -33,7 +33,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
 
             const string username = "autotests.mono+2.2.181021@gmail.com";
             const string trackDescription = "Test Track Description";
-            const string trackTargetDate = "19/04/2029";
+            const string trackTargetDate = "04192029";
             const string trackTargetAmount = "6,900";
 
             var trackName = "Test Track " + GenerateRandomString();
@@ -75,8 +75,6 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .CheckSuccessModal()
                 .VerifyNameOfCreatedTrack(trackName)
                 .ClickFinishButton();
-
-            Driver.Navigate().Refresh();
 
             tracksMainScreen.VerifyIfTrackExists(trackName, trackTargetAmount);
         }

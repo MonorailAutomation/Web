@@ -16,10 +16,10 @@ namespace monorail_web_v3.Test.Scripts.Transactions
         private const string AmountToAdd = "2";
         private const string Username = "autotests.mono+7.5.0601221@gmail.com";
 
-        [Test(Description = "Deposit Money to Wishlist Account from Main Wishlist Screen using 'Add Funds'")]
+        [Test(Description = "Deposit Money to Wishlist Account from Main Wishlist Screen using 'Add Cash'")]
         [AllureEpic("Transactions")]
         [AllureFeature("Wishlist")]
-        [AllureStory("Deposit to Wishlist Account | Main Screen -> Add Funds")]
+        [AllureStory("Deposit to Wishlist Account | Main Screen -> Add Cash")]
         public void DepositToWishlistAccountFromMainScreenTest()
         {
             var loginPage = new LoginPage(Driver);

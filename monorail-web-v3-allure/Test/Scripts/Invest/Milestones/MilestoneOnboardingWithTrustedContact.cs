@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
@@ -24,7 +25,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
         private const string UsernameSuffix = "@gmail.com";
 
         private const string MilestoneDescription = "Test Milestone Description";
-        private const string MilestoneTargetDate = "24/10/2023";
+        private const string MilestoneTargetDate = "10242023";
         private const string MilestoneTargetAmount = "4,500";
 
         [Test(Description = "Milestone Onboarding (Apex) - by clicking 'Add a Milestone' button; with Trusted Contact")]
@@ -65,6 +66,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             var milestoneName = "Test Milestone " + GenerateRandomString();
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            
             const string dateOfBirth = "1966-01-01";
 
             RegisterUserWithDoB(username, dateOfBirth);
@@ -163,8 +165,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .ClickContinueButtonInSpan();
 
             linkYourAccountModal
-                .CheckLinkYourAccountModal()
-                .ClickLinkYourAccountButton();
+                .CheckConnectYourBankAccountModal()
+                .ClickConnectYourBankAccountButton();
 
             ConnectPlaid();
 
@@ -341,8 +343,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .ClickContinueButtonInSpan();
 
             linkYourAccountModal
-                .CheckLinkYourAccountModal()
-                .ClickLinkYourAccountButton();
+                .CheckConnectYourBankAccountModal()
+                .ClickConnectYourBankAccountButton();
 
             ConnectPlaid();
 

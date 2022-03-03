@@ -1,3 +1,4 @@
+using System.Threading;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -21,6 +22,7 @@ namespace monorail_web_v3.PageObjects.ProfileScreens.Modals
         {
             Wait.Until(ElementToBeVisible(_continueButton));
             _continueButton.Click();
+            Thread.Sleep(15000);
             return this;
         }
     }
