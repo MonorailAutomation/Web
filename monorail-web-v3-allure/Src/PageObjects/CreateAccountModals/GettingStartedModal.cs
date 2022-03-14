@@ -65,6 +65,9 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
         [FindsBy(How = How.XPath, Using = "//form//div[4]//label")]
         private IWebElement _yourPhoneNumberLabel;
 
+        [FindsBy(How = How.ClassName, Using = "form-required")]
+        private IWebElement _validationMessageText;
+
         public GettingStartedModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
@@ -99,7 +102,7 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
         {
             Wait.Until(ElementToBeVisible(_passwordInput));
             _phoneNumberInput.SendKeys(phoneNumber);
-            Thread.Sleep(5000); // necessary workaround as Continue button is always active
+            Thread.Sleep(2000); // necessary workaround as Continue button is always active
             return this;
         }
 
@@ -137,6 +140,15 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
                 Console.WriteLine(e);
             }
 
+            return this;
+        }
+
+        [AllureStep("Validation message is displayed")]
+        public GettingStartedModal VerifyIfCorrectValidationMessageIsDisplayed(string message)
+        {
+            Wait.Until(ElementToBeVisible(_validationMessageText));
+            var actualValidationMessage = _validationMessageText.Text;
+            actualValidationMessage.Should().Be(message);
             return this;
         }
     }
