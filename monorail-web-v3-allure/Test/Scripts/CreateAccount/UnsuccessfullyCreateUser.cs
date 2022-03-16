@@ -11,7 +11,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
 {
     [TestFixture]
     [AllureNUnit]
-    public class FailedRegistration : FunctionalTesting
+    public class UnsuccessfullyCreateUser : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+20.061121";
         private const string UsernameSuffix = "@gmail.com";
