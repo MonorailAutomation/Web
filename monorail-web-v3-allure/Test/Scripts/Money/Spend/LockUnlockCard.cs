@@ -26,7 +26,6 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
             var spendMainScreen = new SpendMainScreen(Driver);
 
             var username = "autotests.mono+5.1.160322@gmail.com";
-            Console.WriteLine(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
