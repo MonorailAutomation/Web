@@ -17,11 +17,23 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
         private const string EnterVerificationCodeMessageText = "Please enter your verification code";
         private const string ResendOptionText = "Resend";
 
+        private const string ExpectedInvalidCodeHeader = "An error happened";
+        private const string ExpectedInvalidCodeMessage = "The code you entered does not match our records. Please enter a valid verification code.";
+
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//span[contains(@class,'header')]")]
         private IWebElement _enterVerificationCodeMessage;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//a")]
         private IWebElement _resendOption;
+
+        [FindsBy(How = How.ClassName, Using = "vim-flash-message__dismiss")]
+        private IWebElement _flashMessageDismissButton;
+
+        [FindsBy(How = How.ClassName, Using = "vim-flash-message__text")]
+        private IWebElement _flashMessageText;
+
+        [FindsBy(How = How.ClassName, Using = "vim-flash-message__title")]
+        private IWebElement _flashMessageTitle;
 
         public VerifyYourAccountVerificationCodeModal(IWebDriver driver) : base(driver)
         {
@@ -67,6 +79,22 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
             {
                 Console.WriteLine(e);
             }
+
+            return this;
+        }
+
+        [AllureStep("Verify that 'The code you entered does not match our records.' message is displayed")]
+        public VerifyYourAccountVerificationCodeModal VerifyIfIncorrectVerificationCodeMessageIsDisplayed()
+        {
+            Wait.Until(ElementToBeVisible(_flashMessageTitle));
+            Wait.Until(ElementToBeVisible(_flashMessageText));
+            Wait.Until(ElementToBeClickable(_flashMessageDismissButton));
+
+            var actualHeader = _flashMessageTitle.Text;
+            var actualMessage = _flashMessageText.Text;
+
+            actualHeader.Should().Be(ExpectedInvalidCodeHeader);
+            actualMessage.Should().Be(ExpectedInvalidCodeMessage);
 
             return this;
         }

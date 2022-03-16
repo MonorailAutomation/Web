@@ -98,5 +98,81 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
                 .VerifyIfCorrectValidationMessageIsDisplayed(ExpectedUserOver120ValidationMessage);
         }
 
+        [Test(Description = "Create user using incorrect email verification code")]
+        [AllureEpic("Create user")]
+        [AllureFeature("Registration failed")]
+        [AllureStory("Create user using incorrect email verification code")]
+        public void CreateUserIncorrectEmailVerificationCodeTest()
+        {
+            var loginPage = new LoginPage(Driver);
+            var gettingStartedModal = new GettingStartedModal(Driver);
+            var verifyYourAccountChooseMethodModal = new VerifyYourAccountChooseMethodModal(Driver);
+            var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
+
+            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+
+            loginPage
+                .ClickCreateAnAccountButton();
+
+            gettingStartedModal
+                .CheckGettingStartedModal()
+                .SetEmail(username)
+                .SetPassword(ValidPassword)
+                .SetDateOfBirth(ValidDateOfBirthMDY)
+                .SetPhoneNumber("9419252125")
+                .ClickContinueButton();
+
+            verifyYourAccountChooseMethodModal
+                .CheckVerifyYourAccountChooseMethodModal()
+                .ClickEmailOption()
+                .ClickContinueButton();
+
+            verifyYourAccountVerificationCodeModal
+                .CheckYourAccountVerificationCodeModal()
+                .EnterVerificationCode("123456")
+                .ClickContinueButton();
+
+            verifyYourAccountVerificationCodeModal
+                .VerifyIfIncorrectVerificationCodeMessageIsDisplayed();
+        }
+
+        [Test(Description = "Create user using incorrect sms verification code")]
+        [AllureEpic("Create user")]
+        [AllureFeature("Registration failed")]
+        [AllureStory("Create user using incorrect sms verification code")]
+        public void CreateUserIncorrectSmsVerificationCodeTest()
+        {
+            var loginPage = new LoginPage(Driver);
+            var gettingStartedModal = new GettingStartedModal(Driver);
+            var verifyYourAccountChooseMethodModal = new VerifyYourAccountChooseMethodModal(Driver);
+            var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
+
+            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+
+            loginPage
+                .ClickCreateAnAccountButton();
+
+            gettingStartedModal
+                .CheckGettingStartedModal()
+                .SetEmail(username)
+                .SetPassword(ValidPassword)
+                .SetDateOfBirth(ValidDateOfBirthMDY)
+                .SetPhoneNumber("9419252126")
+                .ClickContinueButton();
+
+            verifyYourAccountChooseMethodModal
+                .CheckVerifyYourAccountChooseMethodModal()
+                .ClickTextMessageOption()
+                .ClickContinueButton();
+
+            verifyYourAccountVerificationCodeModal
+                .CheckYourAccountVerificationCodeModal()
+                .EnterVerificationCode("123456")
+                .ClickContinueButton();
+
+            verifyYourAccountVerificationCodeModal
+                .VerifyIfIncorrectVerificationCodeMessageIsDisplayed();
+        }
+
     }
 }
