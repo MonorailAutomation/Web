@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
@@ -21,6 +22,9 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
 
         private const string CardOnTheWayMessageText =
             "It should arrive in 5-10 business days. When it does, activate it below.";
+
+        private const string ActiveCardBadgeText = "Active";
+        private const string LockedCardBadgeText = "Locked";
 
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Activate Card')]")]
         private IWebElement _activateCardButton;
@@ -64,6 +68,15 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'View Transactions')]")]
         private IWebElement _viewTransactionsButton;
 
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-toggle vim-toggle--lock']")]
+        private IWebElement _lockUnlockCardToggle;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='status-badge locked']")]
+        private IWebElement _cardStatusBadgeLocked;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='status-badge active']")]
+        private IWebElement _cardStatusBadgeActive;
+
         public SpendMainScreen(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
@@ -98,6 +111,31 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
         {
             Wait.Until(ElementToBeClickable(_activateCardButton));
             _activateCardButton.Click();
+            return this;
+        }
+
+        [AllureStep("Click 'Lock/Unlock Card' toggle")]
+        public SpendMainScreen ClickLockUnlockCardToggle()
+        {
+            Wait.Until(ElementToBeClickable(_lockUnlockCardToggle));
+            Thread.Sleep(1000);
+            _lockUnlockCardToggle.Click();
+            return this;
+        }
+
+        [AllureStep("Check if card is locked")]
+        public SpendMainScreen CheckIfCardIsLocked()
+        {
+            Wait.Until(ElementToBeVisible(_cardStatusBadgeLocked));
+            _cardStatusBadgeLocked.Text.Should().Be(LockedCardBadgeText);
+            return this;
+        }
+
+        [AllureStep("Check if card is active")]
+        public SpendMainScreen CheckIfCardIsActive()
+        {
+            Wait.Until(ElementToBeVisible(_cardStatusBadgeActive));
+            _cardStatusBadgeActive.Text.Should().Be(ActiveCardBadgeText);
             return this;
         }
 
