@@ -118,7 +118,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
         public SpendMainScreen ClickLockUnlockCardToggle()
         {
             Wait.Until(ElementToBeClickable(_lockUnlockCardToggle));
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             _lockUnlockCardToggle.Click();
             return this;
         }
