@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
@@ -68,7 +67,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'View Transactions')]")]
         private IWebElement _viewTransactionsButton;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-toggle vim-toggle--lock']")]
+        [FindsBy(How = How.XPath, Using = "//vim-toggle[contains(@ng-reflect-disable, 'false')]")]
         private IWebElement _lockUnlockCardToggle;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='status-badge locked']")]
@@ -118,7 +117,6 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
         public SpendMainScreen ClickLockUnlockCardToggle()
         {
             Wait.Until(ElementToBeClickable(_lockUnlockCardToggle));
-            Thread.Sleep(1000);
             _lockUnlockCardToggle.Click();
             return this;
         }
