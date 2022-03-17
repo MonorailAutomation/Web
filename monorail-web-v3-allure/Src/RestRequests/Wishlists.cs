@@ -87,5 +87,45 @@ namespace monorail_web_v3.RestRequests
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
+        
+        public static void AddCustomWishlistItem(string token, string productUrl, string itemName, string itemDescription, 
+            string itemAmount, string itemImageUrl, string itemFavIconUrl)
+        {
+            /*
+             * {
+  "itemURL": "https://www.wp.pl",
+  "name": "Test item",
+  "description": "item descr",
+  "amount": 20,
+  "imageURL": "https://wallpaperaccess.com/full/154009.jpg",
+  "favIconURL": "https://statics.otomoto.pl/optimus-storage/a/otomotopl/images/favicon-32x32.png"
+}
+             */
+            var client = new RestClient
+            {
+                BaseUrl = MonorailUri,
+                Authenticator = new JwtAuthenticator(token)
+            };
+            var request = new RestRequest
+            {
+                Resource = WishlistsEndpoint,
+                Method = Method.POST,
+                RequestFormat = DataFormat.Json
+            };
+
+            request.AddJsonBody(new
+            {
+                itemUrl = productUrl,
+                name = itemName,
+                description = itemDescription,
+                amount = itemAmount,
+                imageUrl = itemImageUrl,
+                favIconUrl = itemFavIconUrl
+            });
+
+            var response = client.Execute(request);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
     }
 }
