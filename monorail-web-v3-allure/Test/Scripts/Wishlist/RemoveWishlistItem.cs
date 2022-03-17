@@ -28,7 +28,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var removeWishlistItemModal = new RemoveWishlistItemModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
-            const string username = "autotests.mono+3.1.0711211@gmail.com";
+            const string username = "autotests.mono+3.1.0317221@gmail.com";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -54,8 +54,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             wishlistMainScreen.CheckNoWishlistItem(WishlistItemName);
 
-            AddWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
-                 WishlistItemImage, WishlistItemUrl, WishlistItemName);
+            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, WishlistItemName, 
+                WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
         }
 
         [Test(Description = "Remove Wishlist item by clicking a button when user doesn't have a wishlist account")]
@@ -97,8 +97,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             wishlistMainScreen.CheckNoWishlistItem(WishlistItemName);
 
-             AddWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
-                 WishlistItemImage, WishlistItemUrl, WishlistItemName);
+            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, WishlistItemName, 
+                WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
         }
     }
 }
