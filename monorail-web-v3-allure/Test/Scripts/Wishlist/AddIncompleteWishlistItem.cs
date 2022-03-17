@@ -15,6 +15,13 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
     [AllureNUnit]
     internal class AddIncompleteWishlistItem : FunctionalTesting
     {
+        private const string WishlistItemUrl =
+            "https://www.monorail.com/blog/how-to-organize-your-finances";
+
+        private const string WishlistItemName = "How To Organize Your Finances";
+        private const string WishlistItemPrice = "$1";
+        private const string WishlistItemDescription = "Navigating through personal finance";
+        
         [Test(Description = "Add incomplete Wishlist item by clicking a button when user has a wishlist account")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Add incomplete Wishlist Item")]
@@ -30,7 +37,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
-            const string username = "autotests.mono+2.071221@gmail.com"; //created
+            const string username = "autotests.mono+2.0317221@gmail.com";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -86,7 +93,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
-            const string username = "autotests.mono+3.1.161021@gmail.com"; //created
+            const string username = "autotests.mono+3.1.031721@gmail.com";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -94,7 +101,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             mainScreen
                 .CheckMainScreen();
-
+            
             wishlistScreen
                 .CheckWishlistScreen();
 
@@ -120,7 +127,6 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickConfirmButton();
 
             wishlistDetailsScreen
-                .CheckWishlistItemDetailsScreenForNotReadyToBuyItemStatus()
                 .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice, WishlistItemUrl);
 
             var wishlistItemId = Driver.Url[^36..];
@@ -145,7 +151,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
-            const string username = "autotests.mono+2.141221@gmail.com"; //created
+            const string username = "autotests.mono+2.141221@gmail.com";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -153,12 +159,12 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             mainScreen
                 .CheckMainScreen();
-
+            
             wishlistScreen
                 .CheckWishlistScreen();
 
             wishlistMainScreen
-                .CheckWishlistMainScreenBeforeOnboarding()
+               .CheckWishlistMainScreenBeforeOnboarding()
                 .ClickAddWishlistItemButton();
 
             addNewWishlistItemModal
@@ -202,7 +208,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
-            const string username = "autotests.mono+3.141221@gmail.com"; //created
+            const string username = "autotests.mono+3.141221@gmail.com";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
