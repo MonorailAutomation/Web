@@ -45,7 +45,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             wishlistManageAccountModal
                 .CheckWishlistManageAccountModal()
                 .ClickScheduledDepositSwitch()
-                .ClickTargetAndScheduleButton();
+                .ClickEditScheduleButton();
 
             targetAndScheduleModal
                 .CheckTargetAndScheduleModal()
@@ -90,7 +90,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             wishlistManageAccountModal
                 .CheckWishlistManageAccountModal()
                 .ClickScheduledDepositSwitch()
-                .ClickTargetAndScheduleButton();
+                .ClickEditScheduleButton();
 
             targetAndScheduleModal
                 .CheckTargetAndScheduleModal()
@@ -136,7 +136,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             wishlistManageAccountModal
                 .CheckWishlistManageAccountModal()
                 .ClickScheduledDepositSwitch()
-                .ClickTargetAndScheduleButton();
+                .ClickEditScheduleButton();
 
             targetAndScheduleModal
                 .CheckTargetAndScheduleModal()
