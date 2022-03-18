@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
@@ -24,7 +25,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         private IWebElement _showOnlyReadyToBuySwitch;
 
         [FindsBy(How = How.XPath,
-            Using = "//div[contains(@class, 'wishlist-list-item__details')]//p")]
+            Using = "//div[contains(@class, 'wishlist-list-item__details')]//p[1]")]
         private IList<IWebElement> ListOfAllWishlistItems;
 
         public WishlistViewAllScreen(IWebDriver driver) : base(driver)
@@ -80,13 +81,14 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         [AllureStep("Check Items on 'View All' screen")]
         public WishlistViewAllScreen CheckItemsOnViewAllScreen(int wishlistItemAmount, params string[] wishlistItems)
         {
+            Thread.Sleep(5000);
             if (ListOfAllWishlistItems.Count == wishlistItemAmount)
                 for (var i = 0; i < wishlistItemAmount; i++)
                 {
                     var wishlistItemSelector = "//p[contains(text(), '" + wishlistItems[i] + "')]";
                     var wishlistItem = Driver.FindElement(By.XPath(wishlistItemSelector));
                     if (!ListOfAllWishlistItems.Contains(wishlistItem))
-                        throw new Exception("Wishlist item was not found on the list");
+                        throw new Exception("'"+ wishlistItems[i] + "' item was not found on the list");
                 }
             else
                 throw new DataException("Wishlist Item amount doesn't match expected amount");

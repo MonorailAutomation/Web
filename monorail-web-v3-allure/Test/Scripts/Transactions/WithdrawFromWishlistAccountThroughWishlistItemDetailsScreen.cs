@@ -35,8 +35,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             var wishlistItemName = "Test Item " + GenerateRandomString();
 
-            AddAndUpdateWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
-                WishlistItemImage, WishlistItemUrl, wishlistItemName);
+            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, wishlistItemName, 
+                WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -96,8 +96,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             var wishlistItemName = "Test Item " + GenerateRandomString();
 
-            AddAndUpdateWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
-                WishlistItemImage, WishlistItemUrl, wishlistItemName);
+            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, wishlistItemName, 
+                WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
 
             loginPage
                 .PassCredentials(username, ValidPassword)

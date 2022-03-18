@@ -87,7 +87,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistItemIsBeingAddedModal = new WishlistItemIsBeingAddedModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
-            const string username = "autotests.mono+3.1.310122@gmail.com";
+            const string username = "autotests.mono+3.1.031722@gmail.com";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -193,7 +193,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistItemIsBeingAddedModal = new WishlistItemIsBeingAddedModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
-            const string username = "autotests.mono+3.010222@gmail.com"; //created
+            const string username = "autotests.mono+3.010222@gmail.com";
 
             loginPage
                 .PassCredentials(username, ValidPassword)
