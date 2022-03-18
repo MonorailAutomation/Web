@@ -69,8 +69,8 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             return this;
         }
 
-        [AllureStep("Click 'Add Funds' button")]
-        public WishlistMainScreen ClickAddFundsButton()
+        [AllureStep("Click 'Add Cash' button")]
+        public WishlistMainScreen ClickAddCashButton()
         {
             Wait.Until(ElementToBeClickable(_addCashButton));
             _addCashButton.Click();

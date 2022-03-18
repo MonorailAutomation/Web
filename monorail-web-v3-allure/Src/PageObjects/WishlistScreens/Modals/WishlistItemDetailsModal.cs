@@ -111,7 +111,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
             string wishlistItemDescription,
             string wishlistItemUrl)
         {
-            ItemNameInput.GetAttribute("value").Should().Be(wishlistItemName);
+            ItemNameInput.GetAttribute("value").Should().Contain(wishlistItemName);
             _wishlistDescriptionInput.GetAttribute("value").Should().Contain(wishlistItemDescription);
             //_wishlistItemUrlInput.GetAttribute("value").Should().Be(wishlistItemUrl);
         }
