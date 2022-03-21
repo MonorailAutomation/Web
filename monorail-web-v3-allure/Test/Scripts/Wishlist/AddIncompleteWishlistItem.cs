@@ -63,6 +63,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickCloseButton();
 
             wishlistMainScreen
+                .CheckItemBeingAddedBarDisappeared()
                 .ClickWishlistItem(WishlistItemName);
 
             wishlistItemDetailsModal
@@ -119,6 +120,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickCloseButton();
 
             wishlistMainScreen
+                .CheckItemBeingAddedBarDisappeared()
                 .ClickWishlistItem(WishlistItemName);
 
             wishlistItemDetailsModal
@@ -177,6 +179,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickCloseButton();
 
             wishlistMainScreen
+                .CheckItemBeingAddedBarDisappeared()
                 .ClickWishlistItem(WishlistItemName);
 
             wishlistItemDetailsModal
@@ -234,6 +237,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickCloseButton();
 
             wishlistMainScreen
+                .CheckItemBeingAddedBarDisappeared()
                 .ClickWishlistItem(WishlistItemName);
 
             wishlistItemDetailsModal
