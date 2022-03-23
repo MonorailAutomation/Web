@@ -4,7 +4,7 @@ using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
-using static monorail_web_v3.Commons.RandomGenerator;
+using static monorail_web_v3.Commons.EmailGenerator;
 
 
 namespace monorail_web_v3.Test.Scripts.CreateAccount
@@ -13,7 +13,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
     [AllureNUnit]
     public class UnsuccessfulUserCreation : FunctionalTesting
     {
-        private const string UsernamePrefix = "autotests.mono+20.061121";
+        private const string UsernamePrefix = "autotests.mono+20.";
         private const string UsernameSuffix = "@gmail.com";
 
         private const string ExpectedEmailUsedValidationMessage = "Already Used";
@@ -55,7 +55,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var loginPage = new LoginPage(Driver);
             var gettingStartedModal = new GettingStartedModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -81,7 +81,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var loginPage = new LoginPage(Driver);
             var gettingStartedModal = new GettingStartedModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -109,7 +109,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var verifyYourAccountChooseMethodModal = new VerifyYourAccountChooseMethodModal(Driver);
             var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -147,7 +147,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var verifyYourAccountChooseMethodModal = new VerifyYourAccountChooseMethodModal(Driver);
             var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             loginPage
                 .ClickCreateAnAccountButton();

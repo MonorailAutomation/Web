@@ -2,7 +2,7 @@ using System;
 
 namespace monorail_web_v3.Commons
 {
-    public static class RandomGenerator
+    public static class NumberGenerator
     {
         public static string GenerateRandomString()
         {
@@ -17,6 +17,11 @@ namespace monorail_web_v3.Commons
         public static string GenerateRandom4Digits()
         {
             return new Random().Next(1000, 9999).ToString();
+        }
+
+        public static string GetCurrentDate() 
+        {
+            return DateTime.Now.ToString("ddMMyy");
         }
     }
 }
