@@ -8,6 +8,7 @@ using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.Commons.RandomGenerator;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
+using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
@@ -96,8 +97,6 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         
             var loginPage = new LoginPage(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
-            var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
-            var wishlistItemIsBeingAddedModal = new WishlistItemIsBeingAddedModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
             var completeYourAccountModal = new CompleteYourAccountModal(Driver);
             var completeYourProfileModal = new CompleteYourProfileModal(Driver);
@@ -109,28 +108,20 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistAddCashModal = new WishlistAddCashModal(Driver);
 
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
-
+            
             RegisterUser(username);
+            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, WishlistItemName, 
+                WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
 
             wishlistMainScreen
-                .CheckWishlistMainScreenBeforeOnboarding()
-                .ClickAddWishlistItemButton();
-            
-            addNewWishlistItemModal
-                .CheckAddNewItemModal()
-                .PasteLink(wishlistItemUrl)
-                .ClickContinueButton();
-
-            wishlistItemIsBeingAddedModal
-                .CheckWishlistItemIsBeingAddedModal()
-                .ClickCloseButton();
+                .CheckWishlistMainScreenBeforeOnboarding();
 
             wishlistMainScreen
-                .ClickWishlistItem(wishlistItemName);
+                .ClickWishlistItem(WishlistItemName);
 
             wishlistDetailsScreen
                 .ClickFundYourWishlistButton();

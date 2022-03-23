@@ -50,8 +50,8 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         private IWebElement _scheduledDepositSwitch;
 
         [FindsBy(How = How.XPath,
-            Using = "//a[contains(text(), 'Target & Schedule')]")]
-        private IWebElement _targetAndScheduleButton;
+            Using = "//button[contains(text(), 'Edit Schedule')]")]
+        private IWebElement _editScheduleButton;
 
         public WishlistManageAccountModal(IWebDriver driver) : base(driver)
         {
@@ -122,10 +122,10 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         }
 
         [AllureStep("Click 'Target & Schedule' button")]
-        public WishlistManageAccountModal ClickTargetAndScheduleButton()
+        public WishlistManageAccountModal ClickEditScheduleButton()
         {
-            Wait.Until(ElementToBeClickable(_targetAndScheduleButton));
-            _targetAndScheduleButton.Click();
+            Wait.Until(ElementToBeClickable(_editScheduleButton));
+            _editScheduleButton.Click();
             return this;
         }
 

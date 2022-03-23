@@ -14,7 +14,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
     internal class DepositToWishlistAccountThroughMainScreen : FunctionalTesting
     {
         private const string AmountToAdd = "2";
-        private const string Username = "autotests.mono+7.5.0601221@gmail.com";
+        private const string Username = "autotests.mono+7.5.0317221@gmail.com";
 
         [Test(Description = "Deposit Money to Wishlist Account from Main Wishlist Screen using 'Add Cash'")]
         [AllureEpic("Transactions")]
@@ -38,7 +38,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             wishlistMainScreen
                 .CheckWishlistMainScreenAfterOnboarding()
-                .ClickAddFundsButton();
+                .ClickAddCashButton();
 
             wishlistAddCashModal
                 .CheckWishlistAddCashModal()

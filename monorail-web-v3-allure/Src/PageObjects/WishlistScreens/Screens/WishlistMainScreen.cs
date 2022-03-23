@@ -23,6 +23,10 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         private IWebElement _addWishlistItemButton;
 
         [FindsBy(How = How.XPath,
+            Using = "//p[contains(text(),'Your wishlist item is being added!')]")]
+        private IWebElement _wishlistItemIsBeingAddedModal;
+        
+        [FindsBy(How = How.XPath,
             Using = "//div[@class='wishlist-list__item'][2]//div[@class='empty-card__container']")]
         private IWebElement _addWishlistItemPlaceholder;
 
@@ -69,8 +73,8 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             return this;
         }
 
-        [AllureStep("Click 'Add Funds' button")]
-        public WishlistMainScreen ClickAddFundsButton()
+        [AllureStep("Click 'Add Cash' button")]
+        public WishlistMainScreen ClickAddCashButton()
         {
             Wait.Until(ElementToBeClickable(_addCashButton));
             _addCashButton.Click();
@@ -122,6 +126,13 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         {
             var wishlistItemSelector = "//p[contains(text(), '" + wishlistItemName + "')]";
             Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath(wishlistItemSelector)));
+            return this;
+        }
+
+        [AllureStep("Check if 'Your wishlist item is being added!' bar is no longer displayed")]
+        public WishlistMainScreen CheckItemBeingAddedBarDisappeared()
+        {
+            Wait.Until(ElementToBeNotVisible(_wishlistItemIsBeingAddedModal));
             return this;
         }
 
