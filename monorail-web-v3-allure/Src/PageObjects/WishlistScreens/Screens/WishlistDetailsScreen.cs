@@ -198,13 +198,14 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 
             VerifyWishlistItemDetails(wishlistItemName, wishlistItemDescription, wishlistItemPrice);
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemUrlSelector))).GetAttribute("href")
-                 .Should().Contain(wishlistItemUrl);
+                .Should().Contain(wishlistItemUrl);
 
             return this;
         }
-        
+
         [AllureStep("Verify if Wishlist item name is: '{0}', description is: '{1}', price is: '{2}''")]
-        public WishlistDetailsScreen VerifyWishlistItemDetails(string wishlistItemName, string wishlistItemDescription, string wishlistItemPrice)
+        public WishlistDetailsScreen VerifyWishlistItemDetails(string wishlistItemName, string wishlistItemDescription,
+            string wishlistItemPrice)
         {
             var wishlistItemNameSelector = "//div//h2[contains(text(), '" + wishlistItemName + "')]";
             var wishlistItemDescriptionSelector = "//div//p[contains(text(), '" + wishlistItemDescription + "')]";

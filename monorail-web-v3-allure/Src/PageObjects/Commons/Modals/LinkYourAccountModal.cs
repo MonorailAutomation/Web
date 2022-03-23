@@ -16,12 +16,12 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         private const string EncryptionInfoText =
             "End to end encryption. Your credentials are never made available to Monorail.";
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//p")]
-        private IWebElement _encryptionInfo;
-
         [FindsBy(How = How.XPath,
             Using = "//div[@class='vim-modal__footer']//a[contains(text(), 'Connect Your Bank Account')]")]
         private IWebElement _connectYourBankAccountButton;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//p")]
+        private IWebElement _encryptionInfo;
 
         public LinkYourAccountModal(IWebDriver driver) : base(driver)
         {

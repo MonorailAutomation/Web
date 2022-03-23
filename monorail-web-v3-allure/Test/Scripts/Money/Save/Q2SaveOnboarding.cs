@@ -116,7 +116,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ClickFinishButton();
 
             Thread.Sleep(10000);
-            
+
             saveMainScreen
                 .CheckSaveMainScreenAfterOnboarding()
                 .VerifyIfTrackExists(Holidays);
@@ -196,7 +196,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ClickAgreeButton();
 
             Thread.Sleep(30000);
-            
+
             saveMainScreen
                 .CheckSaveMainScreenAfterOnboarding()
                 .VerifyIfTrackExists(Travel);
@@ -284,7 +284,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ClickAgreeButton();
 
             Thread.Sleep(30000);
-            
+
             saveMainScreen
                 .CheckSaveMainScreenAfterOnboarding()
                 .VerifyIfTrackExists(Savings)

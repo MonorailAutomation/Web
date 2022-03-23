@@ -19,7 +19,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals
 
         [FindsBy(How = How.XPath, Using = "//div[@class='cash-transfer-modal__footer']/div/div[2]/p[1]")]
         private IWebElement _currentBuyingPowerLabel;
-        
+
         [FindsBy(How = How.XPath, Using = "//div[@class='cash-transfer-modal__footer']/div/div[1]/p[2]")]
         private IWebElement _transferCompleteDate;
 
