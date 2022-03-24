@@ -12,10 +12,14 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
     public class SpendMainScreen : MoneyScreen
     {
         private const string SpendHeaderText = "Spend";
-        private const string SetGoalsMessageText = "Set Goals.";
-        private const string ReachGoalsMessageText = "Reach Goals.";
-        private const string PurchaseMessageText = "Purchase.";
-        private const string InfoMessageText = "Spend directly from Monorail by using our new debit card.";
+
+        private const string EmptyScreenHeadlineText =
+            "Spend your money directly from Monorail using the free checking account and debit card.";
+
+        private const string EmptyScreenFirstBulletPointText = "Stay on top of every purchase with transparent transactions";
+        private const string EmptyScreenSecondBulletPointText = "Balance work and life by enabling direct deposit";
+        private const string EmptyScreenThirdBulletPointText = "Only spend what you have with the Monorail debit card";
+        private const string EmptyScreenFourthBulletPointText = "Keep your money all in one place";
 
         private const string CardOnTheWayHeaderText = "Your new card is on the way!";
 
@@ -37,11 +41,32 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
         [FindsBy(How = How.XPath, Using = "//vim-active-card//p[2]")]
         private IWebElement _cardOnTheWayMessage;
 
+        [FindsBy(How = How.XPath, Using = "//div[@class='status-badge active']")]
+        private IWebElement _cardStatusBadgeActive;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='status-badge locked']")]
+        private IWebElement _cardStatusBadgeLocked;
+
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Cash Out')]")]
         private IWebElement _cashOutButton;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-open-checking-account__cta']//p")]
-        private IWebElement _infoMessage;
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[1]")]
+        private IWebElement _emptyScreenFirstBulletpoint;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[4]")]
+        private IWebElement _emptyScreenFourthBulletpoint;
+
+        [FindsBy(How = How.XPath, Using = "//h2")]
+        private IWebElement _emptyScreenHeadline;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[2]")]
+        private IWebElement _emptyScreenSecondBulletpoint;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[3]")]
+        private IWebElement _emptyScreenThirdBulletpoint;
+
+        [FindsBy(How = How.XPath, Using = "//vim-toggle[contains(@ng-reflect-disable, 'false')]")]
+        private IWebElement _lockUnlockCardToggle;
 
         [FindsBy(How = How.XPath, Using = "//div[@id='moreOptionsDropdown']")]
         private IWebElement _moreOptionsButton;
@@ -49,32 +74,14 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Move Funds')]")]
         private IWebElement _moveFundsButton;
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Open your Checking Account')]")]
-        private IWebElement _openYourCheckingAccountButton;
-
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-open-checking-account__cta']//h2[3]")]
-        private IWebElement _purchaseMessage;
-
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-open-checking-account__cta']//h2[2]")]
-        private IWebElement _reachGoalsMessage;
-
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-open-checking-account__cta']//h2[1]")]
-        private IWebElement _setGoalsMessage;
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Open your Monorail Checking Account')]")]
+        private IWebElement _openYourMonorailCheckingAccountButton;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-page-header__title']//h1[1]")]
         private IWebElement _spendHeader;
 
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'View Transactions')]")]
         private IWebElement _viewTransactionsButton;
-
-        [FindsBy(How = How.XPath, Using = "//vim-toggle[contains(@ng-reflect-disable, 'false')]")]
-        private IWebElement _lockUnlockCardToggle;
-
-        [FindsBy(How = How.XPath, Using = "//div[@class='status-badge locked']")]
-        private IWebElement _cardStatusBadgeLocked;
-
-        [FindsBy(How = How.XPath, Using = "//div[@class='status-badge active']")]
-        private IWebElement _cardStatusBadgeActive;
 
         public SpendMainScreen(IWebDriver driver) : base(driver)
         {
@@ -100,8 +107,8 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
         [AllureStep("Click 'Open your Checking Account' button")]
         public SpendMainScreen ClickOpenYourCheckingAccountButton()
         {
-            Wait.Until(ElementToBeClickable(_openYourCheckingAccountButton));
-            _openYourCheckingAccountButton.Click();
+            Wait.Until(ElementToBeClickable(_openYourMonorailCheckingAccountButton));
+            _openYourMonorailCheckingAccountButton.Click();
             return this;
         }
 
@@ -143,17 +150,19 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
             try
             {
                 Wait.Until(ElementToBeVisible(_spendHeader));
-                Wait.Until(ElementToBeVisible(_setGoalsMessage));
-                Wait.Until(ElementToBeVisible(_reachGoalsMessage));
-                Wait.Until(ElementToBeVisible(_purchaseMessage));
-                Wait.Until(ElementToBeVisible(_infoMessage));
-                Wait.Until(ElementToBeVisible(_openYourCheckingAccountButton));
+                Wait.Until(ElementToBeVisible(_emptyScreenHeadline));
+                Wait.Until(ElementToBeVisible(_emptyScreenFirstBulletpoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenSecondBulletpoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenThirdBulletpoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenFourthBulletpoint));
+                Wait.Until(ElementToBeVisible(_openYourMonorailCheckingAccountButton));
 
                 _spendHeader.Text.Should().Contain(SpendHeaderText);
-                _setGoalsMessage.Text.Should().Be(SetGoalsMessageText);
-                _reachGoalsMessage.Text.Should().Be(ReachGoalsMessageText);
-                _purchaseMessage.Text.Should().Be(PurchaseMessageText);
-                _infoMessage.Text.Should().Be(InfoMessageText);
+                _emptyScreenHeadline.Text.Should().Contain(EmptyScreenHeadlineText);
+                _emptyScreenFirstBulletpoint.Text.Should().Contain(EmptyScreenFirstBulletPointText);
+                _emptyScreenSecondBulletpoint.Text.Should().Contain(EmptyScreenSecondBulletPointText);
+                _emptyScreenThirdBulletpoint.Text.Should().Contain(EmptyScreenThirdBulletPointText);
+                _emptyScreenFourthBulletpoint.Text.Should().Contain(EmptyScreenFourthBulletPointText);
             }
             catch (Exception e)
             {
@@ -177,7 +186,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
                 Wait.Until(ElementToBeVisible(_moveFundsButton));
                 Wait.Until(ElementToBeVisible(_moreOptionsButton));
 
-                Wait.Until(ElementToBeNotVisible(_openYourCheckingAccountButton));
+                Wait.Until(ElementToBeNotVisible(_openYourMonorailCheckingAccountButton));
 
                 _spendHeader.Text.Should().Contain(SpendHeaderText);
                 _cardOnTheWayHeader.Text.Should().Contain(CardOnTheWayHeaderText);
@@ -202,7 +211,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
                 Wait.Until(ElementToBeVisible(_moveFundsButton));
                 Wait.Until(ElementToBeVisible(_moreOptionsButton));
 
-                Wait.Until(ElementToBeNotVisible(_openYourCheckingAccountButton));
+                Wait.Until(ElementToBeNotVisible(_openYourMonorailCheckingAccountButton));
                 Wait.Until(ElementToBeNotVisible(_cardOnTheWayHeader));
                 Wait.Until(ElementToBeNotVisible(_cardOnTheWayMessage));
                 Wait.Until(ElementToBeNotVisible(_activateCardButton));
