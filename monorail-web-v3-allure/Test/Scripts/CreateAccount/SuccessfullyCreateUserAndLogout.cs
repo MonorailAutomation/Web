@@ -6,7 +6,7 @@ using monorail_web_v3.PageObjects.Menus;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
-using static monorail_web_v3.Commons.RandomGenerator;
+using static monorail_web_v3.Commons.EmailGenerator;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.Database.VerificationCode;
 
@@ -16,7 +16,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
     [AllureNUnit]
     public class SuccessfullyCreateUserAndLogout : FunctionalTesting
     {
-        private const string UsernamePrefix = "autotests.mono+20.061121";
+        private const string UsernamePrefix = "autotests.mono+20.";
         private const string UsernameSuffix = "@gmail.com";
 
         [Test(Description = "Create user with text message verification")]
@@ -33,7 +33,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var mainScreen = new MainScreen(Driver);
             var sideMenu = new SideMenu(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -89,7 +89,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var mainScreen = new MainScreen(Driver);
             var sideMenu = new SideMenu(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             loginPage
                 .ClickCreateAnAccountButton();

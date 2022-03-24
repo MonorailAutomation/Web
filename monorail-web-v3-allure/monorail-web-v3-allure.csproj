@@ -42,7 +42,6 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Src\PageObjects\InvestScreens\TradingScreen\Enums" />
-        <Folder Include="Src\Commons\" />
         <Folder Include="Test\Scripts\Login\" />
     </ItemGroup>
 </Project>

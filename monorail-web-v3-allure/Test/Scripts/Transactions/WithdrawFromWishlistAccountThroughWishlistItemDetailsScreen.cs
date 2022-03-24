@@ -7,7 +7,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
-using static monorail_web_v3.Commons.RandomGenerator;
+using static monorail_web_v3.Commons.NumberGenerator;
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
