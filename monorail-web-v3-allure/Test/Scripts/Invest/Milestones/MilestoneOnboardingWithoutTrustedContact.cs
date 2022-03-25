@@ -8,6 +8,7 @@ using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.Commons.EmailGenerator;
 using static monorail_web_v3.Commons.NumberGenerator;
 using static monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Enums.MilestoneType;
 using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
@@ -19,7 +20,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
     [AllureNUnit]
     internal class MilestoneOnboardingForUserUnder55Yo : FunctionalTesting
     {
-        private const string UsernamePrefix = "autotests.mono+24.071221";
+        private const string UsernamePrefix = "autotests.mono+24.";
         private const string UsernameSuffix = "@gmail.com";
 
         private const string MilestoneDescription = "Test Milestone Description";
@@ -65,7 +66,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             var milestoneName = "Test Milestone " + GenerateRandomString();
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
 
@@ -232,7 +233,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             var milestoneName = "Test Milestone " + GenerateRandomString();
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
 

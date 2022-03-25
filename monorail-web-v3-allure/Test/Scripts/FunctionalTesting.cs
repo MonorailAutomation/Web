@@ -27,7 +27,9 @@ namespace monorail_web_v3.Test.Scripts
         [SetUp]
         public void StartBrowser()
         {
-            Driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--disable-notifications"); 
+            Driver = new ChromeDriver(options);
             Driver.Url = MonorailUrl + "/login";
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(40);
             Driver.Manage().Window.Maximize();

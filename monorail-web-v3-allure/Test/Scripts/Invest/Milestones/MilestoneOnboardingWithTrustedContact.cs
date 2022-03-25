@@ -10,6 +10,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.Commons.NumberGenerator;
+using static monorail_web_v3.Commons.EmailGenerator;
 using static monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Enums.MilestoneType;
 using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
@@ -20,7 +21,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
     [AllureNUnit]
     internal class MilestoneOnboardingForUserOver55Yo : FunctionalTesting
     {
-        private const string UsernamePrefix = "autotests.mono+24.211221";
+        private const string UsernamePrefix = "autotests.mono+24.";
         private const string UsernameSuffix = "@gmail.com";
 
         private const string MilestoneDescription = "Test Milestone Description";
@@ -64,8 +65,9 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
             var milestoneName = "Test Milestone " + GenerateRandomString();
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
 
+            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+            
             const string dateOfBirth = "1966-01-01";
 
             RegisterUserWithDoB(username, dateOfBirth);
@@ -240,7 +242,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
             var milestoneName = "Test Milestone " + GenerateRandomString();
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             const string dateOfBirth = "1966-01-01";
 

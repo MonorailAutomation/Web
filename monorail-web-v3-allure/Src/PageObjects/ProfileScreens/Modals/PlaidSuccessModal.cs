@@ -22,7 +22,6 @@ namespace monorail_web_v3.PageObjects.ProfileScreens.Modals
         {
             Wait.Until(ElementToBeVisible(_continueButton));
             _continueButton.Click();
-            Thread.Sleep(15000);
             return this;
         }
     }

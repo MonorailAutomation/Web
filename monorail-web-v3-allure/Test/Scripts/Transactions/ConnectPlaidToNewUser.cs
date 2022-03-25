@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Linq;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
@@ -86,6 +87,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             plaidSuccessModal
                 .ClickContinueButton();
 
+            Wait.Until(wd => wd.WindowHandles.Count == 1);
+            Thread.Sleep(1000);
             Driver.SwitchTo().Window(Driver.WindowHandles.First());
         }
     }

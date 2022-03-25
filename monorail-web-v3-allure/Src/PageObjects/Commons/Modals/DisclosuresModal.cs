@@ -64,7 +64,6 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
                 Wait.Until(ElementToBeVisible(XButton));
                 Wait.Until(ElementToBeVisible(_skipToBottomButton));
                 Wait.Until(ElementToBeVisible(_declineButton));
-
                 ModalHeader.Text.Should().ContainAny(DisclosuresModalHeaderText,
                     Disclosures1Of3ModalHeaderText, Disclosures2Of3ModalHeaderText, Disclosures3Of3ModalHeaderText);
             }

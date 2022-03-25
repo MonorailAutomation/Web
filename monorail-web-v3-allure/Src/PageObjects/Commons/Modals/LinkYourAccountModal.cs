@@ -39,7 +39,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         [AllureStep("Check 'Connect Your Bank Account' modal")]
         public LinkYourAccountModal CheckConnectYourBankAccountModal()
         {
-            Thread.Sleep(4000);
+            Thread.Sleep(2000);
             try
             {
                 Wait.Until(ElementToBeVisible(XButton));
