@@ -1,4 +1,3 @@
-using System;
 using FluentAssertions;
 using RestSharp;
 using static System.Net.HttpStatusCode;

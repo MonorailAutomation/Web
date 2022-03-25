@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
@@ -66,7 +65,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             var milestoneName = "Test Milestone " + GenerateRandomString();
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
-            
+
             const string dateOfBirth = "1966-01-01";
 
             RegisterUserWithDoB(username, dateOfBirth);

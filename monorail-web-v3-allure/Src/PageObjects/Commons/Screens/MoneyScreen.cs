@@ -10,7 +10,8 @@ namespace monorail_web_v3.PageObjects.Commons.Screens
 {
     public class MoneyScreen : MainScreen
     {
-        private const string FdicDisclaimerText = "Wishlist, Tracks, and Checking Accounts are made available through Vimvest LLC DBA Monorail. Wishlist, Tracks, Checking Accounts, and the Monorail Visa Debit Card are provided by and issued by Hills Bank and Trust Company, Member FDIC.";
+        private const string FdicDisclaimerText =
+            "Wishlist, Tracks, and Checking Accounts are made available through Vimvest LLC DBA Monorail. Wishlist, Tracks, Checking Accounts, and the Monorail Visa Debit Card are provided by and issued by Hills Bank and Trust Company, Member FDIC.";
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-footer']//small")]
         private IWebElement _fdicDisclaimer;
@@ -54,7 +55,7 @@ namespace monorail_web_v3.PageObjects.Commons.Screens
                 Wait.Until(ElementToBeClickable(_saveNavMenu));
                 Wait.Until(ElementToBeClickable(_fdicLogo));
                 Wait.Until(ElementToBeClickable(_fdicDisclaimer));
-                
+
                 _fdicDisclaimer.Text.Should().Be(FdicDisclaimerText);
             }
             catch (Exception e)

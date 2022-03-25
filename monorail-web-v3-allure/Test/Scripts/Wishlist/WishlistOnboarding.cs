@@ -86,12 +86,18 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .CheckWishlistMainScreenAfterOnboarding();
         }
 
-        [Test(Description = "Wishlist Onboarding - through Wishlist Item Details screen by clicking 'Fund your Wishlist' button")]
+        [Test(Description =
+            "Wishlist Onboarding - through Wishlist Item Details screen by clicking 'Fund your Wishlist' button")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Onboarding")]
-        [AllureStory("Wishlist Onboarding - through Wishlist Item Details screen by clicking 'Fund your Wishlist' button")]
+        [AllureStory(
+            "Wishlist Onboarding - through Wishlist Item Details screen by clicking 'Fund your Wishlist' button")]
         public void WishlistOnboardingByClickingCreateAWishlistButtonAfterAddingWishlistItemTest()
         {
+            const string wishlistItemUrl =
+                "https://www.amazon.com/Sceptre-E248W-19203R-Monitor-Speakers-Metallic/dp/B0773ZY26F/ref=lp_16225007011_1_4";
+            const string wishlistItemName = "Sceptre 24\" Professional";
+        
             var loginPage = new LoginPage(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);

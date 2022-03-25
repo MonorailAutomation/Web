@@ -79,6 +79,14 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(trackTypeSelector))).Click();
             return this;
         }
+        
+        [AllureStep("Click '{0}' Track")]
+        public SaveMainScreen ClickTrack(string trackName)
+        {
+            var trackItemSelector = By.XPath("//h3[contains(text(),'" + trackName + "')]");
+            Wait.Until(ExpectedConditions.ElementIsVisible(trackItemSelector)).Click();
+            return this;
+        }
 
         [AllureStep("Check Save Main screen before onboarding")]
         public SaveMainScreen CheckSaveMainScreenBeforeOnboarding()

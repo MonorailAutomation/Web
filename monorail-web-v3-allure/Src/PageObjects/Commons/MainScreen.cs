@@ -1,5 +1,4 @@
 using System;
-using FluentAssertions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
