@@ -1,5 +1,6 @@
 using System;
 using System.Data.SqlClient;
+using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.Database
 {
@@ -9,7 +10,7 @@ namespace monorail_web_v3.Database
         {
             try
             {
-                var sqlConnection = new SqlConnection(new DatabaseConfig().Builder.ConnectionString);
+                var sqlConnection = new SqlConnection(DatabaseConfig.Builder(MonorailEnv).ConnectionString);
                 sqlConnection.Open();
 
                 var query = "update Users set Users.lastName='Used' where Users.Email=\'" + email + "\'";

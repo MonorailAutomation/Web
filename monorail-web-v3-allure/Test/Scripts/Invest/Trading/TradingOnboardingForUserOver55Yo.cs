@@ -15,6 +15,7 @@ using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 using static monorail_web_v3.Database.VerificationCode;
 using static monorail_web_v3.RestRequests.PilotFeature;
 using TermsAndConditionsModal = monorail_web_v3.PageObjects.CreateAccountModals.TermsAndConditionsModal;
+using static monorail_web_v3.Commons.PhoneNumberGenerator;
 
 namespace monorail_web_v3.Test.Scripts.Invest.Trading
 {
@@ -60,7 +61,6 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
             var disclosuresModal = new DisclosuresModal(Driver);
 
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
-            var phoneNumber = "940" + GenerateRandomNumber() + GenerateRandom4Digits();
 
             Console.WriteLine(username);
 
@@ -72,7 +72,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
                 .SetEmail(username)
                 .SetPassword(ValidPassword)
                 .SetDateOfBirth("01011966")
-                .SetPhoneNumber("2024078924")
+                .SetPhoneNumber(GenerateNew202PhoneNumber())
                 .ClickContinueButton();
 
             verifyYourAccountChooseMethodModal

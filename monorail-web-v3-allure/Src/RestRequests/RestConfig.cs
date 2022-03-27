@@ -1,9 +1,10 @@
 using System;
+using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.RestRequests
 {
     public static class RestConfig
     {
-        public static readonly Uri MonorailUri = new Uri("https://monarch-app-dev.azurewebsites.net");
+        public static readonly Uri MonorailUri = new Uri("https://monarch-app-" + MonorailEnv + ".azurewebsites.net");
     }
 }

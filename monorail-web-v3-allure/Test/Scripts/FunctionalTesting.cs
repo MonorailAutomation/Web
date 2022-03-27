@@ -10,7 +10,8 @@ namespace monorail_web_v3.Test.Scripts
 {
     public class FunctionalTesting
     {
-        private const string MonorailUrl = "https://monarchweb-app-dev.azurewebsites.net";
+        public const string MonorailEnv = "dev";
+        private const string MonorailUrl = "https://monarchweb-app-" + MonorailEnv + ".azurewebsites.net";
         public static IWebDriver Driver;
         public static WebDriverWait Wait;
 
