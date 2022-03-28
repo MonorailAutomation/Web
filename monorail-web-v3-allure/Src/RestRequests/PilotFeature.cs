@@ -2,6 +2,7 @@ using System;
 using FluentAssertions;
 using RestSharp;
 using static System.Net.HttpStatusCode;
+using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.RestRequests
 {
@@ -10,7 +11,7 @@ namespace monorail_web_v3.RestRequests
         private const string ApiKey = "0oq1Oj2R6kJNrUX1inqyOjYJtoqbtmJx";
 
         private static readonly Uri PilotFeatureEndpoint =
-            new Uri("https://monarchmanagement-app-dev.azurewebsites.net/api/System/PilotFeatures");
+            new Uri("https://monarchmanagement-app-" + MonorailEnv + ".azurewebsites.net/api/System/PilotFeatures");
 
         public static void PostPilotFeatures(string userEmail, string featureType)
         {
