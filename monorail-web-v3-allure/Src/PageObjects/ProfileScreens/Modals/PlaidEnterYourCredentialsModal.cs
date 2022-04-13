@@ -8,13 +8,13 @@ namespace monorail_web_v3.PageObjects.ProfileScreens.Modals
 {
     public class PlaidEnterYourCredentialsModal
     {
-        [FindsBy(How = How.XPath, Using = "//input[@id='password']")]
+        [FindsBy(How = How.XPath, Using = "//input[@id='aut-input-1']")]
         private IWebElement _passwordField;
 
-        [FindsBy(How = How.XPath, Using = "//span[contains(text(), 'Submit')]")]
+        [FindsBy(How = How.XPath, Using = "//button[@id='aut-button']")]
         private IWebElement _submitButton;
 
-        [FindsBy(How = How.XPath, Using = "//input[@id='username']")]
+        [FindsBy(How = How.XPath, Using = "//input[@id='aut-input-0']")]
         private IWebElement _usernameField;
 
 

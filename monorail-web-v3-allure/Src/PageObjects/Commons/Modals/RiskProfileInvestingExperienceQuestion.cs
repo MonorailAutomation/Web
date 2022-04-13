@@ -44,23 +44,27 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         [AllureStep("Check 'Risk Profile' modal")]
         public RiskProfileInvestingExperienceQuestion CheckRiskProfileInvestingExperienceQuestionModal()
         {
-            try
-            {
-                Wait.Until(ElementToBeVisible(XButton));
-                Wait.Until(ElementToBeVisible(_peopleCallMeAProAnswer));
-                Wait.Until(ElementToBeVisible(_iAmARegularInvestorAnswer));
-                Wait.Until(ElementToBeVisible(_dabblingIsTheRightWordForMeAnswer));
-                Wait.Until(ElementToBeVisible(_neverInvestedOneDollarAnswer));
-                Wait.Until(ElementToBeVisible(BackButtonInSpan));
-                Wait.Until(ElementToBeVisible(ContinueButtonInSpan));
+            var count = 0;
+            const int maxTries = 5;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeVisible(XButton));
+                    Wait.Until(ElementToBeVisible(_peopleCallMeAProAnswer));
+                    Wait.Until(ElementToBeVisible(_iAmARegularInvestorAnswer));
+                    Wait.Until(ElementToBeVisible(_dabblingIsTheRightWordForMeAnswer));
+                    Wait.Until(ElementToBeVisible(_neverInvestedOneDollarAnswer));
+                    Wait.Until(ElementToBeVisible(BackButtonInSpan));
+                    Wait.Until(ElementToBeVisible(ContinueButtonInSpan));
 
-                ModalHeader.Text.Should().Contain(RiskProfileModalHeaderText);
-                _riskQuestion.Text.Should().Contain(RiskQuestionText);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+                    ModalHeader.Text.Should().Contain(RiskProfileModalHeaderText);
+                    _riskQuestion.Text.Should().Contain(RiskQuestionText);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
 
             return this;
         }

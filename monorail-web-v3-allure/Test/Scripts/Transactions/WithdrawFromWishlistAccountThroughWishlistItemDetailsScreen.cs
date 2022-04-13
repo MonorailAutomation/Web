@@ -26,7 +26,6 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
-            var wishlistViewAllScreen = new WishlistViewAllScreen(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
             var transferYourFunds = new TransferYourFunds(Driver);
             var transferringSuccessModal = new TransferringSuccessModal(Driver);
@@ -35,7 +34,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             var wishlistItemName = "Test Item " + GenerateRandomString();
 
-            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, wishlistItemName, 
+            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, wishlistItemName,
                 WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
 
             loginPage
@@ -47,10 +46,6 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             wishlistMainScreen
                 .CheckWishlistMainScreenAfterOnboarding()
-                .ClickViewAllButton();
-
-            wishlistViewAllScreen
-                .ClickShowOnlyReadyToBuySwitch()
                 .CheckStatusForItem(wishlistItemName, "Ready to Buy")
                 .ClickWishlistItem(wishlistItemName);
 
@@ -67,12 +62,10 @@ namespace monorail_web_v3.Test.Scripts.Transactions
                 .ClickFinishButton();
 
             wishlistDetailsScreen
-                .ExpandTransferringStatus()
                 .CheckWishlistItemDetailsScreenForInternalPurchaseItemStatus(WishlistItemPrice)
                 .ClickBackButton();
 
-            wishlistViewAllScreen
-                .ClickShowOnlyReadyToBuySwitch()
+            wishlistMainScreen
                 .CheckStatusForItem(wishlistItemName, "Purchase Item");
         }
 
@@ -87,7 +80,6 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
-            var wishlistViewAllScreen = new WishlistViewAllScreen(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
             var transferYourFunds = new TransferYourFunds(Driver);
             var transferringSuccessModal = new TransferringSuccessModal(Driver);
@@ -96,7 +88,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             var wishlistItemName = "Test Item " + GenerateRandomString();
 
-            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, wishlistItemName, 
+            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, wishlistItemName,
                 WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
 
             loginPage
@@ -108,10 +100,6 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             wishlistMainScreen
                 .CheckWishlistMainScreenAfterOnboarding()
-                .ClickViewAllButton();
-
-            wishlistViewAllScreen
-                .ClickShowOnlyReadyToBuySwitch()
                 .CheckStatusForItem(wishlistItemName, "Ready to Buy")
                 .ClickWishlistItem(wishlistItemName);
 
@@ -128,12 +116,10 @@ namespace monorail_web_v3.Test.Scripts.Transactions
                 .ClickFinishButton();
 
             wishlistDetailsScreen
-                .ExpandTransferringStatus()
                 .CheckWishlistItemDetailsScreenForExternalFundsTransferringStatus(WishlistItemPrice)
                 .ClickBackButton();
 
-            wishlistViewAllScreen
-                .ClickShowOnlyReadyToBuySwitch()
+            wishlistMainScreen
                 .CheckStatusForItem(wishlistItemName, "Funds Transferring");
         }
     }

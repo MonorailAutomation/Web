@@ -16,7 +16,7 @@ namespace monorail_web_v3.PageObjects.ProfileScreens.Modals
         [AllureStep("Click '{0}' bank")]
         public PlaidSelectYourBankModal ClickBank(string bank)
         {
-            var bankSelector = "//p[contains(text(), '" + bank + "')]";
+            var bankSelector = "//h2[contains(text(), '" + bank + "')]";
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(bankSelector))).Click();
             return this;
         }

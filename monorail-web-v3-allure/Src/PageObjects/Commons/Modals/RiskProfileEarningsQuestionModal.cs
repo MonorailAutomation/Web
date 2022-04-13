@@ -44,23 +44,27 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         [AllureStep("Check 'Risk Profile' modal")]
         public RiskProfileEarningsQuestionModal CheckRiskProfileEarningsQuestionModal()
         {
-            try
-            {
-                Wait.Until(ElementToBeVisible(XButton));
-                Wait.Until(ElementToBeVisible(_lessThan25KAnswer));
-                Wait.Until(ElementToBeVisible(_between25KAnd50KAnswer));
-                Wait.Until(ElementToBeVisible(_between50KAnd100KAnswer));
-                Wait.Until(ElementToBeVisible(_over100KAnswer));
-                Wait.Until(ElementToBeVisible(BackButtonInSpan));
-                Wait.Until(ElementToBeVisible(ContinueButtonInSpan));
+            var count = 0;
+            const int maxTries = 5;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeVisible(XButton));
+                    Wait.Until(ElementToBeVisible(_lessThan25KAnswer));
+                    Wait.Until(ElementToBeVisible(_between25KAnd50KAnswer));
+                    Wait.Until(ElementToBeVisible(_between50KAnd100KAnswer));
+                    Wait.Until(ElementToBeVisible(_over100KAnswer));
+                    Wait.Until(ElementToBeVisible(BackButtonInSpan));
+                    Wait.Until(ElementToBeVisible(ContinueButtonInSpan));
 
-                ModalHeader.Text.Should().Contain(RiskProfileModalHeaderText);
-                _riskQuestion.Text.Should().Contain(RiskQuestionText);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+                    ModalHeader.Text.Should().Contain(RiskProfileModalHeaderText);
+                    _riskQuestion.Text.Should().Contain(RiskQuestionText);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
 
             return this;
         }

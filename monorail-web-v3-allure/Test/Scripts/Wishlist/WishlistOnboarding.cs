@@ -1,3 +1,4 @@
+using System.Threading;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons.Modals;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals;
@@ -39,6 +40,10 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
 
             RegisterUser(username);
+            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, WishlistItemName,
+                WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
+
+            Thread.Sleep(15000); // waiting for item to be correctly added
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -94,10 +99,6 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             "Wishlist Onboarding - through Wishlist Item Details screen by clicking 'Fund your Wishlist' button")]
         public void WishlistOnboardingByClickingCreateAWishlistButtonAfterAddingWishlistItemTest()
         {
-            const string wishlistItemUrl =
-                "https://www.amazon.com/Sceptre-E248W-19203R-Monitor-Speakers-Metallic/dp/B0773ZY26F/ref=lp_16225007011_1_4";
-            const string wishlistItemName = "Sceptre 24\" Professional";
-        
             var loginPage = new LoginPage(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
@@ -111,10 +112,12 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistAddCashModal = new WishlistAddCashModal(Driver);
 
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
-            
+
             RegisterUser(username);
-            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, WishlistItemName, 
+            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, WishlistItemName,
                 WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
+
+            Thread.Sleep(15000); // waiting for item to be correctly added
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -128,7 +131,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             wishlistDetailsScreen
                 .ClickFundYourWishlistButton();
-            
+
             completeYourAccountModal
                 .CheckCompleteYourAccountModal()
                 .ClickGetStartedButton();

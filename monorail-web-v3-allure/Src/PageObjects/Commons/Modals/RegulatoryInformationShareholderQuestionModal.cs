@@ -57,23 +57,27 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         [AllureStep("Check 'Regulatory Information' modal")]
         public RegulatoryInformationShareholderQuestionModal CheckRegulatoryInformationShareholderQuestionModal()
         {
-            try
-            {
-                Wait.Until(ElementToBeVisible(XButton));
-                Wait.Until(ElementToBeVisible(_question));
-                Wait.Until(ElementToBeVisible(_yesAnswer));
-                Wait.Until(ElementToBeVisible(_nopeAnswer));
-                Wait.Until(ElementToBeVisible(BackButtonInSpan));
-                Wait.Until(ElementToBeVisible(ContinueButtonInSpan));
+            var count = 0;
+            const int maxTries = 5;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeVisible(XButton));
+                    Wait.Until(ElementToBeVisible(_question));
+                    Wait.Until(ElementToBeVisible(_yesAnswer));
+                    Wait.Until(ElementToBeVisible(_nopeAnswer));
+                    Wait.Until(ElementToBeVisible(BackButtonInSpan));
+                    Wait.Until(ElementToBeVisible(ContinueButtonInSpan));
 
-                ModalHeader.Text.Should().Contain(RegulatoryInformationModalHeaderText);
-                _question.Text.Should().Be(QuestionText);
-                _helperText.Text.Should().Be(HelperText);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+                    ModalHeader.Text.Should().Contain(RegulatoryInformationModalHeaderText);
+                    _question.Text.Should().Be(QuestionText);
+                    _helperText.Text.Should().Be(HelperText);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
 
             return this;
         }
