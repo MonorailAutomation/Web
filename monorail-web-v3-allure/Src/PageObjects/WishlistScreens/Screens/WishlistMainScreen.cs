@@ -12,7 +12,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 {
     public class WishlistMainScreen : WishlistScreen
     {
-        private const string AvailableForYourNextItemMessageText = "Your Balance:";
+        private const string AvailableForYourNextItemMessageText = "Available funds";
         private const string ReadyToPowerYourWishlistMessageText = "Ready to power your wishlist?";
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Cash')]")]
@@ -23,11 +23,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         private IWebElement _addWishlistItemButton;
 
         [FindsBy(How = How.XPath,
-            Using = "//p[contains(text(),'Your wishlist item is being added!')]")]
-        private IWebElement _wishlistItemIsBeingAddedModal;
-        
-        [FindsBy(How = How.XPath,
-            Using = "//div[@class='wishlist-list__item'][2]//div[@class='empty-card__container']")]
+            Using = "//div[@class='empty-card__container']")]
         private IWebElement _addWishlistItemPlaceholder;
 
         [FindsBy(How = How.XPath,
@@ -42,8 +38,8 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             Using = "//button[contains(text(),'How it Works')]")]
         private IWebElement _howItWorksButton;
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Manage your Account')]")]
-        private IWebElement _manageYourAccountButton;
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Manage')]")]
+        private IWebElement _manageButton;
 
         [FindsBy(How = How.XPath,
             Using = "//vim-wishlist-account//h1")]
@@ -59,6 +55,10 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         [FindsBy(How = How.XPath,
             Using = "//div[@class='vim-page-header__title']//h1[contains(text(),'Wishlist')]")]
         private IWebElement _wishlistHeader;
+
+        [FindsBy(How = How.XPath,
+            Using = "//p[contains(text(),'Your wishlist item is being added!')]")]
+        private IWebElement _wishlistItemIsBeingAddedModal;
 
         public WishlistMainScreen(IWebDriver driver) : base(driver)
         {
@@ -81,11 +81,11 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             return this;
         }
 
-        [AllureStep("Click 'Manage your Account' button")]
-        public WishlistMainScreen ClickManageYourAccountButton()
+        [AllureStep("Click 'Manage' button")]
+        public WishlistMainScreen ClickManageButton()
         {
-            Wait.Until(ElementToBeClickable(_manageYourAccountButton));
-            _manageYourAccountButton.Click();
+            Wait.Until(ElementToBeClickable(_manageButton));
+            _manageButton.Click();
             return this;
         }
 
@@ -129,6 +129,19 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             return this;
         }
 
+        [AllureStep("Check if ${0} item is in ${1} status")]
+        public WishlistMainScreen CheckStatusForItem(string wishlistItemName, string status)
+        {
+            var wishlistItemSelector = "//p[contains(text(), '" + wishlistItemName + "')]";
+            var wishlistItemStatusSelector = wishlistItemSelector + "//following-sibling::span";
+
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemSelector)));
+            var wishlistItemStatus = Driver.FindElement(By.XPath(wishlistItemStatusSelector));
+            wishlistItemStatus.Text.Should().Be(status);
+
+            return this;
+        }
+
         [AllureStep("Check if 'Your wishlist item is being added!' bar is no longer displayed")]
         public WishlistMainScreen CheckItemBeingAddedBarDisappeared()
         {
@@ -146,7 +159,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
                 Wait.Until(ElementToBeVisible(_moneyAmount));
                 Wait.Until(ElementToBeVisible(_availableForYourNextItemMessage));
                 Wait.Until(ElementToBeVisible(_addWishlistItemButton));
-                Wait.Until(ElementToBeVisible(_manageYourAccountButton));
+                Wait.Until(ElementToBeVisible(_manageButton));
                 Wait.Until(ElementToBeVisible(_addCashButton));
 
                 Wait.Until(ElementToBeNotVisible(_readyToPowerYourWishlistMessage));
@@ -176,7 +189,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 
                 Wait.Until(ElementToBeNotVisible(_moneyAmount));
                 Wait.Until(ElementToBeNotVisible(_availableForYourNextItemMessage));
-                Wait.Until(ElementToBeNotVisible(_manageYourAccountButton));
+                Wait.Until(ElementToBeNotVisible(_manageButton));
                 Wait.Until(ElementToBeNotVisible(_addCashButton));
 
                 _readyToPowerYourWishlistMessage.Text.Should().Be(ReadyToPowerYourWishlistMessageText);

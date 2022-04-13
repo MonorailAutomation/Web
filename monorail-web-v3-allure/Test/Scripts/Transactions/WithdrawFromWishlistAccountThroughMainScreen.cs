@@ -38,7 +38,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
                 .CheckMainScreen();
 
             wishlistMainScreen
-                .ClickManageYourAccountButton();
+                .ClickManageButton();
 
             wishlistManageAccountModal
                 .CheckWishlistManageAccountModal()

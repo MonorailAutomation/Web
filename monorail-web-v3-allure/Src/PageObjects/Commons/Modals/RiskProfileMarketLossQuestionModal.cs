@@ -47,23 +47,27 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         [AllureStep("Check 'Risk Profile' modal")]
         public RiskProfileMarketLossQuestionModal CheckRiskProfileLossQuestionModal()
         {
-            try
-            {
-                Wait.Until(ElementToBeVisible(XButton));
-                Wait.Until(ElementToBeVisible(_perfectTimeToBuyAnswer));
-                Wait.Until(ElementToBeVisible(_sellEverythingImOutAnswer));
-                Wait.Until(ElementToBeVisible(_sellingSomeThatsForSureAnswer));
-                Wait.Until(ElementToBeVisible(_iAmStraightConfusedAnswer));
-                Wait.Until(ElementToBeVisible(BackButtonInSpan));
-                Wait.Until(ElementToBeVisible(ContinueButtonInSpan));
+            var count = 0;
+            const int maxTries = 5;
+            while (true)
+                try
+                {
+                    Wait.Until(ElementToBeVisible(XButton));
+                    Wait.Until(ElementToBeVisible(_perfectTimeToBuyAnswer));
+                    Wait.Until(ElementToBeVisible(_sellEverythingImOutAnswer));
+                    Wait.Until(ElementToBeVisible(_sellingSomeThatsForSureAnswer));
+                    Wait.Until(ElementToBeVisible(_iAmStraightConfusedAnswer));
+                    Wait.Until(ElementToBeVisible(BackButtonInSpan));
+                    Wait.Until(ElementToBeVisible(ContinueButtonInSpan));
 
-                ModalHeader.Text.Should().Contain(RiskProfileModalHeaderText);
-                _riskQuestion.Text.Should().Contain(RiskQuestionText);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+                    ModalHeader.Text.Should().Contain(RiskProfileModalHeaderText);
+                    _riskQuestion.Text.Should().Contain(RiskQuestionText);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (++count == maxTries) throw e;
+                }
 
             return this;
         }

@@ -8,7 +8,7 @@ namespace monorail_web_v3.PageObjects.ProfileScreens.Modals
 {
     public class PlaidWelcomeModal
     {
-        [FindsBy(How = How.XPath, Using = "//button[@id='aut-continue-button']")]
+        [FindsBy(How = How.XPath, Using = "//button[@id='aut-button']")]
         private IWebElement _continueButton;
 
         public PlaidWelcomeModal(IWebDriver driver)

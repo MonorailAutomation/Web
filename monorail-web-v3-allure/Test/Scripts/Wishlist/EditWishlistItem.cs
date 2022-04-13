@@ -18,7 +18,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         private const string changedItemName = "Changed Name";
         private const string changedItemPrice = "200";
         private const string changedItemDescription = "Changed Description";
-        
+
         [Test(Description = "Edit Wishlist item by clicking a button when user has a wishlist account")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Edit Wishlist Item")]
@@ -31,7 +31,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
             var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
-            
+
             const string username = "autotests.mono+1.071221@gmail.com";
 
             loginPage
@@ -76,9 +76,12 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         [AllureStory("Edit Wishlist Item when user doesn't have a wishlist account")]
         public void EditWishlistItemWithoutWishlistAccountTest()
         {
+            /*
+             *  This test is affected by BUG: 40198
+             */
+
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
-            var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
             var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);

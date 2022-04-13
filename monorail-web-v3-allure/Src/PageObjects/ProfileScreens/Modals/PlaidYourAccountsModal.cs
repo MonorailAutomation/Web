@@ -8,7 +8,7 @@ namespace monorail_web_v3.PageObjects.ProfileScreens.Modals
 {
     public class PlaidYourAccountsModal
     {
-        [FindsBy(How = How.XPath, Using = "//span[contains(text(), 'Continue')]")]
+        [FindsBy(How = How.XPath, Using = "//button[@id='aut-button']")]
         private IWebElement _continueButton;
 
         [FindsBy(How = How.XPath, Using = "//div[contains(text(), 'Plaid Checking')]")]
