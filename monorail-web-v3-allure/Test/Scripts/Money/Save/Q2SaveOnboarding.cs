@@ -63,7 +63,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
 
             saveMainScreen
                 .CheckSaveMainScreenBeforeOnboarding()
-                .ClickGetStartedButton();
+                .ClickUnlockSavingsTracksButton();
 
             completeYourAccountModal
                 .CheckCompleteYourAccountModal()
@@ -99,6 +99,9 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ScrollToTheBottomOfTheDocument()
                 .ClickAgreeButton();
 
+            saveMainScreen
+                .ClickGetStartedButton();
+
             chooseATrackModal
                 .CheckChooseATrackModal()
                 .ClickTrackType(Holidays);
@@ -114,8 +117,6 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
             addTrackSuccessModal
                 .CheckSuccessModal()
                 .ClickFinishButton();
-
-            Thread.Sleep(10000);
 
             saveMainScreen
                 .CheckSaveMainScreenAfterOnboarding()
@@ -158,8 +159,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
 
             saveMainScreen
                 .CheckSaveMainScreenBeforeOnboarding()
-                .ClickTrack(Travel)
-                .ClickGetStartedButton();
+                .ClickUnlockSavingsTracksButton();
 
             completeYourAccountModal
                 .CheckCompleteYourAccountModal()
@@ -195,7 +195,9 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ScrollToTheBottomOfTheDocument()
                 .ClickAgreeButton();
 
-            Thread.Sleep(30000);
+            saveMainScreen
+                .ClickTrack(Travel)
+                .ClickGetStartedButton();
 
             saveMainScreen
                 .CheckSaveMainScreenAfterOnboarding()
@@ -237,17 +239,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ClickSave();
 
             saveMainScreen
-                //.CheckSaveMainScreenBeforeOnboarding()
-                .ClickTrack(Savings)
-                .ClickTrack(Emergency)
-                .ClickTrack(Travel)
-                .ClickTrack(Bills)
-                .ClickTrack(Food)
-                .ClickTrack(Gas)
-                .ClickTrack(BigPurchase)
-                .ClickTrack(Holidays)
-                .ClickTrack(Debt)
-                .ClickGetStartedButton();
+                .ClickUnlockSavingsTracksButton();
 
             completeYourAccountModal
                 .CheckCompleteYourAccountModal()
@@ -283,7 +275,19 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ScrollToTheBottomOfTheDocument()
                 .ClickAgreeButton();
 
-            Thread.Sleep(30000);
+            saveMainScreen
+                .ClickTrack(Savings)
+                .ClickTrack(Emergency)
+                .ClickTrack(Travel)
+                .ClickTrack(Bills)
+                .ClickTrack(Food)
+                .ClickTrack(Gas)
+                .ClickTrack(BigPurchase)
+                .ClickTrack(Holidays)
+                .ClickTrack(Debt)
+                .ClickGetStartedButton();
+
+            Thread.Sleep(20000);
 
             saveMainScreen
                 .CheckSaveMainScreenAfterOnboarding()
