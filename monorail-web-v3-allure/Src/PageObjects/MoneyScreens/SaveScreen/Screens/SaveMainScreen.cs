@@ -14,8 +14,37 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
 {
     public class SaveMainScreen : MoneyScreen
     {
+        private const string EmptyScreenHeadlineText = "Separate your Wishlist from your dedicated savings funds.";
+        private const string EmptyScreenMessageTextPartOne = "And automate deposits on your schedule.";
+
+        private const string EmptyScreenMessageTextPartTwo =
+            "So you always stay… on Track. Whether you feel motivated or not.";
+
+        private const string EmptyScreenFirstBulletPointText = "Create your emergency fund";
+        private const string EmptyScreenSecondBulletPointText = "Budget your monthly expenses";
+        private const string EmptyScreenThirdBulletPointText = "Power your personal goals";
+        private const string EmptyScreenFourthBulletPointText = "Save for $$$ items";
+
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Add Saving Track')]")]
         private IWebElement _addSavingTrackButton;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[1]")]
+        private IWebElement _emptyScreenFirstBulletpoint;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[4]")]
+        private IWebElement _emptyScreenFourthBulletpoint;
+
+        [FindsBy(How = How.XPath, Using = "//h2")]
+        private IWebElement _emptyScreenHeadline;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//p")]
+        private IWebElement _emptyScreenMessage;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[2]")]
+        private IWebElement _emptyScreenSecondBulletpoint;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[3]")]
+        private IWebElement _emptyScreenThirdBulletpoint;
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Fund your Tracks')]")]
         private IWebElement _fundYourTracksButton;
@@ -26,6 +55,9 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
         [FindsBy(How = How.XPath,
             Using = "//div[@class='vim-page-header__title']//h1[contains(text(),'Save')]")]
         private IWebElement _saveHeader;
+
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Unlock Savings Tracks')]")]
+        private IWebElement _unlockSavingsTracksButton;
 
         public SaveMainScreen(IWebDriver driver) : base(driver)
         {
@@ -45,6 +77,14 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
         {
             Wait.Until(ElementToBeClickable(_getStartedButton));
             _getStartedButton.Click();
+            return this;
+        }
+
+        [AllureStep("Click 'Unlock Savings Tracks' button")]
+        public SaveMainScreen ClickUnlockSavingsTracksButton()
+        {
+            Wait.Until(ElementToBeClickable(_unlockSavingsTracksButton));
+            _unlockSavingsTracksButton.Click();
             return this;
         }
 
@@ -79,7 +119,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(trackTypeSelector))).Click();
             return this;
         }
-        
+
         [AllureStep("Click '{0}' Track")]
         public SaveMainScreen ClickTrack(string trackName)
         {
@@ -94,7 +134,13 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
             try
             {
                 Wait.Until(ElementToBeVisible(_saveHeader));
-                Wait.Until(ElementToBeVisible(_getStartedButton));
+                Wait.Until(ElementToBeVisible(_emptyScreenHeadline));
+                Wait.Until(ElementToBeVisible(_emptyScreenMessage));
+                Wait.Until(ElementToBeVisible(_emptyScreenFirstBulletpoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenSecondBulletpoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenThirdBulletpoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenFourthBulletpoint));
+                Wait.Until(ElementToBeVisible(_unlockSavingsTracksButton));
 
                 Wait.Until(ElementToBeNotVisible(_fundYourTracksButton));
                 Wait.Until(ElementToBeNotVisible(_addSavingTrackButton));
@@ -116,7 +162,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
                 Wait.Until(ElementToBeVisible(_fundYourTracksButton));
                 Wait.Until(ElementToBeVisible(_addSavingTrackButton));
 
-                Wait.Until(ElementToBeNotVisible(_getStartedButton));
+                Wait.Until(ElementToBeNotVisible(_unlockSavingsTracksButton));
             }
             catch (Exception e)
             {
