@@ -142,7 +142,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
                 .CheckRiskProfileLossQuestionModal()
                 .ClickPerfectTimeToBuyAnswer()
                 .ClickContinueButtonInSpan();
-
+            
             riskProfileStockMarketQuestionModal
                 .CheckRiskProfileStockMarketQuestionModal()
                 .ClickYesIDoAnswer()
