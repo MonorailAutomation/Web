@@ -19,7 +19,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Cash')]")]
         private IWebElement _addCashButton;
 
-        //[FindsBy(How = How.XPath,            Using = "//main//p[contains(text(), 'Add an Item')]")]        private IWebElement _addWishlistItemButton;
         [FindsBy(How = How.XPath,
             Using = "//button[contains(text(), 'Add item')]")]
         private IWebElement _addWishlistItemButton;
