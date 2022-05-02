@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using NUnit.Allure.Steps;
@@ -19,7 +20,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         private IWebElement _addCashButton;
 
         [FindsBy(How = How.XPath,
-            Using = "//main//p[contains(text(), 'Add an Item')]")]
+            Using = "//button[contains(text(), 'Add item')]")]
         private IWebElement _addWishlistItemButton;
 
         [FindsBy(How = How.XPath,
@@ -60,6 +61,10 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             Using = "//p[contains(text(),'Your wishlist item is being added!')]")]
         private IWebElement _wishlistItemIsBeingAddedModal;
 
+        [FindsBy(How = How.XPath,
+    Using = "//button/span[contains(text(), \"Let's Go\")]")]
+        private IWebElement _letsGoButton;
+
         public WishlistMainScreen(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
@@ -86,6 +91,15 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         {
             Wait.Until(ElementToBeClickable(_manageButton));
             _manageButton.Click();
+            return this;
+        }
+
+        [AllureStep("Click 'Let's Go' button")]
+        public WishlistMainScreen ClickLetsGoButton()
+        {
+            Thread.Sleep(10000);
+            Wait.Until(ElementToBeClickable(_letsGoButton));
+            _letsGoButton.Click();
             return this;
         }
 

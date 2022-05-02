@@ -24,8 +24,19 @@ namespace monorail_web_v3.RestRequests.Helpers
         {
             var token = GenerateToken(username, password);
             AddCustomWishlistItem(token, productUrl, itemName, itemDescription, itemAmount, itemImageUrl, itemFavIconUrl);
+            WaitUntilItemsAreScraped(token);
         }
-        
+        public static void WaitUntilItemsAreScraped(string token)
+        {
+            string[] wishlistItemsInProgress;
+            do 
+            {
+                wishlistItemsInProgress = GetWishlistItemsInProgress(token);
+                Thread.Sleep(3000);
+            }
+            while (wishlistItemsInProgress.Length > 0);
+        }
+
         public static void AddAndUpdateWishlistItem(string username, string password, string amountAdd, string descriptionAdd,
             string faviconUrlAdd, string imageUrlAdd, string itemUrlAdd, string nameAdd)
         {

@@ -10,6 +10,7 @@ namespace monorail_web_v3.RestRequests
     public static class Wishlists
     {
         private const string WishlistsEndpoint = "/api/Wishlists/";
+        private const string GetWishlistEndpoint = "/api/Wishlist/";
 
         public static void DeleteWishlists(string token, string wishlistItemId)
         {
@@ -126,6 +127,31 @@ namespace monorail_web_v3.RestRequests
             var response = client.Execute(request);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        public static string[] GetWishlistItemsInProgress(string token)
+        {
+            var client = new RestClient
+            {
+                BaseUrl = MonorailUri,
+                Authenticator = new JwtAuthenticator(token)
+            };
+            var request = new RestRequest
+            {
+                Resource = GetWishlistEndpoint,
+                Method = Method.GET,
+                RequestFormat = DataFormat.Json
+            };
+
+            var response = client.Execute(request);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            dynamic responseContent = JObject.Parse(response.Content);
+
+            string[] wishlistItemsInProgress = responseContent.wishlistItemsInProgress.ToObject<string[]>();
+
+            return wishlistItemsInProgress;
         }
     }
 }
