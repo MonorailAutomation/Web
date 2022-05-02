@@ -1,5 +1,5 @@
-using System.Threading;
 using System.Linq;
+using System.Threading;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Menus;
@@ -11,6 +11,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.Commons.NumberGenerator;
+using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Transactions
@@ -55,6 +56,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             connectedAccountScreen
                 .CheckMyConnectedAccountScreenWithConnectedPlaidAccount();
+
+            DeleteUser(username);
         }
 
         public static void ConnectPlaid()

@@ -5,7 +5,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.Commons.EmailGenerator;
-
+using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.CreateAccount
 {
@@ -29,7 +29,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var loginPage = new LoginPage(Driver);
             var gettingStartedModal = new GettingStartedModal(Driver);
 
-            var username = "autotests.mono+40.131021@gmail.com";
+            const string username = "autotests.mono+40.131021@gmail.com";
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -55,7 +55,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var loginPage = new LoginPage(Driver);
             var gettingStartedModal = new GettingStartedModal(Driver);
 
-            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -81,7 +81,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var loginPage = new LoginPage(Driver);
             var gettingStartedModal = new GettingStartedModal(Driver);
 
-            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -109,7 +109,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var verifyYourAccountChooseMethodModal = new VerifyYourAccountChooseMethodModal(Driver);
             var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
 
-            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -134,6 +134,8 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
 
             verifyYourAccountVerificationCodeModal
                 .VerifyIfIncorrectVerificationCodeMessageIsDisplayed();
+
+            DeleteUser(username);
         }
 
         [Test(Description = "Create user using incorrect sms verification code")]
@@ -147,7 +149,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var verifyYourAccountChooseMethodModal = new VerifyYourAccountChooseMethodModal(Driver);
             var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
 
-            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -172,7 +174,8 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
 
             verifyYourAccountVerificationCodeModal
                 .VerifyIfIncorrectVerificationCodeMessageIsDisplayed();
-        }
 
+            DeleteUser(username);
+        }
     }
 }

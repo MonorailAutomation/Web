@@ -12,6 +12,7 @@ using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.Commons.NumberGenerator;
 using static monorail_web_v3.Commons.EmailGenerator;
 using static monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Enums.MilestoneType;
+using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 
@@ -66,8 +67,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             var milestoneName = "Test Milestone " + GenerateRandomString();
 
-            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
-            
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+
             const string dateOfBirth = "1966-01-01";
 
             RegisterUserWithDoB(username, dateOfBirth);
@@ -203,6 +204,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             Driver.Navigate().Refresh();
 
             milestonesMainScreen.VerifyIfMilestoneExists(milestoneName, MilestoneTargetAmount);
+
+            DeleteUser(username);
         }
 
         [Test(Description = "Milestone Onboarding (Apex) - by clicking '+' placeholder; with Trusted Contact")]
@@ -242,7 +245,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
             var milestoneName = "Test Milestone " + GenerateRandomString();
-            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             const string dateOfBirth = "1966-01-01";
 
@@ -381,6 +384,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             Driver.Navigate().Refresh();
 
             milestonesMainScreen.VerifyIfMilestoneExists(milestoneName, MilestoneTargetAmount);
+
+            DeleteUser(username);
         }
     }
 }
