@@ -9,6 +9,7 @@ using NUnit.Framework;
 using static monorail_web_v3.Commons.EmailGenerator;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.Database.VerificationCode;
+using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.CreateAccount
 {
@@ -33,7 +34,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var mainScreen = new MainScreen(Driver);
             var sideMenu = new SideMenu(Driver);
 
-            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -71,8 +72,11 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
                 .ExpandSideMenu();
 
             Thread.Sleep(5000);
+
             sideMenu
                 .ClickLogOutLink();
+
+            DeleteUser(username);
         }
 
         [Test(Description = "Create user with email verification")]
@@ -89,7 +93,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             var mainScreen = new MainScreen(Driver);
             var sideMenu = new SideMenu(Driver);
 
-            string username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             loginPage
                 .ClickCreateAnAccountButton();
@@ -127,6 +131,8 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
 
             sideMenu
                 .ClickLogOutLink();
+
+            DeleteUser(username);
         }
     }
 }

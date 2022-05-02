@@ -8,6 +8,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.Commons.NumberGenerator;
+using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
@@ -89,6 +90,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             wishlistMainScreen
                 .CheckWishlistMainScreenAfterOnboarding();
+
+            DeleteUser(username);
         }
 
         [Test(Description =
@@ -168,6 +171,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             wishlistAddCashModal
                 .CheckWishlistAddCashModal();
+
+            DeleteUser(username);
         }
     }
 }

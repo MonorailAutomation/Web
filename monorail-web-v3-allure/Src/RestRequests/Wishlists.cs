@@ -10,7 +10,7 @@ namespace monorail_web_v3.RestRequests
     public static class Wishlists
     {
         private const string WishlistsEndpoint = "/api/Wishlists/";
-        private const string GetWishlistEndpoint = "/api/Wishlist/";
+        private const string WishlistEndpoint = "/api/Wishlist/";
 
         public static void DeleteWishlists(string token, string wishlistItemId)
         {
@@ -88,20 +88,11 @@ namespace monorail_web_v3.RestRequests
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
-        
-        public static void AddCustomWishlistItem(string token, string productUrl, string itemName, string itemDescription, 
+
+        public static void AddCustomWishlistItem(string token, string productUrl, string itemName,
+            string itemDescription,
             string itemAmount, string itemImageUrl, string itemFavIconUrl)
         {
-            /*
-             * {
-  "itemURL": "https://www.wp.pl",
-  "name": "Test item",
-  "description": "item descr",
-  "amount": 20,
-  "imageURL": "https://wallpaperaccess.com/full/154009.jpg",
-  "favIconURL": "https://statics.otomoto.pl/optimus-storage/a/otomotopl/images/favicon-32x32.png"
-}
-             */
             var client = new RestClient
             {
                 BaseUrl = MonorailUri,
@@ -138,7 +129,7 @@ namespace monorail_web_v3.RestRequests
             };
             var request = new RestRequest
             {
-                Resource = GetWishlistEndpoint,
+                Resource = WishlistEndpoint,
                 Method = Method.GET,
                 RequestFormat = DataFormat.Json
             };
