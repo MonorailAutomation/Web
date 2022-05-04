@@ -1,12 +1,8 @@
-using System;
-using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using RestSharp;
-using static System.Net.HttpStatusCode;
-using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.RestRequests.RestConfig;
 
-namespace monorail_web_v3.RestRequests
+namespace monorail_web_v3.RestRequests.Endpoints.Monarch
 {
     public static class VerifyEmailAddress
     {
@@ -16,7 +12,7 @@ namespace monorail_web_v3.RestRequests
         {
             var client = new RestClient
             {
-                BaseUrl = MonorailUri
+                BaseUrl = MonorailAppUri
             };
             var request = new RestRequest
             {
@@ -26,7 +22,7 @@ namespace monorail_web_v3.RestRequests
             };
             request.AddJsonBody(new
             {
-                email = userEmail,
+                email = userEmail
             });
 
             var response = client.Execute(request);

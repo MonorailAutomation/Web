@@ -5,7 +5,7 @@ using static System.Net.HttpStatusCode;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.RestRequests.RestConfig;
 
-namespace monorail_web_v3.RestRequests
+namespace monorail_web_v3.RestRequests.Endpoints.Monarch
 {
     public static class RegisterVerify
     {
@@ -17,7 +17,7 @@ namespace monorail_web_v3.RestRequests
             const string verificationCode = "111111";
             var client = new RestClient
             {
-                BaseUrl = MonorailUri,
+                BaseUrl = MonorailAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest

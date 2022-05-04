@@ -4,7 +4,7 @@ using static System.Net.HttpStatusCode;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.RestRequests.RestConfig;
 
-namespace monorail_web_v3.RestRequests
+namespace monorail_web_v3.RestRequests.Endpoints.Monarch
 {
     public static class Register
     {
@@ -15,7 +15,7 @@ namespace monorail_web_v3.RestRequests
             const string verificationMode = "phone";
             var client = new RestClient
             {
-                BaseUrl = MonorailUri
+                BaseUrl = MonorailAppUri
             };
             var request = new RestRequest
             {

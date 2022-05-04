@@ -13,9 +13,10 @@ using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.Commons.NumberGenerator;
 using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 using static monorail_web_v3.Database.VerificationCode;
-using static monorail_web_v3.RestRequests.PilotFeature;
-using TermsAndConditionsModal = monorail_web_v3.PageObjects.CreateAccountModals.TermsAndConditionsModal;
+using static monorail_web_v3.RestRequests.Endpoints.Management.PilotFeature;
 using static monorail_web_v3.Commons.PhoneNumberGenerator;
+using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
+using TermsAndConditionsModal = monorail_web_v3.PageObjects.CreateAccountModals.TermsAndConditionsModal;
 
 namespace monorail_web_v3.Test.Scripts.Invest.Trading
 {
@@ -142,7 +143,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
                 .CheckRiskProfileLossQuestionModal()
                 .ClickPerfectTimeToBuyAnswer()
                 .ClickContinueButtonInSpan();
-            
+
             riskProfileStockMarketQuestionModal
                 .CheckRiskProfileStockMarketQuestionModal()
                 .ClickYesIDoAnswer()
@@ -207,6 +208,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
 
             tradingMainScreen
                 .CheckTradingMainScreenAfterOnboarding();
+
+            SuspendUser(username);
         }
     }
 }

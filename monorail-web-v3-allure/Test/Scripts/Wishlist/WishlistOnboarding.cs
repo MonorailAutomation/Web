@@ -91,7 +91,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             wishlistMainScreen
                 .CheckWishlistMainScreenAfterOnboarding();
 
-            DeleteUser(username);
+            CloseUser(username);
         }
 
         [Test(Description =
@@ -172,7 +172,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             wishlistAddCashModal
                 .CheckWishlistAddCashModal();
 
-            DeleteUser(username);
+            CloseUser(username);
         }
     }
 }

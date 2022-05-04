@@ -1,5 +1,5 @@
-using static monorail_web_v3.RestRequests.Token;
-using static monorail_web_v3.RestRequests.Goals;
+using static monorail_web_v3.RestRequests.Endpoints.Monarch.Token;
+using static monorail_web_v3.RestRequests.Endpoints.Monarch.Goals;
 
 namespace monorail_web_v3.RestRequests.Helpers
 {

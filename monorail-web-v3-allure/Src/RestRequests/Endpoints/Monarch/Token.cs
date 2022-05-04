@@ -2,7 +2,7 @@ using Newtonsoft.Json.Linq;
 using RestSharp;
 using static monorail_web_v3.RestRequests.RestConfig;
 
-namespace monorail_web_v3.RestRequests
+namespace monorail_web_v3.RestRequests.Endpoints.Monarch
 {
     public static class Token
     {
@@ -10,7 +10,7 @@ namespace monorail_web_v3.RestRequests
 
         public static string GenerateToken(string user, string pass)
         {
-            var client = new RestClient(MonorailUri);
+            var client = new RestClient(MonorailAppUri);
             var request = new RestRequest
             {
                 Resource = TokenEndpoint,

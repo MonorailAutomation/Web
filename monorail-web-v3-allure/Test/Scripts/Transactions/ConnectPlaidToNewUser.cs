@@ -57,7 +57,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             connectedAccountScreen
                 .CheckMyConnectedAccountScreenWithConnectedPlaidAccount();
 
-            DeleteUser(username);
+            CloseUser(username);
         }
 
         public static void ConnectPlaid()

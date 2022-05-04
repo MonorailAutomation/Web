@@ -1,5 +1,4 @@
-using System;
-using static monorail_web_v3.RestRequests.VerifyEmailAddress;
+using static monorail_web_v3.RestRequests.Endpoints.Monarch.VerifyEmailAddress;
 using static monorail_web_v3.Commons.NumberGenerator;
 
 namespace monorail_web_v3.Commons
@@ -14,8 +13,7 @@ namespace monorail_web_v3.Commons
             {
                 username = usernamePrefix + GetCurrentDate() + "." + GenerateRandom4Digits() + usernameSuffix;
                 emailAlreadyExists = VerifyEmailAlreadyExists(username);
-            }
-            while (emailAlreadyExists);
+            } while (emailAlreadyExists);
 
             return username;
         }

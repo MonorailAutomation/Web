@@ -5,7 +5,7 @@ using RestSharp;
 using RestSharp.Authenticators;
 using static monorail_web_v3.RestRequests.RestConfig;
 
-namespace monorail_web_v3.RestRequests
+namespace monorail_web_v3.RestRequests.Endpoints.Monarch
 {
     public static class TermsOfUse
     {
@@ -15,7 +15,7 @@ namespace monorail_web_v3.RestRequests
         {
             var client = new RestClient
             {
-                BaseUrl = MonorailUri,
+                BaseUrl = MonorailAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
@@ -38,7 +38,7 @@ namespace monorail_web_v3.RestRequests
         {
             var client = new RestClient
             {
-                BaseUrl = MonorailUri,
+                BaseUrl = MonorailAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
