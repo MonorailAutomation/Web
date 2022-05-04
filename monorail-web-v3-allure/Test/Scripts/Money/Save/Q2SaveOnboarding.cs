@@ -123,7 +123,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .CheckSaveMainScreenAfterOnboarding()
                 .VerifyIfTrackExists(Holidays);
 
-            DeleteUser(username);
+            CloseUser(username);
         }
 
         [Test(Description = "Q2 Save Onboarding - single track")]
@@ -206,7 +206,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .CheckSaveMainScreenAfterOnboarding()
                 .VerifyIfTrackExists(Travel);
 
-            DeleteUser(username);
+            CloseUser(username);
         }
 
         [Test(Description = "Q2 Save Onboarding - multiple tracks")]
@@ -306,7 +306,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .VerifyIfTrackExists(Holidays)
                 .VerifyIfTrackExists(Debt);
 
-            DeleteUser(username);
+            CloseUser(username);
         }
     }
 }

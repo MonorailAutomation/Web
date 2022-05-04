@@ -1,24 +1,21 @@
 using FluentAssertions;
 using RestSharp;
-using RestSharp.Authenticators;
 using static System.Net.HttpStatusCode;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.RestRequests.RestConfig;
 
-namespace monorail_web_v3.RestRequests
+namespace monorail_web_v3.RestRequests.Endpoints.Monarch
 {
-    public static class RegisterVerify
+    public static class Register
     {
-        private const string RegisterEndpoint = "/api/v2/user/Register/Verify";
+        private const string RegisterEndpoint = "/api/v3/user/Register";
 
-        public static void PostRegisterVerify(string token)
+        public static void PostRegister(string userEmail, string phoneNo, string dateOfBirth)
         {
             const string verificationMode = "phone";
-            const string verificationCode = "111111";
             var client = new RestClient
             {
-                BaseUrl = MonorailUri,
-                Authenticator = new JwtAuthenticator(token)
+                BaseUrl = MonarchAppUri
             };
             var request = new RestRequest
             {
@@ -28,9 +25,11 @@ namespace monorail_web_v3.RestRequests
             };
             request.AddJsonBody(new
             {
-                otp = verificationCode,
+                password = ValidPassword,
                 verificationMode,
-                primaryInput = ValidPhoneNumber
+                email = userEmail,
+                phoneNumber = phoneNo,
+                userDateOfBirth = dateOfBirth
             });
 
             var response = client.Execute(request);

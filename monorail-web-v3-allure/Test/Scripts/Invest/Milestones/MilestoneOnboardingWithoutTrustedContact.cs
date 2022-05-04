@@ -195,7 +195,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             milestonesMainScreen.VerifyIfMilestoneExists(milestoneName, MilestoneTargetAmount);
 
-            DeleteUser(username);
+            CloseUser(username);
         }
 
         [Test(Description = "Milestone Onboarding (Apex) - by clicking '+' placeholder; without Trusted Contact")]
@@ -364,7 +364,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             milestonesMainScreen.VerifyIfMilestoneExists(milestoneName, MilestoneTargetAmount);
 
-            DeleteUser(username);
+            CloseUser(username);
         }
     }
 }

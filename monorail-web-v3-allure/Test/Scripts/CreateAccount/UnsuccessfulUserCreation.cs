@@ -135,7 +135,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             verifyYourAccountVerificationCodeModal
                 .VerifyIfIncorrectVerificationCodeMessageIsDisplayed();
 
-            DeleteUser(username);
+            CloseUser(username);
         }
 
         [Test(Description = "Create user using incorrect sms verification code")]
@@ -175,7 +175,7 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
             verifyYourAccountVerificationCodeModal
                 .VerifyIfIncorrectVerificationCodeMessageIsDisplayed();
 
-            DeleteUser(username);
+            CloseUser(username);
         }
     }
 }

@@ -83,7 +83,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
             spendMainScreen
                 .CheckSpendScreenAfterOnboardingAfterCardActivation();
 
-            DeleteUser(username);
+            CloseUser(username);
         }
     }
 }
