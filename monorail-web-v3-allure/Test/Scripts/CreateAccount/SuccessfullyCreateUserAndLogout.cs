@@ -85,54 +85,52 @@ namespace monorail_web_v3.Test.Scripts.CreateAccount
         [AllureStory("Create user with email verification")]
         public static void CreateUserWithEmailVerificationTest()
         {
-            // var loginPage = new LoginPage(Driver);
-            // var gettingStartedModal = new GettingStartedModal(Driver);
-            // var verifyYourAccountChooseMethodModal = new VerifyYourAccountChooseMethodModal(Driver);
-            // var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
-            // var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
-            // var mainScreen = new MainScreen(Driver);
-            // var sideMenu = new SideMenu(Driver);
-            //
-            // var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
-            //
-            // loginPage
-            //     .ClickCreateAnAccountButton();
-            //
-            // gettingStartedModal
-            //     .CheckGettingStartedModal()
-            //     .SetEmail(username)
-            //     .SetPassword(ValidPassword)
-            //     .SetDateOfBirth(ValidDateOfBirthMDY)
-            //     .SetPhoneNumber("9419252125")
-            //     .ClickContinueButton();
-            //
-            // verifyYourAccountChooseMethodModal
-            //     .CheckVerifyYourAccountChooseMethodModal()
-            //     .ClickEmailOption()
-            //     .ClickContinueButton();
-            //
-            // Thread.Sleep(4500); //waiting for results in DB
-            //
-            // verifyYourAccountVerificationCodeModal
-            //     .CheckYourAccountVerificationCodeModal()
-            //     .EnterVerificationCode(GetVerificationCode(username))
-            //     .ClickContinueButton();
-            //
-            // termsAndConditionsModal
-            //     .CheckTermsAndConditionsModal()
-            //     .ClickSkipToBottomButton()
-            //     .ClickAgreeAndFinishButton();
-            //
-            // mainScreen
-            //     .CheckMainScreen()
-            //     .ExpandSideMenu();
-            //
-            // Thread.Sleep(5000);
-            //
-            // sideMenu
-            //     .ClickLogOutLink();
-
-            var username = "autotests.mono+20.061121980@gmail.com";
+            var loginPage = new LoginPage(Driver);
+            var gettingStartedModal = new GettingStartedModal(Driver);
+            var verifyYourAccountChooseMethodModal = new VerifyYourAccountChooseMethodModal(Driver);
+            var verifyYourAccountVerificationCodeModal = new VerifyYourAccountVerificationCodeModal(Driver);
+            var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var sideMenu = new SideMenu(Driver);
+            
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
+            
+            loginPage
+                .ClickCreateAnAccountButton();
+            
+            gettingStartedModal
+                .CheckGettingStartedModal()
+                .SetEmail(username)
+                .SetPassword(ValidPassword)
+                .SetDateOfBirth(ValidDateOfBirthMDY)
+                .SetPhoneNumber("9419252125")
+                .ClickContinueButton();
+            
+            verifyYourAccountChooseMethodModal
+                .CheckVerifyYourAccountChooseMethodModal()
+                .ClickEmailOption()
+                .ClickContinueButton();
+            
+            Thread.Sleep(4500); //waiting for results in DB
+            
+            verifyYourAccountVerificationCodeModal
+                .CheckYourAccountVerificationCodeModal()
+                .EnterVerificationCode(GetVerificationCode(username))
+                .ClickContinueButton();
+            
+            termsAndConditionsModal
+                .CheckTermsAndConditionsModal()
+                .ClickSkipToBottomButton()
+                .ClickAgreeAndFinishButton();
+            
+            mainScreen
+                .CheckMainScreen()
+                .ExpandSideMenu();
+            
+            Thread.Sleep(5000);
+            
+            sideMenu
+                .ClickLogOutLink();
 
             CloseUser(username);
         }
