@@ -5,7 +5,7 @@ namespace monorail_web_v3.RestRequests
 {
     public static class RestConfig
     {
-        public static readonly Uri MonorailAppUri = new Uri("https://monarch-app-" + MonorailEnv + ".azurewebsites.net");
+        public static readonly Uri MonarchAppUri = new Uri("https://monarch-app-" + MonorailEnv + ".azurewebsites.net");
 
         public static readonly Uri MonarchManagementUri =
             new Uri("https://monarchmanagement-app-" + MonorailEnv + ".azurewebsites.net");

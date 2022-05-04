@@ -10,7 +10,7 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
 
         public static string GenerateToken(string user, string pass)
         {
-            var client = new RestClient(MonorailAppUri);
+            var client = new RestClient(MonarchAppUri);
             var request = new RestRequest
             {
                 Resource = TokenEndpoint,

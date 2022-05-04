@@ -12,7 +12,7 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
         {
             var client = new RestClient
             {
-                BaseUrl = MonorailAppUri
+                BaseUrl = MonarchAppUri
             };
             var request = new RestRequest
             {

@@ -15,7 +15,7 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
             const string verificationMode = "phone";
             var client = new RestClient
             {
-                BaseUrl = MonorailAppUri
+                BaseUrl = MonarchAppUri
             };
             var request = new RestRequest
             {

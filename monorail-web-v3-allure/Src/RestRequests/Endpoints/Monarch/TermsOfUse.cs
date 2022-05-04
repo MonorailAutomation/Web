@@ -15,7 +15,7 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
         {
             var client = new RestClient
             {
-                BaseUrl = MonorailAppUri,
+                BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
@@ -38,7 +38,7 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
         {
             var client = new RestClient
             {
-                BaseUrl = MonorailAppUri,
+                BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest

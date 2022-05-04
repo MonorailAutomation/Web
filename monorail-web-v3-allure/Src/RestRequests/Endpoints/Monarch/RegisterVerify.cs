@@ -17,7 +17,7 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
             const string verificationCode = "111111";
             var client = new RestClient
             {
-                BaseUrl = MonorailAppUri,
+                BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
