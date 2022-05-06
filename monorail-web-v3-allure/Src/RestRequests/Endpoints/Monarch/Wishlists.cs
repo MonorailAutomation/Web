@@ -30,34 +30,6 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
-        public static string AddWishlists(string token, string itemUrlAdd)
-        {
-            var client = new RestClient
-            {
-                BaseUrl = MonarchAppUri,
-                Authenticator = new JwtAuthenticator(token)
-            };
-            var request = new RestRequest
-            {
-                Resource = WishlistsEndpoint,
-                Method = Method.POST,
-                RequestFormat = DataFormat.Json
-            };
-
-            request.AddJsonBody(new
-            {
-                itemURL = itemUrlAdd
-            });
-
-            var response = client.Execute(request);
-
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
-
-            dynamic responseContent = JObject.Parse(response.Content);
-
-            return responseContent.id;
-        }
-
         public static void UpdateWishlists(string token, string amountAdd, string descriptionAdd, string faviconUrlAdd,
             string imageUrlAdd, string itemUrlAdd, string nameAdd, string wishlistItemId)
         {
@@ -89,7 +61,7 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
-        public static void AddCustomWishlistItem(string token, string productUrl, string itemName,
+        public static string AddCustomWishlistItem(string token, string productUrl, string itemName,
             string itemDescription,
             string itemAmount, string itemImageUrl, string itemFavIconUrl)
         {
@@ -118,6 +90,10 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
             var response = client.Execute(request);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            dynamic responseContent = JObject.Parse(response.Content);
+
+            return responseContent.id;
         }
 
         public static string[] GetWishlistItemsInProgress(string token)

@@ -15,30 +15,31 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
     [AllureNUnit]
     internal class AddIncompleteWishlistItem : FunctionalTesting
     {
-        private const string WishlistItemUrl =
+        private const string IncompleteWishlistItemUrl =
             "https://www.monorail.com/blog/how-to-organize-your-finances";
 
-        private const string WishlistItemName = "How To Organize Your Finances";
-        private const string WishlistItemPrice = "$1";
-        private const string WishlistItemDescription = "Navigating through personal finance";
-        
-        [Test(Description = "Add incomplete Wishlist item by clicking a button when user has a wishlist account")]
+        [Test(Description = "Add incomplete Wishlist item when user has Wishlist Account - each field is missing")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Add incomplete Wishlist Item")]
-        [AllureStory("Add incomplete Wishlist Item by clicking 'Add an item' button when user has a wishlist account")]
-        public void AddIncompleteWishlistItemByButtonWithWishlistAccountTest()
+        [AllureStory("Add incomplete Wishlist item when user has Wishlist Account- each field is missing")]
+        public void AddIncompleteWishlistItemWithWishlistAccountTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
             var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
-            var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
-            var wishlistItemIsBeingAddedModal = new WishlistItemIsBeingAddedModal(Driver);
-            var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
+            var completeYourItemInfoEntryModal = new CompleteYourItemInfoEntryModal(Driver);
+            var completeYourItemInfoNameModal = new CompleteYourItemInfoNameModal(Driver);
+            var completeYourItemInfoImageModal = new CompleteYourItemInfoImageModal(Driver);
+            var completeYourItemInfoPriceModal = new CompleteYourItemInfoPriceModal(Driver);
+            var completeYourItemInfoDescriptionModal = new CompleteYourItemInfoDescriptionModal(Driver);
+            var completeYourItemInfoSuccessModal = new CompleteYourItemInfoSuccessModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
             const string username = "autotests.mono+2.0317221@gmail.com";
 
+            AddEmptyWishlistItem(username, IncompleteWishlistItemUrl);
+
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
@@ -51,87 +52,43 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             wishlistMainScreen
                 .CheckWishlistMainScreenAfterOnboarding()
-                .ClickAddWishlistItemButton();
+                .ClickTapToCompleteInfoPill();
 
-            addNewWishlistItemModal
-                .CheckAddNewItemModal()
-                .PasteLink(WishlistItemUrl)
+            completeYourItemInfoEntryModal
+                .CheckCompleteYourItemInfoEntryModal()
                 .ClickContinueButton();
 
-            wishlistItemIsBeingAddedModal
-                .CheckWishlistItemIsBeingAddedModal()
+            completeYourItemInfoNameModal
+                .CheckCompleteYourItemInfoNameModal()
+                .SetWishlistItemName(WishlistItemName)
+                .ClickContinueButton();
+
+            completeYourItemInfoImageModal
+                .CheckCompleteYourItemInfoImageModal()
+                .ClickFirstImageOnCarousel()
+                .ClickContinueButton();
+
+            completeYourItemInfoPriceModal
+                .CheckCompleteYourItemInfoPriceModal()
+                .SetWishlistItemPrice(WishlistItemPrice)
+                .ClickContinueButton();
+
+            completeYourItemInfoDescriptionModal
+                .CheckCompleteYourItemInfoDescriptionModalModal()
+                .SetWishlistItemDescription(WishlistItemDescription)
+                .ClickContinueButton();
+
+            completeYourItemInfoSuccessModal
+                .CheckAddWishlistItemSuccessModal()
+                .VerifyWishlistItemName(WishlistItemName)
                 .ClickCloseButton();
 
             wishlistMainScreen
-                .ClickLetsGoButton()
-                .CheckItemBeingAddedBarDisappeared()
                 .ClickWishlistItem(WishlistItemName);
 
-            wishlistItemDetailsModal
-                .CheckItemDetailsModal()
-                .SetWishlistItemPrice(WishlistItemPrice)
-                .ClickConfirmButton();
-
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice, WishlistItemUrl);
-
-            var wishlistItemId = Driver.Url[^36..];
-
-            DeleteWishlistItem(username, ValidPassword, wishlistItemId);
-        }
-
-        [Test(Description = "Add incomplete Wishlist item by clicking placeholder when user has a wishlist account")]
-        [AllureEpic("Wishlist")]
-        [AllureFeature("Add incomplete Wishlist Item")]
-        [AllureStory("Add incomplete Wishlist Item by clicking placeholder when user has a wishlist account")]
-        public void AddIncompleteWishlistItemByPlaceholderWithWishlistAccountTest()
-        {
-            var loginPage = new LoginPage(Driver);
-            var mainScreen = new MainScreen(Driver);
-            var wishlistScreen = new WishlistScreen(Driver);
-            var wishlistMainScreen = new WishlistMainScreen(Driver);
-            var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
-            var wishlistItemIsBeingAddedModal = new WishlistItemIsBeingAddedModal(Driver);
-            var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
-            var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
-
-            const string username = "autotests.mono+3.1.031721@gmail.com";
-
-            loginPage
-                .PassCredentials(username, ValidPassword)
-                .ClickSignInButton();
-
-            mainScreen
-                .CheckMainScreen();
-            
-            wishlistScreen
-                .CheckWishlistScreen();
-
-            wishlistMainScreen
-                .CheckWishlistMainScreenAfterOnboarding()
-                .ClickAddWishlistItemPlaceholder();
-
-            addNewWishlistItemModal
-                .CheckAddNewItemModal()
-                .PasteLink(WishlistItemUrl)
-                .ClickContinueButton();
-
-            wishlistItemIsBeingAddedModal
-                .CheckWishlistItemIsBeingAddedModal()
-                .ClickCloseButton();
-
-            wishlistMainScreen
-                .ClickLetsGoButton()
-                .CheckItemBeingAddedBarDisappeared()
-                .ClickWishlistItem(WishlistItemName);
-
-            wishlistItemDetailsModal
-                .CheckItemDetailsModal()
-                .SetWishlistItemPrice(WishlistItemPrice)
-                .ClickConfirmButton();
-
-            wishlistDetailsScreen
-                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice, WishlistItemUrl);
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice,
+                    IncompleteWishlistItemUrl);
 
             var wishlistItemId = Driver.Url[^36..];
 
@@ -139,82 +96,27 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         }
 
         [Test(Description =
-            "Add incomplete Wishlist item by clicking a button when user doesn't have a wishlist account")]
+            "Add incomplete Wishlist item when user doesn't have Wishlist Account - each field is missing")]
         [AllureEpic("Wishlist")]
         [AllureFeature("Add incomplete Wishlist Item")]
-        [AllureStory(
-            "Add incomplete Wishlist Item by clicking 'Add an item' button when user doesn't have a wishlist account")]
-        public void AddIncompleteWishlistItemByButtonWithoutWishlistAccountTest()
+        [AllureStory("Add incomplete Wishlist item when user doesn't have Wishlist Account- each field is missing")]
+        public void AddIncompleteWishlistItemWithoutWishlistAccountTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
             var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
-            var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
-            var wishlistItemIsBeingAddedModal = new WishlistItemIsBeingAddedModal(Driver);
-            var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
+            var completeYourItemInfoEntryModal = new CompleteYourItemInfoEntryModal(Driver);
+            var completeYourItemInfoNameModal = new CompleteYourItemInfoNameModal(Driver);
+            var completeYourItemInfoImageModal = new CompleteYourItemInfoImageModal(Driver);
+            var completeYourItemInfoPriceModal = new CompleteYourItemInfoPriceModal(Driver);
+            var completeYourItemInfoDescriptionModal = new CompleteYourItemInfoDescriptionModal(Driver);
+            var completeYourItemInfoSuccessModal = new CompleteYourItemInfoSuccessModal(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
             const string username = "autotests.mono+2.141221@gmail.com";
 
-            loginPage
-                .PassCredentials(username, ValidPassword)
-                .ClickSignInButton();
-
-            mainScreen
-                .CheckMainScreen();
-            
-            wishlistScreen
-                .CheckWishlistScreen();
-
-            wishlistMainScreen
-               .CheckWishlistMainScreenBeforeOnboarding()
-                .ClickAddWishlistItemButton();
-
-            addNewWishlistItemModal
-                .CheckAddNewItemModal()
-                .PasteLink(WishlistItemUrl)
-                .ClickContinueButton();
-
-            wishlistItemIsBeingAddedModal
-                .CheckWishlistItemIsBeingAddedModal()
-                .ClickCloseButton();
-
-            wishlistMainScreen
-                .ClickLetsGoButton()
-                .CheckItemBeingAddedBarDisappeared()
-                .ClickWishlistItem(WishlistItemName);
-
-            wishlistItemDetailsModal
-                .CheckItemDetailsModal()
-                .SetWishlistItemPrice(WishlistItemPrice)
-                .ClickConfirmButton();
-
-            wishlistDetailsScreen
-                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice, WishlistItemUrl);
-
-            var wishlistItemId = Driver.Url[^36..];
-
-            DeleteWishlistItem(username, ValidPassword, wishlistItemId);
-        }
-
-        [Test(Description =
-            "Add incomplete Wishlist item by clicking placeholder when user doesn't have a wishlist account")]
-        [AllureEpic("Wishlist")]
-        [AllureFeature("Add incomplete Wishlist Item")]
-        [AllureStory("Add incomplete Wishlist Item by clicking placeholder when user doesn't have a wishlist account")]
-        public void AddIncompleteWishlistItemByPlaceholderWithoutWishlistAccountTest()
-        {
-            var loginPage = new LoginPage(Driver);
-            var mainScreen = new MainScreen(Driver);
-            var wishlistScreen = new WishlistScreen(Driver);
-            var wishlistMainScreen = new WishlistMainScreen(Driver);
-            var addNewWishlistItemModal = new AddNewWishlistItemModal(Driver);
-            var wishlistItemIsBeingAddedModal = new WishlistItemIsBeingAddedModal(Driver);
-            var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
-            var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
-
-            const string username = "autotests.mono+3.141221@gmail.com";
+            AddEmptyWishlistItem(username, IncompleteWishlistItemUrl);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -228,30 +130,43 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             wishlistMainScreen
                 .CheckWishlistMainScreenBeforeOnboarding()
-                .ClickAddWishlistItemPlaceholder();
+                .ClickTapToCompleteInfoPill();
 
-            addNewWishlistItemModal
-                .CheckAddNewItemModal()
-                .PasteLink(WishlistItemUrl)
+            completeYourItemInfoEntryModal
+                .CheckCompleteYourItemInfoEntryModal()
                 .ClickContinueButton();
 
-            wishlistItemIsBeingAddedModal
-                .CheckWishlistItemIsBeingAddedModal()
+            completeYourItemInfoNameModal
+                .CheckCompleteYourItemInfoNameModal()
+                .SetWishlistItemName(WishlistItemName)
+                .ClickContinueButton();
+
+            completeYourItemInfoImageModal
+                .CheckCompleteYourItemInfoImageModal()
+                .ClickFirstImageOnCarousel()
+                .ClickContinueButton();
+
+            completeYourItemInfoPriceModal
+                .CheckCompleteYourItemInfoPriceModal()
+                .SetWishlistItemPrice(WishlistItemPrice)
+                .ClickContinueButton();
+
+            completeYourItemInfoDescriptionModal
+                .CheckCompleteYourItemInfoDescriptionModalModal()
+                .SetWishlistItemDescription(WishlistItemDescription)
+                .ClickContinueButton();
+
+            completeYourItemInfoSuccessModal
+                .CheckAddWishlistItemSuccessModal()
+                .VerifyWishlistItemName(WishlistItemName)
                 .ClickCloseButton();
 
             wishlistMainScreen
-                .ClickLetsGoButton()
-                .CheckItemBeingAddedBarDisappeared()
                 .ClickWishlistItem(WishlistItemName);
 
-            wishlistItemDetailsModal
-                .CheckItemDetailsModal()
-                .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl)
-                .SetWishlistItemPrice(WishlistItemPrice)
-                .ClickConfirmButton();
-
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice, WishlistItemUrl);
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice,
+                    IncompleteWishlistItemUrl);
 
             var wishlistItemId = Driver.Url[^36..];
 
