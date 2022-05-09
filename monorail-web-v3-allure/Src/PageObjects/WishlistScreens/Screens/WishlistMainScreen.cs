@@ -39,6 +39,9 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             Using = "//button[contains(text(),'How it Works')]")]
         private IWebElement _howItWorksButton;
 
+        [FindsBy(How = How.XPath, Using = "//button/span[contains(text(), \"Let's Go\")]")]
+        private IWebElement _letsGoButton;
+
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Manage')]")]
         private IWebElement _manageButton;
 
@@ -48,6 +51,9 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 
         [FindsBy(How = How.XPath, Using = "//div[@class='container']//h3")]
         private IWebElement _readyToPowerYourWishlistMessage;
+
+        [FindsBy(How = How.XPath, Using = "//span[contains(text(), 'Tap to Complete Info')]")]
+        private IWebElement _tapToCompletePill;
 
         [FindsBy(How = How.XPath,
             Using = "//button[contains(text(),'View All')]")]
@@ -60,10 +66,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         [FindsBy(How = How.XPath,
             Using = "//p[contains(text(),'Your wishlist item is being added!')]")]
         private IWebElement _wishlistItemIsBeingAddedModal;
-
-        [FindsBy(How = How.XPath,
-    Using = "//button/span[contains(text(), \"Let's Go\")]")]
-        private IWebElement _letsGoButton;
 
         public WishlistMainScreen(IWebDriver driver) : base(driver)
         {
@@ -132,6 +134,13 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         {
             var wishlistItemSelector = "//p[contains(text(), '" + wishlistItemName + "')]";
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemSelector))).Click();
+            return this;
+        }
+
+        [AllureStep("Click 'Tap to Complete Info' pill")]
+        public WishlistMainScreen ClickTapToCompleteInfoPill()
+        {
+            Wait.Until(ElementToBeClickable(_tapToCompletePill)).Click();
             return this;
         }
 

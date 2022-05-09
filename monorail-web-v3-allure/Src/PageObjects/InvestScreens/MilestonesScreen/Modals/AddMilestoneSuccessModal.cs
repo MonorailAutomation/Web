@@ -42,6 +42,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
                 Wait.Until(ElementToBeVisible(_successMessage));
                 Wait.Until(ElementToBeVisible(_successQuote));
                 Wait.Until(ElementToBeVisible(_sipcLogo));
+                Wait.Until(ElementToBeVisible(_finishButton));
 
                 _successMessage.Text.Should().Contain(SuccessMessageText);
                 _successQuote.Text.Should().Contain(SuccessQuoteText);

@@ -11,11 +11,11 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
 {
     public class AddItemSuccessModal : Modal
     {
-        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Finish')]")]
-        private IWebElement _finishButton;
-
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h2[1]")]
         private IWebElement _successHeader;
+        
+        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Finish')]")]
+        public IWebElement _finishButton;
 
         protected AddItemSuccessModal(IWebDriver driver) : base(driver)
         {
@@ -37,7 +37,6 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
             {
                 Wait.Until(ElementToBeVisible(XButton));
                 Wait.Until(ElementToBeVisible(_successHeader));
-                Wait.Until(ElementToBeVisible(_finishButton));
                 _successHeader.Text.Should().Contain(headerText);
             }
             catch (Exception e)

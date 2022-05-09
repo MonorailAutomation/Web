@@ -41,6 +41,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals
                 CheckAddItemSuccessModal(SuccessHeaderText);
                 Wait.Until(ElementToBeVisible(_successMessage));
                 Wait.Until(ElementToBeVisible(_trackNameLabel));
+                Wait.Until(ElementToBeVisible(_finishButton));
 
                 _successMessage.Text.Should().Contain(SuccessMessageText);
             }
