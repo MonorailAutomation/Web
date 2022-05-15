@@ -7,7 +7,6 @@ namespace monorail_web_v3.RestRequests.Endpoints.Management
 {
     public static class PilotFeature
     {
-        private const string ApiKey = "0oq1Oj2R6kJNrUX1inqyOjYJtoqbtmJx";
         private const string PilotFeatureEndpoint = "/api/System/PilotFeatures";
 
         public static void PostPilotFeatures(string userEmail, string featureType)
@@ -22,7 +21,7 @@ namespace monorail_web_v3.RestRequests.Endpoints.Management
                 Method = Method.POST,
                 RequestFormat = DataFormat.Json
             };
-            request.AddHeader("apiKey", ApiKey);
+            request.AddHeader("apiKey", GetEndpointConfiguration().MonarchApiKey);
             request.AddJsonBody(new
             {
                 userEmail,
