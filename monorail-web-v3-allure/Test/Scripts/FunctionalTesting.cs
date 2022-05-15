@@ -1,13 +1,11 @@
-﻿using System;
-using System.IO;
-using Allure.Commons;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using monorail_web_v3.Model.ConfigurationModel;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using static System.TimeSpan;
+using static monorail_web_v3.Test.Configuration;
 
 namespace monorail_web_v3.Test.Scripts
 {
@@ -17,18 +15,11 @@ namespace monorail_web_v3.Test.Scripts
         public static IWebDriver Driver;
         public static WebDriverWait Wait;
 
-        [OneTimeSetUp]
-        public void Init()
-        {
-            var projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            const string configFolder = "Config";
-            Environment.SetEnvironmentVariable(AllureConstants.ALLURE_CONFIG_ENV_VARIABLE,
-                Path.Combine(projectPath, configFolder, AllureConstants.CONFIG_FILENAME));
-        }
-
         [SetUp]
         public void BeforeAll()
         {
+            BuildAllureConfig();
+
             var configuration = new ConfigurationBuilder().BuildAppSettings();
 
             var environmentConfiguration =
