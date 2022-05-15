@@ -9,9 +9,10 @@ using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
-namespace monorail_web_v3.Test.Scripts.Transactions
+namespace monorail_web_v3.Test.Scripts.Transactions.BuyingPower
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class DepositToBuyingPower : FunctionalTesting
     {
         [Test(Description = "Deposit money to Buying Power")]

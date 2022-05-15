@@ -9,13 +9,13 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.DataGenerator.EmailGenerator;
-using static monorail_web_v3.DataGenerator.NumberGenerator;
-using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
+using static monorail_web_v3.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Money.Spend
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class Q2SpendOnboarding : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+23.020522";
@@ -39,7 +39,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
             var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
             var spendOnboardingSuccessModal = new SpendOnboardingSuccessModal(Driver);
-            
+
             var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);

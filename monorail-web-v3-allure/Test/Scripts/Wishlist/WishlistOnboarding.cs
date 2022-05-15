@@ -8,15 +8,15 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.DataGenerator.EmailGenerator;
-using static monorail_web_v3.DataGenerator.NumberGenerator;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
-using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
+using static monorail_web_v3.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class WishlistOnboarding : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+22.071221";

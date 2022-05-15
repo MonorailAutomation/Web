@@ -10,9 +10,10 @@ using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_web_v3.DataGenerator.StringGenerator;
 using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
-namespace monorail_web_v3.Test.Scripts.Transactions
+namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class WithdrawFromWishlistAccountThroughWishlistItemDetailsScreen : FunctionalTesting
     {
         [Test(Description =

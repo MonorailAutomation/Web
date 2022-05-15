@@ -11,13 +11,13 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.DataGenerator.EmailGenerator;
-using static monorail_web_v3.DataGenerator.NumberGenerator;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 
-namespace monorail_web_v3.Test.Scripts.Transactions
+namespace monorail_web_v3.Test.Scripts.Transactions.Plaid
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class ConnectPlaidToNewUser : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+20.071121";

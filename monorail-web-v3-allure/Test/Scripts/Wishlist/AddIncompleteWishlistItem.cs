@@ -12,7 +12,8 @@ using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class AddIncompleteWishlistItem : FunctionalTesting
     {
         private const string IncompleteWishlistItemUrl =

@@ -10,7 +10,8 @@ using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions
 
 namespace monorail_web_v3.Test.Scripts.Money.Spend
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class LockUnlockCard : FunctionalTesting
     {
         [Test(Description = "Lock/Unlock Card")]

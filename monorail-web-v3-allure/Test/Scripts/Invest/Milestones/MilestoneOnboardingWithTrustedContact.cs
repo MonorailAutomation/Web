@@ -14,12 +14,13 @@ using static monorail_web_v3.DataGenerator.EmailGenerator;
 using static monorail_web_v3.DataGenerator.StringGenerator;
 using static monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Enums.MilestoneType;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
-using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
+using static monorail_web_v3.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class MilestoneOnboardingForUserOver55Yo : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+24.";

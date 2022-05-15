@@ -9,9 +9,10 @@ using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
-namespace monorail_web_v3.Test.Scripts.Transactions
+namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class DepositToWishlistAccountThroughMainScreen : FunctionalTesting
     {
         private const string AmountToAdd = "2";

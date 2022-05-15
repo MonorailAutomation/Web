@@ -14,7 +14,8 @@ using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions
 
 namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class AddMilestoneWithTargetDateAndTargetAmount : FunctionalTesting
     {
         [Test(Description = "Add a Milestone with Target Date and Target Amount")]

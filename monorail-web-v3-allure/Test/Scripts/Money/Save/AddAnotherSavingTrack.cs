@@ -14,7 +14,8 @@ using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions
 
 namespace monorail_web_v3.Test.Scripts.Money.Save
 {
-    [TestFixture, AllureNUnit]
+    [TestFixture]
+    [AllureNUnit]
     internal class AddAnotherSavingTrack : FunctionalTesting
     {
         [Test(Description = "Add another Saving Track")]
