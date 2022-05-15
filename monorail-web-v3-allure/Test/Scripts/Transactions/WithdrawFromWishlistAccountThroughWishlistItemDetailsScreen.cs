@@ -12,8 +12,7 @@ using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
-    [TestFixture]
-    [AllureNUnit]
+    [TestFixture, AllureNUnit]
     internal class WithdrawFromWishlistAccountThroughWishlistItemDetailsScreen : FunctionalTesting
     {
         [Test(Description =
@@ -21,7 +20,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
         [AllureEpic("Transactions")]
         [AllureFeature("Wishlist")]
         [AllureStory(
-            "Withdraw money from Wishlist Account | View All -> Wishlist Item Details -> Ready to Buy (internal)")]
+            "Withdraw money (internal) from Wishlist Account using 'Ready to Buy' button on 'Wishlist Item Details' screen")]
         public void WithdrawFromWishlistAccountThroughWishlistItemDetailsScreenInternalTest()
         {
             var loginPage = new LoginPage(Driver);
@@ -77,7 +76,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
         [AllureEpic("Transactions")]
         [AllureFeature("Wishlist")]
         [AllureStory(
-            "Withdraw money from Wishlist Account | View All -> Wishlist Item Details -> Ready to Buy (external)")]
+            "Withdraw money (external) from Wishlist Account using 'Ready to Buy' button on 'Wishlist Item Details' screen")]
         public void WithdrawFromWishlistAccountThroughWishlistItemDetailsScreenExternalTest()
         {
             var loginPage = new LoginPage(Driver);

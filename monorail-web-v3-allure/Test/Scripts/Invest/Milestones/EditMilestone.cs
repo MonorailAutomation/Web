@@ -12,8 +12,7 @@ using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions
 
 namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 {
-    [TestFixture]
-    [AllureNUnit]
+    [TestFixture, AllureNUnit]
     internal class EditMilestoneWithoutScheduledDeposits : FunctionalTesting
     {
         [Test(Description = "Edit a Milestone - change name, description")]

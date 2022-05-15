@@ -9,8 +9,7 @@ using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.CreateAccount
 {
-    [TestFixture]
-    [AllureNUnit]
+    [TestFixture, AllureNUnit]
     public class UnsuccessfulUserCreation : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+20.";

@@ -11,8 +11,7 @@ using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
-    [TestFixture]
-    [AllureNUnit]
+    [TestFixture, AllureNUnit]
     internal class DepositToWishlistAccountThroughMainScreen : FunctionalTesting
     {
         private const string AmountToAdd = "2";

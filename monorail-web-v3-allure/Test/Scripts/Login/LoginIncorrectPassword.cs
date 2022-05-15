@@ -6,8 +6,7 @@ using static monorail_web_v3.Commons.Constants;
 
 namespace monorail_web_v3.Test.Scripts.Login
 {
-    [TestFixture]
-    [AllureNUnit]
+    [TestFixture, AllureNUnit]
     internal class LoginIncorrectPassword : FunctionalTesting
     {
         [Test(Description = "Unsuccessful login with correct username and incorrect password")]

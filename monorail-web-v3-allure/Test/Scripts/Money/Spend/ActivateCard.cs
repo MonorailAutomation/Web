@@ -14,8 +14,7 @@ using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Money.Spend
 {
-    [TestFixture]
-    [AllureNUnit]
+    [TestFixture, AllureNUnit]
     internal class ActivateCard : FunctionalTesting
     {
         [Test(Description = "Activate Card")]

@@ -11,8 +11,7 @@ using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
-    [TestFixture]
-    [AllureNUnit]
+    [TestFixture, AllureNUnit]
     internal class WithdrawFromWishlistAccountThroughMainScreen : FunctionalTesting
     {
         [Test(Description = "Withdraw money from Wishlist Account through Manage Account using 'Cash Out' button")]

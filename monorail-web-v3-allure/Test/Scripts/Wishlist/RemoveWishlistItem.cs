@@ -12,8 +12,7 @@ using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
-    [TestFixture]
-    [AllureNUnit]
+    [TestFixture, AllureNUnit]
     internal class RemoveWishlistItem : FunctionalTesting
     {
         [Test(Description = "Remove Wishlist item by clicking a button when user has a wishlist account")]

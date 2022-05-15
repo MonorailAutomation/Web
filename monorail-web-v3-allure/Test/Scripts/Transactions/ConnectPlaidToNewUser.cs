@@ -16,8 +16,7 @@ using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
-    [TestFixture]
-    [AllureNUnit]
+    [TestFixture, AllureNUnit]
     internal class ConnectPlaidToNewUser : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+20.071121";

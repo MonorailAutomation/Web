@@ -20,8 +20,7 @@ using TermsAndConditionsModal = monorail_web_v3.PageObjects.CreateAccountModals.
 
 namespace monorail_web_v3.Test.Scripts.Invest.Trading
 {
-    [TestFixture]
-    [AllureNUnit]
+    [TestFixture, AllureNUnit]
     internal class TradingOnboardingForUserUnder55Yo : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+26.201221";

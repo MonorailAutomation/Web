@@ -11,8 +11,7 @@ using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
-    [TestFixture]
-    [AllureNUnit]
+    [TestFixture, AllureNUnit]
     internal class DepositToCheckingAccount : FunctionalTesting
     {
         [Test(Description = "Deposit money to Checking Account")]

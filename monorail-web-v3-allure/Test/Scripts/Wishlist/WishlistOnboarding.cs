@@ -15,8 +15,7 @@ using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
-    [TestFixture]
-    [AllureNUnit]
+    [TestFixture, AllureNUnit]
     internal class WishlistOnboarding : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+22.071221";
