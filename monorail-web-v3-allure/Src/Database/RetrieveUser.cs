@@ -11,7 +11,7 @@ namespace monorail_web_v3.Database
             string user = null;
             try
             {
-                var sqlConnection = new SqlConnection(DatabaseConfig.Builder(MonorailEnv).ConnectionString);
+                var sqlConnection = new SqlConnection(DatabaseConfig.Builder(MonorailTestEnvironment).ConnectionString);
                 sqlConnection.Open();
 
                 var query = "select top 1 email from Users where Users.lastName='Test' and Users.email LIKE \'" +
@@ -35,7 +35,7 @@ namespace monorail_web_v3.Database
             Guid? userId = null;
             try
             {
-                var sqlConnection = new SqlConnection(DatabaseConfig.Builder(MonorailEnv).ConnectionString);
+                var sqlConnection = new SqlConnection(DatabaseConfig.Builder(MonorailTestEnvironment).ConnectionString);
                 sqlConnection.Open();
 
                 var query = "select top 1 id from Users where Users.email=\'" + email + "\'";

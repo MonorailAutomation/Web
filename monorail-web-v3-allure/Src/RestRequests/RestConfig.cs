@@ -5,12 +5,13 @@ namespace monorail_web_v3.RestRequests
 {
     public static class RestConfig
     {
-        public static readonly Uri MonarchAppUri = new Uri("https://monarch-app-" + MonorailEnv + ".azurewebsites.net");
+        public static readonly Uri MonarchAppUri =
+            new Uri("https://monarch-app-" + MonorailTestEnvironment + ".azurewebsites.net");
 
         public static readonly Uri MonarchManagementUri =
-            new Uri("https://monarchmanagement-app-" + MonorailEnv + ".azurewebsites.net");
+            new Uri("https://monarchmanagement-app-" + MonorailTestEnvironment + ".azurewebsites.net");
 
         public static readonly Uri AzureFunctionsUri =
-            new Uri("https://monarch-functionsapp-" + MonorailEnv + ".azurewebsites.net");
+            new Uri("https://monarch-functionsapp-" + MonorailTestEnvironment + ".azurewebsites.net");
     }
 }
