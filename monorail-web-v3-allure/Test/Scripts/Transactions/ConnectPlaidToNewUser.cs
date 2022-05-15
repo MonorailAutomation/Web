@@ -10,6 +10,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.DataGenerator.EmailGenerator;
 using static monorail_web_v3.DataGenerator.NumberGenerator;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
@@ -33,7 +34,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var sideMenu = new SideMenu(Driver);
             var connectedAccountScreen = new ConnectedAccountScreen(Driver);
 
-            var username = UsernamePrefix + GenerateRandomDigits(3) + UsernameSuffix;
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
 

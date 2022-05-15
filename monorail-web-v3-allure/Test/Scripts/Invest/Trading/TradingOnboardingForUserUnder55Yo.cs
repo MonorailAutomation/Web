@@ -13,6 +13,7 @@ using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.DataGenerator.NumberGenerator;
 using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 using static monorail_web_v3.Database.VerificationCode;
+using static monorail_web_v3.DataGenerator.EmailGenerator;
 using static monorail_web_v3.RestRequests.Endpoints.Management.PilotFeature;
 using static monorail_web_v3.DataGenerator.PhoneNumberGenerator;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
@@ -60,7 +61,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
             var linkYourAccountModal = new LinkYourAccountModal(Driver);
             var disclosuresModal = new DisclosuresModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomDigits(3) + UsernameSuffix;
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             Console.WriteLine(username);
 
