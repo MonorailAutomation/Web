@@ -1,7 +1,7 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Screens;
-using monorail_web_v3.PageObjects.WishlistScreens.Modals;
+using monorail_web_v3.PageObjects.WishlistScreens.Modals.ItemModals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;

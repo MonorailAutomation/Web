@@ -1,6 +1,7 @@
 using System.Threading;
 using static monorail_web_v3.Database.WishlistItem;
 using static monorail_web_v3.RestRequests.Endpoints.Monarch.Token;
+using static monorail_web_v3.RestRequests.Endpoints.Monarch.Wishlist;
 using static monorail_web_v3.RestRequests.Endpoints.Monarch.Wishlists;
 
 namespace monorail_web_v3.RestRequests.Helpers

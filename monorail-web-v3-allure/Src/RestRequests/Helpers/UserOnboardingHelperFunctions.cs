@@ -1,9 +1,9 @@
 using System;
 using static monorail_web_v3.RestRequests.Endpoints.Monarch.Token;
-using static monorail_web_v3.RestRequests.Endpoints.Monarch.Register;
-using static monorail_web_v3.RestRequests.Endpoints.Monarch.RegisterVerify;
+using static monorail_web_v3.RestRequests.Endpoints.Monarch.V3.Register;
+using static monorail_web_v3.RestRequests.Endpoints.Monarch.V2.RegisterVerify;
 using static monorail_web_v3.Commons.Constants;
-using static monorail_web_v3.RestRequests.Endpoints.Monarch.TermsOfUse;
+using static monorail_web_v3.RestRequests.Endpoints.Monarch.V2.TermsOfUse;
 
 namespace monorail_web_v3.RestRequests.Helpers
 {
