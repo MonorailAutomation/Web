@@ -8,6 +8,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
@@ -30,6 +31,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             const string username = "autotests.mono+3.1.0317221@gmail.com";
 
+            VerifyPlaidConnection(username);
+
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
@@ -45,7 +48,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickWishlistItem(WishlistItemName);
 
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice, WishlistItemUrl)
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice,
+                    WishlistItemUrl)
                 .ClickRemoveButton();
 
             removeWishlistItemModal
@@ -54,8 +58,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             wishlistMainScreen.CheckNoWishlistItem(WishlistItemName);
 
-            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, WishlistItemName, 
-                WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName, WishlistItemDescription, 
+                WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
         }
 
         [Test(Description = "Remove Wishlist item by clicking a button when user doesn't have a wishlist account")]
@@ -73,6 +77,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             const string username = "autotests.mono+1.171221@gmail.com";
 
+            VerifyPlaidConnection(username);
+
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
@@ -88,7 +94,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .ClickWishlistItem(WishlistItemName);
 
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice, WishlistItemUrl)
+                .VerifyWishlistItemDetails(WishlistItemName, WishlistItemDescription, WishlistItemPrice,
+                    WishlistItemUrl)
                 .ClickRemoveButton();
 
             removeWishlistItemModal
@@ -97,8 +104,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             wishlistMainScreen.CheckNoWishlistItem(WishlistItemName);
 
-            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, WishlistItemName, 
-                WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName, WishlistItemDescription, 
+                WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
         }
     }
 }

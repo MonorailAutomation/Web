@@ -8,6 +8,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
@@ -33,6 +34,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
 
             const string username = "autotests.mono+1.071221@gmail.com";
+
+            VerifyPlaidConnection(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -66,7 +69,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             var wishlistItemId = Driver.Url[^36..];
 
-            UpdateWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
+            UpdateWishlistItem(username, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
                 WishlistItemImage, WishlistItemUrl, WishlistItemName, wishlistItemId);
         }
 
@@ -87,6 +90,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
 
             const string username = "autotests.mono+2.171221@gmail.com";
+
+            VerifyPlaidConnection(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -117,7 +122,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             var wishlistItemId = Driver.Url[^36..];
 
-            UpdateWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
+            UpdateWishlistItem(username, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
                 WishlistItemImage, WishlistItemUrl, WishlistItemName, wishlistItemId);
         }
     }

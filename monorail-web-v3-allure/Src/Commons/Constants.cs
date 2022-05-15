@@ -19,6 +19,9 @@ namespace monorail_web_v3.Commons
         public const string DateOfBirthUnder18MDY = "01012007";
         public const string DateOfBirthOver120MDY = "01011901";
 
+        public const string PlaidUsername = "user_good";
+        public const string PlaidPassword = "pass_good";
+
         public const string WishlistItemName = "Canon EOS Rebel T7 EF-S 18-55mm IS II Kit";
 
         public const string WishlistItemUrl =

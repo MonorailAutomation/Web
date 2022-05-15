@@ -9,6 +9,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.NumberGenerator;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 {
@@ -38,6 +39,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             const string milestoneTargetAmount = "4,500";
 
             var milestoneName = "Test Milestone " + GenerateRandomString();
+
+            VerifyPlaidConnection(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)

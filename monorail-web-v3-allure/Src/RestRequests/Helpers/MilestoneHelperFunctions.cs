@@ -8,7 +8,7 @@ namespace monorail_web_v3.RestRequests.Helpers
         public static void RevertMilestone(string username, string password, string milestoneId,
             string milestoneName, string milestoneDescription)
         {
-            var token = GenerateToken(username, password);
+            var token = GenerateToken(username);
             PatchGoals(token, milestoneId, milestoneDescription, milestoneName);
             //PutGoals(token, milestoneId, milestoneTargetAmount, milestoneTargetDate);
         }

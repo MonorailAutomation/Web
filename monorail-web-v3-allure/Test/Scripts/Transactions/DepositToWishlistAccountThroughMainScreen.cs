@@ -6,6 +6,7 @@ using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
@@ -27,6 +28,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistAddCashSuccessModal = new WishlistAddCashSuccessModal(Driver);
             var wishlistAddCashModal = new WishlistAddCashModal(Driver);
+
+            VerifyPlaidConnection(Username);
 
             loginPage
                 .PassCredentials(Username, ValidPassword)
@@ -63,6 +66,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var wishlistAddCashSuccessModal = new WishlistAddCashSuccessModal(Driver);
             var wishlistManageAccountModal = new WishlistManageAccountModal(Driver);
             var wishlistAddCashModal = new WishlistAddCashModal(Driver);
+
+            VerifyPlaidConnection(Username);
 
             loginPage
                 .PassCredentials(Username, ValidPassword)

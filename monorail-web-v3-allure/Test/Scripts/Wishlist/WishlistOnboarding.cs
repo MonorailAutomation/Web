@@ -41,7 +41,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
 
             RegisterUser(username);
-            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, WishlistItemName,
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName,
                 WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
 
             Thread.Sleep(15000); // waiting for item to be correctly added
@@ -117,7 +117,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
 
             RegisterUser(username);
-            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, WishlistItemName,
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName,
                 WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
 
             Thread.Sleep(15000); // waiting for item to be correctly added

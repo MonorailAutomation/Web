@@ -7,6 +7,7 @@ using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
@@ -27,9 +28,10 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             var spendWithdrawCashModal = new SpendWithdrawCashModal(Driver);
             var spendWithdrawCashSuccessModal = new SpendWithdrawCashSuccessModal(Driver);
 
-            const string
-                username = "autotests.mono+8.3.061121@gmail.com";
+            const string username = "autotests.mono+8.3.061121@gmail.com";
             const string amountToWithdraw = "1";
+
+            VerifyPlaidConnection(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)

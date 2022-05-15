@@ -9,6 +9,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.Database.RetrieveUser;
+using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Money.Spend
@@ -39,6 +40,8 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
 
             var username = GetUserAfterQ2SpendOnboardingWithoutCard(userPrefix);
             Console.WriteLine(username);
+
+            VerifyPlaidConnection(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)

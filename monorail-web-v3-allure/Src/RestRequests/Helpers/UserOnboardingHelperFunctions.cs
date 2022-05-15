@@ -12,7 +12,7 @@ namespace monorail_web_v3.RestRequests.Helpers
         public static void RegisterUser(string username)
         {
             PostRegister(username, ValidPhoneNumber, ValidDateOfBirthYmd);
-            var token = GenerateToken(username, ValidPassword);
+            var token = GenerateToken(username);
             PostRegisterVerify(token);
             var termsOfUseId = GetTermsOfUseId(token);
             PostTermsOfUse(token, termsOfUseId);
@@ -22,7 +22,7 @@ namespace monorail_web_v3.RestRequests.Helpers
         public static void RegisterUserWithDoB(string username, string dateOfBirth)
         {
             PostRegister(username, ValidPhoneNumber, dateOfBirth);
-            var token = GenerateToken(username, ValidPassword);
+            var token = GenerateToken(username);
             PostRegisterVerify(token);
             var termsOfUseId = GetTermsOfUseId(token);
             PostTermsOfUse(token, termsOfUseId);

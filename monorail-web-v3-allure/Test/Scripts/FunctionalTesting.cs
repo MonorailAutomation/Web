@@ -22,8 +22,7 @@ namespace monorail_web_v3.Test.Scripts
         {
             var projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             const string configFolder = "Config";
-            Environment.SetEnvironmentVariable(
-                AllureConstants.ALLURE_CONFIG_ENV_VARIABLE,
+            Environment.SetEnvironmentVariable(AllureConstants.ALLURE_CONFIG_ENV_VARIABLE,
                 Path.Combine(projectPath, configFolder, AllureConstants.CONFIG_FILENAME));
         }
 

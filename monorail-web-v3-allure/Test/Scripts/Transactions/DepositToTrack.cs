@@ -7,6 +7,7 @@ using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
@@ -31,6 +32,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions
             const string username = "autotests.mono+7.4.030322@gmail.com";
             const string trackName = "Travel";
             const string amount = "5";
+
+            VerifyPlaidConnection(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)

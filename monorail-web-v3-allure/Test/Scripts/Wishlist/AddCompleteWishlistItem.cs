@@ -8,6 +8,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
@@ -37,6 +38,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
             const string username = "autotests.mono+2.310122@gmail.com";
+
+            VerifyPlaidConnection(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -72,7 +75,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             var wishlistItemId = Driver.Url[^36..];
 
-            DeleteWishlistItem(username, ValidPassword, wishlistItemId);
+            DeleteWishlistItem(username, wishlistItemId);
         }
 
         [Test(Description = "Add complete Wishlist item by clicking placeholder when user has a wishlist account")]
@@ -90,6 +93,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
             const string username = "autotests.mono+3.1.031722@gmail.com";
+
+            VerifyPlaidConnection(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -126,7 +131,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             var wishlistItemId = Driver.Url[^36..];
 
-            DeleteWishlistItem(username, ValidPassword, wishlistItemId);
+            DeleteWishlistItem(username, wishlistItemId);
         }
 
         [Test(Description =
@@ -146,6 +151,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
             const string username = "autotests.mono+2.010222@gmail.com";
+
+            VerifyPlaidConnection(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -181,7 +188,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             var wishlistItemId = Driver.Url[^36..];
 
-            DeleteWishlistItem(username, ValidPassword, wishlistItemId);
+            DeleteWishlistItem(username, wishlistItemId);
         }
 
         [Test(Description =
@@ -200,6 +207,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
             const string username = "autotests.mono+3.010222@gmail.com";
+
+            VerifyPlaidConnection(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -235,7 +244,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             var wishlistItemId = Driver.Url[^36..];
 
-            DeleteWishlistItem(username, ValidPassword, wishlistItemId);
+            DeleteWishlistItem(username, wishlistItemId);
         }
     }
 }

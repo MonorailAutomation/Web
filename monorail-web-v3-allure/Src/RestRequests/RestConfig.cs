@@ -13,5 +13,7 @@ namespace monorail_web_v3.RestRequests
 
         public static readonly Uri AzureFunctionsUri =
             new Uri("https://monarch-functionsapp-" + MonorailTestEnvironment + ".azurewebsites.net");
+
+        public static readonly Uri PlaidUri = new Uri("https://sandbox.plaid.com");
     }
 }

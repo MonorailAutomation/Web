@@ -8,6 +8,7 @@ using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_web_v3.Commons.NumberGenerator;
+using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Transactions
 {
@@ -34,8 +35,10 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             var wishlistItemName = "Test Item " + GenerateRandomString();
 
-            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, wishlistItemName,
-                WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, wishlistItemName, WishlistItemDescription, 
+                WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
+
+            VerifyPlaidConnection(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -88,8 +91,10 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             var wishlistItemName = "Test Item " + GenerateRandomString();
 
-            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, wishlistItemName,
-                WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, wishlistItemName, WishlistItemDescription, 
+                WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
+
+            VerifyPlaidConnection(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
