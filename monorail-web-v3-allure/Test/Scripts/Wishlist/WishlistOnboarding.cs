@@ -7,7 +7,7 @@ using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
-using static monorail_web_v3.Commons.NumberGenerator;
+using static monorail_web_v3.DataGenerator.NumberGenerator;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
@@ -38,7 +38,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
             var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = UsernamePrefix + GenerateRandomDigits(3) + UsernameSuffix;
 
             RegisterUser(username);
             AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName,
@@ -114,7 +114,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var wishlistAddCashModal = new WishlistAddCashModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = UsernamePrefix + GenerateRandomDigits(3) + UsernameSuffix;
 
             RegisterUser(username);
             AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName,

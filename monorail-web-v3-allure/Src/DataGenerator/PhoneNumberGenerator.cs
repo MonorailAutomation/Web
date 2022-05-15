@@ -1,7 +1,7 @@
-using static monorail_web_v3.Commons.NumberGenerator;
+using static monorail_web_v3.DataGenerator.NumberGenerator;
 using static monorail_web_v3.Database.PhoneNumber;
 
-namespace monorail_web_v3.Commons
+namespace monorail_web_v3.DataGenerator
 {
     public static class PhoneNumberGenerator
     {
@@ -11,7 +11,7 @@ namespace monorail_web_v3.Commons
             bool phoneAlreadyExists;
             do
             {
-                phoneNumber = "202" + GenerateRandom7Digits();
+                phoneNumber = "202" + GenerateRandomDigits(7);
                 phoneAlreadyExists = CheckIfPhoneNumberWasUsedOnUatAndDev(phoneNumber);
             } while (phoneAlreadyExists);
 

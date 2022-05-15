@@ -8,43 +8,43 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentAssertions" Version="6.2.0"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0"/>
-        <PackageReference Include="NUnit" Version="3.13.2"/>
-        <PackageReference Include="NUnit.Allure" Version="1.2.0-ref2"/>
-        <PackageReference Include="NUnit.Allure.Steps" Version="1.0.9"/>
-        <PackageReference Include="NUnit3TestAdapter" Version="4.1.0"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0"/>
-        <PackageReference Include="RestSharp" Version="106.13.0"/>
-        <PackageReference Include="Selenium.Support" Version="4.1.0"/>
-        <PackageReference Include="Selenium.WebDriver" Version="4.1.0"/>
-        <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="100.0.4896.6000"/>
-        <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.30.0.1"/>
-        <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0"/>
-        <PackageReference Include="DotNetSeleniumExtras.PageObjects.Core" Version="4.0.1"/>
-        <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0"/>
-        <PackageReference Include="System.Data.SqlClient" Version="4.8.3"/>
+        <PackageReference Include="FluentAssertions" Version="6.2.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+        <PackageReference Include="NUnit" Version="3.13.2" />
+        <PackageReference Include="NUnit.Allure" Version="1.2.0-ref2" />
+        <PackageReference Include="NUnit.Allure.Steps" Version="1.0.9" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+        <PackageReference Include="RestSharp" Version="106.13.0" />
+        <PackageReference Include="Selenium.Support" Version="4.1.0" />
+        <PackageReference Include="Selenium.WebDriver" Version="4.1.0" />
+        <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="100.0.4896.6000" />
+        <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.30.0.1" />
+        <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0" />
+        <PackageReference Include="DotNetSeleniumExtras.PageObjects.Core" Version="4.0.1" />
+        <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
+        <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Selenium.WebDriver"/>
-        <None Remove="Selenium.WebDriver.ChromeDriver"/>
-        <None Remove="Selenium.WebDriver.GeckoDriver"/>
-        <None Remove="Test\"/>
-        <None Remove="DotNetSeleniumExtras.PageObjects"/>
-        <None Remove="DotNetSeleniumExtras.PageObjects.Core"/>
-        <None Remove="DotNetSeleniumExtras.WaitHelpers"/>
-        <None Remove="Selenium.Support"/>
-        <None Remove="Src\PageObject\"/>
-        <None Remove="Src\Waits\"/>
-        <None Remove="Test\Scripts\"/>
-        <None Remove="Src\Commons\"/>
-        <None Remove="Test\Scripts\Login\"/>
+        <None Remove="Selenium.WebDriver" />
+        <None Remove="Selenium.WebDriver.ChromeDriver" />
+        <None Remove="Selenium.WebDriver.GeckoDriver" />
+        <None Remove="Test\" />
+        <None Remove="DotNetSeleniumExtras.PageObjects" />
+        <None Remove="DotNetSeleniumExtras.PageObjects.Core" />
+        <None Remove="DotNetSeleniumExtras.WaitHelpers" />
+        <None Remove="Selenium.Support" />
+        <None Remove="Src\PageObject\" />
+        <None Remove="Src\Waits\" />
+        <None Remove="Test\Scripts\" />
+        <None Remove="Src\Commons\" />
+        <None Remove="Test\Scripts\Login\" />
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="Src\PageObjects\InvestScreens\TradingScreen\Enums"/>
-        <Folder Include="Test\Scripts\Login\"/>
+        <Folder Include="Src\PageObjects\InvestScreens\TradingScreen\Enums" />
+        <Folder Include="Test\Scripts\Login\" />
     </ItemGroup>
 </Project>

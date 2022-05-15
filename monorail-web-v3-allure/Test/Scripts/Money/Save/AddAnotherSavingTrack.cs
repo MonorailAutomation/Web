@@ -7,8 +7,8 @@ using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
-using static monorail_web_v3.Commons.NumberGenerator;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.DataGenerator.StringGenerator;
 using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Money.Save
@@ -37,7 +37,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
             const string trackTargetDate = "04192029";
             const string trackTargetAmount = "6,900";
 
-            var trackName = "Test Track " + GenerateRandomString();
+            var trackName = "Test Track " + GenerateStringWithNumber();
 
             VerifyPlaidConnection(username);
 

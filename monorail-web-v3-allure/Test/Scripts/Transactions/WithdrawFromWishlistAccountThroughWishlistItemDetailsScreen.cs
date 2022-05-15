@@ -7,7 +7,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
-using static monorail_web_v3.Commons.NumberGenerator;
+using static monorail_web_v3.DataGenerator.StringGenerator;
 using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Transactions
@@ -33,9 +33,9 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             const string username = "autotests.mono+7.5.040121@gmail.com";
 
-            var wishlistItemName = "Test Item " + GenerateRandomString();
+            var wishlistItemName = "Test Item " + GenerateStringWithNumber();
 
-            AddPersonalizedWishlistItem(username, WishlistItemUrl, wishlistItemName, WishlistItemDescription, 
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, wishlistItemName, WishlistItemDescription,
                 WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
 
             VerifyPlaidConnection(username);
@@ -89,9 +89,9 @@ namespace monorail_web_v3.Test.Scripts.Transactions
 
             const string username = "autotests.mono+8.5.040121@gmail.com";
 
-            var wishlistItemName = "Test Item " + GenerateRandomString();
+            var wishlistItemName = "Test Item " + GenerateStringWithNumber();
 
-            AddPersonalizedWishlistItem(username, WishlistItemUrl, wishlistItemName, WishlistItemDescription, 
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, wishlistItemName, WishlistItemDescription,
                 WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
 
             VerifyPlaidConnection(username);

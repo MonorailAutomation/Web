@@ -1,7 +1,8 @@
+using static monorail_web_v3.DataGenerator.DateGenerator;
 using static monorail_web_v3.RestRequests.Endpoints.Monarch.VerifyEmailAddress;
-using static monorail_web_v3.Commons.NumberGenerator;
+using static monorail_web_v3.DataGenerator.NumberGenerator;
 
-namespace monorail_web_v3.Commons
+namespace monorail_web_v3.DataGenerator
 {
     public static class EmailGenerator
     {
@@ -11,7 +12,7 @@ namespace monorail_web_v3.Commons
             bool emailAlreadyExists;
             do
             {
-                username = usernamePrefix + GetCurrentDate() + "." + GenerateRandom4Digits() + usernameSuffix;
+                username = usernamePrefix + GetCurrentDatePlain() + "." + GenerateRandomDigits(4) + usernameSuffix;
                 emailAlreadyExists = VerifyEmailAlreadyExists(username);
             } while (emailAlreadyExists);
 

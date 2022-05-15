@@ -8,8 +8,8 @@ using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
-using static monorail_web_v3.Commons.EmailGenerator;
-using static monorail_web_v3.Commons.NumberGenerator;
+using static monorail_web_v3.DataGenerator.EmailGenerator;
+using static monorail_web_v3.DataGenerator.StringGenerator;
 using static monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Enums.MilestoneType;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
@@ -65,7 +65,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var milestoneDepositScheduleModal = new MilestoneDepositScheduleModal(Driver);
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
-            var milestoneName = "Test Milestone " + GenerateRandomString();
+            var milestoneName = "Test Milestone " + GenerateStringWithNumber();
 
             var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
@@ -234,7 +234,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var milestoneDepositScheduleModal = new MilestoneDepositScheduleModal(Driver);
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
-            var milestoneName = "Test Milestone " + GenerateRandomString();
+            var milestoneName = "Test Milestone " + GenerateStringWithNumber();
 
             var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 

@@ -7,8 +7,8 @@ using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
-using static monorail_web_v3.Commons.NumberGenerator;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.DataGenerator.StringGenerator;
 using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Invest.Milestones
@@ -38,7 +38,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             const string milestoneTargetDate = "10242023";
             const string milestoneTargetAmount = "4,500";
 
-            var milestoneName = "Test Milestone " + GenerateRandomString();
+            var milestoneName = "Test Milestone " + GenerateStringWithNumber();
 
             VerifyPlaidConnection(username);
 

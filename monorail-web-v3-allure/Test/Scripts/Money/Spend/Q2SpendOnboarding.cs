@@ -8,7 +8,7 @@ using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
-using static monorail_web_v3.Commons.NumberGenerator;
+using static monorail_web_v3.DataGenerator.NumberGenerator;
 using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 
@@ -40,7 +40,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
             var spendOnboardingSuccessModal = new SpendOnboardingSuccessModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = UsernamePrefix + GenerateRandomDigits(3) + UsernameSuffix;
 
             RegisterUser(username);
 
