@@ -1,7 +1,6 @@
 ﻿using System;
 using FluentAssertions;
-using monorail_web_v3.PageObjects.Commons.Modals;
-using monorail_web_v3.PageObjects.WishlistScreens.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.TransactionModals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -60,7 +59,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals
         }
 
         [AllureStep("Click 'Confirm' button")]
-        public TrackWithdrawCashModal ClickConfirmButton()
+        public new TrackWithdrawCashModal ClickConfirmButton()
         {
             Wait.Until(ElementToBeVisible(_confirmButton));
             _confirmButton.Click();

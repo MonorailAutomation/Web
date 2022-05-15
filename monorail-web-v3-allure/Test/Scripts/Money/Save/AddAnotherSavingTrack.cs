@@ -1,5 +1,6 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
+using monorail_web_v3.PageObjects.Commons.Modals.TransactionModals;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Enums;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals;
@@ -29,7 +30,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
             var tracksMainScreen = new SaveMainScreen(Driver);
             var chooseATrackModal = new ChooseATrackModal(Driver);
             var trackDetailsModal = new TrackItemDetailsModal(Driver);
-            var trackDepositScheduleModal = new TrackDepositScheduleModal(Driver);
+            var trackDepositScheduleModal = new DepositScheduleModal(Driver);
             var addTrackSuccessModal = new AddTrackSuccessModal(Driver);
 
             const string username = "autotests.mono+2.2.181021@gmail.com";

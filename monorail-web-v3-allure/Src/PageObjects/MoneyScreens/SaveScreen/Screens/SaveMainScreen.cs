@@ -29,10 +29,10 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
         private IWebElement _addSavingTrackButton;
 
         [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[1]")]
-        private IWebElement _emptyScreenFirstBulletpoint;
+        private IWebElement _emptyScreenFirstBulletPoint;
 
         [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[4]")]
-        private IWebElement _emptyScreenFourthBulletpoint;
+        private IWebElement _emptyScreenFourthBulletPoint;
 
         [FindsBy(How = How.XPath, Using = "//h2")]
         private IWebElement _emptyScreenHeadline;
@@ -41,10 +41,10 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
         private IWebElement _emptyScreenMessage;
 
         [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[2]")]
-        private IWebElement _emptyScreenSecondBulletpoint;
+        private IWebElement _emptyScreenSecondBulletPoint;
 
         [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[3]")]
-        private IWebElement _emptyScreenThirdBulletpoint;
+        private IWebElement _emptyScreenThirdBulletPoint;
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Fund your Tracks')]")]
         private IWebElement _fundYourTracksButton;
@@ -136,14 +136,22 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
                 Wait.Until(ElementToBeVisible(_saveHeader));
                 Wait.Until(ElementToBeVisible(_emptyScreenHeadline));
                 Wait.Until(ElementToBeVisible(_emptyScreenMessage));
-                Wait.Until(ElementToBeVisible(_emptyScreenFirstBulletpoint));
-                Wait.Until(ElementToBeVisible(_emptyScreenSecondBulletpoint));
-                Wait.Until(ElementToBeVisible(_emptyScreenThirdBulletpoint));
-                Wait.Until(ElementToBeVisible(_emptyScreenFourthBulletpoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenFirstBulletPoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenSecondBulletPoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenThirdBulletPoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenFourthBulletPoint));
                 Wait.Until(ElementToBeVisible(_unlockSavingsTracksButton));
 
                 Wait.Until(ElementToBeNotVisible(_fundYourTracksButton));
                 Wait.Until(ElementToBeNotVisible(_addSavingTrackButton));
+
+                _emptyScreenHeadline.Text.Should().Contain(EmptyScreenHeadlineText);
+                _emptyScreenMessage.Text.Should().Contain(EmptyScreenMessageTextPartOne);
+                _emptyScreenMessage.Text.Should().Contain(EmptyScreenMessageTextPartTwo);
+                _emptyScreenFirstBulletPoint.Text.Should().Contain(EmptyScreenFirstBulletPointText);
+                _emptyScreenSecondBulletPoint.Text.Should().Contain(EmptyScreenSecondBulletPointText);
+                _emptyScreenThirdBulletPoint.Text.Should().Contain(EmptyScreenThirdBulletPointText);
+                _emptyScreenFourthBulletPoint.Text.Should().Contain(EmptyScreenFourthBulletPointText);
             }
             catch (Exception e)
             {

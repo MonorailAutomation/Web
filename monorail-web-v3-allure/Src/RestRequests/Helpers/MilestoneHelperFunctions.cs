@@ -5,7 +5,7 @@ namespace monorail_web_v3.RestRequests.Helpers
 {
     public static class MilestoneHelperFunctions
     {
-        public static void RevertMilestone(string username, string password, string milestoneId,
+        public static void RevertMilestone(string username, string milestoneId,
             string milestoneName, string milestoneDescription)
         {
             var token = GenerateToken(username);

@@ -121,14 +121,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             return this;
         }
 
-        [AllureStep("Click 'View All' button")]
-        public WishlistMainScreen ClickViewAllButton()
-        {
-            Wait.Until(ElementToBeClickable(_viewAllButton));
-            _viewAllButton.Click();
-            return this;
-        }
-
         [AllureStep("Click '{0}' item")]
         public WishlistMainScreen ClickWishlistItem(string wishlistItemName)
         {

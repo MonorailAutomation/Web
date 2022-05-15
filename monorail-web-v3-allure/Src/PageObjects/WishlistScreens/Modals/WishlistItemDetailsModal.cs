@@ -1,6 +1,6 @@
 using System;
 using FluentAssertions;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.ItemModals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -53,15 +53,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
             return this;
         }
 
-        [AllureStep("Verify data on 'Item Details' screen")]
-        public WishlistItemDetailsModal CheckLoadedDataOnItemDetailsModal(string wishlistItemName,
-            string wishlistItemDescription,
-            string wishlistItemUrl)
-        {
-            CheckItemNameDescriptionItemUrl(wishlistItemName, wishlistItemDescription, wishlistItemUrl);
-            return this;
-        }
-
         [AllureStep("Verify data on 'Edit Item Details' screen")]
         public WishlistItemDetailsModal CheckLoadedDataOnItemDetailsModal(string wishlistItemName,
             string wishlistItemDescription,
@@ -69,14 +60,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         {
             CheckItemNameDescriptionItemUrl(wishlistItemName, wishlistItemDescription, wishlistItemUrl);
             _wishlistItemPriceInput.GetAttribute("value").Should().Contain(wishlistItemPrice);
-            return this;
-        }
-
-        [AllureStep("Set Price to: '${0}'")]
-        public WishlistItemDetailsModal SetWishlistItemPrice(string wishlistItemPrice)
-        {
-            Wait.Until(ElementToBeVisible(_wishlistItemPriceInput));
-            _wishlistItemPriceInput.SendKeys(wishlistItemPrice);
             return this;
         }
 
@@ -108,8 +91,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         }
 
         private void CheckItemNameDescriptionItemUrl(string wishlistItemName,
-            string wishlistItemDescription,
-            string wishlistItemUrl)
+            string wishlistItemDescription, string wishlistItemUrl)
         {
             ItemNameInput.GetAttribute("value").Should().Contain(wishlistItemName);
             _wishlistDescriptionInput.GetAttribute("value").Should().Contain(wishlistItemDescription);

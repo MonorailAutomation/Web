@@ -98,7 +98,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Screens
         }
 
         [AllureStep("Check Trading Main screen after activation")]
-        public TradingMainScreen CheckTradingMainScreenAfterActvation()
+        public TradingMainScreen CheckTradingMainScreenAfterActivation()
         {
             try
             {

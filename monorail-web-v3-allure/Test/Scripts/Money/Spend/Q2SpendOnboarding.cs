@@ -1,6 +1,6 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals;
 using monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens;
@@ -96,7 +96,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
 
             spendOnboardingSuccessModal
                 .CheckSpendOnboardingSuccessModal()
-                .ClickFinish();
+                .ClickFinishButton();
         }
     }
 }

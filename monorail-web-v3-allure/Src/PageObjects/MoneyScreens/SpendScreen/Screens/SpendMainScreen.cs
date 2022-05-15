@@ -16,7 +16,9 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
         private const string EmptyScreenHeadlineText =
             "Spend your money directly from Monorail using the free checking account and debit card.";
 
-        private const string EmptyScreenFirstBulletPointText = "Stay on top of every purchase with transparent transactions";
+        private const string EmptyScreenFirstBulletPointText =
+            "Stay on top of every purchase with transparent transactions";
+
         private const string EmptyScreenSecondBulletPointText = "Balance work and life by enabling direct deposit";
         private const string EmptyScreenThirdBulletPointText = "Only spend what you have with the Monorail debit card";
         private const string EmptyScreenFourthBulletPointText = "Keep your money all in one place";
@@ -51,19 +53,19 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
         private IWebElement _cashOutButton;
 
         [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[1]")]
-        private IWebElement _emptyScreenFirstBulletpoint;
+        private IWebElement _emptyScreenFirstBulletPoint;
 
         [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[4]")]
-        private IWebElement _emptyScreenFourthBulletpoint;
+        private IWebElement _emptyScreenFourthBulletPoint;
 
         [FindsBy(How = How.XPath, Using = "//h2")]
         private IWebElement _emptyScreenHeadline;
 
         [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[2]")]
-        private IWebElement _emptyScreenSecondBulletpoint;
+        private IWebElement _emptyScreenSecondBulletPoint;
 
         [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[3]")]
-        private IWebElement _emptyScreenThirdBulletpoint;
+        private IWebElement _emptyScreenThirdBulletPoint;
 
         [FindsBy(How = How.XPath, Using = "//vim-toggle[contains(@ng-reflect-disable, 'false')]")]
         private IWebElement _lockUnlockCardToggle;
@@ -151,18 +153,18 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
             {
                 Wait.Until(ElementToBeVisible(_spendHeader));
                 Wait.Until(ElementToBeVisible(_emptyScreenHeadline));
-                Wait.Until(ElementToBeVisible(_emptyScreenFirstBulletpoint));
-                Wait.Until(ElementToBeVisible(_emptyScreenSecondBulletpoint));
-                Wait.Until(ElementToBeVisible(_emptyScreenThirdBulletpoint));
-                Wait.Until(ElementToBeVisible(_emptyScreenFourthBulletpoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenFirstBulletPoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenSecondBulletPoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenThirdBulletPoint));
+                Wait.Until(ElementToBeVisible(_emptyScreenFourthBulletPoint));
                 Wait.Until(ElementToBeVisible(_openYourMonorailCheckingAccountButton));
 
                 _spendHeader.Text.Should().Contain(SpendHeaderText);
                 _emptyScreenHeadline.Text.Should().Contain(EmptyScreenHeadlineText);
-                _emptyScreenFirstBulletpoint.Text.Should().Contain(EmptyScreenFirstBulletPointText);
-                _emptyScreenSecondBulletpoint.Text.Should().Contain(EmptyScreenSecondBulletPointText);
-                _emptyScreenThirdBulletpoint.Text.Should().Contain(EmptyScreenThirdBulletPointText);
-                _emptyScreenFourthBulletpoint.Text.Should().Contain(EmptyScreenFourthBulletPointText);
+                _emptyScreenFirstBulletPoint.Text.Should().Contain(EmptyScreenFirstBulletPointText);
+                _emptyScreenSecondBulletPoint.Text.Should().Contain(EmptyScreenSecondBulletPointText);
+                _emptyScreenThirdBulletPoint.Text.Should().Contain(EmptyScreenThirdBulletPointText);
+                _emptyScreenFourthBulletPoint.Text.Should().Contain(EmptyScreenFourthBulletPointText);
             }
             catch (Exception e)
             {

@@ -16,9 +16,9 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
     [AllureNUnit]
     internal class EditWishlistItem : FunctionalTesting
     {
-        private const string changedItemName = "Changed Name";
-        private const string changedItemPrice = "200";
-        private const string changedItemDescription = "Changed Description";
+        private const string ChangedItemName = "Changed Name";
+        private const string ChangedItemPrice = "200";
+        private const string ChangedItemDescription = "Changed Description";
 
         [Test(Description = "Edit Wishlist item by clicking a button when user has a wishlist account")]
         [AllureEpic("Wishlist")]
@@ -59,13 +59,13 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .CheckItemDetailsModal()
                 .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl,
                     WishlistItemPrice)
-                .EditItemName(changedItemName)
-                .EditItemPrice(changedItemPrice)
-                .EditItemDescription(changedItemDescription)
+                .EditItemName(ChangedItemName)
+                .EditItemPrice(ChangedItemPrice)
+                .EditItemDescription(ChangedItemDescription)
                 .ClickConfirmButton();
 
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(changedItemName, changedItemDescription, changedItemPrice);
+                .VerifyWishlistItemDetails(ChangedItemName, ChangedItemDescription, ChangedItemPrice);
 
             var wishlistItemId = Driver.Url[^36..];
 
@@ -112,13 +112,13 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .CheckItemDetailsModal()
                 .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl,
                     WishlistItemPrice)
-                .EditItemName(changedItemName)
-                .EditItemPrice(changedItemPrice)
-                .EditItemDescription(changedItemDescription)
+                .EditItemName(ChangedItemName)
+                .EditItemPrice(ChangedItemPrice)
+                .EditItemDescription(ChangedItemDescription)
                 .ClickConfirmButton();
 
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(changedItemName, changedItemDescription, changedItemPrice);
+                .VerifyWishlistItemDetails(ChangedItemName, ChangedItemDescription, ChangedItemPrice);
 
             var wishlistItemId = Driver.Url[^36..];
 

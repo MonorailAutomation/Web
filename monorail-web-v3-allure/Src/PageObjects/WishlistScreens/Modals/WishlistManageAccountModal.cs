@@ -46,12 +46,12 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         private IWebElement _dismissButton;
 
         [FindsBy(How = How.XPath,
-            Using = "//div[contains(@class, 'vim-goal-schedule__header')]//vim-toggle")]
-        private IWebElement _scheduledDepositSwitch;
-
-        [FindsBy(How = How.XPath,
             Using = "//button[contains(text(), 'Edit Schedule')]")]
         private IWebElement _editScheduleButton;
+
+        [FindsBy(How = How.XPath,
+            Using = "//div[contains(@class, 'vim-goal-schedule__header')]//vim-toggle")]
+        private IWebElement _scheduledDepositSwitch;
 
         public WishlistManageAccountModal(IWebDriver driver) : base(driver)
         {

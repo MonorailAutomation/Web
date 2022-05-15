@@ -1,7 +1,7 @@
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
-namespace monorail_web_v3.PageObjects.Commons.Modals
+namespace monorail_web_v3.PageObjects.Commons.Modals.TransactionModals
 {
     public class AddCashSuccessModal : Modal
     {

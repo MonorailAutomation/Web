@@ -81,7 +81,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
 
             activateYourCardSuccessModal
                 .CheckActivateYourCardSuccessModal()
-                .ClickFinish();
+                .ClickFinishButton();
 
             spendMainScreen
                 .CheckSpendScreenAfterOnboardingAfterCardActivation();

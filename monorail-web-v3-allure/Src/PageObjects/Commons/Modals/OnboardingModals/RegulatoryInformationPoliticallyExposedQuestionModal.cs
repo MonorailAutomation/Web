@@ -6,17 +6,15 @@ using SeleniumExtras.PageObjects;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
-namespace monorail_web_v3.PageObjects.Commons.Modals
+namespace monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals
 {
-    public class RegulatoryInformationShareholderQuestionModal : Modal
+    public class RegulatoryInformationPoliticallyExposedQuestionModal : Modal
     {
         private const string RegulatoryInformationModalHeaderText = "Regulatory Information";
-
-        private const string QuestionText =
-            "Are you, or family, a 10% shareholder, director, or policy maker of a public company?";
+        private const string QuestionText = "Are you, or family, politically exposed or a public official?";
 
         private const string HelperText =
-            "Vast majority answer no.";
+            "Politically exposed means one who has been entrusted with a prominent public function.";
 
         [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Continue')]")]
         private IWebElement _continueButton;
@@ -33,29 +31,22 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         [FindsBy(How = How.XPath, Using = "//button[@class='vim-checkbox-selector__item'][1]")]
         private IWebElement _yesAnswer;
 
-        public RegulatoryInformationShareholderQuestionModal(IWebDriver driver) : base(driver)
+        public RegulatoryInformationPoliticallyExposedQuestionModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
 
         [AllureStep("Click 'Nope!' answer")]
-        public RegulatoryInformationShareholderQuestionModal ClickNopeAnswer()
+        public RegulatoryInformationPoliticallyExposedQuestionModal ClickNopeAnswer()
         {
             Wait.Until(ElementToBeVisible(_nopeAnswer));
             _nopeAnswer.Click();
             return this;
         }
 
-        [AllureStep("Click 'Continue' button")]
-        public RegulatoryInformationShareholderQuestionModal ClickContinueButton()
-        {
-            Wait.Until(ElementToBeVisible(_continueButton));
-            _continueButton.Click();
-            return this;
-        }
-
         [AllureStep("Check 'Regulatory Information' modal")]
-        public RegulatoryInformationShareholderQuestionModal CheckRegulatoryInformationShareholderQuestionModal()
+        public RegulatoryInformationPoliticallyExposedQuestionModal
+            CheckRegulatoryInformationPoliticallyExposedQuestionModal()
         {
             var count = 0;
             const int maxTries = 5;

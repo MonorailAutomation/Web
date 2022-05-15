@@ -1,6 +1,6 @@
 using System;
 using FluentAssertions;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.TransactionModals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -34,7 +34,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
         }
 
         [AllureStep("Click 'Confirm' button")]
-        public SpendWithdrawCashModal ClickConfirmButton()
+        public new SpendWithdrawCashModal ClickConfirmButton()
         {
             Wait.Until(ElementToBeVisible(_confirmButton));
             _confirmButton.Click();

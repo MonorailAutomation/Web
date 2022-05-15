@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.CreateAccountModals;
 using monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Screens;

@@ -7,15 +7,15 @@ using SeleniumExtras.PageObjects;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
-namespace monorail_web_v3.PageObjects.Commons.Modals
+namespace monorail_web_v3.PageObjects.Commons.Modals.ItemModals
 {
     public class AddItemSuccessModal : Modal
     {
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h2[1]")]
-        private IWebElement _successHeader;
-        
         [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Finish')]")]
         public IWebElement _finishButton;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//h2[1]")]
+        private IWebElement _successHeader;
 
         protected AddItemSuccessModal(IWebDriver driver) : base(driver)
         {

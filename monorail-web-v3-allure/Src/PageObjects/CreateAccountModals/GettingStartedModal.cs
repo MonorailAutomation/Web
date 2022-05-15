@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 using FluentAssertions;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -59,14 +59,14 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
         [FindsBy(How = How.XPath, Using = "//div[@class='password-validation__item'][2]//span")]
         private IWebElement _uppercaseCharacterValidation;
 
+        [FindsBy(How = How.ClassName, Using = "form-required")]
+        private IWebElement _validationMessageText;
+
         [FindsBy(How = How.XPath, Using = "//form//div[3]//label")]
         private IWebElement _yourDateOfBirthLabel;
 
         [FindsBy(How = How.XPath, Using = "//form//div[4]//label")]
         private IWebElement _yourPhoneNumberLabel;
-
-        [FindsBy(How = How.ClassName, Using = "form-required")]
-        private IWebElement _validationMessageText;
 
         public GettingStartedModal(IWebDriver driver) : base(driver)
         {

@@ -1,5 +1,6 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
+using monorail_web_v3.PageObjects.Commons.Modals.TransactionModals;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Enums;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals;
@@ -30,7 +31,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var chooseAMilestoneModal = new ChooseAMilestoneModal(Driver);
             var milestoneItemDetailsModal = new MilestoneItemDetailsModal(Driver);
             var portfolioModal = new PortfolioModal(Driver);
-            var milestoneDepositScheduleModal = new MilestoneDepositScheduleModal(Driver);
+            var milestoneDepositScheduleModal = new DepositScheduleModal(Driver);
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
             const string username = "autotests.mono+1.1.260122@gmail.com";

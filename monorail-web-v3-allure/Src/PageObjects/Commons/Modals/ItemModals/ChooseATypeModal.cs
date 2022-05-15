@@ -5,7 +5,7 @@ using SeleniumExtras.PageObjects;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
-namespace monorail_web_v3.PageObjects.Commons.Modals
+namespace monorail_web_v3.PageObjects.Commons.Modals.ItemModals
 {
     public class ChooseATypeModal : Modal
     {

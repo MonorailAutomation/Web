@@ -66,8 +66,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             milestoneDetailsScreen
                 .VerifyMilestoneDetails(changedMilestoneName, changedMilestoneDescription);
 
-            RevertMilestone(username, ValidPassword, milestoneId, originalMilestoneName,
-                originalMilestoneDescription);
+            RevertMilestone(username, milestoneId, originalMilestoneName, originalMilestoneDescription);
         }
     }
 }

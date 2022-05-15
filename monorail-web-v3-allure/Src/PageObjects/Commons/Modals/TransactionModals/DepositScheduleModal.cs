@@ -7,7 +7,7 @@ using SeleniumExtras.PageObjects;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
-namespace monorail_web_v3.PageObjects.Commons.Modals
+namespace monorail_web_v3.PageObjects.Commons.Modals.TransactionModals
 {
     public class DepositScheduleModal : Modal
     {
@@ -49,14 +49,6 @@ namespace monorail_web_v3.PageObjects.Commons.Modals
         public DepositScheduleModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
-        }
-
-        [AllureStep("Disable Deposit Schedule")]
-        public DepositScheduleModal DisableDepositSchedule()
-        {
-            Wait.Until(ElementToBeVisible(_depositScheduleSwitch));
-            _depositScheduleSwitch.Click();
-            return this;
         }
 
         [AllureStep("Click 'Daily' button")]

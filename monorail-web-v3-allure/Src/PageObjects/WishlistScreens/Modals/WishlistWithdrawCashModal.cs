@@ -1,6 +1,6 @@
 ﻿using System;
 using FluentAssertions;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.TransactionModals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -59,7 +59,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals
         }
 
         [AllureStep("Click 'Confirm' button")]
-        public WishlistWithdrawCashModal ClickConfirmButton()
+        public new WishlistWithdrawCashModal ClickConfirmButton()
         {
             Wait.Until(ElementToBeVisible(_confirmButton));
             _confirmButton.Click();

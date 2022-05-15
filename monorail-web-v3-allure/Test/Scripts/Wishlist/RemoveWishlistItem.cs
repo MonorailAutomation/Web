@@ -58,7 +58,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             wishlistMainScreen.CheckNoWishlistItem(WishlistItemName);
 
-            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName, WishlistItemDescription, 
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName, WishlistItemDescription,
                 WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
         }
 
@@ -104,7 +104,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             wishlistMainScreen.CheckNoWishlistItem(WishlistItemName);
 
-            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName, WishlistItemDescription, 
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName, WishlistItemDescription,
                 WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
         }
     }

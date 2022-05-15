@@ -1,6 +1,7 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals;
+using monorail_web_v3.PageObjects.Commons.Modals.TransactionModals;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens;
@@ -62,7 +63,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var chooseAMilestoneModal = new ChooseAMilestoneModal(Driver);
             var milestoneItemDetailsModal = new MilestoneItemDetailsModal(Driver);
             var portfolioModal = new PortfolioModal(Driver);
-            var milestoneDepositScheduleModal = new MilestoneDepositScheduleModal(Driver);
+            var milestoneDepositScheduleModal = new DepositScheduleModal(Driver);
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
             var milestoneName = "Test Milestone " + GenerateStringWithNumber();
@@ -231,7 +232,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var chooseAMilestoneModal = new ChooseAMilestoneModal(Driver);
             var milestoneItemDetailsModal = new MilestoneItemDetailsModal(Driver);
             var portfolioModal = new PortfolioModal(Driver);
-            var milestoneDepositScheduleModal = new MilestoneDepositScheduleModal(Driver);
+            var milestoneDepositScheduleModal = new DepositScheduleModal(Driver);
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
             var milestoneName = "Test Milestone " + GenerateStringWithNumber();

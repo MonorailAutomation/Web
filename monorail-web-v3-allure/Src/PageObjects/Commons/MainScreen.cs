@@ -54,14 +54,6 @@ namespace monorail_web_v3.PageObjects.Commons
             return this;
         }
 
-        [AllureStep("Click 'Wishlist'")]
-        public MainScreen ClickWishlist()
-        {
-            Wait.Until(ElementToBeClickable(_wishlistNavItem));
-            _wishlistNavItem.Click();
-            return this;
-        }
-
         [AllureStep("Check Main Screen")]
         public MainScreen CheckMainScreen()
         {

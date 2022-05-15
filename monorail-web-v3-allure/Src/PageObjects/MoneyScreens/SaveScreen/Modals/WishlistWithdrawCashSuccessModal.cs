@@ -1,6 +1,6 @@
 using System;
 using FluentAssertions;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.TransactionModals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -58,14 +58,6 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals
                 Console.WriteLine(e);
             }
 
-            return this;
-        }
-
-        [AllureStep("Check if ${0} amount was withdrawn")]
-        public TrackWithdrawCashSuccessModal VerifyWithdrawnAmount(string wishlistCashOutAmount)
-        {
-            Wait.Until(ElementToBeVisible(_moneyAmount));
-            _moneyAmount.Text.Should().Contain(wishlistCashOutAmount);
             return this;
         }
 
