@@ -1,13 +1,14 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Screens;
-using monorail_web_v3.PageObjects.WishlistScreens.Modals;
+using monorail_web_v3.PageObjects.WishlistScreens.Modals.ItemModals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
@@ -15,9 +16,9 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
     [AllureNUnit]
     internal class EditWishlistItem : FunctionalTesting
     {
-        private const string changedItemName = "Changed Name";
-        private const string changedItemPrice = "200";
-        private const string changedItemDescription = "Changed Description";
+        private const string ChangedItemName = "Changed Name";
+        private const string ChangedItemPrice = "200";
+        private const string ChangedItemDescription = "Changed Description";
 
         [Test(Description = "Edit Wishlist item by clicking a button when user has a wishlist account")]
         [AllureEpic("Wishlist")]
@@ -33,6 +34,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistItemDetailsModal = new WishlistItemDetailsModal(Driver);
 
             const string username = "autotests.mono+1.071221@gmail.com";
+
+            VerifyPlaidConnection(username);
 
             loginPage
                 .PassCredentials(username, ValidPassword)
@@ -56,17 +59,17 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .CheckItemDetailsModal()
                 .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl,
                     WishlistItemPrice)
-                .EditItemName(changedItemName)
-                .EditItemPrice(changedItemPrice)
-                .EditItemDescription(changedItemDescription)
+                .EditItemName(ChangedItemName)
+                .EditItemPrice(ChangedItemPrice)
+                .EditItemDescription(ChangedItemDescription)
                 .ClickConfirmButton();
 
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(changedItemName, changedItemDescription, changedItemPrice);
+                .VerifyWishlistItemDetails(ChangedItemName, ChangedItemDescription, ChangedItemPrice);
 
             var wishlistItemId = Driver.Url[^36..];
 
-            UpdateWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
+            UpdateWishlistItem(username, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
                 WishlistItemImage, WishlistItemUrl, WishlistItemName, wishlistItemId);
         }
 
@@ -88,6 +91,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             const string username = "autotests.mono+2.171221@gmail.com";
 
+            VerifyPlaidConnection(username);
+
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
@@ -107,17 +112,17 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .CheckItemDetailsModal()
                 .CheckLoadedDataOnItemDetailsModal(WishlistItemName, WishlistItemDescription, WishlistItemUrl,
                     WishlistItemPrice)
-                .EditItemName(changedItemName)
-                .EditItemPrice(changedItemPrice)
-                .EditItemDescription(changedItemDescription)
+                .EditItemName(ChangedItemName)
+                .EditItemPrice(ChangedItemPrice)
+                .EditItemDescription(ChangedItemDescription)
                 .ClickConfirmButton();
 
             wishlistDetailsScreen
-                .VerifyWishlistItemDetails(changedItemName, changedItemDescription, changedItemPrice);
+                .VerifyWishlistItemDetails(ChangedItemName, ChangedItemDescription, ChangedItemPrice);
 
             var wishlistItemId = Driver.Url[^36..];
 
-            UpdateWishlistItem(username, ValidPassword, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
+            UpdateWishlistItem(username, WishlistItemPrice, WishlistItemDescription, WishlistItemFavicon,
                 WishlistItemImage, WishlistItemUrl, WishlistItemName, wishlistItemId);
         }
     }

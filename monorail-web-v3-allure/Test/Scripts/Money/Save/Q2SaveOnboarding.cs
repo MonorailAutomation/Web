@@ -1,18 +1,19 @@
 using System.Threading;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals;
+using monorail_web_v3.PageObjects.Commons.Modals.TransactionModals;
 using monorail_web_v3.PageObjects.Commons.Screens;
-using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals;
+using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals.ItemModals;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
-using static monorail_web_v3.Commons.NumberGenerator;
+using static monorail_web_v3.DataGenerator.EmailGenerator;
 using static monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Enums.TrackType;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
-using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
+using static monorail_web_v3.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Money.Save
@@ -46,7 +47,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
             var depositScheduleModal = new DepositScheduleModal(Driver);
             var addTrackSuccessModal = new AddTrackSuccessModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
 
@@ -112,7 +113,6 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
 
             depositScheduleModal
                 .CheckDepositScheduleModal("Weekly")
-                //.DisableDepositSchedule()
                 .ClickContinueButton();
 
             addTrackSuccessModal
@@ -144,7 +144,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
             var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
 
@@ -227,7 +227,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
             var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
 

@@ -1,5 +1,6 @@
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.RestRequests.RestConfig;
 
 namespace monorail_web_v3.RestRequests.Endpoints.Monarch
@@ -8,7 +9,7 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
     {
         private const string TokenEndpoint = "/api/token";
 
-        public static string GenerateToken(string user, string pass)
+        public static string GenerateToken(string user)
         {
             var client = new RestClient(MonarchAppUri);
             var request = new RestRequest
@@ -17,7 +18,7 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
                 Method = Method.POST,
                 RequestFormat = DataFormat.Json
             };
-            request.AddJsonBody(new {email = user, password = pass});
+            request.AddJsonBody(new {email = user, password = ValidPassword});
 
             var response = client.Execute(request);
 

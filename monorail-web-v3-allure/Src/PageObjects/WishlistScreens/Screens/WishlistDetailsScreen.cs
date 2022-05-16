@@ -88,14 +88,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             return this;
         }
 
-        [AllureStep("Expand Transferring Status")]
-        public WishlistDetailsScreen ExpandTransferringStatus()
-        {
-            Wait.Until(ElementToBeClickable(_wishlistTransferringStatusTitle));
-            _wishlistTransferringStatusTitle.Click();
-            return this;
-        }
-
         [AllureStep("Check Wishlist Item Details screen for 'Not Ready to Buy' status")]
         public WishlistDetailsScreen CheckWishlistItemDetailsScreenForNotReadyToBuyItemStatus()
         {
@@ -210,7 +202,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
             var wishlistItemNameSelector = "//div//h2[contains(text(), '" + wishlistItemName + "')]";
             var wishlistItemDescriptionSelector = "//div//p[contains(text(), '" + wishlistItemDescription + "')]";
             var wishlistItemPriceSelector = "//div//h2[contains(text(), '" + wishlistItemPrice + "')]";
-            const string wishlistItemUrlSelector = "//a[@class='wishlist-details__sidebar__logo-wrapper']";
 
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemNameSelector))).Text.Should()
                 .Contain(wishlistItemName);

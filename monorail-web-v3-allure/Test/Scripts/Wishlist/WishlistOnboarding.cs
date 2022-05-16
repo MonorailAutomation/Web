@@ -1,17 +1,17 @@
 using System.Threading;
 using monorail_web_v3.PageObjects;
-using monorail_web_v3.PageObjects.Commons.Modals;
-using monorail_web_v3.PageObjects.WishlistScreens.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals;
+using monorail_web_v3.PageObjects.WishlistScreens.Modals.TransactionModals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
-using static monorail_web_v3.Commons.NumberGenerator;
+using static monorail_web_v3.DataGenerator.EmailGenerator;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
-using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
+using static monorail_web_v3.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
@@ -38,10 +38,10 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
             var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
-            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, WishlistItemName,
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName,
                 WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
 
             Thread.Sleep(15000); // waiting for item to be correctly added
@@ -114,10 +114,10 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var termsAndConditionsModal = new TermsAndConditionsModal(Driver);
             var wishlistAddCashModal = new WishlistAddCashModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
-            AddPersonalizedWishlistItem(username, ValidPassword, WishlistItemUrl, WishlistItemName,
+            AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName,
                 WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
 
             Thread.Sleep(15000); // waiting for item to be correctly added

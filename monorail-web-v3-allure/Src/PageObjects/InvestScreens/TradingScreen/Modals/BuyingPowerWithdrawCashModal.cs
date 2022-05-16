@@ -1,6 +1,6 @@
 using System;
 using FluentAssertions;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.TransactionModals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -26,7 +26,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals
         private IWebElement _onHoldLabel;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//button[contains(text(),'Confirm')]")]
-        private IWebElement ConfirmButton;
+        private new IWebElement ConfirmButton;
 
         public BuyingPowerWithdrawCashModal(IWebDriver driver) : base(driver)
         {

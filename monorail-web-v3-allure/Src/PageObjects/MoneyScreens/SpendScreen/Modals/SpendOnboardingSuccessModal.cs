@@ -45,7 +45,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals
         }
 
         [AllureStep("Click 'Finish' button")]
-        public SpendOnboardingSuccessModal ClickFinish()
+        public SpendOnboardingSuccessModal ClickFinishButton()
         {
             Wait.Until(ElementToBeClickable(_finishButton));
             _finishButton.Click();

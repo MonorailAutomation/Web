@@ -1,4 +1,3 @@
-using System.Threading;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;

@@ -1,6 +1,7 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals;
+using monorail_web_v3.PageObjects.Commons.Modals.TransactionModals;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals;
 using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens;
@@ -8,11 +9,11 @@ using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
-using static monorail_web_v3.Commons.EmailGenerator;
-using static monorail_web_v3.Commons.NumberGenerator;
+using static monorail_web_v3.DataGenerator.EmailGenerator;
+using static monorail_web_v3.DataGenerator.StringGenerator;
 using static monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Enums.MilestoneType;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
-using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
+using static monorail_web_v3.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Invest.Milestones
@@ -62,10 +63,10 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var chooseAMilestoneModal = new ChooseAMilestoneModal(Driver);
             var milestoneItemDetailsModal = new MilestoneItemDetailsModal(Driver);
             var portfolioModal = new PortfolioModal(Driver);
-            var milestoneDepositScheduleModal = new MilestoneDepositScheduleModal(Driver);
+            var milestoneDepositScheduleModal = new DepositScheduleModal(Driver);
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
-            var milestoneName = "Test Milestone " + GenerateRandomString();
+            var milestoneName = "Test Milestone " + GenerateStringWithNumber();
 
             var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
@@ -231,10 +232,10 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var chooseAMilestoneModal = new ChooseAMilestoneModal(Driver);
             var milestoneItemDetailsModal = new MilestoneItemDetailsModal(Driver);
             var portfolioModal = new PortfolioModal(Driver);
-            var milestoneDepositScheduleModal = new MilestoneDepositScheduleModal(Driver);
+            var milestoneDepositScheduleModal = new DepositScheduleModal(Driver);
             var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
 
-            var milestoneName = "Test Milestone " + GenerateRandomString();
+            var milestoneName = "Test Milestone " + GenerateStringWithNumber();
 
             var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 

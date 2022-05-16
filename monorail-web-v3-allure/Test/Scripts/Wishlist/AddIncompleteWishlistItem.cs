@@ -1,13 +1,14 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Screens;
-using monorail_web_v3.PageObjects.WishlistScreens.Modals;
+using monorail_web_v3.PageObjects.WishlistScreens.Modals.ItemModals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_web_v3.Commons.Constants;
+using static monorail_web_v3.RestRequests.Helpers.PlaidConnectionHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
@@ -37,6 +38,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
             const string username = "autotests.mono+2.0317221@gmail.com";
+
+            VerifyPlaidConnection(username);
 
             AddEmptyWishlistItem(username, IncompleteWishlistItemUrl);
 
@@ -92,7 +95,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             var wishlistItemId = Driver.Url[^36..];
 
-            DeleteWishlistItem(username, ValidPassword, wishlistItemId);
+            DeleteWishlistItem(username, wishlistItemId);
         }
 
         [Test(Description =
@@ -115,6 +118,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
 
             const string username = "autotests.mono+2.141221@gmail.com";
+
+            VerifyPlaidConnection(username);
 
             AddEmptyWishlistItem(username, IncompleteWishlistItemUrl);
 
@@ -170,7 +175,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             var wishlistItemId = Driver.Url[^36..];
 
-            DeleteWishlistItem(username, ValidPassword, wishlistItemId);
+            DeleteWishlistItem(username, wishlistItemId);
         }
     }
 }

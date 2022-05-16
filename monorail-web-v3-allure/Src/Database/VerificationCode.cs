@@ -11,7 +11,7 @@ namespace monorail_web_v3.Database
             string verificationCode = null;
             try
             {
-                var sqlConnection = new SqlConnection(DatabaseConfig.Builder(MonorailEnv).ConnectionString);
+                var sqlConnection = new SqlConnection(DatabaseConfig.Builder(MonorailTestEnvironment).ConnectionString);
                 sqlConnection.Open();
 
                 var query =

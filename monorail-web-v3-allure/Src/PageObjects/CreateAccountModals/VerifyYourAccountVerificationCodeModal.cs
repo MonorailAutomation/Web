@@ -1,6 +1,6 @@
 using System;
 using FluentAssertions;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -18,13 +18,12 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
         private const string ResendOptionText = "Resend";
 
         private const string ExpectedInvalidCodeHeader = "An error happened";
-        private const string ExpectedInvalidCodeMessage = "The code you entered does not match our records. Please enter a valid verification code.";
+
+        private const string ExpectedInvalidCodeMessage =
+            "The code you entered does not match our records. Please enter a valid verification code.";
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//span[contains(@class,'header')]")]
         private IWebElement _enterVerificationCodeMessage;
-
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//a")]
-        private IWebElement _resendOption;
 
         [FindsBy(How = How.ClassName, Using = "vim-flash-message__dismiss")]
         private IWebElement _flashMessageDismissButton;
@@ -34,6 +33,9 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
 
         [FindsBy(How = How.ClassName, Using = "vim-flash-message__title")]
         private IWebElement _flashMessageTitle;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//a")]
+        private IWebElement _resendOption;
 
         public VerifyYourAccountVerificationCodeModal(IWebDriver driver) : base(driver)
         {

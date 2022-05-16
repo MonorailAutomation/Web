@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.CreateAccountModals;
 using monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Screens;
@@ -10,11 +10,11 @@ using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
-using static monorail_web_v3.Commons.NumberGenerator;
-using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
+using static monorail_web_v3.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
 using static monorail_web_v3.Database.VerificationCode;
+using static monorail_web_v3.DataGenerator.EmailGenerator;
 using static monorail_web_v3.RestRequests.Endpoints.Management.PilotFeature;
-using static monorail_web_v3.Commons.PhoneNumberGenerator;
+using static monorail_web_v3.DataGenerator.PhoneNumberGenerator;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 using TermsAndConditionsModal = monorail_web_v3.PageObjects.CreateAccountModals.TermsAndConditionsModal;
 
@@ -61,7 +61,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
             var linkYourAccountModal = new LinkYourAccountModal(Driver);
             var disclosuresModal = new DisclosuresModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             Console.WriteLine(username);
 

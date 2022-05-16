@@ -1,24 +1,31 @@
 using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using monorail_web_v3.Model.ConfigurationModel;
+using monorail_web_v3.Test;
 
 namespace monorail_web_v3.Database
 {
     public static class DatabaseConfig
     {
-        private const string DataSource = "vimvest-sqlserver-test.database.windows.net";
-        private const string UserId = "DbLoginTest";
-        private const string Password = "Heiwp&3&dji_8sIKd";
-        private const string InitialCatalog = "Monarch-Db-";
-
         public static SqlConnectionStringBuilder Builder(string env)
         {
             var sqlConnectionStringBuilder = new SqlConnectionStringBuilder
             {
-                DataSource = DataSource,
-                UserID = UserId,
-                Password = Password,
-                InitialCatalog = InitialCatalog + CapitalizeFirstLetter(env)
+                DataSource = GetDatabaseConfiguration().DataSource,
+                UserID = GetDatabaseConfiguration().UserId,
+                Password = GetDatabaseConfiguration().Password,
+                InitialCatalog = GetDatabaseConfiguration().InitialCatalogPrefix + CapitalizeFirstLetter(env)
             };
             return sqlConnectionStringBuilder;
+        }
+
+        private static DatabaseConfiguration GetDatabaseConfiguration()
+        {
+            var configuration = new ConfigurationBuilder().BuildAppSettings();
+
+            var databaseConfiguration = configuration.GetSection("DatabaseConfiguration").Get<DatabaseConfiguration>();
+
+            return databaseConfiguration;
         }
 
         private static string CapitalizeFirstLetter(string str)

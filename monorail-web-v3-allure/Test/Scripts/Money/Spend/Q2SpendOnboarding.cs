@@ -1,6 +1,6 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
-using monorail_web_v3.PageObjects.Commons.Modals;
+using monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Modals;
 using monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens;
@@ -8,8 +8,8 @@ using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
-using static monorail_web_v3.Commons.NumberGenerator;
-using static monorail_web_v3.Test.Scripts.Transactions.ConnectPlaidToNewUser;
+using static monorail_web_v3.DataGenerator.EmailGenerator;
+using static monorail_web_v3.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 
 namespace monorail_web_v3.Test.Scripts.Money.Spend
@@ -40,7 +40,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
             var electronicDeliveryConsentModal = new ElectronicDeliveryConsentModal(Driver);
             var spendOnboardingSuccessModal = new SpendOnboardingSuccessModal(Driver);
 
-            var username = UsernamePrefix + GenerateRandomNumber() + UsernameSuffix;
+            var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
 
@@ -96,7 +96,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Spend
 
             spendOnboardingSuccessModal
                 .CheckSpendOnboardingSuccessModal()
-                .ClickFinish();
+                .ClickFinishButton();
         }
     }
 }
