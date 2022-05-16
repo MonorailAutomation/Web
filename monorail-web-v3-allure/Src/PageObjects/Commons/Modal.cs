@@ -20,7 +20,7 @@ namespace monorail_web_v3.PageObjects.Commons
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//button[contains(text(),'Confirm')]")]
         protected IWebElement ConfirmButton;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//button[contains(text(),'Continue')]")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__footer']//*[contains(text(),'Continue')]")]
         protected IWebElement ContinueButton;
 
         [FindsBy(How = How.XPath, Using = "//button//span[contains(text(),'Continue')]")]
