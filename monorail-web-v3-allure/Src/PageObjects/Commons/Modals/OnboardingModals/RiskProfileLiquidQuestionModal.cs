@@ -14,7 +14,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals
         private const string RiskQuestionText = "How much of that is liquid?";
 
         private const string LiquidInfoText =
-            "Liquid means money that is readily available. Money in your bank account is liquid. Money tied up in a car isn’t.";
+            "Liquid means money that is readily available. Money in your bank account is liquid. Money tied up in a car isn't.";
 
         [FindsBy(How = How.XPath, Using = "//button[@class='vim-checkbox-selector__item'][2]")]
         private IWebElement _between50KAnd100KAnswer;
@@ -49,7 +49,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals
         public RiskProfileLiquidQuestionModal CheckRiskProfileLiquidQuestionModal()
         {
             var count = 0;
-            const int maxTries = 5;
+            const int maxTries = 8;
             while (true)
                 try
                 {

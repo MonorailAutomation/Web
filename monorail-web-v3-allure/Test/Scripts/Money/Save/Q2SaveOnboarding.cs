@@ -292,7 +292,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ClickTrack(Debt)
                 .ClickGetStartedButton();
 
-            Thread.Sleep(20000);
+            Thread.Sleep(12000);
 
             saveMainScreen
                 .CheckSaveMainScreenAfterOnboarding()

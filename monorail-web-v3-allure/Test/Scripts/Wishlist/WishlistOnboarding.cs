@@ -3,6 +3,8 @@ using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals.TransactionModals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
+using monorail_web_v3.PageObjects.Menus;
+using monorail_web_v3.PageObjects.Commons;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -12,6 +14,7 @@ using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 using static monorail_web_v3.RestRequests.Helpers.WishlistHelperFunctions;
 using static monorail_web_v3.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
+using static monorail_web_v3.RestRequests.Endpoints.Management.PilotFeature;
 
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
@@ -30,6 +33,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         {
             var loginPage = new LoginPage(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
+            var sideMenu = new SideMenu(Driver);
+            var mainScreen = new MainScreen(Driver);
             var completeYourAccountModal = new CompleteYourAccountModal(Driver);
             var completeYourProfileModal = new CompleteYourProfileModal(Driver);
             var regulatoryInformationPoliticallyExposedQuestionModal =
@@ -41,14 +46,21 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
+
+            PostPilotFeatures(username, "useWishlist");
+
             AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName,
                 WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
-
-            Thread.Sleep(15000); // waiting for item to be correctly added
 
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
+
+            mainScreen
+                .ExpandSideMenu();
+
+            sideMenu
+                .ClickWishlistLink();
 
             wishlistMainScreen
                 .CheckWishlistMainScreenBeforeOnboarding()
@@ -104,6 +116,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         {
             var loginPage = new LoginPage(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
+            var sideMenu = new SideMenu(Driver);
+            var mainScreen = new MainScreen(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
             var completeYourAccountModal = new CompleteYourAccountModal(Driver);
             var completeYourProfileModal = new CompleteYourProfileModal(Driver);
@@ -117,14 +131,21 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             RegisterUser(username);
+
+            PostPilotFeatures(username, "useWishlist");
+
             AddPersonalizedWishlistItem(username, WishlistItemUrl, WishlistItemName,
                 WishlistItemDescription, WishlistItemPrice, WishlistItemImage, WishlistItemFavicon);
-
-            Thread.Sleep(15000); // waiting for item to be correctly added
 
             loginPage
                 .PassCredentials(username, ValidPassword)
                 .ClickSignInButton();
+
+            mainScreen
+                .ExpandSideMenu();
+
+            sideMenu
+                .ClickWishlistLink();
 
             wishlistMainScreen
                 .CheckWishlistMainScreenBeforeOnboarding();

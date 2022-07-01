@@ -1,5 +1,7 @@
 ﻿using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons.Screens;
+using monorail_web_v3.PageObjects.Commons;
+using monorail_web_v3.PageObjects.Menus;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals.ManageModals;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals.TransactionModals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
@@ -25,6 +27,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
         public void DepositToWishlistAccountFromMainScreenTest()
         {
             var loginPage = new LoginPage(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var sideMenu = new SideMenu(Driver);
             var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistAddCashSuccessModal = new WishlistAddCashSuccessModal(Driver);
@@ -35,6 +39,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
             loginPage
                 .PassCredentials(Username, ValidPassword)
                 .ClickSignInButton();
+
+            mainScreen
+                .ExpandSideMenu();
+
+            sideMenu
+                .ClickWishlistLink();
 
             wishlistScreen
                 .CheckWishlistScreen()
@@ -62,6 +72,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
         public void DepositToWishlistAccountFromManageAccountTest()
         {
             var loginPage = new LoginPage(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var sideMenu = new SideMenu(Driver);
             var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistAddCashSuccessModal = new WishlistAddCashSuccessModal(Driver);
@@ -73,6 +85,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
             loginPage
                 .PassCredentials(Username, ValidPassword)
                 .ClickSignInButton();
+
+            mainScreen
+                .ExpandSideMenu();
+
+            sideMenu
+                .ClickWishlistLink();
 
             wishlistScreen
                 .CheckWishlistScreen()

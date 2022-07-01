@@ -12,7 +12,9 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals.TransactionModals
     public class WishlistAddCashSuccessModal : AddCashSuccessModal
     {
         private const string WishlistAddCashSuccessAdviceText =
-            "Once completed, this amount will be added to your Wishlist Account total and will be able to be used to power your purchases.";
+            "This transfer will take between 1-3 business days to complete. Once complete, and for your protection, the funds will be available to spend or withdraw in five business days.";
+
+        private const string WishlistAddCashSuccessMessageText = "Funds are on their way to your Wishlist";
 
         [FindsBy(How = How.XPath,
             Using = "//div[@class='vim-modal__body__content']//div//div//p")]
@@ -45,7 +47,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals.TransactionModals
                 Wait.Until(ElementToBeClickable(_finishButton));
 
                 SuccessHeader.Text.Should().Be(AddCashSuccessHeaderText);
-                _wishlistAddCashSuccessMessage.Text.Should().Be(AddCashSuccessMessageText);
+                _wishlistAddCashSuccessMessage.Text.Should().Be(WishlistAddCashSuccessMessageText);
                 _amountDeposited.Text.Should().NotBeNullOrEmpty();
                 _wishlistAddCashSuccessAdvice.Text.Should().Be(WishlistAddCashSuccessAdviceText);
             }

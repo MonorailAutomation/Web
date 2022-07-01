@@ -2,6 +2,7 @@ using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals.TransactionModals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
+using monorail_web_v3.PageObjects.Menus;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -26,6 +27,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
+            var sideMenu = new SideMenu(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
             var transferYourFunds = new TransferYourFunds(Driver);
@@ -46,6 +48,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
 
             mainScreen
                 .CheckMainScreen();
+
+            mainScreen
+                .ExpandSideMenu();
+
+            sideMenu
+                .ClickWishlistLink();
 
             wishlistMainScreen
                 .CheckWishlistMainScreenAfterOnboarding()
@@ -82,6 +90,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
+            var sideMenu = new SideMenu(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistDetailsScreen = new WishlistDetailsScreen(Driver);
             var transferYourFunds = new TransferYourFunds(Driver);
@@ -102,6 +111,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
 
             mainScreen
                 .CheckMainScreen();
+
+            mainScreen
+                .ExpandSideMenu();
+
+            sideMenu
+                .ClickWishlistLink();
 
             wishlistMainScreen
                 .CheckWishlistMainScreenAfterOnboarding()

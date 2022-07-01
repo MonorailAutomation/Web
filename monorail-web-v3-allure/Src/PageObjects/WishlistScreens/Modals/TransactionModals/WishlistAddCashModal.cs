@@ -34,7 +34,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals.TransactionModals
                 Wait.Until(ElementToBeVisible(_availableToWithdrawAmount));
 
                 _availableToWithdrawLabel.Text.Should().Be(AvailableToWithdrawLabelText);
-                _availableToWithdrawAmount.Text.Should().NotBeNullOrEmpty();
             }
             catch (Exception e)
             {

@@ -117,6 +117,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals.ManageModals
         public WishlistManageAccountModal ClickScheduledDepositSwitch()
         {
             Wait.Until(ElementToBeClickable(_scheduledDepositSwitch));
+            Thread.Sleep(2000); // necessary workaround
             _scheduledDepositSwitch.Click();
             return this;
         }
@@ -125,6 +126,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals.ManageModals
         public WishlistManageAccountModal ClickEditScheduleButton()
         {
             Wait.Until(ElementToBeClickable(_editScheduleButton));
+            Thread.Sleep(2000); // necessary workaround
             _editScheduleButton.Click();
             return this;
         }

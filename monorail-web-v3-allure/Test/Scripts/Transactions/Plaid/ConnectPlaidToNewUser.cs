@@ -91,7 +91,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Plaid
                 .ClickContinueButton();
 
             Wait.Until(wd => wd.WindowHandles.Count == 1);
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
             Driver.SwitchTo().Window(Driver.WindowHandles.First());
         }
     }

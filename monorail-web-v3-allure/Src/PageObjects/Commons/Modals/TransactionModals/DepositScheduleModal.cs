@@ -107,8 +107,9 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.TransactionModals
                 switch (depositFrequency)
                 {
                     case "Daily":
-                        Wait.Until(ElementToBeNotVisible(_dayOfTheWeekOrMonthLabel));
-                        Wait.Until(ElementToBeNotVisible(_dayOfTheWeekOrMonthSelector));
+                        //TODO: Find a way to handle these checks in a short period of time
+                        //Wait.Until(ElementToBeNotVisible(_dayOfTheWeekOrMonthLabel));
+                        //Wait.Until(ElementToBeNotVisible(_dayOfTheWeekOrMonthSelector));
                         break;
                     case "Weekly":
                         Wait.Until(ElementToBeVisible(_dayOfTheWeekOrMonthLabel));
