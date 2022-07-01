@@ -11,6 +11,9 @@ namespace monorail_web_v3.PageObjects.Menus
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Log Out')]")]
         private IWebElement _logOutLink;
 
+        [FindsBy(How = How.XPath, Using = "//p[contains(text(), 'Wishlist')]")]
+        private IWebElement _wishlistLink;
+
         [FindsBy(How = How.XPath, Using = "//a[contains(@routerlink, 'my-connected-account')]")]
         private IWebElement _myConnectedAccountLink;
 
@@ -32,6 +35,14 @@ namespace monorail_web_v3.PageObjects.Menus
         {
             Wait.Until(ElementToBeClickable(_logOutLink));
             _logOutLink.Click();
+            return this;
+        }
+
+        [AllureStep("Click 'Wishlist' link")]
+        public SideMenu ClickWishlistLink()
+        {
+            Wait.Until(ElementToBeClickable(_wishlistLink));
+            _wishlistLink.Click();
             return this;
         }
     }

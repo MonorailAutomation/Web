@@ -59,7 +59,6 @@ namespace monorail_web_v3.PageObjects.Commons
         {
             try
             {
-                Wait.Until(ElementToBeVisible(_wishlistNavItem));
                 Wait.Until(ElementToBeVisible(_moneyNavItem));
                 Wait.Until(ElementToBeVisible(_investNavItem));
                 Wait.Until(ElementToBeVisible(_hamburgerMenu));

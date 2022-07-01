@@ -45,7 +45,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals
         public RiskProfileEarningsQuestionModal CheckRiskProfileEarningsQuestionModal()
         {
             var count = 0;
-            const int maxTries = 5;
+            const int maxTries = 8;
             while (true)
                 try
                 {

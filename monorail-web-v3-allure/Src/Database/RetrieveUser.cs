@@ -15,7 +15,7 @@ namespace monorail_web_v3.Database
                 sqlConnection.Open();
 
                 var query = "select top 1 email from Users where Users.lastName='Test' and Users.email LIKE \'" +
-                            email + "\' and Users.IsDeleted=0";
+                            email + "\' and Users.IsDeleted=0 and id in (select userid from spots where type ='Checking')";
 
                 var command = new SqlCommand(query, sqlConnection);
                 var reader = command.ExecuteReader();

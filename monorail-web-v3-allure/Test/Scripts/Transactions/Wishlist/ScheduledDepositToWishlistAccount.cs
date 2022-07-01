@@ -2,6 +2,8 @@ using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals.ManageModals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
+using monorail_web_v3.PageObjects.Commons;
+using monorail_web_v3.PageObjects.Menus;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -24,6 +26,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
         public void EnableAndDisableScheduledDepositToWishlistAccountDaily()
         {
             var loginPage = new LoginPage(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var sideMenu = new SideMenu(Driver);
             var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistManageAccountModal = new WishlistManageAccountModal(Driver);
@@ -36,6 +40,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
             loginPage
                 .PassCredentials(Username, ValidPassword)
                 .ClickSignInButton();
+
+            mainScreen
+                .ExpandSideMenu();
+
+            sideMenu
+                .ClickWishlistLink();
 
             wishlistScreen
                 .CheckWishlistScreen()
@@ -71,6 +81,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
         public void EnableAndDisableScheduledDepositToWishlistAccountWeekly()
         {
             var loginPage = new LoginPage(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var sideMenu = new SideMenu(Driver);
             var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistManageAccountModal = new WishlistManageAccountModal(Driver);
@@ -83,6 +95,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
             loginPage
                 .PassCredentials(Username, ValidPassword)
                 .ClickSignInButton();
+
+            mainScreen
+                .ExpandSideMenu();
+
+            sideMenu
+                .ClickWishlistLink();
 
             wishlistScreen
                 .CheckWishlistScreen()
@@ -119,6 +137,8 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
         public void EnableAndDisableScheduledDepositToWishlistAccountMonthly()
         {
             var loginPage = new LoginPage(Driver);
+            var mainScreen = new MainScreen(Driver);
+            var sideMenu = new SideMenu(Driver);
             var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var wishlistManageAccountModal = new WishlistManageAccountModal(Driver);
@@ -131,6 +151,12 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Wishlist
             loginPage
                 .PassCredentials(Username, ValidPassword)
                 .ClickSignInButton();
+
+            mainScreen
+                .ExpandSideMenu();
+
+            sideMenu
+                .ClickWishlistLink();
 
             wishlistScreen
                 .CheckWishlistScreen()

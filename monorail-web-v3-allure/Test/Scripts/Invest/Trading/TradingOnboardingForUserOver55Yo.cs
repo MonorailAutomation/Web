@@ -41,7 +41,6 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
             var mainScreen = new MainScreen(Driver);
             var investScreen = new InvestScreen(Driver);
             var tradingMainScreen = new TradingMainScreen(Driver);
-            //
             var completeYourAccountModal = new CompleteYourAccountModal(Driver);
             var completeYourProfileModal = new CompleteYourProfileModal(Driver);
             var addATrustedContactModal = new AddATrustedContactModal(Driver);

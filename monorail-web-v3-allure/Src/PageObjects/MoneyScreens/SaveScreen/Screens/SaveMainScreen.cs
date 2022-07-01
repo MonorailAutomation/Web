@@ -141,9 +141,9 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
                 Wait.Until(ElementToBeVisible(_emptyScreenThirdBulletPoint));
                 Wait.Until(ElementToBeVisible(_emptyScreenFourthBulletPoint));
                 Wait.Until(ElementToBeVisible(_unlockSavingsTracksButton));
-
-                Wait.Until(ElementToBeNotVisible(_fundYourTracksButton));
-                Wait.Until(ElementToBeNotVisible(_addSavingTrackButton));
+                //TODO: Find a way to handle these checks in a short period of time
+                //Wait.Until(ElementToBeNotVisible(_fundYourTracksButton));
+                //Wait.Until(ElementToBeNotVisible(_addSavingTrackButton));
 
                 _emptyScreenHeadline.Text.Should().Contain(EmptyScreenHeadlineText);
                 _emptyScreenMessage.Text.Should().Contain(EmptyScreenMessageTextPartOne);
@@ -169,8 +169,8 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
                 Wait.Until(ElementToBeVisible(_saveHeader));
                 Wait.Until(ElementToBeVisible(_fundYourTracksButton));
                 Wait.Until(ElementToBeVisible(_addSavingTrackButton));
-
-                Wait.Until(ElementToBeNotVisible(_unlockSavingsTracksButton));
+                //TODO: Find a way to handle these checks in a short period of time
+                //Wait.Until(ElementToBeNotVisible(_unlockSavingsTracksButton));
             }
             catch (Exception e)
             {

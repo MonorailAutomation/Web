@@ -52,6 +52,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals
         public DisclosuresModal ClickSkipToBottomButton()
         {
             Wait.Until(ElementToBeVisible(_skipToBottomButton));
+            Wait.Until(ElementToBeClickable(_skipToBottomButton));
             _skipToBottomButton.Click();
             return this;
         }

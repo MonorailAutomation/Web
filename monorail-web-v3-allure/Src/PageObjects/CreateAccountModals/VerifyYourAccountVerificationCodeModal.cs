@@ -14,7 +14,7 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
     {
         private const string Step2SubheaderText = "STEP 2";
         private const string VerifyYourAccountHeaderText = "Verify your Account";
-        private const string EnterVerificationCodeMessageText = "Please enter your verification code";
+        private const string EnterVerificationCodeMessageText = "Please enter the verification code sent to you";
         private const string ResendOptionText = "Resend";
 
         private const string ExpectedInvalidCodeHeader = "An error happened";

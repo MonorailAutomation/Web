@@ -1,6 +1,7 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Screens;
+using monorail_web_v3.PageObjects.Menus;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals.ItemModals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
 using NUnit.Allure.Attributes;
@@ -27,6 +28,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
+            var sideMenu = new SideMenu(Driver);
             var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var completeYourItemInfoEntryModal = new CompleteYourItemInfoEntryModal(Driver);
@@ -49,6 +51,12 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             mainScreen
                 .CheckMainScreen();
+
+            mainScreen
+                .ExpandSideMenu();
+
+            sideMenu
+                .ClickWishlistLink();
 
             wishlistScreen
                 .CheckWishlistScreen();
@@ -84,7 +92,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             completeYourItemInfoSuccessModal
                 .CheckAddWishlistItemSuccessModal()
                 .VerifyWishlistItemName(WishlistItemName)
-                .ClickCloseButton();
+                .ClickFinish();
 
             wishlistMainScreen
                 .ClickWishlistItem(WishlistItemName);
@@ -107,6 +115,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
+            var sideMenu = new SideMenu(Driver);
             var wishlistScreen = new WishlistScreen(Driver);
             var wishlistMainScreen = new WishlistMainScreen(Driver);
             var completeYourItemInfoEntryModal = new CompleteYourItemInfoEntryModal(Driver);
@@ -129,6 +138,12 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
 
             mainScreen
                 .CheckMainScreen();
+
+            mainScreen
+                .ExpandSideMenu();
+
+            sideMenu
+                .ClickWishlistLink();
 
             wishlistScreen
                 .CheckWishlistScreen();
@@ -164,7 +179,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             completeYourItemInfoSuccessModal
                 .CheckAddWishlistItemSuccessModal()
                 .VerifyWishlistItemName(WishlistItemName)
-                .ClickCloseButton();
+                .ClickFinish();
 
             wishlistMainScreen
                 .ClickWishlistItem(WishlistItemName);

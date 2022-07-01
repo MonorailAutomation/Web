@@ -19,6 +19,10 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals.ItemModals
             Using = "//div[@class='vim-modal__content']//div[@class='vim-modal__footer']//button")]
         private IWebElement _closeButton;
 
+        [FindsBy(How = How.XPath,
+    Using = "//button[contains(text(),'Finish')]")]
+        private IWebElement _finishButton;
+
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//p")]
         private IWebElement _successMessage;
 
@@ -38,7 +42,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals.ItemModals
                 CheckAddItemSuccessModal(SuccessHeaderText);
                 Wait.Until(ElementToBeVisible(_successMessage));
                 Wait.Until(ElementToBeVisible(_wishlistItemName));
-                Wait.Until(ElementToBeVisible(_closeButton));
+                Wait.Until(ElementToBeVisible(_finishButton));
 
                 ModalHeader.Text.Should().Contain(CompleteYourItemInfoModalHeaderText);
                 _successMessage.Text.Should().Be(SuccessMessageText);
@@ -56,6 +60,14 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Modals.ItemModals
         {
             Wait.Until(ElementToBeVisible(_closeButton));
             _closeButton.Click();
+            return this;
+        }
+
+        [AllureStep("Click 'Finish' button")]
+        public CompleteYourItemInfoSuccessModal ClickFinish()
+        {
+            Wait.Until(ElementToBeVisible(_finishButton));
+            _finishButton.Click();
             return this;
         }
 
