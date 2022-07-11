@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
+using OpenQA.Selenium.Support;
 using static monorail_web_v3.Commons.Waits;
+using static monorail_web_v3.Commons.Functions;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
 namespace monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals
@@ -12,6 +15,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals
     public class AddATrustedContactModal : Modal
     {
         private const string AddATrustedContactModalHeaderText = "Add a Trusted Contact";
+        private const string _iDontWantToAddATrustedContactXPath = "//form//button";
 
         [FindsBy(How = How.XPath, Using = "//div[@formarrayname='street'][1]//input")]
         private IWebElement _addressLine1Input;
@@ -25,7 +29,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals
         [FindsBy(How = How.XPath, Using = "//input[@id='firstName']")]
         private IWebElement _firstNameInput;
 
-        [FindsBy(How = How.XPath, Using = "//form//button")]
+        [FindsBy(How = How.XPath, Using = _iDontWantToAddATrustedContactXPath)]
         private IWebElement _iDontWantToAddATrustedContactButton;
 
         [FindsBy(How = How.XPath, Using = "//input[@id='lastName']")]
@@ -140,7 +144,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals
             try
             {
                 CheckAddTrustedContactModal();
-                Wait.Until(ElementToBeNotVisible(_iDontWantToAddATrustedContactButton));
+                IsElementNotVisibleByXpath(_iDontWantToAddATrustedContactXPath, Driver).Should().BeTrue();
             }
             catch (Exception e)
             {

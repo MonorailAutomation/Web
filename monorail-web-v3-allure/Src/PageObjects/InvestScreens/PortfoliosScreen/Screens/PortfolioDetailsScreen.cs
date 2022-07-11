@@ -7,47 +7,47 @@ using SeleniumExtras.WaitHelpers;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
-namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens
+namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Screens
 {
-    public class MilestoneDetailsScreen : InvestScreen
+    public class PortfolioDetailsScreen : InvestScreen
     {
         [FindsBy(How = How.XPath, Using = "//p[contains(text(), 'Edit Details')]")]
         private IWebElement _editDetailsOption;
 
         [FindsBy(How = How.XPath, Using = "//vim-goal-description//p[@class='text-gray-400']")]
-        private IWebElement _milestoneDescription;
+        private IWebElement _portfolioDescription;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-goal-sidebar']//h2[@class='m-0']")]
-        private IWebElement _milestoneName;
+        private IWebElement _portfolioName;
 
         [FindsBy(How = How.XPath, Using = "//span[@class='vim-goal-sidebar__amount__target']")]
-        private IWebElement _milestoneTargetAmount;
+        private IWebElement _portfolioTargetAmount;
 
-        public MilestoneDetailsScreen(IWebDriver driver) : base(driver)
+        public PortfolioDetailsScreen(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
 
         [AllureStep("Click 'Edit Details' button")]
-        public MilestoneDetailsScreen ClickEditDetailsButton()
+        public PortfolioDetailsScreen ClickEditDetailsButton()
         {
             Wait.Until(ElementToBeClickable(_editDetailsOption));
             _editDetailsOption.Click();
             return this;
         }
 
-        [AllureStep("Verify if Milestone Name is '{0}', Description is '{1}'")]
-        public MilestoneDetailsScreen VerifyMilestoneDetails(string milestoneName, string milestoneDescription)
+        [AllureStep("Verify if Portfolio Name is '{0}', Description is '{1}'")]
+        public PortfolioDetailsScreen VerifyPortfolioDetails(string portfolioName, string portfolioDescription)
         {
-            VerifyIfMilestoneNameHasChanged(milestoneName);
-            _milestoneName.Text.Should().Be(milestoneName);
-            _milestoneDescription.Text.Should().Be(milestoneDescription);
+            VerifyIfPortfolioNameHasChanged(portfolioName);
+            _portfolioName.Text.Should().Be(portfolioName);
+            _portfolioDescription.Text.Should().Be(portfolioDescription);
             return this;
         }
 
-        private void VerifyIfMilestoneNameHasChanged(string milestoneName)
+        private void VerifyIfPortfolioNameHasChanged(string portfolioName)
         {
-            Wait.Until(ExpectedConditions.TextToBePresentInElement(_milestoneName, milestoneName));
+            Wait.Until(ExpectedConditions.TextToBePresentInElement(_portfolioName, portfolioName));
         }
     }
 }

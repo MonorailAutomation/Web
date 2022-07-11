@@ -4,6 +4,8 @@ using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
+using FluentAssertions;
+using static monorail_web_v3.Commons.Functions;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
@@ -13,6 +15,8 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.TransactionModals
     {
         private const string TargetAndScheduleHeaderText = "Target & Schedule";
         private const string DepositScheduleHeaderText = "Deposit Schedule";
+        private const string DayOfTheWeekOrMonthLabelXPath = "//form//div[3]//label";
+        private const string DayOfTheWeekOrMonthSelectorXPath = "//select[@formcontrolname='dayToExecute']";
 
         private const string DepositAmountLabelText = "Deposit Amount";
         private const string FrequencyLabelText = "Frequency";
@@ -22,10 +26,10 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.TransactionModals
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Daily')]")]
         private IWebElement _dailyButton;
 
-        [FindsBy(How = How.XPath, Using = "//form//div[3]//label")]
+        [FindsBy(How = How.XPath, Using = DayOfTheWeekOrMonthLabelXPath)]
         private IWebElement _dayOfTheWeekOrMonthLabel;
 
-        [FindsBy(How = How.XPath, Using = "//select[@formcontrolname='dayToExecute']")]
+        [FindsBy(How = How.XPath, Using = DayOfTheWeekOrMonthSelectorXPath)]
         private IWebElement _dayOfTheWeekOrMonthSelector;
 
         [FindsBy(How = How.XPath, Using = "//input[@id='amount']")]
@@ -107,9 +111,8 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.TransactionModals
                 switch (depositFrequency)
                 {
                     case "Daily":
-                        //TODO: Find a way to handle these checks in a short period of time
-                        //Wait.Until(ElementToBeNotVisible(_dayOfTheWeekOrMonthLabel));
-                        //Wait.Until(ElementToBeNotVisible(_dayOfTheWeekOrMonthSelector));
+                        IsElementNotVisibleByXpath(DayOfTheWeekOrMonthLabelXPath, Driver).Should().BeTrue();
+                        IsElementNotVisibleByXpath(DayOfTheWeekOrMonthSelectorXPath, Driver).Should().BeTrue();
                         break;
                     case "Weekly":
                         Wait.Until(ElementToBeVisible(_dayOfTheWeekOrMonthLabel));

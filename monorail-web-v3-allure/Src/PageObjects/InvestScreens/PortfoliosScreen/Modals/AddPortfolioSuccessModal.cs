@@ -7,12 +7,12 @@ using SeleniumExtras.PageObjects;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
-namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
+namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Modals
 {
-    public class AddMilestoneSuccessModal : AddItemSuccessModal
+    public class AddPortfolioSuccessModal : AddItemSuccessModal
     {
         private const string SuccessHeaderText = "Success!";
-        private const string SuccessMessageText = "Your milestone is being added now.";
+        private const string SuccessMessageText = "Your portfolio is being added now.";
 
         private const string SuccessQuoteText =
             "“Stay focused, go after your dreams and keep moving toward your goals.”";
@@ -28,13 +28,13 @@ namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
         [FindsBy(How = How.XPath, Using = "//div[@class='success-goal__footer__content']//p")]
         private IWebElement _successQuote;
 
-        public AddMilestoneSuccessModal(IWebDriver driver) : base(driver)
+        public AddPortfolioSuccessModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
 
         [AllureStep("Check 'Success' modal")]
-        public AddMilestoneSuccessModal CheckSuccessModal()
+        public AddPortfolioSuccessModal CheckSuccessModal()
         {
             try
             {

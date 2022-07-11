@@ -41,6 +41,17 @@ namespace monorail_web_v3.RestRequests.Helpers
             } while (wishlistItemsInProgress.Length > 0);
         }
 
+        public static void WaitUntilItemsAreScrapedByEmail(string email)
+        {
+            string[] wishlistItemsInProgress;
+            var token = GenerateToken(email);
+            do
+            {
+                wishlistItemsInProgress = GetWishlistItemsInProgress(token);
+                Thread.Sleep(3000);
+            } while (wishlistItemsInProgress.Length > 0);
+        }
+
         public static void UpdateWishlistItem(string username, string amountAdd, string descriptionAdd,
             string faviconUrlAdd, string imageUrlAdd, string itemUrlAdd, string nameAdd, string wishlistItemId)
         {

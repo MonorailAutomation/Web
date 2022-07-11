@@ -6,6 +6,7 @@ using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
+using static monorail_web_v3.Commons.Functions;
 
 namespace monorail_web_v3.PageObjects.CreateAccountModals
 {
@@ -14,10 +15,13 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
         private const string Step3SubheaderText = "STEP 3";
         private const string TermsAndConditionsHeaderText = "Terms and Conditions";
 
-        [FindsBy(How = How.XPath, Using = "//vim-modal-footer//button[contains(text(), 'Agree and Finish')]")]
+        private const string SkipToBottomButtonXPath = "//button[contains(text(), 'Skip to bottom')]";
+        private const string AgreeAndFinishButtonXPath = "//vim-modal-footer//button[contains(text(), 'Agree and Finish')]";
+
+        [FindsBy(How = How.XPath, Using = AgreeAndFinishButtonXPath)]
         private IWebElement _agreeAndFinishButton;
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Skip to bottom')]")]
+        [FindsBy(How = How.XPath, Using = SkipToBottomButtonXPath)]
         private IWebElement _skipToBottomButton;
 
         public TermsAndConditionsModal(IWebDriver driver) : base(driver)
@@ -36,7 +40,6 @@ namespace monorail_web_v3.PageObjects.CreateAccountModals
         [AllureStep("Click 'Agree and Finish' button")]
         public TermsAndConditionsModal ClickAgreeAndFinishButton()
         {
-            Wait.Until(ElementToBeNotVisible(_skipToBottomButton));
             Wait.Until(ElementToBeClickable(_agreeAndFinishButton));
             _agreeAndFinishButton.Click();
             return this;

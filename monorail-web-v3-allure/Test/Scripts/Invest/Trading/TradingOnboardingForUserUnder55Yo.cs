@@ -5,7 +5,7 @@ using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.CreateAccountModals;
-using monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Screens;
+using monorail_web_v3.PageObjects.InvestScreens.StocksScreen.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -18,7 +18,7 @@ using static monorail_web_v3.DataGenerator.PhoneNumberGenerator;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 using TermsAndConditionsModal = monorail_web_v3.PageObjects.CreateAccountModals.TermsAndConditionsModal;
 
-namespace monorail_web_v3.Test.Scripts.Invest.Trading
+namespace monorail_web_v3.Test.Scripts.Invest.Stocks
 {
     [TestFixture]
     [AllureNUnit]
@@ -40,7 +40,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
             var termsOfUseModal = new TermsAndConditionsModal(Driver);
             var mainScreen = new MainScreen(Driver);
             var investScreen = new InvestScreen(Driver);
-            var tradingMainScreen = new TradingMainScreen(Driver);
+            var stocksMainScreen = new StocksMainScreen(Driver);
             //
             var completeYourAccountModal = new CompleteYourAccountModal(Driver);
             var completeYourProfileModal = new CompleteYourProfileModal(Driver);
@@ -101,10 +101,10 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
 
             investScreen
                 .CheckInvestScreen()
-                .ClickTrading();
+                .ClickStocks();
 
-            tradingMainScreen
-                .CheckTradingMainScreenBeforeOnboarding()
+            stocksMainScreen
+                .CheckStocksMainScreenBeforeOnboarding()
                 .ClickStartTradingStocksButton();
 
             completeYourAccountModal
@@ -196,8 +196,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Trading
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
-            tradingMainScreen
-                .CheckTradingMainScreenAfterOnboarding();
+            stocksMainScreen
+                .CheckStocksMainScreenAfterOnboarding();
 
             SuspendUser(username);
         }

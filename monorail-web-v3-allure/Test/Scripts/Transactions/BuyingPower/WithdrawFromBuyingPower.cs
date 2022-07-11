@@ -1,8 +1,8 @@
 using monorail_web_v3.PageObjects;
 using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Screens;
-using monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals;
-using monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Screens;
+using monorail_web_v3.PageObjects.InvestScreens.StocksScreen.Modals;
+using monorail_web_v3.PageObjects.InvestScreens.StocksScreen.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -24,7 +24,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions.BuyingPower
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
             var investScreen = new InvestScreen(Driver);
-            var tradingMainScreen = new TradingMainScreen(Driver);
+            var stocksMainScreen = new StocksMainScreen(Driver);
             var buyingPowerWithdrawCashModal = new BuyingPowerWithdrawCashModal(Driver);
             var buyingPowerWithdrawCashSuccessModal = new BuyingPowerWithdrawCashSuccessModal(Driver);
 
@@ -43,9 +43,9 @@ namespace monorail_web_v3.Test.Scripts.Transactions.BuyingPower
 
             investScreen
                 .CheckInvestScreen()
-                .ClickTrading();
+                .ClickStocks();
 
-            tradingMainScreen.ClickCashOutButton();
+            stocksMainScreen.ClickCashOutButton();
 
             buyingPowerWithdrawCashModal
                 .CheckBuyingPowerWithdrawCashModal()

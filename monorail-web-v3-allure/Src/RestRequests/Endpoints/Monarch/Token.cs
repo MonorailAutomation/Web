@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using static monorail_web_v3.Commons.Constants;
@@ -21,7 +22,7 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
             request.AddJsonBody(new {email = user, password = ValidPassword});
 
             var response = client.Execute(request);
-
+            Console.WriteLine(response);
             dynamic responseContent = JObject.Parse(response.Content);
 
             return responseContent.accessToken;
