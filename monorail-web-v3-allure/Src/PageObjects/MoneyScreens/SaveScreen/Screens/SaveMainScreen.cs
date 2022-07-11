@@ -3,6 +3,7 @@ using System.Linq;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Enums;
+using static monorail_web_v3.Commons.Functions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -16,6 +17,9 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
     {
         private const string EmptyScreenHeadlineText = "Separate your Wishlist from your dedicated savings funds.";
         private const string EmptyScreenMessageTextPartOne = "And automate deposits on your schedule.";
+        private const string FundYourTracksButtonXPath = "//button[contains(text(), 'Fund your Tracks')]";
+        private const string AddSavingTrackButtonXPath = "//button[contains(text(), 'Add Saving Track')]";
+        private const string UnlockSavingsTracksButtonXPath = "//button[contains(text(), 'Unlock Savings Tracks')]";
 
         private const string EmptyScreenMessageTextPartTwo =
             "So you always stay… on Track. Whether you feel motivated or not.";
@@ -25,7 +29,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
         private const string EmptyScreenThirdBulletPointText = "Power your personal goals";
         private const string EmptyScreenFourthBulletPointText = "Save for $$$ items";
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Add Saving Track')]")]
+        [FindsBy(How = How.XPath, Using = AddSavingTrackButtonXPath)]
         private IWebElement _addSavingTrackButton;
 
         [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[1]")]
@@ -46,7 +50,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
         [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'vim-empty-screen-card__content')]//li[3]")]
         private IWebElement _emptyScreenThirdBulletPoint;
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Fund your Tracks')]")]
+        [FindsBy(How = How.XPath, Using = FundYourTracksButtonXPath)]
         private IWebElement _fundYourTracksButton;
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Get Started')]")]
@@ -56,7 +60,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
             Using = "//div[@class='vim-page-header__title']//h1[contains(text(),'Save')]")]
         private IWebElement _saveHeader;
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Unlock Savings Tracks')]")]
+        [FindsBy(How = How.XPath, Using = UnlockSavingsTracksButtonXPath)]
         private IWebElement _unlockSavingsTracksButton;
 
         public SaveMainScreen(IWebDriver driver) : base(driver)
@@ -141,9 +145,9 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
                 Wait.Until(ElementToBeVisible(_emptyScreenThirdBulletPoint));
                 Wait.Until(ElementToBeVisible(_emptyScreenFourthBulletPoint));
                 Wait.Until(ElementToBeVisible(_unlockSavingsTracksButton));
-                //TODO: Find a way to handle these checks in a short period of time
-                //Wait.Until(ElementToBeNotVisible(_fundYourTracksButton));
-                //Wait.Until(ElementToBeNotVisible(_addSavingTrackButton));
+
+                IsElementNotVisibleByXpath(FundYourTracksButtonXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(AddSavingTrackButtonXPath, Driver).Should().BeTrue();
 
                 _emptyScreenHeadline.Text.Should().Contain(EmptyScreenHeadlineText);
                 _emptyScreenMessage.Text.Should().Contain(EmptyScreenMessageTextPartOne);
@@ -169,8 +173,9 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Screens
                 Wait.Until(ElementToBeVisible(_saveHeader));
                 Wait.Until(ElementToBeVisible(_fundYourTracksButton));
                 Wait.Until(ElementToBeVisible(_addSavingTrackButton));
-                //TODO: Find a way to handle these checks in a short period of time
-                //Wait.Until(ElementToBeNotVisible(_unlockSavingsTracksButton));
+
+                IsElementNotVisibleByXpath(UnlockSavingsTracksButtonXPath, Driver).Should().BeTrue();
+
             }
             catch (Exception e)
             {

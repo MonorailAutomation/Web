@@ -4,42 +4,42 @@ using monorail_web_v3.PageObjects.Commons;
 using monorail_web_v3.PageObjects.Commons.Modals.OnboardingModals;
 using monorail_web_v3.PageObjects.Commons.Modals.TransactionModals;
 using monorail_web_v3.PageObjects.Commons.Screens;
-using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals;
-using monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Screens;
+using monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Modals;
+using monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Screens;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using static monorail_web_v3.Commons.Constants;
 using static monorail_web_v3.DataGenerator.EmailGenerator;
 using static monorail_web_v3.DataGenerator.StringGenerator;
-using static monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Enums.MilestoneType;
+using static monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Enums.PortfolioType;
 using static monorail_web_v3.RestRequests.Helpers.UserManagementHelperFunctions;
 using static monorail_web_v3.Test.Scripts.Transactions.Plaid.ConnectPlaidToNewUser;
 using static monorail_web_v3.RestRequests.Helpers.UserOnboardingHelperFunctions;
 
-namespace monorail_web_v3.Test.Scripts.Invest.Milestones
+namespace monorail_web_v3.Test.Scripts.Invest.Portfolios
 {
     [TestFixture]
     [AllureNUnit]
-    internal class MilestoneOnboardingForUserOver55Yo : FunctionalTesting
+    internal class PortfolioOnboardingForUserOver55Yo : FunctionalTesting
     {
         private const string UsernamePrefix = "autotests.mono+24.";
         private const string UsernameSuffix = "@gmail.com";
 
-        private const string MilestoneDescription = "Test Milestone Description";
-        private const string MilestoneTargetDate = "10242023";
-        private const string MilestoneTargetAmount = "4,500";
+        private const string PortfolioDescription = "Test Portfolio Description";
+        private const string PortfolioTargetDate = "10242023";
+        private const string PortfolioTargetAmount = "4,500";
 
-        [Test(Description = "Milestone Onboarding (Apex) - by clicking 'Add a Milestone' button; with Trusted Contact")]
+        [Test(Description = "Portfolio Onboarding (Apex) - by clicking 'Add a Portfolio' button; with Trusted Contact")]
         [AllureEpic("Invest")]
-        [AllureFeature("Milestones")]
-        [AllureStory("Milestone Onboarding (Apex) - by clicking 'Add a Milestone' button; with Trusted Contact")]
-        public void MilestoneOnboardingByClickingAddAMilestoneButtonWithTrustedContactTest()
+        [AllureFeature("Portfolios")]
+        [AllureStory("Portfolio Onboarding (Apex) - by clicking 'Add a Portfolio' button; with Trusted Contact")]
+        public void PortfolioOnboardingByClickingAddAPortfolioButtonWithTrustedContactTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
             var investScreen = new InvestScreen(Driver);
-            var milestonesMainScreen = new MilestonesMainScreen(Driver);
+            var portfoliosMainScreen = new PortfoliosMainScreen(Driver);
             //
             var completeYourAccountModal = new CompleteYourAccountModal(Driver);
             var completeYourProfileModal = new CompleteYourProfileModal(Driver);
@@ -60,13 +60,13 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var linkYourAccountModal = new LinkYourAccountModal(Driver);
             var disclosuresModal = new DisclosuresModal(Driver);
             //
-            var chooseAMilestoneModal = new ChooseAMilestoneModal(Driver);
-            var milestoneItemDetailsModal = new MilestoneItemDetailsModal(Driver);
-            var portfolioModal = new PortfolioModal(Driver);
-            var milestoneDepositScheduleModal = new DepositScheduleModal(Driver);
-            var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
+            var chooseAPortfolioModal = new ChooseAPortfolioModal(Driver);
+            var portfolioItemDetailsModal = new PortfolioItemDetailsModal(Driver);
+            var portfolioModal = new PortfolioModelModal(Driver);
+            var portfolioDepositScheduleModal = new DepositScheduleModal(Driver);
+            var addPortfolioSuccessModal = new AddPortfolioSuccessModal(Driver);
 
-            var milestoneName = "Test Milestone " + GenerateStringWithNumber();
+            var portfolioName = "Test Portfolio " + GenerateStringWithNumber();
 
             var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
@@ -84,9 +84,9 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             investScreen
                 .CheckInvestScreen()
-                .ClickMilestones();
+                .ClickPortfolios();
 
-            milestonesMainScreen.ClickAddAMilestoneButton();
+            portfoliosMainScreen.ClickAddAPortfolioButton();
 
             /* Apex Onboarding flow */
 
@@ -178,47 +178,47 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
-            chooseAMilestoneModal
-                .CheckChooseAMilestoneModal()
-                .ClickMilestoneType(CollegeFund);
+            chooseAPortfolioModal
+                .CheckChooseAPortfolioModal()
+                .ClickPortfolioType(CollegeFund);
 
-            milestoneItemDetailsModal
-                .CheckMilestoneDetailsModal()
-                .SetMilestoneTargetAmount(MilestoneTargetAmount)
-                .SetMilestoneTargetDate(MilestoneTargetDate)
-                .SetItemName(milestoneName)
-                .SetItemDescription(MilestoneDescription)
+            portfolioItemDetailsModal
+                .CheckPortfolioDetailsModal()
+                .SetPortfolioTargetAmount(PortfolioTargetAmount)
+                .SetPortfolioTargetDate(PortfolioTargetDate)
+                .SetItemName(portfolioName)
+                .SetItemDescription(PortfolioDescription)
                 .ClickContinueButton();
 
             portfolioModal
-                .CheckPortfolioModal()
+                .CheckPortfolioModelModal()
                 .ClickContinueButton();
 
-            milestoneDepositScheduleModal
+            portfolioDepositScheduleModal
                 .CheckDepositScheduleModal("Weekly")
                 .ClickContinueButton();
 
-            addMilestoneSuccessModal
+            addPortfolioSuccessModal
                 .CheckSuccessModal()
                 .ClickFinishButton();
 
             Driver.Navigate().Refresh();
 
-            milestonesMainScreen.VerifyIfMilestoneExists(milestoneName, MilestoneTargetAmount);
+            portfoliosMainScreen.VerifyIfPortfolioExists(portfolioName, PortfolioTargetAmount);
 
             CloseUser(username);
         }
 
-        [Test(Description = "Milestone Onboarding (Apex) - by clicking '+' placeholder; with Trusted Contact")]
+        [Test(Description = "Portfolio Onboarding (Apex) - by clicking '+' placeholder; with Trusted Contact")]
         [AllureEpic("Invest")]
-        [AllureFeature("Milestones")]
-        [AllureStory("Milestone Onboarding (Apex) - by clicking '+' placeholder; with Trusted Contact")]
-        public void MilestoneOnboardingByClickingPlaceholderWithTrustedContactTest()
+        [AllureFeature("Portfolios")]
+        [AllureStory("Portfolio Onboarding (Apex) - by clicking '+' placeholder; with Trusted Contact")]
+        public void PortfolioOnboardingByClickingPlaceholderWithTrustedContactTest()
         {
             var loginPage = new LoginPage(Driver);
             var mainScreen = new MainScreen(Driver);
             var investScreen = new InvestScreen(Driver);
-            var milestonesMainScreen = new MilestonesMainScreen(Driver);
+            var portfoliosMainScreen = new PortfoliosMainScreen(Driver);
             //
             var completeYourAccountModal = new CompleteYourAccountModal(Driver);
             var completeYourProfileModal = new CompleteYourProfileModal(Driver);
@@ -239,13 +239,13 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
             var linkYourAccountModal = new LinkYourAccountModal(Driver);
             var disclosuresModal = new DisclosuresModal(Driver);
             //
-            var chooseAMilestoneModal = new ChooseAMilestoneModal(Driver);
-            var milestoneItemDetailsModal = new MilestoneItemDetailsModal(Driver);
-            var portfolioModal = new PortfolioModal(Driver);
-            var milestoneDepositScheduleModal = new DepositScheduleModal(Driver);
-            var addMilestoneSuccessModal = new AddMilestoneSuccessModal(Driver);
+            var chooseAPortfolioModal = new ChooseAPortfolioModal(Driver);
+            var portfolioItemDetailsModal = new PortfolioItemDetailsModal(Driver);
+            var portfolioModal = new PortfolioModelModal(Driver);
+            var portfolioDepositScheduleModal = new DepositScheduleModal(Driver);
+            var addPortfolioSuccessModal = new AddPortfolioSuccessModal(Driver);
 
-            var milestoneName = "Test Milestone " + GenerateStringWithNumber();
+            var portfolioName = "Test Portfolio " + GenerateStringWithNumber();
             var username = GenerateNewEmail(UsernamePrefix, UsernameSuffix);
 
             const string dateOfBirth = "1966-01-01";
@@ -262,9 +262,9 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
 
             investScreen
                 .CheckInvestScreen()
-                .ClickMilestones();
+                .ClickPortfolios();
 
-            milestonesMainScreen.ClickAddAMilestoneButton();
+            portfoliosMainScreen.ClickAddAPortfolioButton();
 
             /* Apex Onboarding flow */
 
@@ -358,33 +358,33 @@ namespace monorail_web_v3.Test.Scripts.Invest.Milestones
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
-            chooseAMilestoneModal
-                .CheckChooseAMilestoneModal()
-                .ClickMilestoneType(CollegeFund);
+            chooseAPortfolioModal
+                .CheckChooseAPortfolioModal()
+                .ClickPortfolioType(CollegeFund);
 
-            milestoneItemDetailsModal
-                .CheckMilestoneDetailsModal()
-                .SetMilestoneTargetAmount(MilestoneTargetAmount)
-                .SetMilestoneTargetDate(MilestoneTargetDate)
-                .SetItemName(milestoneName)
-                .SetItemDescription(MilestoneDescription)
+            portfolioItemDetailsModal
+                .CheckPortfolioDetailsModal()
+                .SetPortfolioTargetAmount(PortfolioTargetAmount)
+                .SetPortfolioTargetDate(PortfolioTargetDate)
+                .SetItemName(portfolioName)
+                .SetItemDescription(PortfolioDescription)
                 .ClickContinueButton();
 
             portfolioModal
-                .CheckPortfolioModal()
+                .CheckPortfolioModelModal()
                 .ClickContinueButton();
 
-            milestoneDepositScheduleModal
+            portfolioDepositScheduleModal
                 .CheckDepositScheduleModal("Weekly")
                 .ClickContinueButton();
 
-            addMilestoneSuccessModal
+            addPortfolioSuccessModal
                 .CheckSuccessModal()
                 .ClickFinishButton();
 
             Driver.Navigate().Refresh();
 
-            milestonesMainScreen.VerifyIfMilestoneExists(milestoneName, MilestoneTargetAmount);
+            portfoliosMainScreen.VerifyIfPortfolioExists(portfolioName, PortfolioTargetAmount);
 
             CloseUser(username);
         }

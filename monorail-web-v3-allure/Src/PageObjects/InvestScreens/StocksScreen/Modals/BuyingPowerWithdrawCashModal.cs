@@ -7,7 +7,7 @@ using SeleniumExtras.PageObjects;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
-namespace monorail_web_v3.PageObjects.InvestScreens.TradingScreen.Modals
+namespace monorail_web_v3.PageObjects.InvestScreens.StocksScreen.Modals
 {
     public class BuyingPowerWithdrawCashModal : WithdrawCashModal
     {

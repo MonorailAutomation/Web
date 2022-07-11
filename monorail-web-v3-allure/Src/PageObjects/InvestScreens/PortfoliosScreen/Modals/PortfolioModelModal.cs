@@ -7,32 +7,32 @@ using SeleniumExtras.PageObjects;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
-namespace monorail_web_v3.PageObjects.InvestScreens.MilestonesScreen.Modals
+namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Modals
 {
-    public class PortfolioModal : Modal
+    public class PortfolioModelModal : Modal
     {
-        private const string PortfolioHeaderText = "Portfolio";
+        private const string PortfolioModelHeaderText = "Model";
 
-        [FindsBy(How = How.XPath, Using = "//vim-modal-body//button[contains(text(), 'Change Portfolio')]")]
-        private IWebElement _changePortfolioButton;
+        [FindsBy(How = How.XPath, Using = "//vim-modal-body//button[contains(text(), 'Change Model')]")]
+        private IWebElement _changeModelButton;
 
-        public PortfolioModal(IWebDriver driver) : base(driver)
+        public PortfolioModelModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Check 'Portfolio' modal")]
-        public PortfolioModal CheckPortfolioModal()
+        [AllureStep("Check 'Model' screen")]
+        public PortfolioModelModal CheckPortfolioModelModal()
         {
             try
             {
                 Wait.Until(ElementToBeVisible(ModalHeader));
                 Wait.Until(ElementToBeVisible(XButton));
-                Wait.Until(ElementToBeVisible(_changePortfolioButton));
+                Wait.Until(ElementToBeVisible(_changeModelButton));
                 Wait.Until(ElementToBeVisible(BackButton));
                 Wait.Until(ElementToBeVisible(ContinueButton));
 
-                ModalHeader.Text.Should().Contain(PortfolioHeaderText);
+                ModalHeader.Text.Should().Contain(PortfolioModelHeaderText);
             }
             catch (Exception e)
             {

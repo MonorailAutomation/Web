@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Screens;
+using static monorail_web_v3.Commons.Functions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -31,16 +32,21 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
         private const string ActiveCardBadgeText = "Active";
         private const string LockedCardBadgeText = "Locked";
 
-        [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Activate Card')]")]
+        private const string OpenYourMonorailCheckingAccountButtonXPath = "//button[contains(text(),'Open your Monorail Checking Account')]";
+        private const string CardOnTheWayHeaderXPath = "//vim-active-card//p[1]";
+        private const string CardOnTheWayMessageXPath = "//vim-active-card//p[2]";
+        private const string ActivateCardButtonXPath = "//a[contains(text(), 'Activate Card')]";
+
+        [FindsBy(How = How.XPath, Using = ActivateCardButtonXPath)]
         private IWebElement _activateCardButton;
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Cash')]")]
         private IWebElement _addCashButton;
 
-        [FindsBy(How = How.XPath, Using = "//vim-active-card//p[1]")]
+        [FindsBy(How = How.XPath, Using = CardOnTheWayHeaderXPath)]
         private IWebElement _cardOnTheWayHeader;
 
-        [FindsBy(How = How.XPath, Using = "//vim-active-card//p[2]")]
+        [FindsBy(How = How.XPath, Using = CardOnTheWayMessageXPath)]
         private IWebElement _cardOnTheWayMessage;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='status-badge active']")]
@@ -76,7 +82,7 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Move Funds')]")]
         private IWebElement _moveFundsButton;
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Open your Monorail Checking Account')]")]
+        [FindsBy(How = How.XPath, Using = OpenYourMonorailCheckingAccountButtonXPath)]
         private IWebElement _openYourMonorailCheckingAccountButton;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-page-header__title']//h1[1]")]
@@ -187,8 +193,8 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
                 Wait.Until(ElementToBeVisible(_viewTransactionsButton));
                 Wait.Until(ElementToBeVisible(_moveFundsButton));
                 Wait.Until(ElementToBeVisible(_moreOptionsButton));
-                //TODO: Find a way to handle these checks in a short period of time
-                //Wait.Until(ElementToBeNotVisible(_openYourMonorailCheckingAccountButton));
+
+                IsElementNotVisibleByXpath(OpenYourMonorailCheckingAccountButtonXPath, Driver).Should().BeTrue();
 
                 _spendHeader.Text.Should().Contain(SpendHeaderText);
                 _cardOnTheWayHeader.Text.Should().Contain(CardOnTheWayHeaderText);
@@ -212,11 +218,12 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SpendScreen.Screens
                 Wait.Until(ElementToBeVisible(_viewTransactionsButton));
                 Wait.Until(ElementToBeVisible(_moveFundsButton));
                 Wait.Until(ElementToBeVisible(_moreOptionsButton));
-                //TODO: Find a way to handle these checks in a short period of time
-                //Wait.Until(ElementToBeNotVisible(_openYourMonorailCheckingAccountButton));
-                //Wait.Until(ElementToBeNotVisible(_cardOnTheWayHeader));
-                //Wait.Until(ElementToBeNotVisible(_cardOnTheWayMessage));
-                //Wait.Until(ElementToBeNotVisible(_activateCardButton));
+
+                IsElementNotVisibleByXpath(OpenYourMonorailCheckingAccountButtonXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(CardOnTheWayHeaderXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(CardOnTheWayMessageXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(ActivateCardButtonXPath, Driver).Should().BeTrue();
+
 
                 _spendHeader.Text.Should().Contain(SpendHeaderText);
             }

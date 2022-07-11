@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using monorail_web_v3.PageObjects.Commons.Screens;
+using static monorail_web_v3.Commons.Functions;
 using NUnit.Allure.Steps;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -12,22 +13,27 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 {
     public class WishlistDetailsScreen : WishlistScreen
     {
+        private const string ReadyToBuyButtonXPath = "//button[contains(text(), 'Ready to Buy')]";
+        private const string FundYourWishlistButtonXPath = "//button[contains(text(),'Fund your Wishlist')]";
+        private const string ProgressBarXPath = "//div[@class='vim-progress-bar']";
+        private const string PurchaseItemButtonXPath = "//button[contains(text(), 'Purchase Item')]";
+
         [FindsBy(How = How.XPath, Using = "//button[contains(@class, 'back-button')]")]
         private IWebElement _backButton;
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Edit')]")]
         private IWebElement _editButton;
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Fund your Wishlist')]")]
+        [FindsBy(How = How.XPath, Using = FundYourWishlistButtonXPath)]
         private IWebElement _fundYourWishlistButton;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='vim-progress-bar']")]
+        [FindsBy(How = How.XPath, Using = ProgressBarXPath)]
         private IWebElement _progressBar;
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Purchase Item')]")]
+        [FindsBy(How = How.XPath, Using = PurchaseItemButtonXPath)]
         private IWebElement _purchaseItemButton;
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Ready to Buy')]")]
+        [FindsBy(How = How.XPath, Using = ReadyToBuyButtonXPath)]
         private IWebElement _readyToBuyButton;
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Remove')]")]
@@ -99,8 +105,8 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
                 Wait.Until(ElementToBeVisible(_editButton));
                 Wait.Until(ElementToBeVisible(_progressBar));
 
-                Wait.Until(ElementToBeNotVisible(_readyToBuyButton));
-                Wait.Until(ElementToBeNotVisible(_purchaseItemButton));
+                IsElementNotVisibleByXpath(ReadyToBuyButtonXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(PurchaseItemButtonXPath, Driver).Should().BeTrue();
             }
             catch (Exception e)
             {
@@ -126,10 +132,9 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
                 Wait.Until(ElementToBeVisible(_wishlistTransferringStatusTitle));
                 Wait.Until(ElementToBeVisible(_wishlistTransferringStatusDetailText));
 
-                //TODO: Find a way to handle these checks in a short period of time
-                //Wait.Until(ElementToBeNotVisible(_readyToBuyButton));
-                //Wait.Until(ElementToBeNotVisible(_fundYourWishlistButton));
-                //Wait.Until(ElementToBeNotVisible(_progressBar));
+                IsElementNotVisibleByXpath(ReadyToBuyButtonXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(FundYourWishlistButtonXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(ProgressBarXPath, Driver).Should().BeTrue();
 
                 _wishlistTransferringStatusTitle.Text.Should().Be(wishlistTransferringStatusTitle);
                 _wishlistTransferringStatusDetailText.Text.Should()
@@ -157,12 +162,11 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
                 Wait.Until(ElementToBeVisible(_editButton));
                 Wait.Until(ElementToBeVisible(_wishlistTransferringStatusTitle));
                 Wait.Until(ElementToBeVisible(_wishlistTransferringStatusDetailText));
-                
-                //TODO: Find a way to handle these checks in a short period of time
-                //Wait.Until(ElementToBeNotVisible(_purchaseItemButton));
-                //Wait.Until(ElementToBeNotVisible(_readyToBuyButton));
-                //Wait.Until(ElementToBeNotVisible(_fundYourWishlistButton));
-                //Wait.Until(ElementToBeNotVisible(_progressBar));
+
+                IsElementNotVisibleByXpath(PurchaseItemButtonXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(ReadyToBuyButtonXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(FundYourWishlistButtonXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(ProgressBarXPath, Driver).Should().BeTrue();
 
                 _wishlistTransferringStatusTitle.Text.Should().Be(wishlistTransferringStatusTitle);
                 _wishlistTransferringStatusDetailText.Text.Should()

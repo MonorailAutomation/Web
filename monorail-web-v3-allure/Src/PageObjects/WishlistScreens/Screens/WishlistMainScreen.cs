@@ -8,6 +8,7 @@ using SeleniumExtras.PageObjects;
 using SeleniumExtras.WaitHelpers;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
+using static monorail_web_v3.Commons.Functions;
 
 namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
 {
@@ -16,7 +17,15 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         private const string AvailableForYourNextItemMessageText = "Available funds";
         private const string ReadyToPowerYourWishlistMessageText = "Ready to power your Wishlist?";
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Add Cash')]")]
+        private const string ReadyToPowerYourWishlistMessageXPath = "//div[@class='container']//h2";
+        private const string CreateAWishlistAccountButtonXPath = "//button[contains(text(),'Create a Wishlist Account')]";
+        private const string MoneyAmountXPath = "//vim-wishlist-account//h1";
+        private const string AvailableForYourNextItemMessageXPath = "//vim-wishlist-account//p";
+        private const string ManageButtonXPath = "//button[contains(text(),'Manage')]";
+        private const string AddCashButtonXPath = "//button[contains(text(),'Add Cash')]";
+        private const string WishlistItemIsBeingAddedModalXPath = "//p[contains(text(),'Your wishlist item is being added!')]";
+
+        [FindsBy(How = How.XPath, Using = AddCashButtonXPath)]
         private IWebElement _addCashButton;
 
         [FindsBy(How = How.XPath,
@@ -28,11 +37,11 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         private IWebElement _addWishlistItemPlaceholder;
 
         [FindsBy(How = How.XPath,
-            Using = "//vim-wishlist-account//p")]
+            Using = AvailableForYourNextItemMessageXPath )]
         private IWebElement _availableForYourNextItemMessage;
 
         [FindsBy(How = How.XPath,
-            Using = "//button[contains(text(),'Create a Wishlist Account')]")]
+            Using = CreateAWishlistAccountButtonXPath)]
         private IWebElement _createAWishlistAccountButton;
 
         [FindsBy(How = How.XPath,
@@ -42,14 +51,14 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         [FindsBy(How = How.XPath, Using = "//button/span[contains(text(), \"Let's Go\")]")]
         private IWebElement _letsGoButton;
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Manage')]")]
+        [FindsBy(How = How.XPath, Using = ManageButtonXPath)]
         private IWebElement _manageButton;
 
         [FindsBy(How = How.XPath,
-            Using = "//vim-wishlist-account//h1")]
+            Using = MoneyAmountXPath)]
         private IWebElement _moneyAmount;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='container']//h2")]
+        [FindsBy(How = How.XPath, Using = ReadyToPowerYourWishlistMessageXPath)]
         private IWebElement _readyToPowerYourWishlistMessage;
 
         [FindsBy(How = How.XPath, Using = "//span[contains(text(), 'Tap to Complete Info')]")]
@@ -64,7 +73,7 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         private IWebElement _wishlistHeader;
 
         [FindsBy(How = How.XPath,
-            Using = "//p[contains(text(),'Your wishlist item is being added!')]")]
+            Using = WishlistItemIsBeingAddedModalXPath)]
         private IWebElement _wishlistItemIsBeingAddedModal;
 
         public WishlistMainScreen(IWebDriver driver) : base(driver)
@@ -99,7 +108,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
         [AllureStep("Click 'Let's Go' button")]
         public WishlistMainScreen ClickLetsGoButton()
         {
-            Thread.Sleep(10000);
             Wait.Until(ElementToBeClickable(_letsGoButton));
             _letsGoButton.Click();
             return this;
@@ -176,9 +184,9 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
                 Wait.Until(ElementToBeVisible(_addWishlistItemButton));
                 Wait.Until(ElementToBeVisible(_manageButton));
                 Wait.Until(ElementToBeVisible(_addCashButton));
-                //TODO: Find a way to handle these checks in a short period of time
-                //Wait.Until(ElementToBeNotVisible(_readyToPowerYourWishlistMessage));
-                //Wait.Until(ElementToBeNotVisible(_createAWishlistAccountButton));
+
+                IsElementNotVisibleByXpath(ReadyToPowerYourWishlistMessageXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(CreateAWishlistAccountButtonXPath, Driver).Should().BeTrue();
 
                 _availableForYourNextItemMessage.Text.Should().Be(AvailableForYourNextItemMessageText);
             }
@@ -201,11 +209,11 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
                 Wait.Until(ElementToBeVisible(_addWishlistItemPlaceholder));
                 Wait.Until(ElementToBeVisible(_readyToPowerYourWishlistMessage));
                 Wait.Until(ElementToBeVisible(_createAWishlistAccountButton));
-                //TODO: Find a way to handle these checks in a short period of time
-                //Wait.Until(ElementToBeNotVisible(_moneyAmount));
-                //Wait.Until(ElementToBeNotVisible(_availableForYourNextItemMessage));
-                //Wait.Until(ElementToBeNotVisible(_manageButton));
-                //Wait.Until(ElementToBeNotVisible(_addCashButton));
+
+                IsElementNotVisibleByXpath(MoneyAmountXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(AvailableForYourNextItemMessageXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(ManageButtonXPath, Driver).Should().BeTrue();
+                IsElementNotVisibleByXpath(AddCashButtonXPath, Driver).Should().BeTrue();
 
                 _readyToPowerYourWishlistMessage.Text.Should().Be(ReadyToPowerYourWishlistMessageText);
             }

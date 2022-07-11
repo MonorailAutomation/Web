@@ -4,6 +4,7 @@ using monorail_web_v3.PageObjects.Menus;
 using monorail_web_v3.PageObjects.Commons.Screens;
 using monorail_web_v3.PageObjects.WishlistScreens.Modals.ItemModals;
 using monorail_web_v3.PageObjects.WishlistScreens.Screens;
+using monorail_web_v3.RestRequests.Helpers;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -72,6 +73,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .CheckWishlistItemIsBeingAddedModal()
                 .ClickCloseButton();
 
+            WaitUntilItemsAreScrapedByEmail(username);
+
             wishlistMainScreen
                 .ClickLetsGoButton()
                 .CheckItemBeingAddedBarDisappeared()
@@ -133,6 +136,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             wishlistItemIsBeingAddedModal
                 .CheckWishlistItemIsBeingAddedModal()
                 .ClickCloseButton();
+
+            WaitUntilItemsAreScrapedByEmail(username);
 
             wishlistMainScreen
                 .ClickLetsGoButton()
@@ -199,6 +204,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
                 .CheckWishlistItemIsBeingAddedModal()
                 .ClickCloseButton();
 
+            WaitUntilItemsAreScrapedByEmail(username);
+
             wishlistMainScreen
                 .ClickLetsGoButton()
                 .CheckItemBeingAddedBarDisappeared()
@@ -261,6 +268,8 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             wishlistItemIsBeingAddedModal
                 .CheckWishlistItemIsBeingAddedModal()
                 .ClickCloseButton();
+ 
+            WaitUntilItemsAreScrapedByEmail(username);
 
             wishlistMainScreen
                 .ClickLetsGoButton()

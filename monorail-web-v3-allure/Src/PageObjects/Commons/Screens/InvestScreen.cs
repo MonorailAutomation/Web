@@ -13,8 +13,8 @@ namespace monorail_web_v3.PageObjects.Commons.Screens
         private const string SipcDisclaimerPartOne = "All money for \"Investing\" is protected";
         private const string SipcDisclaimerPartTwo = "and insured up to $250K by SiPC®.";
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Milestones')]")]
-        private IWebElement _milestonesNavItem;
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Portfolios')]")]
+        private IWebElement _portfoliosNavItem;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-footer']//small[1]")]
         private IWebElement _sipcDisclaimerPartOne;
@@ -25,27 +25,27 @@ namespace monorail_web_v3.PageObjects.Commons.Screens
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-footer']//svg-icon[contains(@src, 'sipc-logo')]")]
         private IWebElement _sipcLogo;
 
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Trading')]")]
-        private IWebElement _tradingNavItem;
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Stocks')]")]
+        private IWebElement _stocksNavItem;
 
         public InvestScreen(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Click 'Trading'")]
-        public InvestScreen ClickTrading()
+        [AllureStep("Click 'Stocks'")]
+        public InvestScreen ClickStocks()
         {
-            Wait.Until(ElementToBeClickable(_tradingNavItem));
-            _tradingNavItem.Click();
+            Wait.Until(ElementToBeClickable(_stocksNavItem));
+            _stocksNavItem.Click();
             return this;
         }
 
-        [AllureStep("Click 'Milestones'")]
-        public InvestScreen ClickMilestones()
+        [AllureStep("Click 'Portfolios'")]
+        public InvestScreen ClickPortfolios()
         {
-            Wait.Until(ElementToBeClickable(_milestonesNavItem));
-            _milestonesNavItem.Click();
+            Wait.Until(ElementToBeClickable(_portfoliosNavItem));
+            _portfoliosNavItem.Click();
             return this;
         }
 
@@ -54,8 +54,8 @@ namespace monorail_web_v3.PageObjects.Commons.Screens
         {
             try
             {
-                Wait.Until(ElementToBeClickable(_tradingNavItem));
-                Wait.Until(ElementToBeClickable(_milestonesNavItem));
+                Wait.Until(ElementToBeClickable(_stocksNavItem));
+                Wait.Until(ElementToBeClickable(_portfoliosNavItem));
                 Wait.Until(ElementToBeClickable(_sipcLogo));
                 Wait.Until(ElementToBeClickable(_sipcDisclaimerPartOne));
                 Wait.Until(ElementToBeClickable(_sipcDisclaimerPartTwo));

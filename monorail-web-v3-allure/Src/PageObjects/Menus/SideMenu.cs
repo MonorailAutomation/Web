@@ -1,6 +1,8 @@
 ﻿using NUnit.Allure.Steps;
 using OpenQA.Selenium;
+using System.Threading;
 using SeleniumExtras.PageObjects;
+using static monorail_web_v3.Commons.Functions;
 using static monorail_web_v3.Commons.Waits;
 using static monorail_web_v3.Test.Scripts.FunctionalTesting;
 
@@ -34,6 +36,7 @@ namespace monorail_web_v3.PageObjects.Menus
         public SideMenu ClickLogOutLink()
         {
             Wait.Until(ElementToBeClickable(_logOutLink));
+            Thread.Sleep(1000);
             _logOutLink.Click();
             return this;
         }
