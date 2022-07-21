@@ -205,6 +205,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Stocks
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
+            //Thread.Sleep(4500); 
+
             stocksMainScreen
                 .CheckStocksMainScreenAfterOnboarding();
 

@@ -77,7 +77,8 @@ namespace monorail_web_v3.PageObjects.InvestScreens.StocksScreen.Screens
                 Wait.Until(ElementToBeVisible(_stocksHeader));
                 Wait.Until(ElementToBeVisible(_howItWorksButton));
 
-                IsElementNotVisibleByXpath(StartTradingStocksButtonXPath, Driver).Should().BeTrue();
+                Wait.Until(ElementToBeNotVisible(_startTradingStocksButton));
+                //IsElementNotVisibleByXpath(StartTradingStocksButtonXPath, Driver).Should().BeTrue();
             }
             catch (Exception e)
             {
