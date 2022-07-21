@@ -12,10 +12,10 @@ namespace monorail_web_v3.PageObjects.ProfileScreens.Screens
     public class ConnectedAccountScreen : MainScreen
     {
         private const string ConnectedAccountPageHeaderText = "Connected Account";
-        private const string NoAccountHeaderText = "Funding goals is secure and simple";
+        private const string NoAccountHeaderText = "Funding portfolios is secure and simple";
 
         private const string NoAccountMessageText =
-            "Your goals grow by connecting your current spending account. It's easy, speedy and bank level secure.";
+            "Your portfolios grow by connecting your current spending account. It's easy, speedy and bank level secure.";
 
         [FindsBy(How = How.XPath, Using = "//div[@class='my-connected-accounts__bank']//h1")]
         private IWebElement _connectedAccountAmount;
