@@ -11,7 +11,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Screens
 {
     public class PortfoliosMainScreen : InvestScreen
     {
-        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Add a Portfolio')]")]
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Add an Account')]")]
         private IWebElement _addAPortfolioButton;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='empty-card__container'][1]")]

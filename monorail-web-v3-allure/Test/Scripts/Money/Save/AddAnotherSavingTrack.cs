@@ -33,7 +33,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
             var trackDepositScheduleModal = new DepositScheduleModal(Driver);
             var addTrackSuccessModal = new AddTrackSuccessModal(Driver);
 
-            const string username = "autotests.mono+2.2.181021@gmail.com";
+            const string username = "autotests.mono+2.2.230822@gmail.com";
             const string trackDescription = "Test Track Description";
             const string trackTargetDate = "04192029";
             const string trackTargetAmount = "6,900";
@@ -65,15 +65,15 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .CheckTrackDetailsModal()
                 .SetTrackIcon(TrackIcon.Paw)
                 .SetTrackMainColor(TrackColor.Turquoise)
-                .SetTrackTargetAmount(trackTargetAmount)
-                .SetTrackTargetDate(trackTargetDate)
                 .SetItemName(trackName)
                 .SetItemDescription(trackDescription)
                 .ClickContinueButton();
 
             trackDepositScheduleModal
                 .CheckDepositScheduleModal("Weekly")
-                .ClickContinueButton();
+                .SetTrackTargetAmount(trackTargetAmount)
+                .SetTrackTargetDate(trackTargetDate)
+                .ClickConfirmButton();
 
             addTrackSuccessModal
                 .CheckSuccessModal()

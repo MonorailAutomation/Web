@@ -19,6 +19,7 @@ using static monorail_web_v3.RestRequests.Endpoints.Management.PilotFeature;
 namespace monorail_web_v3.Test.Scripts.Wishlist
 {
     [TestFixture]
+    [Ignore("Q2 Onboarding not supported - ignore")]
     [AllureNUnit]
     internal class WishlistOnboarding : FunctionalTesting
     {

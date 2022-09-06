@@ -64,7 +64,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
                 .ClickSave();
 
             saveMainScreen
-                .CheckSaveMainScreenBeforeOnboarding()
+                //.CheckSaveMainScreenBeforeOnboarding()
                 .ClickUnlockSavingsTracksButton();
 
             completeYourAccountModal
@@ -113,7 +113,7 @@ namespace monorail_web_v3.Test.Scripts.Money.Save
 
             depositScheduleModal
                 .CheckDepositScheduleModal("Weekly")
-                .ClickContinueButton();
+                .ClickConfirmButton();
 
             addTrackSuccessModal
                 .CheckSuccessModal()

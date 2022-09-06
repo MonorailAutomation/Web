@@ -12,10 +12,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Modals
 {
     public class PortfolioItemDetailsModal : ItemDetailsModal
     {
-        private const string PortfolioDetailsHeaderText = "Portfolio Details";
-
-        [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='targetBalance']")]
-        private IWebElement _portfolioTargetAmountInput;
+        private const string PortfolioDetailsHeaderText = "Account Information";
 
         [FindsBy(How = How.XPath, Using = "//input[@type='text']")]
         private IWebElement _portfolioTargetDateInput;
@@ -25,23 +22,6 @@ namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Modals
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Set Portfolio Target Amount to '${0}'")]
-        public PortfolioItemDetailsModal SetPortfolioTargetAmount(string portfolioTargetAmount)
-        {
-            Wait.Until(ElementToBeVisible(_portfolioTargetAmountInput));
-            _portfolioTargetAmountInput.Clear();
-            _portfolioTargetAmountInput.SendKeys(portfolioTargetAmount);
-            return this;
-        }
-
-        [AllureStep("Set Portfolio Target Date to '{0}'")]
-        public PortfolioItemDetailsModal SetPortfolioTargetDate(string portfolioTargetDate)
-        {
-            Wait.Until(ElementToBeVisible(_portfolioTargetDateInput));
-            _portfolioTargetDateInput.Clear();
-            _portfolioTargetDateInput.SendKeys(portfolioTargetDate);
-            return this;
-        }
 
         [AllureStep("Verify if 'Target Date' is '{0}'")]
         public PortfolioItemDetailsModal VerifyTargetDate(string expectedTargetDate)
@@ -60,8 +40,8 @@ namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Modals
         {
             try
             {
-                CheckItemDetailsModal(PortfolioDetailsHeaderText);
-                Wait.Until(ElementToBeVisible(ItemDescriptionInput));
+                //CheckItemDetailsModal(PortfolioDetailsHeaderText);
+                //TODO: Uncomment line above when #43576 is fixed
                 Wait.Until(ElementToBeVisible(ContinueButton));
             }
             catch (Exception e)

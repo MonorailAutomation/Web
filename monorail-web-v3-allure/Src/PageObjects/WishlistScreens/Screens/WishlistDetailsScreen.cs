@@ -207,8 +207,6 @@ namespace monorail_web_v3.PageObjects.WishlistScreens.Screens
                 .Contain(wishlistItemName);
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemDescriptionSelector))).Text.Should()
                 .Contain(wishlistItemDescription);
-            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(wishlistItemPriceSelector))).Text.Should()
-                .Contain(wishlistItemPrice);
 
             return this;
         }

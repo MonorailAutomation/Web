@@ -16,7 +16,7 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
             var request = new RestRequest
             {
                 Resource = TokenEndpoint,
-                Method = Method.POST,
+                Method = Method.Post,
                 RequestFormat = DataFormat.Json
             };
             request.AddJsonBody(new {email = user, password = ValidPassword});

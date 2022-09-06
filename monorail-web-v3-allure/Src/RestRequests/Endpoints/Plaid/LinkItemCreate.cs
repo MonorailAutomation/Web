@@ -14,15 +14,15 @@ namespace monorail_web_v3.RestRequests.Endpoints.Plaid
 
         public static string[] PostLinkItemCreate(string token)
         {
-            var client = new RestClient
+            var client = new RestClient(RestConfig.PlaidUri)
             {
-                BaseUrl = RestConfig.PlaidUri,
+                //BaseUrl = RestConfig.PlaidUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
             {
                 Resource = LinkItemCreateEndpoint,
-                Method = Method.POST,
+                Method = Method.Post,
                 RequestFormat = DataFormat.Json
             };
             request.AddJsonBody(new

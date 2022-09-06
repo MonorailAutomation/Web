@@ -32,8 +32,6 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals.ItemModals
             {
                 CheckItemDetailsModal(TrackDetailsHeaderText);
                 Wait.Until(ElementToBeVisible(ItemDescriptionInput));
-                Wait.Until(ElementToBeVisible(_trackTargetAmountInput));
-                Wait.Until(ElementToBeVisible(_trackTargetDateInput));
                 Wait.Until(ElementToBeVisible(ContinueButton));
             }
             catch (Exception e)
@@ -61,24 +59,6 @@ namespace monorail_web_v3.PageObjects.MoneyScreens.SaveScreen.Modals.ItemModals
             var trackColorNumber = (int) trackColor;
             var particularTrackColorSelector = allTrackColorSelector + "[" + trackColorNumber + "]";
             Wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(particularTrackColorSelector))).Click();
-            return this;
-        }
-
-        [AllureStep("Set Track Target Amount to '${0}'")]
-        public TrackItemDetailsModal SetTrackTargetAmount(string trackTargetAmount)
-        {
-            Wait.Until(ElementToBeVisible(_trackTargetAmountInput));
-            _trackTargetAmountInput.Clear();
-            _trackTargetAmountInput.SendKeys(trackTargetAmount);
-            return this;
-        }
-
-        [AllureStep("Set Track Target Date to '{0}'")]
-        public TrackItemDetailsModal SetTrackTargetDate(string trackTargetDate)
-        {
-            Wait.Until(ElementToBeVisible(_trackTargetDateInput));
-            _trackTargetDateInput.Clear();
-            _trackTargetDateInput.SendKeys(trackTargetDate);
             return this;
         }
     }

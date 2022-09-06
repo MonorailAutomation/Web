@@ -48,7 +48,6 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.ItemModals
             {
                 Wait.Until(ElementToBeVisible(ModalHeader));
                 Wait.Until(ElementToBeVisible(XButton));
-                Wait.Until(ElementToBeVisible(_changeImageButton));
                 Wait.Until(ElementToBeVisible(ItemNameInput));
                 Wait.Until(ElementToBeVisible(BackButton));
 
