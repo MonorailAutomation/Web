@@ -11,22 +11,18 @@ namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Modals
 {
     public class AddPortfolioSuccessModal : AddItemSuccessModal
     {
-        private const string SuccessHeaderText = "Success!";
-        private const string SuccessMessageText = "Your portfolio is being added now.";
+        private const string SuccessHeaderText = "You are all set!";
+        private const string SuccessMessageText = "Your account is being created now.";
 
-        private const string SuccessQuoteText =
-            "“Stay focused, go after your dreams and keep moving toward your goals.”";
 
         private const string SipcLogoUrl = "assets/img/sipc-logo.svg";
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='success-goal__footer__content']//svg-icon")]
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'success-modal__footer')]//svg-icon")]
         private IWebElement _sipcLogo;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='success-goal__content']//p")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//p")]
         private IWebElement _successMessage;
 
-        [FindsBy(How = How.XPath, Using = "//div[@class='success-goal__footer__content']//p")]
-        private IWebElement _successQuote;
 
         public AddPortfolioSuccessModal(IWebDriver driver) : base(driver)
         {
@@ -40,12 +36,10 @@ namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Modals
             {
                 CheckAddItemSuccessModal(SuccessHeaderText);
                 Wait.Until(ElementToBeVisible(_successMessage));
-                Wait.Until(ElementToBeVisible(_successQuote));
                 Wait.Until(ElementToBeVisible(_sipcLogo));
                 Wait.Until(ElementToBeVisible(_finishButton));
 
                 _successMessage.Text.Should().Contain(SuccessMessageText);
-                _successQuote.Text.Should().Contain(SuccessQuoteText);
                 _sipcLogo.GetAttribute("src").Should().Be(SipcLogoUrl);
             }
             catch (Exception e)

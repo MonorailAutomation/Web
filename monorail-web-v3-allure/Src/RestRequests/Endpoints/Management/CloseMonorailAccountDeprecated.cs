@@ -5,21 +5,21 @@ using static monorail_web_v3.RestRequests.RestConfig;
 
 namespace monorail_web_v3.RestRequests.Endpoints.Management
 {
-    public static class CloseMonorailAccount
+    public static class CloseMonorailAccountDeprecated
     {
         private const string CloseMonorailAccountEndpoint = "/api/intervention/accounts/monorail/close/";
 
         public static void PostMonorailCloseUserId(string userId)
         {
             var resource = CloseMonorailAccountEndpoint + userId;
-            var client = new RestClient
+            var client = new RestClient(MonarchManagementUri)
             {
-                BaseUrl = MonarchManagementUri
+                //BaseUrl = MonarchManagementUri
             };
             var request = new RestRequest
             {
                 Resource = resource,
-                Method = Method.POST
+                Method = Method.Post
             };
             request.AddHeader("apiKey", GetEndpointConfiguration().MonarchApiKey);
 

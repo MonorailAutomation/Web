@@ -1,16 +1,18 @@
-using System;
+using FluentAssertions;
 using RestSharp;
 using RestSharp.Authenticators;
+using static System.Net.HttpStatusCode;
 using static monorail_web_v3.RestRequests.RestConfig;
 
 namespace monorail_web_v3.RestRequests.Endpoints.Monarch
 {
-    public static class VerifyStatus
+    public static class CloseMonorailAccount
     {
-        private const string VerifyStatusEndpoint = "/api/accounts/plaid/VerifyStatus";
+        private const string CloseMonorailAccountEndpoint = "/api/accounts/monorail/close";
 
-        public static string GetVerifyStatus(string token)
+        public static void PostMonorailCloseUser(string token)
         {
+            var resource = CloseMonorailAccountEndpoint;
             var client = new RestClient(MonarchAppUri)
             {
                 //BaseUrl = MonarchAppUri,
@@ -18,15 +20,13 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
             };
             var request = new RestRequest
             {
-                Resource = VerifyStatusEndpoint,
-                Method = Method.Get
+                Resource = resource,
+                Method = Method.Post
             };
 
             var response = client.Execute(request);
 
-            Console.WriteLine("Plaid Account status: " + response.StatusCode);
-
-            return response.StatusCode.ToString();
+            response.StatusCode.Should().Be(OK);
         }
     }
 }

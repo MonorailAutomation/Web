@@ -13,14 +13,14 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch.V3
         public static void PostRegister(string userEmail, string phoneNo, string dateOfBirth)
         {
             const string verificationMode = "phone";
-            var client = new RestClient
+            var client = new RestClient(MonarchAppUri)
             {
-                BaseUrl = MonarchAppUri
+                //BaseUrl = MonarchAppUri
             };
             var request = new RestRequest
             {
                 Resource = RegisterEndpoint,
-                Method = Method.POST,
+                Method = Method.Post,
                 RequestFormat = DataFormat.Json
             };
             request.AddJsonBody(new

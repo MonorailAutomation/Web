@@ -12,15 +12,15 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
 
         public static void PostMoneyAch(string token, string generatedPlaidPublicToken, string generatedPlaidAccountId)
         {
-            var client = new RestClient
+            var client = new RestClient(MonarchAppUri)
             {
-                BaseUrl = MonarchAppUri,
+                //BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
             {
                 Resource = MoneyAchEndpoint,
-                Method = Method.POST,
+                Method = Method.Post,
                 RequestFormat = DataFormat.Json
             };
             request.AddJsonBody(new

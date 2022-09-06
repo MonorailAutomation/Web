@@ -13,15 +13,15 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch.V2
 
         public static string GetTermsOfUseId(string token)
         {
-            var client = new RestClient
+            var client = new RestClient(MonarchAppUri)
             {
-                BaseUrl = MonarchAppUri,
+                //BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
             {
                 Resource = DocumentsEndpoint,
-                Method = Method.GET
+                Method = Method.Get
             };
             request.AddHeader("product", "iOS");
 
@@ -36,15 +36,15 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch.V2
 
         public static void PostTermsOfUse(string token, string termsOfUseId)
         {
-            var client = new RestClient
+            var client = new RestClient(MonarchAppUri)
             {
-                BaseUrl = MonarchAppUri,
+                //BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
             {
                 Resource = DocumentsEndpoint,
-                Method = Method.POST
+                Method = Method.Post
             };
             request.AddJsonBody(new
             {

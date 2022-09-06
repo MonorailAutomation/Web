@@ -6,10 +6,10 @@ namespace monorail_web_v3.RestRequests.Helpers
     public static class PortfolioHelperFunctions
     {
         public static void RevertPortfolio(string username, string portfolioId,
-            string portfolioName, string portfolioDescription)
+            string portfolioName)
         {
             var token = GenerateToken(username);
-            PatchGoals(token, portfolioId, portfolioDescription, portfolioName);
+            PatchGoals(token, portfolioId, portfolioName);
             //PutGoals(token, portfolioId, portfolioTargetAmount, portfolioTargetDate);
         }
     }

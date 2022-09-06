@@ -32,11 +32,9 @@ namespace monorail_web_v3.Test.Scripts.Invest.Portfolios
             const string username = "autotests.mono+4.1.131021@gmail.com";
             const string portfolioId = "35206f40-e104-444b-b4b2-ee61e97ded85";
 
-            const string originalPortfolioName = "Original Milestone Name";
-            const string originalPortfolioDescription = "Original Milestone Description";
-
+            const string originalPortfolioName = "Original Portfolio Name";
+           
             const string changedPortfolioName = "Changed Portfolio Name";
-            const string changedPortfolioDescription = "Changed Portfolio Description";
 
             VerifyPlaidConnection(username);
 
@@ -55,18 +53,17 @@ namespace monorail_web_v3.Test.Scripts.Invest.Portfolios
             portfoliosMainScreen.ClickPortfolio(originalPortfolioName);
 
             portfolioDetailsScreen
-                .ClickEditDetailsButton();
+                .ClickRenameAccountButton();
 
             portfolioDetailsModal
                 .CheckPortfolioDetailsModal()
                 .SetItemName(changedPortfolioName)
-                .SetItemDescription(changedPortfolioDescription)
                 .ClickContinueButton();
 
             portfolioDetailsScreen
-                .VerifyPortfolioDetails(changedPortfolioName, changedPortfolioDescription);
+                .VerifyPortfolioDetails(changedPortfolioName);
 
-            RevertPortfolio(username, portfolioId, originalPortfolioName, originalPortfolioDescription);
+            RevertPortfolio(username, portfolioId, originalPortfolioName);
         }
     }
 }

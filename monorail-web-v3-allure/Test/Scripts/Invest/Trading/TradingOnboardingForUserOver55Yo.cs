@@ -92,7 +92,7 @@ namespace monorail_web_v3.Test.Scripts.Invest.Stocks
                 .ClickSkipToBottomButton()
                 .ClickAgreeAndFinishButton();
 
-            PostPilotFeatures(username, "useOrbis");
+            //PostPilotFeatures(username, "useOrbis");
 
             mainScreen
                 .CheckMainScreen()

@@ -11,7 +11,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Screens
 {
     public class PortfolioDetailsScreen : InvestScreen
     {
-        [FindsBy(How = How.XPath, Using = "//p[contains(text(), 'Edit Details')]")]
+        [FindsBy(How = How.XPath, Using = "//p[contains(text(), 'Rename Account')]")]
         private IWebElement _editDetailsOption;
 
         [FindsBy(How = How.XPath, Using = "//vim-goal-description//p[@class='text-gray-400']")]
@@ -28,8 +28,8 @@ namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Screens
             PageFactory.InitElements(driver, this);
         }
 
-        [AllureStep("Click 'Edit Details' button")]
-        public PortfolioDetailsScreen ClickEditDetailsButton()
+        [AllureStep("Click 'Rename Account' button")]
+        public PortfolioDetailsScreen ClickRenameAccountButton()
         {
             Wait.Until(ElementToBeClickable(_editDetailsOption));
             _editDetailsOption.Click();
@@ -37,11 +37,10 @@ namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Screens
         }
 
         [AllureStep("Verify if Portfolio Name is '{0}', Description is '{1}'")]
-        public PortfolioDetailsScreen VerifyPortfolioDetails(string portfolioName, string portfolioDescription)
+        public PortfolioDetailsScreen VerifyPortfolioDetails(string portfolioName)
         {
             VerifyIfPortfolioNameHasChanged(portfolioName);
             _portfolioName.Text.Should().Be(portfolioName);
-            _portfolioDescription.Text.Should().Be(portfolioDescription);
             return this;
         }
 

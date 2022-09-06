@@ -11,21 +11,21 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch.V3
     {
         private const string GoalsEndpoint = "/api/v3/Goals/";
 
-        public static void PatchGoals(string token, string goalId, string goalDescription, string goalName)
+        public static void PatchGoals(string token, string goalId, string goalName)
         {
             var resource = GoalsEndpoint + goalId;
-            var client = new RestClient
+            var client = new RestClient(MonarchAppUri)
             {
-                BaseUrl = MonarchAppUri,
+                //BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
             {
                 Resource = resource,
-                Method = Method.PATCH,
+                Method = Method.Patch,
                 RequestFormat = DataFormat.Json
             };
-            request.AddJsonBody(new {itemDescription = goalDescription, name = goalName});
+            request.AddJsonBody(new {name = goalName});
 
             var response = client.Execute(request);
 
@@ -37,16 +37,16 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch.V3
             var resource = GoalsEndpoint + goalId;
             var convertedDate = Convert.ToDateTime(date).ToString("yyyy-MM-ddTHH:mm:ssZ");
 
-            var client = new RestClient
+            var client = new RestClient(MonarchAppUri)
             {
-                BaseUrl = MonarchAppUri,
+                //BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
 
             var request = new RestRequest
             {
                 Resource = resource,
-                Method = Method.PUT,
+                Method = Method.Put,
                 RequestFormat = DataFormat.Json
             };
 
