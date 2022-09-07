@@ -11,14 +11,14 @@ namespace monorail_web_v3.RestRequests.Endpoints.Management
 
         public static void PostPilotFeatures(string userEmail, string featureType)
         {
-            var client = new RestClient
+            var client = new RestClient(MonarchManagementUri)
             {
-                BaseUrl = MonarchManagementUri
+                //BaseUrl = MonarchManagementUri
             };
             var request = new RestRequest
             {
                 Resource = PilotFeatureEndpoint,
-                Method = Method.POST,
+                Method = Method.Post,
                 RequestFormat = DataFormat.Json
             };
             request.AddHeader("apiKey", GetEndpointConfiguration().MonarchApiKey);

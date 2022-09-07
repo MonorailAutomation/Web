@@ -28,7 +28,7 @@ namespace monorail_web_v3.PageObjects.ProfileScreens.Modals
         {
             Wait.Until(ElementToBeVisible(_usernameField));
             Wait.Until(ElementToBeVisible(_passwordField));
-            Wait.Until(ElementToBeClickable(_submitButton));
+            Wait.Until(ElementToBeVisible(_submitButton));
 
             _usernameField.SendKeys("user_good");
             _passwordField.SendKeys("pass_good");

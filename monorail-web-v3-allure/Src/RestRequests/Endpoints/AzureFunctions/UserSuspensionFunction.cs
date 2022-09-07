@@ -11,14 +11,14 @@ namespace monorail_web_v3.RestRequests.Endpoints.AzureFunctions
 
         public static void GetUserSuspensionFunction(string userId)
         {
-            var client = new RestClient
+            var client = new RestClient(AzureFunctionsUri)
             {
-                BaseUrl = AzureFunctionsUri
+                //BaseUrl = AzureFunctionsUri
             };
             var request = new RestRequest
             {
                 Resource = UserSuspensionFunctionEndpoint,
-                Method = Method.GET
+                Method = Method.Get
             };
             request.AddParameter("code", GetEndpointConfiguration().AzureCode);
             request.AddParameter("id", userId);

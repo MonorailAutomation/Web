@@ -10,14 +10,14 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
 
         public static bool VerifyEmailAlreadyExists(string userEmail)
         {
-            var client = new RestClient
+            var client = new RestClient(MonarchAppUri)
             {
-                BaseUrl = MonarchAppUri
+                //BaseUrl = MonarchAppUri
             };
             var request = new RestRequest
             {
                 Resource = VerifyEmailAddressEndpoint,
-                Method = Method.POST,
+                Method = Method.Post,
                 RequestFormat = DataFormat.Json
             };
             request.AddJsonBody(new

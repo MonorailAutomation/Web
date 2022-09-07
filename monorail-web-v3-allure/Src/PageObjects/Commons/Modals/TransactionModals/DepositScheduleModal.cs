@@ -15,7 +15,7 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.TransactionModals
     {
         private const string TargetAndScheduleHeaderText = "Target & Schedule";
         private const string DepositScheduleHeaderText = "Deposit Schedule";
-        private const string DayOfTheWeekOrMonthLabelXPath = "//form//div[3]//label";
+        private const string DayOfTheWeekOrMonthLabelXPath = "(//form//div[3]//label)[last()]";
         private const string DayOfTheWeekOrMonthSelectorXPath = "//select[@formcontrolname='dayToExecute']";
 
         private const string DepositAmountLabelText = "Deposit Amount";
@@ -35,13 +35,13 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.TransactionModals
         [FindsBy(How = How.XPath, Using = "//input[@id='amount']")]
         private IWebElement _depositAmountInput;
 
-        [FindsBy(How = How.XPath, Using = "//form//div[1]//label")]
+        [FindsBy(How = How.XPath, Using = "(//form//div[1]//label)[5]")]
         private IWebElement _depositAmountLabel;
 
         [FindsBy(How = How.XPath, Using = "//div[@class='vim-modal__body__content']//vim-toggle")]
         private IWebElement _depositScheduleSwitch;
 
-        [FindsBy(How = How.XPath, Using = "//form//div[2]//label")]
+        [FindsBy(How = How.XPath, Using = "(//form//div[1]//label)[6]")]
         private IWebElement _frequencyLabel;
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Monthly')]")]
@@ -50,9 +50,39 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.TransactionModals
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Weekly')]")]
         private IWebElement _weeklyButton;
 
+        [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='targetBalance']")]
+        private IWebElement _portfolioTargetAmountInput;
+
+        [FindsBy(How = How.XPath, Using = "//input[@type='text']")]
+        private IWebElement _portfolioTargetDateInput;
+
+        [FindsBy(How = How.XPath, Using = "//input[@formcontrolname='targetBalance']")]
+        private IWebElement _trackTargetAmountInput;
+
+        [FindsBy(How = How.XPath, Using = "//input[@type='text']")]
+        private IWebElement _trackTargetDateInput;
+
         public DepositScheduleModal(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
+        }
+
+        [AllureStep("Set Track Target Amount to '${0}'")]
+        public DepositScheduleModal SetTrackTargetAmount(string trackTargetAmount)
+        {
+            Wait.Until(ElementToBeVisible(_trackTargetAmountInput));
+            _trackTargetAmountInput.Clear();
+            _trackTargetAmountInput.SendKeys(trackTargetAmount);
+            return this;
+        }
+
+        [AllureStep("Set Track Target Date to '{0}'")]
+        public DepositScheduleModal SetTrackTargetDate(string trackTargetDate)
+        {
+            Wait.Until(ElementToBeVisible(_trackTargetDateInput));
+            _trackTargetDateInput.Clear();
+            _trackTargetDateInput.SendKeys(trackTargetDate);
+            return this;
         }
 
         [AllureStep("Click 'Daily' button")]
@@ -85,6 +115,24 @@ namespace monorail_web_v3.PageObjects.Commons.Modals.TransactionModals
             Wait.Until(ElementToBeVisible(_depositAmountInput));
             _depositAmountInput.Clear();
             _depositAmountInput.SendKeys(depositAmount);
+            return this;
+        }
+
+        [AllureStep("Set Portfolio Target Amount to '${0}'")]
+        public DepositScheduleModal SetPortfolioTargetAmount(string portfolioTargetAmount)
+        {
+            Wait.Until(ElementToBeVisible(_portfolioTargetAmountInput));
+            _portfolioTargetAmountInput.Clear();
+            _portfolioTargetAmountInput.SendKeys(portfolioTargetAmount);
+            return this;
+        }
+
+        [AllureStep("Set Portfolio Target Date to '{0}'")]
+        public DepositScheduleModal SetPortfolioTargetDate(string portfolioTargetDate)
+        {
+            Wait.Until(ElementToBeVisible(_portfolioTargetDateInput));
+            _portfolioTargetDateInput.Clear();
+            _portfolioTargetDateInput.SendKeys(portfolioTargetDate);
             return this;
         }
 

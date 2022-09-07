@@ -35,7 +35,6 @@ namespace monorail_web_v3.Test.Scripts.Invest.Portfolios
             var addPortfolioSuccessModal = new AddPortfolioSuccessModal(Driver);
 
             const string username = "autotests.mono+1.1.071122@gmail.com";
-            const string portfolioDescription = "Test Portfolio Description";
             const string portfolioTargetDate = "10242023";
             const string portfolioTargetAmount = "4,500";
 
@@ -59,14 +58,11 @@ namespace monorail_web_v3.Test.Scripts.Invest.Portfolios
 
             chooseAPortfolioModal
                 .CheckChooseAPortfolioModal()
-                .ClickPortfolioType(PortfolioType.CollegeFund);
+                .ClickPortfolioType("General Investing");
 
             portfolioItemDetailsModal
                 .CheckPortfolioDetailsModal()
-                .SetPortfolioTargetAmount(portfolioTargetAmount)
-                .SetPortfolioTargetDate(portfolioTargetDate)
                 .SetItemName(portfolioName)
-                .SetItemDescription(portfolioDescription)
                 .ClickContinueButton();
 
             portfolioModal
@@ -75,7 +71,9 @@ namespace monorail_web_v3.Test.Scripts.Invest.Portfolios
 
             portfolioDepositScheduleModal
                 .CheckDepositScheduleModal("Weekly")
-                .ClickContinueButton();
+                .SetPortfolioTargetDate(portfolioTargetDate)
+                .SetPortfolioTargetAmount(portfolioTargetAmount)
+                .ClickConfirmButton();
 
             addPortfolioSuccessModal
                 .CheckSuccessModal()

@@ -22,7 +22,7 @@ namespace monorail_web_v3.Test.Scripts.Wishlist
             "https://www.amazon.com/Sceptre-E248W-19203R-Monitor-Speakers-Metallic/dp/B0773ZY26F/ref=lp_16225007011_1_4";
 
         private const string WishlistItemName = "Sceptre 24\" Professional";
-        private const string WishlistItemPrice = "$116.98";
+        private const string WishlistItemPrice = "$117.97";
         private const string WishlistItemDescription = "24\" Ultra slim profile";
 
         [Test(Description = "Add complete Wishlist item by clicking a button when user has a wishlist account")]

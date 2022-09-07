@@ -170,14 +170,11 @@ namespace monorail_web_v3.Test.Scripts.Invest.Portfolios
 
             chooseAPortfolioModal
                 .CheckChooseAPortfolioModal()
-                .ClickPortfolioType(CollegeFund);
+                .ClickPortfolioType("General Investing");
 
             portfolioItemDetailsModal
                 .CheckPortfolioDetailsModal()
-                .SetPortfolioTargetAmount(PortfolioTargetAmount)
-                .SetPortfolioTargetDate(PortfolioTargetDate)
                 .SetItemName(portfolioName)
-                .SetItemDescription(PortfolioDescription)
                 .ClickContinueButton();
 
             portfolioModal
@@ -186,6 +183,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Portfolios
 
             portfolioDepositScheduleModal
                 .CheckDepositScheduleModal("Weekly")
+                .SetPortfolioTargetAmount(PortfolioTargetAmount)
+                .SetPortfolioTargetDate(PortfolioTargetDate)
                 .ClickContinueButton();
 
             addPortfolioSuccessModal
@@ -339,14 +338,11 @@ namespace monorail_web_v3.Test.Scripts.Invest.Portfolios
 
             chooseAPortfolioModal
                 .CheckChooseAPortfolioModal()
-                .ClickPortfolioType(CollegeFund);
+                .ClickPortfolioType("General Investing");
 
             portfolioItemDetailsModal
                 .CheckPortfolioDetailsModal()
-                .SetPortfolioTargetAmount(PortfolioTargetAmount)
-                .SetPortfolioTargetDate(PortfolioTargetDate)
                 .SetItemName(portfolioName)
-                .SetItemDescription(PortfolioDescription)
                 .ClickContinueButton();
 
             portfolioModal
@@ -355,6 +351,8 @@ namespace monorail_web_v3.Test.Scripts.Invest.Portfolios
 
             portfolioDepositScheduleModal
                 .CheckDepositScheduleModal("Weekly")
+                .SetPortfolioTargetAmount(PortfolioTargetAmount)
+                .SetPortfolioTargetDate(PortfolioTargetDate)
                 .ClickContinueButton();
 
             addPortfolioSuccessModal

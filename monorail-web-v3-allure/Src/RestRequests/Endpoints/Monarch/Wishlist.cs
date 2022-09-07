@@ -13,15 +13,15 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
 
         public static string[] GetWishlistItemsInProgress(string token)
         {
-            var client = new RestClient
+            var client = new RestClient(MonarchAppUri)
             {
-                BaseUrl = MonarchAppUri,
+                //BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
             {
                 Resource = WishlistEndpoint,
-                Method = Method.GET,
+                Method = Method.Get,
                 RequestFormat = DataFormat.Json
             };
 

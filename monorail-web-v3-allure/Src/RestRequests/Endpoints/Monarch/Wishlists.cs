@@ -14,15 +14,15 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
         public static void DeleteWishlists(string token, string wishlistItemId)
         {
             var resource = WishlistsEndpoint + wishlistItemId;
-            var client = new RestClient
+            var client = new RestClient(MonarchAppUri)
             {
-                BaseUrl = MonarchAppUri,
+                //BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
             {
                 Resource = resource,
-                Method = Method.DELETE
+                Method = Method.Delete
             };
             var response = client.Execute(request);
 
@@ -32,15 +32,15 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
         public static void UpdateWishlists(string token, string amountAdd, string descriptionAdd, string faviconUrlAdd,
             string imageUrlAdd, string itemUrlAdd, string nameAdd, string wishlistItemId)
         {
-            var client = new RestClient
+            var client = new RestClient(MonarchAppUri)
             {
-                BaseUrl = MonarchAppUri,
+                //BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
             {
                 Resource = WishlistsEndpoint,
-                Method = Method.PUT,
+                Method = Method.Put,
                 RequestFormat = DataFormat.Json
             };
 
@@ -64,15 +64,15 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch
             string itemDescription,
             string itemAmount, string itemImageUrl, string itemFavIconUrl)
         {
-            var client = new RestClient
+            var client = new RestClient(MonarchAppUri)
             {
-                BaseUrl = MonarchAppUri,
+                //BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
             {
                 Resource = WishlistsEndpoint,
-                Method = Method.POST,
+                Method = Method.Post,
                 RequestFormat = DataFormat.Json
             };
 

@@ -77,7 +77,7 @@ namespace monorail_web_v3.Test.Scripts.Transactions.Plaid
                 .ClickContinueButton();
 
             plaidSelectYourBankModal
-                .ClickBank("Chase");
+                .ClickBank("Citibank Online");
 
             plaidEnterYourCredentialsModal
                 .PassCredentials()

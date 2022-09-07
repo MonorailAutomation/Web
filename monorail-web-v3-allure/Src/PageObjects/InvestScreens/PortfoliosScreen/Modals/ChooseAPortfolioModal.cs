@@ -12,7 +12,7 @@ namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Modals
 {
     public class ChooseAPortfolioModal : ChooseATypeModal
     {
-        private const string ChooseAPortfolioHeaderText = "Choose a Model";
+        private const string ChooseAPortfolioHeaderText = "Create a New Account";
 
         public ChooseAPortfolioModal(IWebDriver driver) : base(driver)
         {
@@ -20,9 +20,9 @@ namespace monorail_web_v3.PageObjects.InvestScreens.PortfoliosScreen.Modals
         }
 
         [AllureStep("Click '{0}' Portfolio Type")]
-        public ChooseAPortfolioModal ClickPortfolioType(PortfolioType portfolioType)
+        public ChooseAPortfolioModal ClickPortfolioType(String portfolioType)
         {
-            var portfolioTypeSelector = "//p[contains(text(), '" + PortfolioTypeToString(portfolioType) + "')]";
+            var portfolioTypeSelector = "//p[contains(text(), '" + portfolioType + "')]";
             Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(portfolioTypeSelector))).Click();
             return this;
         }

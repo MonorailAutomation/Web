@@ -15,15 +15,15 @@ namespace monorail_web_v3.RestRequests.Endpoints.Monarch.V2
         {
             const string verificationMode = "phone";
             const string verificationCode = "111111";
-            var client = new RestClient
+            var client = new RestClient(MonarchAppUri)
             {
-                BaseUrl = MonarchAppUri,
+                //BaseUrl = MonarchAppUri,
                 Authenticator = new JwtAuthenticator(token)
             };
             var request = new RestRequest
             {
                 Resource = RegisterEndpoint,
-                Method = Method.POST,
+                Method = Method.Post,
                 RequestFormat = DataFormat.Json
             };
             request.AddJsonBody(new
